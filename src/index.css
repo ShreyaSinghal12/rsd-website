@@ -14,22 +14,54 @@ body { background-color: #F7F4EF; color: #1A1A18; font-family: 'DM Sans', sans-s
 ::-webkit-scrollbar-thumb { background: #C9A96E; border-radius: 3px; }
 
 /* ── MOBILE ── */
+/* ── MOBILE & TABLET RESPONSIVE ── */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+  .about-grid    { grid-template-columns: 1fr !important; gap: 3rem !important; }
+  .contact-grid  { grid-template-columns: 1fr !important; gap: 3rem !important; }
+  .services-grid { grid-template-columns: repeat(2,1fr) !important; }
+  .process-grid  { grid-template-columns: repeat(2,1fr) !important; }
+  .why-grid      { grid-template-columns: 1fr 1fr !important; }
+  .portfolio-grid { grid-template-columns: repeat(2,1fr) !important; }
+  .areas-grid    { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* Mobile (max 768px) */
 @media (max-width: 768px) {
   .stats-grid    { grid-template-columns: repeat(2,1fr) !important; }
-  .about-grid    { grid-template-columns: 1fr !important; gap: 3rem !important; }
+  .about-grid    { grid-template-columns: 1fr !important; gap: 2rem !important; }
   .process-grid  { grid-template-columns: 1fr !important; }
   .why-grid      { grid-template-columns: 1fr !important; }
   .services-grid { grid-template-columns: 1fr !important; }
-  .areas-grid    { grid-template-columns: 1fr 1fr !important; }
+  .areas-grid    { grid-template-columns: 1fr !important; }
   .portfolio-grid { grid-template-columns: repeat(2,1fr) !important; }
-  .contact-grid  { grid-template-columns: 1fr !important; gap: 3rem !important; }
+  .contact-grid  { grid-template-columns: 1fr !important; gap: 2rem !important; }
   .form-row      { grid-template-columns: 1fr !important; }
   .footer-grid   { grid-template-columns: 1fr !important; gap: 2rem !important; }
-  .testimonial-wrapper { margin: 0 2rem !important; }
-  section { padding: 4rem 0 !important; }
+
+  /* Testimonial fix */
+  .testimonial-wrapper {
+    margin: 0 !important;
+  }
+  .testimonial-wrapper .t-card {
+    padding: 1.5rem !important;
+    font-size: 0.95rem !important;
+  }
+  .testimonial-wrapper .t-arrow-left {
+    left: 0 !important;
+    font-size: 1.8rem !important;
+  }
+  .testimonial-wrapper .t-arrow-right {
+    right: 0 !important;
+    font-size: 1.8rem !important;
+  }
+
+  section { padding: 3rem 0 !important; }
 }
 
+/* Small mobile (max 480px) */
 @media (max-width: 480px) {
   .portfolio-grid { grid-template-columns: 1fr !important; }
-  .areas-grid     { grid-template-columns: 1fr !important; }
+  .stats-grid     { grid-template-columns: repeat(2,1fr) !important; }
 }

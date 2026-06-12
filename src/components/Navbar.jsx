@@ -78,7 +78,7 @@ export default function Navbar() {
           </div>
 
           {/* Hamburger */}
-          <button onClick={() => setMenuOpen(v => !v)} className="show-mobile" style={{ marginLeft: 'auto', padding: '0 1.5rem', background: 'none', border: 'none', cursor: 'pointer', display: 'none', flexDirection: 'column', gap: 5 }} aria-label="Toggle menu">
+          <button onClick={() => setMenuOpen(v => !v)} className="show-mobile" style={{ marginLeft: 'auto', padding: '0 1.5rem', background: 'none', border: 'none', cursor: 'pointer', flexDirection: 'column', gap: 5 }} aria-label="Toggle menu">
             {[0, 1, 2].map(i => (
               <span key={i} style={{ display: 'block', width: 24, height: 1.5, background: '#1A1A18', transition: 'all 0.3s', transform: menuOpen ? i === 0 ? 'rotate(45deg) translate(4.5px, 4.5px)' : i === 2 ? 'rotate(-45deg) translate(4.5px, -4.5px)' : 'scaleX(0)' : 'none' }}/>
             ))}
@@ -103,10 +103,13 @@ export default function Navbar() {
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
-          .hide-mobile { display: none !important; }
-          .show-mobile { display: flex !important; }
-        }
+        @media (min-width: 901px) {
+  .show-mobile { display: none !important; }
+}
+@media (max-width: 900px) {
+  .hide-mobile { display: none !important; }
+  .show-mobile { display: flex !important; }
+}
       `}</style>
     </>
   )
