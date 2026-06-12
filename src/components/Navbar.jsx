@@ -147,16 +147,7 @@ export default function Navbar() {
                             &#10005;
                         </button>
 
-                        {/* Logo inside drawer */}
-                        <img
-                            src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png"
-                            alt="RSD"
-                            style={{ height: 36, width: 'auto', marginBottom: '1.5rem' }}
-                        />
-
-                        {/* Divider */}
-                        <div style={{ height: 1, background: 'rgba(26,26,24,0.08)', marginBottom: '1.5rem' }} />
-
+                        
                         {/* Links */}
                         {links.map((link, i) => {
                             const active = activeLink === link.anchor
