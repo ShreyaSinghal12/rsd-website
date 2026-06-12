@@ -13,10 +13,10 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
     const [activeLink, setActiveLink] = useState('hero')
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 900)
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024)
 
     useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth <= 900)
+        const handleResize = () => setIsMobile(window.innerWidth <= 1024)
         window.addEventListener('resize', handleResize)
         return () => window.removeEventListener('resize', handleResize)
     }, [])
