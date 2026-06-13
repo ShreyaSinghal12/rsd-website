@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react'
 
 const links = [
-    { label: 'Home', anchor: 'hero' },
-    { label: 'About Us', anchor: 'about' },
-    { label: 'Services', anchor: 'services' },
-    { label: 'Projects', anchor: 'portfolio' },
-    { label: 'Testimonials', anchor: 'testimonials' },
-    { label: 'Contact Us', anchor: 'contact' },
+  { label: 'Home',         anchor: 'hero' },
+  { label: 'Projects',     anchor: 'portfolio' },
+  { label: 'Testimonials', anchor: 'testimonials' },
+  { label: 'About Us',     anchor: 'about' },
+  { label: 'Services',     anchor: 'services' },
+  { label: 'Contact Us',   anchor: 'contact' },
 ]
-
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)

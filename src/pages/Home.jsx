@@ -205,6 +205,116 @@ export default function Home() {
             </section>
 
             {/* ── SECTION DIVIDER ── */}
+            <SectionDivider label="Our Projects" />
+
+            {/* ── PORTFOLIO ── */}
+            <section id="portfolio" style={{ padding: '7rem 0', background: S.offwhite }}>
+                <div style={{ maxWidth: 1300, margin: '0 auto', padding: '0 2rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+                        <FadeIn>
+                            <span className="gold-rule" />
+                            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem' }}>Portfolio</p>
+                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.9rem,4vw,2.8rem)', fontWeight: 400, color: S.ink }}>Our Recent <em>Projects</em></h2>
+                        </FadeIn>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0' }}>
+                            {['all', 'residential', 'commercial', 'architecture'].map((f, i, arr) => (
+                                <button key={f} onClick={() => setFilter(f)}
+                                    style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.55rem 1.1rem', border: '1px solid rgba(26,26,24,0.15)', borderRight: i < arr.length - 1 ? 'none' : '1px solid rgba(26,26,24,0.15)', cursor: 'pointer', background: filter === f ? S.ink : 'transparent', color: filter === f ? S.gold : S.mid, transition: 'all 0.25s' }}>
+                                    {f === 'all' ? 'All' : f.charAt(0).toUpperCase() + f.slice(1)}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="portfolio-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5px' }}>
+                        {preview.map((p, i) => (
+                            <FadeIn key={p.id} delay={(i % 9) * 60}>
+                                <div
+                                    onClick={() => setSelectedProject(p)}
+                                    style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#d0c8b8', cursor: 'pointer' }}
+                                    onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'; e.currentTarget.querySelector('.ov').style.opacity = '1' }}
+                                    onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1)'; e.currentTarget.querySelector('.ov').style.opacity = '0' }}>
+                                    <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
+                                    <div className="ov" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(26,26,24,0.8) 0%,transparent 55%)', opacity: 0, transition: 'opacity 0.3s', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.5rem' }}>
+                                        <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{p.category}</span>
+                                        <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', color: S.offwhite }}>{p.title}</p>
+                                    </div>
+                                </div>
+                            </FadeIn>
+                        ))}
+                    </div>
+                    <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+                        <button
+                            onClick={() => document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })}
+                            style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.9rem 2.2rem', border: `1px solid ${S.gold}`, color: S.gold, background: 'transparent', cursor: 'pointer', transition: 'all 0.3s' }}
+                            onMouseEnter={e => { e.currentTarget.style.background = S.gold; e.currentTarget.style.color = S.ink }}
+                            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = S.gold }}>
+                            View All Projects
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            
+            {/* ── SECTION DIVIDER ── */}
+            <SectionDivider label="Testimonials" />
+
+            {/* ── TESTIMONIALS ── */}
+            <section id="testimonials" style={{ background: '#F0EBE3', padding: '7rem 0' }}>
+                <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 2rem' }}>
+                    <FadeIn>
+                        <span className="gold-rule" />
+                        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem' }}>Testimonials</p>
+                        <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.9rem,4vw,2.8rem)', fontWeight: 400, color: S.ink, marginBottom: '3rem' }}>
+                            Heard from those who <em>lived</em> our work
+                        </h2>
+                    </FadeIn>
+
+                    <div className="testimonial-wrapper" style={{ position: 'relative', padding: '0 2.5rem' }}>
+                        {/* Left arrow */}
+                        <button
+                            className="t-arrow-left"
+                            onClick={() => setTIndex(i => (i - 1 + testimonials.length) % testimonials.length)}
+                            style={{ position: 'absolute', left: '0', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '2.5rem', color: 'rgba(26,26,24,0.4)', transition: 'color 0.25s', lineHeight: 1, padding: 0, zIndex: 2 }}
+                            onMouseEnter={e => e.currentTarget.style.color = S.ink}
+                            onMouseLeave={e => e.currentTarget.style.color = 'rgba(26,26,24,0.4)'}>
+                            &#8249;
+                        </button>
+
+                        {/* Card */}
+                        <div className="t-card" style={{ background: '#fff', padding: '2.5rem', borderLeft: `2px solid ${S.gold}` }}>
+                            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(0.95rem,2vw,1.1rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.8, marginBottom: '1.5rem', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+                                <span style={{ fontSize: '2rem', color: S.gold, lineHeight: 0, verticalAlign: '-0.4rem', marginRight: '0.2rem' }}>"</span>
+                                {testimonials[tIndex].text}
+                            </p>
+                            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.gold }}>
+                                — {testimonials[tIndex].name}
+                            </p>
+                        </div>
+
+                        {/* Right arrow */}
+                        <button
+                            className="t-arrow-right"
+                            onClick={() => setTIndex(i => (i + 1) % testimonials.length)}
+                            style={{ position: 'absolute', right: '0', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '2.5rem', color: 'rgba(26,26,24,0.4)', transition: 'color 0.25s', lineHeight: 1, padding: 0, zIndex: 2 }}
+                            onMouseEnter={e => e.currentTarget.style.color = S.ink}
+                            onMouseLeave={e => e.currentTarget.style.color = 'rgba(26,26,24,0.4)'}>
+                            &#8250;
+                        </button>
+                    </div>
+
+                    {/* Dots */}
+                    <div style={{ display: 'flex', gap: '0.6rem', marginTop: '1.5rem', justifyContent: 'center' }}>
+                        {testimonials.map((_, i) => (
+                            <button key={i} onClick={() => setTIndex(i)}
+                                style={{ width: 8, height: 8, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, background: tIndex === i ? S.gold : 'rgba(201,169,110,0.25)', transform: tIndex === i ? 'scale(1.3)' : 'scale(1)', transition: 'all 0.3s' }} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+
+
+            {/* ── SECTION DIVIDER ── */}
             <SectionDivider label="About Us" />
 
             {/* ── ABOUT ── */}
@@ -348,114 +458,8 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ── SECTION DIVIDER ── */}
-            <SectionDivider label="Our Projects" />
-
-            {/* ── PORTFOLIO ── */}
-            <section id="portfolio" style={{ padding: '7rem 0', background: S.offwhite }}>
-                <div style={{ maxWidth: 1300, margin: '0 auto', padding: '0 2rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
-                        <FadeIn>
-                            <span className="gold-rule" />
-                            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem' }}>Portfolio</p>
-                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.9rem,4vw,2.8rem)', fontWeight: 400, color: S.ink }}>Our Recent <em>Projects</em></h2>
-                        </FadeIn>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0' }}>
-                            {['all', 'residential', 'commercial', 'architecture'].map((f, i, arr) => (
-                                <button key={f} onClick={() => setFilter(f)}
-                                    style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.55rem 1.1rem', border: '1px solid rgba(26,26,24,0.15)', borderRight: i < arr.length - 1 ? 'none' : '1px solid rgba(26,26,24,0.15)', cursor: 'pointer', background: filter === f ? S.ink : 'transparent', color: filter === f ? S.gold : S.mid, transition: 'all 0.25s' }}>
-                                    {f === 'all' ? 'All' : f.charAt(0).toUpperCase() + f.slice(1)}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="portfolio-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5px' }}>
-                        {preview.map((p, i) => (
-                            <FadeIn key={p.id} delay={(i % 9) * 60}>
-                                <div
-                                    onClick={() => setSelectedProject(p)}
-                                    style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#d0c8b8', cursor: 'pointer' }}
-                                    onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'; e.currentTarget.querySelector('.ov').style.opacity = '1' }}
-                                    onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1)'; e.currentTarget.querySelector('.ov').style.opacity = '0' }}>
-                                    <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
-                                    <div className="ov" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(26,26,24,0.8) 0%,transparent 55%)', opacity: 0, transition: 'opacity 0.3s', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.5rem' }}>
-                                        <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{p.category}</span>
-                                        <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', color: S.offwhite }}>{p.title}</p>
-                                    </div>
-                                </div>
-                            </FadeIn>
-                        ))}
-                    </div>
-                    <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-                        <button
-                            onClick={() => document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })}
-                            style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.9rem 2.2rem', border: `1px solid ${S.gold}`, color: S.gold, background: 'transparent', cursor: 'pointer', transition: 'all 0.3s' }}
-                            onMouseEnter={e => { e.currentTarget.style.background = S.gold; e.currentTarget.style.color = S.ink }}
-                            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = S.gold }}>
-                            View All Projects
-                        </button>
-                    </div>
-                </div>
-            </section>
-
             
-            {/* ── SECTION DIVIDER ── */}
-            <SectionDivider label="Testimonials" />
-
-            {/* ── TESTIMONIALS ── */}
-            <section id="testimonials" style={{ background: '#F0EBE3', padding: '7rem 0' }}>
-                <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 2rem' }}>
-                    <FadeIn>
-                        <span className="gold-rule" />
-                        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem' }}>Testimonials</p>
-                        <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.9rem,4vw,2.8rem)', fontWeight: 400, color: S.ink, marginBottom: '3rem' }}>
-                            Heard from those who <em>lived</em> our work
-                        </h2>
-                    </FadeIn>
-
-                    <div className="testimonial-wrapper" style={{ position: 'relative', padding: '0 2.5rem' }}>
-                        {/* Left arrow */}
-                        <button
-                            className="t-arrow-left"
-                            onClick={() => setTIndex(i => (i - 1 + testimonials.length) % testimonials.length)}
-                            style={{ position: 'absolute', left: '0', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '2.5rem', color: 'rgba(26,26,24,0.4)', transition: 'color 0.25s', lineHeight: 1, padding: 0, zIndex: 2 }}
-                            onMouseEnter={e => e.currentTarget.style.color = S.ink}
-                            onMouseLeave={e => e.currentTarget.style.color = 'rgba(26,26,24,0.4)'}>
-                            &#8249;
-                        </button>
-
-                        {/* Card */}
-                        <div className="t-card" style={{ background: '#fff', padding: '2.5rem', borderLeft: `2px solid ${S.gold}` }}>
-                            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(0.95rem,2vw,1.1rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.8, marginBottom: '1.5rem', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
-                                <span style={{ fontSize: '2rem', color: S.gold, lineHeight: 0, verticalAlign: '-0.4rem', marginRight: '0.2rem' }}>"</span>
-                                {testimonials[tIndex].text}
-                            </p>
-                            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.gold }}>
-                                — {testimonials[tIndex].name}
-                            </p>
-                        </div>
-
-                        {/* Right arrow */}
-                        <button
-                            className="t-arrow-right"
-                            onClick={() => setTIndex(i => (i + 1) % testimonials.length)}
-                            style={{ position: 'absolute', right: '0', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '2.5rem', color: 'rgba(26,26,24,0.4)', transition: 'color 0.25s', lineHeight: 1, padding: 0, zIndex: 2 }}
-                            onMouseEnter={e => e.currentTarget.style.color = S.ink}
-                            onMouseLeave={e => e.currentTarget.style.color = 'rgba(26,26,24,0.4)'}>
-                            &#8250;
-                        </button>
-                    </div>
-
-                    {/* Dots */}
-                    <div style={{ display: 'flex', gap: '0.6rem', marginTop: '1.5rem', justifyContent: 'center' }}>
-                        {testimonials.map((_, i) => (
-                            <button key={i} onClick={() => setTIndex(i)}
-                                style={{ width: 8, height: 8, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, background: tIndex === i ? S.gold : 'rgba(201,169,110,0.25)', transform: tIndex === i ? 'scale(1.3)' : 'scale(1)', transition: 'all 0.3s' }} />
-                        ))}
-                    </div>
-                </div>
-            </section>
-
+            
             {/* ── SECTION DIVIDER ── */}
             <SectionDivider label="Contact Us" />
 
