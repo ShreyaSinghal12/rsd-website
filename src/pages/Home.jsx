@@ -398,10 +398,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ── SECTION DIVIDER ── */}
-            <SectionDivider label="Testimonials" />
-
-            {/* ── TESTIMONIALS ── */}
+            
             {/* ── SECTION DIVIDER ── */}
             <SectionDivider label="Testimonials" />
 
