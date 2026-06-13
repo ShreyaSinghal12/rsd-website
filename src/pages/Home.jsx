@@ -129,7 +129,7 @@ export default function Home() {
     const types = useCounter(6, statsInView)
 
     const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter)
-    const preview = filtered.slice(0, 30)
+    const preview = filtered
 
     const handleSubmit = async (e) => {
         e.preventDefault()
