@@ -578,8 +578,9 @@ export default function Home() {
                         backdropFilter: 'blur(6px)',
                     }}>
                     <div
+                        className="project-modal-grid"
                         onClick={e => e.stopPropagation()}
-                        style={{className="project-modal-grid",
+                        style={{
                             background: '#fff',
                             maxWidth: 900, width: '100%',
                             maxHeight: '90vh',
