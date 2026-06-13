@@ -85,6 +85,7 @@ const S = {
 }
 
 export default function Home() {
+    const [selectedProject, setSelectedProject] = useState(null)
     const [slide, setSlide] = useState(0)
     const [tIndex, setTIndex] = useState(0)
     const [filter, setFilter] = useState('all')
@@ -371,7 +372,9 @@ export default function Home() {
                     <div className="portfolio-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5px' }}>
                         {preview.map((p, i) => (
                             <FadeIn key={p.id} delay={(i % 9) * 60}>
-                                <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#d0c8b8', cursor: 'pointer' }}
+                                <div
+                                    onClick={() => setSelectedProject(p)}
+                                    style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#d0c8b8', cursor: 'pointer' }}
                                     onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'; e.currentTarget.querySelector('.ov').style.opacity = '1' }}
                                     onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1)'; e.currentTarget.querySelector('.ov').style.opacity = '0' }}>
                                     <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
@@ -563,6 +566,107 @@ export default function Home() {
                     </FadeIn>
                 </div>
             </section>
+            {/* ── PROJECT MODAL ── */}
+            {selectedProject && (
+                <div
+                    onClick={() => setSelectedProject(null)}
+                    style={{
+                        position: 'fixed', inset: 0, zIndex: 200,
+                        background: 'rgba(26,26,24,0.92)',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        padding: '1.5rem',
+                        backdropFilter: 'blur(6px)',
+                    }}>
+                    <div
+                        onClick={e => e.stopPropagation()}
+                        style={{className="project-modal-grid",
+                            background: '#fff',
+                            maxWidth: 900, width: '100%',
+                            maxHeight: '90vh',
+                            overflow: 'auto',
+                            display: 'grid',
+                            gridTemplateColumns: '1.2fr 1fr',
+                            position: 'relative',
+                        }}>
+
+                        {/* Close button */}
+                        <button
+                            onClick={() => setSelectedProject(null)}
+                            style={{
+                                position: 'absolute', top: '1rem', right: '1rem',
+                                width: 36, height: 36,
+                                background: 'rgba(26,26,24,0.7)',
+                                border: 'none', cursor: 'pointer',
+                                color: '#fff', fontSize: '1.1rem',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                zIndex: 10,
+                                transition: 'background 0.2s',
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.background = '#1A1A18'}
+                            onMouseLeave={e => e.currentTarget.style.background = 'rgba(26,26,24,0.7)'}>
+                            &#10005;
+                        </button>
+
+                        {/* Image */}
+                        <div style={{ position: 'relative', minHeight: 320 }}>
+                            <img
+                                src={selectedProject.img}
+                                alt={selectedProject.title}
+                                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                            />
+                        </div>
+
+                        {/* Details */}
+                        <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <span style={{
+                                fontFamily: "'DM Mono',monospace",
+                                fontSize: '0.65rem', letterSpacing: '0.18em',
+                                textTransform: 'uppercase', color: S.gold,
+                                marginBottom: '0.8rem', display: 'block',
+                            }}>
+                                {selectedProject.category}
+                            </span>
+                            <h2 style={{
+                                fontFamily: "'Playfair Display',serif",
+                                fontSize: 'clamp(1.4rem,3vw,2rem)',
+                                fontWeight: 400, color: S.ink,
+                                lineHeight: 1.2, marginBottom: '1.5rem',
+                            }}>
+                                {selectedProject.title}
+                            </h2>
+                            <div style={{ width: 40, height: 1, background: S.gold, marginBottom: '1.5rem' }} />
+                            <p style={{
+                                fontSize: '0.92rem', color: S.mid,
+                                lineHeight: 1.85, marginBottom: '2rem',
+                            }}>
+                                {selectedProject.desc}
+                            </p>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                                <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
+                                    <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Type</span>
+                                    <span style={{ fontSize: '0.88rem', color: S.ink, textTransform: 'capitalize' }}>{selectedProject.category}</span>
+                                </div>
+                                <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
+                                    <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Studio</span>
+                                    <span style={{ fontSize: '0.88rem', color: S.ink }}>Raamesh Singhal Design</span>
+                                </div>
+                                <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center' }}>
+                                    <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Location</span>
+                                    <span style={{ fontSize: '0.88rem', color: S.ink }}>Siliguri, India</span>
+                                </div>
+                            </div>
+
+                            <button
+                                onClick={() => { setSelectedProject(null); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) }}
+                                style={{ marginTop: '2rem', fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.85rem 1.8rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s', alignSelf: 'flex-start' }}
+                                onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
+                                onMouseLeave={e => e.currentTarget.style.background = S.gold}>
+                                Enquire About This Project
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </>
     )
 }

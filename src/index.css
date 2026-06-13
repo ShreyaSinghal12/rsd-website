@@ -65,3 +65,8 @@ body { background-color: #F7F4EF; color: #1A1A18; font-family: 'DM Sans', sans-s
   .portfolio-grid { grid-template-columns: 1fr !important; }
   .stats-grid     { grid-template-columns: repeat(2,1fr) !important; }
 }
+@media (max-width: 768px) {
+  .project-modal-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
