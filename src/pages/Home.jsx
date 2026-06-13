@@ -234,6 +234,23 @@ export default function Home() {
                                     onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'; e.currentTarget.querySelector('.ov').style.opacity = '1' }}
                                     onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1)'; e.currentTarget.querySelector('.ov').style.opacity = '0' }}>
                                     <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
+
+                                    {/* Watermark logo */}
+                                    <div style={{
+                                        position: 'absolute', bottom: '0.6rem', right: '0.6rem',
+                                        zIndex: 2, pointerEvents: 'none',
+                                        display: 'flex', flexDirection: 'column', alignItems: 'center',
+                                        background: 'rgba(247,244,239,0.82)',
+                                        padding: '0.3rem 0.5rem',
+                                        backdropFilter: 'blur(2px)',
+                                    }}>
+                                        <img
+                                            src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png"
+                                            alt="RSD"
+                                            style={{ height: 28, width: 'auto', display: 'block' }}
+                                        />
+                                    </div>
+
                                     <div className="ov" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(26,26,24,0.8) 0%,transparent 55%)', opacity: 0, transition: 'opacity 0.3s', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.5rem' }}>
                                         <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{p.category}</span>
                                         <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', color: S.offwhite }}>{p.title}</p>
@@ -254,7 +271,7 @@ export default function Home() {
                 </div>
             </section>
 
-            
+
             {/* ── SECTION DIVIDER ── */}
             <SectionDivider label="Testimonials" />
 
@@ -458,8 +475,8 @@ export default function Home() {
                 </div>
             </section>
 
-            
-            
+
+
             {/* ── SECTION DIVIDER ── */}
             <SectionDivider label="Contact Us" />
 
