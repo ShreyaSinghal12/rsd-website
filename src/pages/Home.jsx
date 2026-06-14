@@ -236,21 +236,28 @@ export default function Home() {
                                     <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
 
                                     {/* Watermark logo */}
-                                    {/* Watermark logo */}
                                     <div style={{
                                         position: 'absolute', bottom: '0.8rem', right: '0.8rem',
                                         zIndex: 2, pointerEvents: 'none',
-                                        display: 'flex', alignItems: 'center', gap: '0.4rem',
+                                        display: 'flex', alignItems: 'center', gap: '0.5rem',
+                                        background: 'rgba(255,255,255,0.35)',
+                                        backdropFilter: 'blur(4px)',
+                                        padding: '0.35rem 0.6rem',
+                                        borderRadius: 2,
                                     }}>
                                         <img
                                             src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png"
                                             alt="RSD"
-                                            style={{
-                                                height: 30, width: 'auto', display: 'block',
-                                                opacity: 0.9,
-                                                filter: 'drop-shadow(0 0 3px rgba(255,255,255,0.8)) drop-shadow(0 0 6px rgba(255,255,255,0.6))',
-                                            }}
+                                            style={{ height: 26, width: 'auto', display: 'block' }}
                                         />
+                                        <span style={{
+                                            fontFamily: "'DM Sans',sans-serif",
+                                            fontSize: '0.6rem', letterSpacing: '0.1em',
+                                            textTransform: 'uppercase', color: '#1A1A18',
+                                            fontWeight: 600, whiteSpace: 'nowrap',
+                                        }}>
+                                            RSD
+                                        </span>
                                     </div>
 
 
