@@ -236,14 +236,18 @@ export default function Home() {
                                     <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
 
                                     {/* Watermark logo */}
+                                    
                                     <div style={{
                                         position: 'absolute', bottom: '0.8rem', right: '0.8rem',
                                         zIndex: 2, pointerEvents: 'none',
+                                        background: 'rgba(247,244,239,0.75)',
+                                        padding: '0.3rem 0.5rem',
+                                        borderRadius: 2,
                                     }}>
                                         <img
                                             src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png"
                                             alt="RSD"
-                                            style={{ height: 32, width: 'auto', display: 'block', opacity: 0.85 }}
+                                            style={{ height: 28, width: 'auto', display: 'block', opacity: 1 }}
                                         />
                                     </div>
 
