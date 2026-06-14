@@ -243,7 +243,7 @@ export default function Home() {
                                         <img
                                             src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png"
                                             alt="RSD"
-                                            style={{ height: 32, width: 'auto', display: 'block', opacity: 0.55, filter: 'brightness(10)' }}
+                                            style={{ height: 32, width: 'auto', display: 'block', opacity: 0.85 }}
                                         />
                                     </div>
 
