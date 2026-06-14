@@ -236,30 +236,24 @@ export default function Home() {
                                     <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
 
                                     {/* Watermark logo */}
+                                    {/* Watermark logo */}
                                     <div style={{
-                                        position: 'absolute', bottom: 0, left: 0, right: 0,
+                                        position: 'absolute', bottom: '0.8rem', right: '0.8rem',
                                         zIndex: 2, pointerEvents: 'none',
-                                        background: 'rgba(247,244,239,0.95)',
-                                        padding: '0.5rem 1rem',
-                                        display: 'flex', alignItems: 'center', justifyContent: 'flex-end',
-                                        borderRadius: '0 0 0 0',
+                                        display: 'flex', alignItems: 'center', gap: '0.4rem',
                                     }}>
                                         <img
                                             src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png"
                                             alt="RSD"
-                                            style={{ height: 28, width: 'auto', display: 'block' }}
+                                            style={{
+                                                height: 30, width: 'auto', display: 'block',
+                                                opacity: 0.9,
+                                                filter: 'drop-shadow(0 0 3px rgba(255,255,255,0.8)) drop-shadow(0 0 6px rgba(255,255,255,0.6))',
+                                            }}
                                         />
-                                        <span style={{
-                                            fontFamily: "'DM Sans',sans-serif",
-                                            fontSize: '0.65rem', letterSpacing: '0.12em',
-                                            textTransform: 'uppercase', color: '#1A1A18',
-                                            marginLeft: '0.5rem', fontWeight: 500,
-                                        }}>
-                                            Raamesh Singhal Design
-                                        </span>
                                     </div>
 
-                                    
+
                                     <div className="ov" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(26,26,24,0.8) 0%,transparent 55%)', opacity: 0, transition: 'opacity 0.3s', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.5rem' }}>
                                         <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{p.category}</span>
                                         <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', color: S.offwhite }}>{p.title}</p>
