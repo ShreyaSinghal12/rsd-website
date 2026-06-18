@@ -124,6 +124,7 @@ export default function Home() {
     const [form, setForm] = useState({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' })
     const [status, setStatus] = useState('idle')
     const [focused, setFocused] = useState({})
+    const [selectedService, setSelectedService] = useState(null)
     const intervalRef = useRef(null)
 
     const set = (key) => (e) => setForm(f => ({ ...f, [key]: e.target.value }))
@@ -263,7 +264,7 @@ export default function Home() {
                 </div>
             </section>
 
-            
+
 
             {/* ── ABOUT ── */}
             <section id="about" style={{ background: S.offwhite }}>
@@ -275,8 +276,8 @@ export default function Home() {
                             <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.5rem' }}>
                                 Est. 1995 — Siliguri, India
                             </p>
-                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 400, color: S.ink, lineHeight: 1.15, marginBottom: '2rem' }}>
-                                30 years of turning space into <em style={{ color: S.gold, fontStyle: 'italic' }}>legacy.</em>
+                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1.5rem' }}>
+                                Recognition is flattering.<br /><em>Being trusted twice is the real award.</em>
                             </h2>
                             <div style={{ width: 48, height: 1, background: S.gold, margin: '0 auto 2rem' }} />
                             <p style={{ fontSize: 'clamp(0.9rem,2vw,1.05rem)', color: S.mid, lineHeight: 1.9, maxWidth: 720, margin: '0 auto' }}>
@@ -402,12 +403,16 @@ export default function Home() {
                                 },
                             ].map((item, i) => (
                                 <FadeIn key={i} delay={i * 100}>
-                                    <div style={{ padding: '2.5rem', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', borderTop: '2px solid transparent', transition: 'border-color 0.3s, box-shadow 0.3s', height: '100%' }}
+                                    <div
+                                        onClick={() => setSelectedService(item)}
+                                        style={{ padding: '2.5rem', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', borderTop: '2px solid transparent', transition: 'border-color 0.3s, box-shadow 0.3s', height: '100%', cursor: 'pointer' }}
                                         onMouseEnter={e => { e.currentTarget.style.borderTopColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
                                         onMouseLeave={e => { e.currentTarget.style.borderTopColor = 'transparent'; e.currentTarget.style.boxShadow = 'none' }}>
                                         <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '3rem', color: S.gold, opacity: 0.2, lineHeight: 1, marginBottom: '1rem', fontWeight: 700 }}>{item.num}</div>
-                                        <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 600 }}>{item.title}</h3>
-                                        <p style={{ fontSize: '0.9rem', color: S.mid, lineHeight: 1.85 }}>{item.desc}</p>
+                                        <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.ink, marginBottom: '1rem', fontWeight: 600 }}>{item.title}</h3>
+                                        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>
+                                            Learn More →
+                                        </p>
                                     </div>
                                 </FadeIn>
                             ))}
@@ -935,6 +940,60 @@ export default function Home() {
                                 Enquire About This Project
                             </button>
                         </div>
+                    </div>
+                </div>
+            )}
+            {/* ── SERVICE DETAIL MODAL ── */}
+            {selectedService && (
+                <div
+                    onClick={() => setSelectedService(null)}
+                    style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(26,26,24,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(6px)' }}>
+                    <div
+                        onClick={e => e.stopPropagation()}
+                        style={{ background: '#fff', maxWidth: 700, width: '100%', maxHeight: '90vh', overflow: 'auto', position: 'relative', padding: '3.5rem' }}>
+
+                        {/* Close */}
+                        <button
+                            onClick={() => setSelectedService(null)}
+                            style={{ position: 'absolute', top: '1.2rem', right: '1.2rem', width: 36, height: 36, background: 'rgba(26,26,24,0.08)', border: 'none', cursor: 'pointer', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.2s' }}
+                            onMouseEnter={e => e.currentTarget.style.background = 'rgba(26,26,24,0.15)'}
+                            onMouseLeave={e => e.currentTarget.style.background = 'rgba(26,26,24,0.08)'}>
+                            &#10005;
+                        </button>
+
+                        {/* Number */}
+                        <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '4rem', color: S.gold, opacity: 0.15, lineHeight: 1, marginBottom: '0.5rem', fontWeight: 700 }}>
+                            {selectedService.num}
+                        </div>
+
+                        {/* Title */}
+                        <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.5rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1.5rem' }}>
+                            {selectedService.title}
+                        </h2>
+
+                        {/* Gold rule */}
+                        <div style={{ width: 48, height: 1, background: S.gold, marginBottom: '1.5rem' }} />
+
+                        {/* Description */}
+                        <p style={{ fontSize: '1rem', color: S.mid, lineHeight: 1.9, marginBottom: '2rem' }}>
+                            {selectedService.desc}
+                        </p>
+
+                        {/* Image placeholder — will be replaced when you provide images */}
+                        <div style={{ width: '100%', aspectRatio: '16/9', background: '#F0EBE3', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem' }}>
+                            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>
+                                Image coming soon
+                            </p>
+                        </div>
+
+                        {/* CTA */}
+                        <button
+                            onClick={() => { setSelectedService(null); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) }}
+                            style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.85rem 2rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s' }}
+                            onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
+                            onMouseLeave={e => e.currentTarget.style.background = S.gold}>
+                            Start a Conversation →
+                        </button>
                     </div>
                 </div>
             )}
