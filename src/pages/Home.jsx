@@ -263,8 +263,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ── SECTION DIVIDER ── */}
-            <SectionDivider label="About Us" />
+            
 
             {/* ── ABOUT ── */}
             <section id="about" style={{ background: S.offwhite }}>
