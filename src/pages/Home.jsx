@@ -270,17 +270,17 @@ export default function Home() {
             <section id="about" style={{ background: S.offwhite }}>
 
                 {/* Block 1 — Opening Banner */}
-                <div style={{ background: S.ink, padding: '5rem 2rem', textAlign: 'center' }}>
+                <div style={{ background: '#F0EBE3', padding: '5rem 2rem', textAlign: 'center' }}>
                     <div style={{ maxWidth: 900, margin: '0 auto' }}>
                         <FadeIn>
                             <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.5rem' }}>
                                 Est. 1995 — Siliguri, India
                             </p>
-                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 400, color: S.offwhite, lineHeight: 1.15, marginBottom: '2rem' }}>
-                                30 years of turning space into <em style={{ color: S.stone, fontStyle: 'italic' }}>legacy.</em>
+                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,5vw,3.5rem)', fontWeight: 400, color: S.ink, lineHeight: 1.15, marginBottom: '2rem' }}>
+                                30 years of turning space into <em style={{ color: S.gold, fontStyle: 'italic' }}>legacy.</em>
                             </h2>
                             <div style={{ width: 48, height: 1, background: S.gold, margin: '0 auto 2rem' }} />
-                            <p style={{ fontSize: 'clamp(0.9rem,2vw,1.05rem)', color: S.sage, lineHeight: 1.9, maxWidth: 720, margin: '0 auto' }}>
+                            <p style={{ fontSize: 'clamp(0.9rem,2vw,1.05rem)', color: S.mid, lineHeight: 1.9, maxWidth: 720, margin: '0 auto' }}>
                                 For thirty years, our name has gone on the outcome, not just the drawings. When one firm holds the whole project, there's no one else to point to if something isn't right, and nothing to hide behind. We built the practice that way on purpose: an owner should have exactly one place to look when it matters. Three decades on, that's still the standard we answer to.
                             </p>
                         </FadeIn>
@@ -417,15 +417,15 @@ export default function Home() {
                 </div>
 
                 {/* Block 5 — How We Do It */}
-                <div style={{ background: S.ink, padding: '7rem 2rem' }}>
+                <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
                     <div style={{ maxWidth: 1200, margin: '0 auto' }}>
                         <FadeIn>
                             <span className="gold-rule" />
                             <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '1rem' }}>Our Process</p>
-                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.6rem,3.5vw,2.4rem)', fontWeight: 400, color: S.offwhite, lineHeight: 1.2, marginBottom: '1rem' }}>
-                                From a conversation to something<br /><em style={{ color: S.stone }}>worth inheriting.</em>
+                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.6rem,3.5vw,2.4rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1rem' }}>
+                                From a conversation to something<br /><em style={{ color: S.gold }}>worth inheriting.</em>
                             </h2>
-                            <p style={{ fontSize: '0.92rem', color: S.sage, lineHeight: 1.85, maxWidth: 600, marginBottom: '3.5rem' }}>
+                            <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 600, marginBottom: '3.5rem' }}>
                                 Our process exists to remove the one thing that ruins great projects: the gap between people. Everything sits with us, so nothing falls between.
                             </p>
                         </FadeIn>
@@ -437,13 +437,13 @@ export default function Home() {
                                 { num: '04', title: 'Hand Over', desc: 'You receive a finished space, on time, exactly as promised — and a single name to call if you ever need us again.' },
                             ].map((item, i) => (
                                 <FadeIn key={i} delay={i * 80}>
-                                    <div style={{ display: 'flex', gap: '1.5rem', padding: '2rem', background: '#232320', border: '1px solid rgba(255,255,255,0.05)', transition: 'border-color 0.3s' }}
+                                    <div style={{ display: 'flex', gap: '1.5rem', padding: '2rem', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', transition: 'border-color 0.3s' }}
                                         onMouseEnter={e => e.currentTarget.style.borderColor = S.gold}
                                         onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)'}>
                                         <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, opacity: 0.3, lineHeight: 1, flexShrink: 0, fontWeight: 700 }}>{item.num}</div>
                                         <div>
-                                            <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.stone, marginBottom: '0.5rem', fontWeight: 600 }}>{item.title}</h3>
-                                            <p style={{ fontSize: '0.88rem', color: S.sage, lineHeight: 1.8 }}>{item.desc}</p>
+                                            <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.ink, marginBottom: '0.5rem', fontWeight: 600 }}>{item.title}</h3>
+                                            <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8 }}>{item.desc}</p>
                                         </div>
                                     </div>
                                 </FadeIn>
@@ -500,14 +500,14 @@ export default function Home() {
                 </div>
 
                 {/* Founders */}
-                <div style={{ background: S.ink, padding: '7rem 2rem' }}>
+                <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
                     <div style={{ maxWidth: 1200, margin: '0 auto' }}>
                         <FadeIn>
                             <span className="gold-rule" />
-                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.6rem,3.5vw,2.4rem)', fontWeight: 400, color: S.offwhite, lineHeight: 1.2, marginBottom: '1rem' }}>
-                                The thinking behind every<br /><em style={{ color: S.stone }}>space we create.</em>
+                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.6rem,3.5vw,2.4rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1rem' }}>
+                                The thinking behind every<br /><em style={{ color: S.gold }}>space we create.</em>
                             </h2>
-                            <p style={{ fontSize: '0.92rem', color: S.sage, lineHeight: 1.85, maxWidth: 680, marginBottom: '4rem' }}>
+                            <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 680, marginBottom: '4rem' }}>
                                 Exceptional spaces are never the result of design alone. They emerge when vision, functionality, human behaviour, and execution work in complete harmony. That belief has guided Raamesh Singhal Design since its inception.
                             </p>
                         </FadeIn>
@@ -527,14 +527,14 @@ export default function Home() {
                                 },
                             ].map((founder, i) => (
                                 <FadeIn key={i} delay={i * 150}>
-                                    <div style={{ background: '#232320', overflow: 'hidden' }}>
+                                    <div style={{ background: '#fff', overflow: 'hidden', border: '1px solid rgba(26,26,24,0.08)' }}>
                                         <div style={{ aspectRatio: '3/2', overflow: 'hidden' }}>
                                             <img src={founder.img} alt={founder.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                                         </div>
                                         <div style={{ padding: '2rem' }}>
                                             <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem' }}>{founder.role}</p>
-                                            <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.stone, marginBottom: '1rem', fontWeight: 400 }}>{founder.name}</h3>
-                                            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', fontStyle: 'italic', color: S.sage, lineHeight: 1.75 }}>
+                                            <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.ink, marginBottom: '1rem', fontWeight: 400 }}>{founder.name}</h3>
+                                            <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', fontStyle: 'italic', color: S.mid, lineHeight: 1.75 }}>
                                                 <span style={{ color: S.gold, fontSize: '1.5rem', lineHeight: 0, verticalAlign: '-0.3rem', marginRight: '0.2rem' }}>"</span>
                                                 {founder.quote}
                                             </p>
