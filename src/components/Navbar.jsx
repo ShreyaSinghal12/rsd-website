@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 
 const links = [
   { label: 'Home',         anchor: 'hero' },
+  { label: 'About Us',     anchor: 'about' },
   { label: 'Projects',     anchor: 'portfolio' },
   { label: 'Testimonials', anchor: 'testimonials' },
-  { label: 'About Us',     anchor: 'about' },
   { label: 'Services',     anchor: 'services' },
   { label: 'Contact Us',   anchor: 'contact' },
 ]
