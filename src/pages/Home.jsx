@@ -192,14 +192,13 @@ export default function Home() {
 
                 <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 'clamp(0px,5vw,2.5rem) clamp(1rem,5vw,2.5rem) clamp(3rem,8vw,5rem)' }}>
 
-                    {/* Slide label */}
-                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '1rem', textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
+                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
                         <span style={{ display: 'block', width: 36, height: 1, background: S.gold }} />
-                        {heroSlides[slide].label} &nbsp;·&nbsp; Siliguri, India
+                        Established 1995 &nbsp;·&nbsp; Siliguri, India
                     </p>
 
                     {/* Headline */}
-                    <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,5vw,4rem)', fontWeight: 400, lineHeight: 1.15, color: S.offwhite, marginBottom: '1rem', maxWidth: 780 }}>
+                    <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.5rem,3.5vw,2.8rem)', fontWeight: 400, lineHeight: 1.2, color: S.offwhite, marginBottom: '1rem', maxWidth: 680 }}>
                         {heroSlides[slide].headline}
                         {heroSlides[slide].headlineb && (
                             <><br /><em style={{ fontStyle: 'italic', color: S.stone }}>{heroSlides[slide].headlineb}</em></>
@@ -493,7 +492,7 @@ export default function Home() {
 
 
 
-            
+
 
             {/* ── SECTION DIVIDER ── */}
             <SectionDivider label="Our Services" />
