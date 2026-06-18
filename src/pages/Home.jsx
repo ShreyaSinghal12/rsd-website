@@ -303,7 +303,7 @@ export default function Home() {
                         <FadeIn delay={150}>
                             <span className="gold-rule" />
                             <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '1rem' }}>Who We Are</p>
-                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.6rem,3.5vw,2.4rem)', fontWeight: 400, lineHeight: 1.2, color: S.ink, marginBottom: '0.8rem' }}>
+                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 400, lineHeight: 1.2, color: S.ink, marginBottom: '0.8rem' }}>
                                 One studio. One standard.<br /><em>One name on every decision.</em>
                             </h2>
                             <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '1.5rem', textTransform: 'uppercase' }}>About Raamesh Singhal Design</p>
@@ -380,7 +380,7 @@ export default function Home() {
                         <FadeIn>
                             <span className="gold-rule" />
                             <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '1rem' }}>What We Do</p>
-                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.6rem,3.5vw,2.4rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '3.5rem' }}>
+                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '3.5rem' }}>
                                 Three disciplines.<br /><em>One continuous decision.</em>
                             </h2>
                         </FadeIn>
@@ -426,7 +426,7 @@ export default function Home() {
                         <FadeIn>
                             <span className="gold-rule" />
                             <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '1rem' }}>Our Process</p>
-                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.6rem,3.5vw,2.4rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1rem' }}>
+                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1rem' }}>
                                 From a conversation to something<br /><em style={{ color: S.gold }}>worth inheriting.</em>
                             </h2>
                             <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 600, marginBottom: '3.5rem' }}>
@@ -462,7 +462,7 @@ export default function Home() {
                         <FadeIn>
                             <span className="gold-rule" />
                             <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '1rem' }}>Why Choose Us</p>
-                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.6rem,3.5vw,2.4rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '3.5rem' }}>
+                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '3.5rem' }}>
                                 We'd rather be <em>answerable than impressive.</em>
                             </h2>
                         </FadeIn>
@@ -508,7 +508,7 @@ export default function Home() {
                     <div style={{ maxWidth: 1200, margin: '0 auto' }}>
                         <FadeIn>
                             <span className="gold-rule" />
-                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.6rem,3.5vw,2.4rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1rem' }}>
+                            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,4vw,3rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1rem' }}>
                                 The thinking behind every<br /><em style={{ color: S.gold }}>space we create.</em>
                             </h2>
                             <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 680, marginBottom: '4rem' }}>
