@@ -226,13 +226,7 @@ export default function Home() {
                             onMouseLeave={e => e.currentTarget.style.background = S.gold}>
                             {heroSlides[slide].cta}
                         </button>
-                        <button
-                            onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-                            style={{ fontFamily: "'DM Mono',monospace", fontSize: 'clamp(0.68rem,2vw,0.78rem)', letterSpacing: '0.14em', textTransform: 'uppercase', padding: 'clamp(0.7rem,2vw,0.9rem) clamp(1.4rem,3vw,2.2rem)', border: '1px solid rgba(232,224,208,0.45)', color: S.stone, background: 'none', transition: 'all 0.3s', cursor: 'pointer' }}
-                            onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.color = S.gold }}
-                            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(232,224,208,0.45)'; e.currentTarget.style.color = S.stone }}>
-                            Get Your Quote
-                        </button>
+                        
                     </div>
                 </div>
 
