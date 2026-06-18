@@ -68,13 +68,28 @@ const contactInfo = [
   { label: 'Hours',   value: 'Mon-Fri: 9:00-22:00  |  Saturday: 11:00-20:00', href: null },
 ]
 
+const LABEL_STYLE = {
+  fontFamily: "'DM Mono',monospace",
+  fontSize: '1rem',
+  letterSpacing: '0.14em',
+  textTransform: 'uppercase',
+  color: '#C9A96E',
+  marginBottom: '1rem',
+}
+
+const H2_STYLE = {
+  fontFamily: "'Playfair Display',serif",
+  fontSize: 'clamp(1.8rem,3.5vw,2.6rem)',
+  fontWeight: 600,
+  color: '#0A0A08',
+  lineHeight: 1.2,
+}
+
 function SectionDivider({ label }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '0 2rem', maxWidth: 1200, margin: '0 auto' }}>
       <div style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.25)' }}/>
-      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C9A96E', whiteSpace: 'nowrap' }}>
-        {label}
-      </p>
+      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C9A96E', whiteSpace: 'nowrap' }}>{label}</p>
       <div style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.25)' }}/>
     </div>
   )
@@ -111,15 +126,15 @@ const S = {
 }
 
 export default function Home() {
-  const [slide, setSlide]           = useState(0)
-  const [tIndex, setTIndex]         = useState(0)
-  const [filter, setFilter]         = useState('all')
-  const [form, setForm]             = useState({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' })
-  const [status, setStatus]         = useState('idle')
-  const [focused, setFocused]       = useState({})
+  const [slide, setSlide]                     = useState(0)
+  const [tIndex, setTIndex]                   = useState(0)
+  const [filter, setFilter]                   = useState('all')
+  const [form, setForm]                       = useState({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' })
+  const [status, setStatus]                   = useState('idle')
+  const [focused, setFocused]                 = useState({})
   const [selectedProject, setSelectedProject] = useState(null)
   const [selectedService, setSelectedService] = useState(null)
-  const intervalRef                 = useRef(null)
+  const intervalRef                           = useRef(null)
 
   const set = (key) => (e) => setForm(f => ({ ...f, [key]: e.target.value }))
   const focusField = (k) => setFocused(f => ({ ...f, [k]: true }))
@@ -245,10 +260,8 @@ export default function Home() {
         <div style={{ background: '#F0EBE3', padding: '5rem 2rem', textAlign: 'center' }}>
           <div style={{ maxWidth: 900, margin: '0 auto' }}>
             <FadeIn>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.5rem' }}>
-                Est. 1995 — Siliguri, India
-              </p>
-              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2.5rem,5vw,4rem)', fontWeight: 600, color: '#0A0A08', lineHeight: 1.15, marginBottom: '2rem' }}>
+              <p style={{ ...LABEL_STYLE, textAlign: 'center' }}>Est. 1995 — Siliguri, India</p>
+              <h2 style={{ ...H2_STYLE, fontSize: 'clamp(2rem,4vw,3rem)', textAlign: 'center', marginBottom: '2rem' }}>
                 30 years of turning space into <em style={{ color: S.gold, fontStyle: 'italic' }}>legacy.</em>
               </h2>
               <div style={{ width: 48, height: 1, background: S.gold, margin: '0 auto 2rem' }}/>
@@ -274,8 +287,8 @@ export default function Home() {
             </FadeIn>
             <FadeIn delay={150}>
               <span className="gold-rule"/>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '1rem' }}>Who We Are</p>
-              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2.5rem,5vw,4rem)', fontWeight: 600, color: '#0A0A08', lineHeight: 1.15, marginBottom: '0.8rem' }}>
+              <p style={LABEL_STYLE}>Who We Are</p>
+              <h2 style={{ ...H2_STYLE, marginBottom: '0.8rem' }}>
                 One studio. One standard.<br/><em>One name on every decision.</em>
               </h2>
               <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '1.5rem', textTransform: 'uppercase' }}>About Raamesh Singhal Design</p>
@@ -315,8 +328,8 @@ export default function Home() {
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '3rem' }}>
                 <div style={{ maxWidth: 480 }}>
                   <span className="gold-rule"/>
-                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '1rem' }}>Recognition</p>
-                  <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2.5rem,5vw,4rem)', fontWeight: 600, color: '#0A0A08', lineHeight: 1.15, marginBottom: '1.5rem' }}>
+                  <p style={LABEL_STYLE}>Recognition</p>
+                  <h2 style={{ ...H2_STYLE, marginBottom: '1.5rem' }}>
                     Recognition is flattering.<br/><em>Being trusted twice is the real award.</em>
                   </h2>
                   <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85 }}>
@@ -351,8 +364,8 @@ export default function Home() {
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
               <span className="gold-rule"/>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '1rem' }}>What We Do</p>
-              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2.5rem,5vw,4rem)', fontWeight: 600, color: '#0A0A08', lineHeight: 1.15, marginBottom: '3.5rem' }}>
+              <p style={LABEL_STYLE}>What We Do</p>
+              <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
                 Three disciplines.<br/><em>One continuous decision.</em>
               </h2>
             </FadeIn>
@@ -383,8 +396,8 @@ export default function Home() {
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
               <span className="gold-rule"/>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '1rem' }}>Our Process</p>
-              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2.5rem,5vw,4rem)', fontWeight: 600, color: '#0A0A08', lineHeight: 1.15, marginBottom: '1rem' }}>
+              <p style={LABEL_STYLE}>Our Process</p>
+              <h2 style={{ ...H2_STYLE, marginBottom: '1rem' }}>
                 From a conversation to something<br/><em>worth inheriting.</em>
               </h2>
               <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 600, marginBottom: '3.5rem' }}>
@@ -419,8 +432,8 @@ export default function Home() {
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
               <span className="gold-rule"/>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '1rem' }}>Why Choose Us</p>
-              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2.5rem,5vw,4rem)', fontWeight: 600, color: '#0A0A08', lineHeight: 1.15, marginBottom: '3.5rem' }}>
+              <p style={LABEL_STYLE}>Why Choose Us</p>
+              <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
                 We'd rather be <em>answerable than impressive.</em>
               </h2>
             </FadeIn>
@@ -444,7 +457,7 @@ export default function Home() {
             </div>
             <FadeIn>
               <div style={{ textAlign: 'center', padding: '3rem 2rem', background: '#F0EBE3', border: '1px solid rgba(26,26,24,0.08)' }}>
-                <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.1rem,2.5vw,1.4rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.7, marginBottom: '2rem', maxWidth: 600, margin: '0 auto 2rem' }}>
+                <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.1rem,2.5vw,1.4rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.7, maxWidth: 600, margin: '0 auto 2rem' }}>
                   "Your project deserves a single, certain answer. Tell us what you're building and we'll tell you how it ends."
                 </p>
                 <button
@@ -464,7 +477,7 @@ export default function Home() {
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
               <span className="gold-rule"/>
-              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2.5rem,5vw,4rem)', fontWeight: 600, color: '#0A0A08', lineHeight: 1.15, marginBottom: '1rem' }}>
+              <h2 style={{ ...H2_STYLE, marginBottom: '1rem' }}>
                 The thinking behind every<br/><em style={{ color: S.gold }}>space we create.</em>
               </h2>
               <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 680, marginBottom: '4rem' }}>
@@ -507,8 +520,8 @@ export default function Home() {
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
             <FadeIn>
               <span className="gold-rule"/>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem' }}>Portfolio</p>
-              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2.5rem,5vw,4rem)', fontWeight: 600, color: '#0A0A08', lineHeight: 1.15 }}>Our Recent <em>Projects</em></h2>
+              <p style={LABEL_STYLE}>Portfolio</p>
+              <h2 style={{ ...H2_STYLE }}>Our Recent <em>Projects</em></h2>
             </FadeIn>
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
               {['all','residential','commercial','architecture','hospitality'].map((f, i, arr) => (
@@ -532,7 +545,6 @@ export default function Home() {
                     <span style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.6rem', letterSpacing:'0.14em', textTransform:'uppercase', color:S.gold, marginBottom:'0.3rem' }}>{p.category}</span>
                     <p style={{ fontFamily:"'Playfair Display',serif", fontSize:'1rem', color:S.offwhite }}>{p.title}</p>
                   </div>
-                  {/* Watermark */}
                   <div style={{ position:'absolute', bottom:'0.8rem', right:'0.8rem', zIndex:2, pointerEvents:'none' }}>
                     <img src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png" alt="RSD"
                       style={{ height:30, width:'auto', display:'block', filter:'drop-shadow(0 0 3px rgba(255,255,255,0.8)) drop-shadow(0 0 6px rgba(255,255,255,0.6))', opacity:0.9 }}/>
@@ -552,8 +564,8 @@ export default function Home() {
         <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 2rem' }}>
           <FadeIn>
             <span className="gold-rule"/>
-            <p style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.7rem', letterSpacing:'0.14em', textTransform:'uppercase', color:S.gold, marginBottom:'0.5rem' }}>Testimonials</p>
-            <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:'clamp(2.5rem,5vw,4rem)', fontWeight:600, color:'#0A0A08', lineHeight:1.15, marginBottom:'3rem' }}>
+            <p style={LABEL_STYLE}>Testimonials</p>
+            <h2 style={{ ...H2_STYLE, marginBottom: '3rem' }}>
               Heard from those who <em>lived</em> our work
             </h2>
           </FadeIn>
@@ -599,8 +611,8 @@ export default function Home() {
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
           <FadeIn>
             <span className="gold-rule"/>
-            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.8rem' }}>What We Do</p>
-            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2.5rem,5vw,4rem)', fontWeight: 600, color: '#0A0A08', lineHeight: 1.15, marginBottom: '3.5rem' }}>
+            <p style={LABEL_STYLE}>What We Do</p>
+            <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
               A complete range of <em>design services</em>
             </h2>
           </FadeIn>
@@ -648,8 +660,8 @@ export default function Home() {
             <div>
               <FadeIn>
                 <span className="gold-rule"/>
-                <p style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.7rem', letterSpacing:'0.14em', textTransform:'uppercase', color:S.gold, marginBottom:'0.8rem' }}>Get In Touch</p>
-                <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:'clamp(2.5rem,5vw,4rem)', fontWeight:600, color:'#0A0A08', lineHeight:1.15, marginBottom:'2.5rem' }}>
+                <p style={LABEL_STYLE}>Get In Touch</p>
+                <h2 style={{ ...H2_STYLE, marginBottom: '2.5rem' }}>
                   Feel free to<br/><em>contact us</em> anytime
                 </h2>
               </FadeIn>
@@ -750,11 +762,7 @@ export default function Home() {
       {selectedProject && (
         <div onClick={() => setSelectedProject(null)} style={{ position:'fixed', inset:0, zIndex:200, background:'rgba(26,26,24,0.92)', display:'flex', alignItems:'center', justifyContent:'center', padding:'1.5rem', backdropFilter:'blur(6px)' }}>
           <div onClick={e => e.stopPropagation()} className="project-modal-grid" style={{ background:'#fff', maxWidth:900, width:'100%', maxHeight:'90vh', overflow:'auto', display:'grid', gridTemplateColumns:'1.2fr 1fr', position:'relative' }}>
-            <button onClick={() => setSelectedProject(null)} style={{ position:'absolute', top:'1rem', right:'1rem', width:36, height:36, background:'rgba(26,26,24,0.7)', border:'none', cursor:'pointer', color:'#fff', fontSize:'1.1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:10, transition:'background 0.2s' }}
-              onMouseEnter={e => e.currentTarget.style.background='#1A1A18'}
-              onMouseLeave={e => e.currentTarget.style.background='rgba(26,26,24,0.7)'}>
-              &#10005;
-            </button>
+            <button onClick={() => setSelectedProject(null)} style={{ position:'absolute', top:'1rem', right:'1rem', width:36, height:36, background:'rgba(26,26,24,0.7)', border:'none', cursor:'pointer', color:'#fff', fontSize:'1.1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:10 }}>&#10005;</button>
             <div style={{ position:'relative', minHeight:320 }}>
               <img src={selectedProject.img} alt={selectedProject.title} style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }}/>
             </div>
@@ -763,20 +771,6 @@ export default function Home() {
               <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:'clamp(1.4rem,3vw,2rem)', fontWeight:400, color:S.ink, lineHeight:1.2, marginBottom:'1.5rem' }}>{selectedProject.title}</h2>
               <div style={{ width:40, height:1, background:S.gold, marginBottom:'1.5rem' }}/>
               <p style={{ fontSize:'0.92rem', color:S.mid, lineHeight:1.85, marginBottom:'2rem' }}>{selectedProject.desc}</p>
-              <div style={{ display:'flex', flexDirection:'column', gap:'0.6rem', marginBottom:'2rem' }}>
-                <div style={{ display:'flex', gap:'0.8rem', alignItems:'center' }}>
-                  <span style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.6rem', letterSpacing:'0.14em', textTransform:'uppercase', color:S.gold }}>Type</span>
-                  <span style={{ fontSize:'0.88rem', color:S.ink, textTransform:'capitalize' }}>{selectedProject.category}</span>
-                </div>
-                <div style={{ display:'flex', gap:'0.8rem', alignItems:'center' }}>
-                  <span style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.6rem', letterSpacing:'0.14em', textTransform:'uppercase', color:S.gold }}>Studio</span>
-                  <span style={{ fontSize:'0.88rem', color:S.ink }}>Raamesh Singhal Design</span>
-                </div>
-                <div style={{ display:'flex', gap:'0.8rem', alignItems:'center' }}>
-                  <span style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.6rem', letterSpacing:'0.14em', textTransform:'uppercase', color:S.gold }}>Location</span>
-                  <span style={{ fontSize:'0.88rem', color:S.ink }}>Siliguri, India</span>
-                </div>
-              </div>
               <button onClick={() => { setSelectedProject(null); document.getElementById('contact').scrollIntoView({ behavior:'smooth' }) }}
                 style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.72rem', letterSpacing:'0.14em', textTransform:'uppercase', padding:'0.85rem 1.8rem', background:S.gold, color:S.ink, border:'none', cursor:'pointer', transition:'background 0.3s', alignSelf:'flex-start' }}
                 onMouseEnter={e => e.currentTarget.style.background='#b8923d'}
@@ -792,11 +786,7 @@ export default function Home() {
       {selectedService && (
         <div onClick={() => setSelectedService(null)} style={{ position:'fixed', inset:0, zIndex:200, background:'rgba(26,26,24,0.92)', display:'flex', alignItems:'center', justifyContent:'center', padding:'1.5rem', backdropFilter:'blur(6px)' }}>
           <div onClick={e => e.stopPropagation()} style={{ background:'#fff', maxWidth:700, width:'100%', maxHeight:'90vh', overflow:'auto', position:'relative', padding:'3.5rem' }}>
-            <button onClick={() => setSelectedService(null)} style={{ position:'absolute', top:'1.2rem', right:'1.2rem', width:36, height:36, background:'rgba(26,26,24,0.08)', border:'none', cursor:'pointer', fontSize:'1rem', display:'flex', alignItems:'center', justifyContent:'center', transition:'background 0.2s' }}
-              onMouseEnter={e => e.currentTarget.style.background='rgba(26,26,24,0.15)'}
-              onMouseLeave={e => e.currentTarget.style.background='rgba(26,26,24,0.08)'}>
-              &#10005;
-            </button>
+            <button onClick={() => setSelectedService(null)} style={{ position:'absolute', top:'1.2rem', right:'1.2rem', width:36, height:36, background:'rgba(26,26,24,0.08)', border:'none', cursor:'pointer', fontSize:'1rem', display:'flex', alignItems:'center', justifyContent:'center' }}>&#10005;</button>
             <div style={{ fontFamily:"'Playfair Display',serif", fontSize:'4rem', color:S.gold, opacity:0.15, lineHeight:1, marginBottom:'0.5rem', fontWeight:700 }}>{selectedService.num}</div>
             <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:'clamp(1.8rem,4vw,2.5rem)', fontWeight:400, color:S.ink, lineHeight:1.2, marginBottom:'1.5rem' }}>{selectedService.title}</h2>
             <div style={{ width:48, height:1, background:S.gold, marginBottom:'1.5rem' }}/>
