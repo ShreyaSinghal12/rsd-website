@@ -43,12 +43,12 @@ const heroSlides = [
 ]
 
 const services = [
-  { num: "01", title: "Architecture", desc: "From structural layout to MEP coordination — complete architecture services including exterior and landscape design.", icon: (<svg viewBox="0 0 36 36" fill="none" stroke="#C9A96E" strokeWidth="1.2" width="36" height="36"><polyline points="2 34 18 6 34 34"/><line x1="7" y1="24" x2="29" y2="24"/></svg>) },
-  { num: "02", title: "Interior Design", desc: "Color schemes, furniture curation, space planning and full implementation — tailored to your lifestyle.", icon: (<svg viewBox="0 0 36 36" fill="none" stroke="#C9A96E" strokeWidth="1.2" width="36" height="36"><rect x="3" y="8" width="30" height="22" rx="1"/><line x1="3" y1="15" x2="33" y2="15"/><line x1="16" y1="15" x2="16" y2="30"/></svg>) },
-  { num: "03", title: "Vedic Vastu", desc: "Modern Vastu Shastra applied practically — simple, effective remedies to bring harmony to your environment.", icon: (<svg viewBox="0 0 36 36" fill="none" stroke="#C9A96E" strokeWidth="1.2" width="36" height="36"><circle cx="18" cy="18" r="14"/><line x1="18" y1="4" x2="18" y2="32"/><line x1="4" y1="18" x2="32" y2="18"/><circle cx="18" cy="18" r="4"/></svg>) },
-  { num: "04", title: "Hospitality Design", desc: "Hotels, resorts and restaurants designed to deliver exceptional guest experiences.", icon: (<svg viewBox="0 0 36 36" fill="none" stroke="#C9A96E" strokeWidth="1.2" width="36" height="36"><path d="M4 30 V14 L18 4 L32 14 V30"/><rect x="13" y="20" width="10" height="10"/><line x1="4" y1="30" x2="32" y2="30"/></svg>) },
-  { num: "05", title: "Commercial & Retail", desc: "Offices, showrooms and retail environments that reinforce your brand.", icon: (<svg viewBox="0 0 36 36" fill="none" stroke="#C9A96E" strokeWidth="1.2" width="36" height="36"><rect x="4" y="10" width="28" height="22"/><rect x="10" y="4" width="16" height="6"/><line x1="4" y1="20" x2="32" y2="20"/><line x1="14" y1="20" x2="14" y2="32"/><line x1="22" y1="20" x2="22" y2="32"/></svg>) },
-  { num: "06", title: "Design Consultation", desc: "Expert direction on any design challenge — big or small — without committing to a full project.", icon: (<svg viewBox="0 0 36 36" fill="none" stroke="#C9A96E" strokeWidth="1.2" width="36" height="36"><path d="M6 8 H30 V24 H20 L14 30 V24 H6 Z"/><line x1="12" y1="14" x2="24" y2="14"/><line x1="12" y1="19" x2="20" y2="19"/></svg>) },
+  { num: "01", title: "Architecture", desc: "From structural layout to MEP coordination — complete architecture services including exterior and landscape design.", icon: (<svg viewBox="0 0 36 36" fill="none" stroke="#C9A96E" strokeWidth="1.2" width="36" height="36"><polyline points="2 34 18 6 34 34" /><line x1="7" y1="24" x2="29" y2="24" /></svg>) },
+  { num: "02", title: "Interior Design", desc: "Color schemes, furniture curation, space planning and full implementation — tailored to your lifestyle.", icon: (<svg viewBox="0 0 36 36" fill="none" stroke="#C9A96E" strokeWidth="1.2" width="36" height="36"><rect x="3" y="8" width="30" height="22" rx="1" /><line x1="3" y1="15" x2="33" y2="15" /><line x1="16" y1="15" x2="16" y2="30" /></svg>) },
+  { num: "03", title: "Vedic Vastu", desc: "Modern Vastu Shastra applied practically — simple, effective remedies to bring harmony to your environment.", icon: (<svg viewBox="0 0 36 36" fill="none" stroke="#C9A96E" strokeWidth="1.2" width="36" height="36"><circle cx="18" cy="18" r="14" /><line x1="18" y1="4" x2="18" y2="32" /><line x1="4" y1="18" x2="32" y2="18" /><circle cx="18" cy="18" r="4" /></svg>) },
+  { num: "04", title: "Hospitality Design", desc: "Hotels, resorts and restaurants designed to deliver exceptional guest experiences.", icon: (<svg viewBox="0 0 36 36" fill="none" stroke="#C9A96E" strokeWidth="1.2" width="36" height="36"><path d="M4 30 V14 L18 4 L32 14 V30" /><rect x="13" y="20" width="10" height="10" /><line x1="4" y1="30" x2="32" y2="30" /></svg>) },
+  { num: "05", title: "Commercial & Retail", desc: "Offices, showrooms and retail environments that reinforce your brand.", icon: (<svg viewBox="0 0 36 36" fill="none" stroke="#C9A96E" strokeWidth="1.2" width="36" height="36"><rect x="4" y="10" width="28" height="22" /><rect x="10" y="4" width="16" height="6" /><line x1="4" y1="20" x2="32" y2="20" /><line x1="14" y1="20" x2="14" y2="32" /><line x1="22" y1="20" x2="22" y2="32" /></svg>) },
+  { num: "06", title: "Design Consultation", desc: "Expert direction on any design challenge — big or small — without committing to a full project.", icon: (<svg viewBox="0 0 36 36" fill="none" stroke="#C9A96E" strokeWidth="1.2" width="36" height="36"><path d="M6 8 H30 V24 H20 L14 30 V24 H6 Z" /><line x1="12" y1="14" x2="24" y2="14" /><line x1="12" y1="19" x2="20" y2="19" /></svg>) },
 ]
 
 const areaList = [
@@ -62,10 +62,10 @@ const areaList = [
 
 const contactInfo = [
   { label: 'Address', value: 'Time Square, 3rd Floor, Opp Ravi Auto, Sevoke Road, Siliguri', href: null },
-  { label: 'Phone',   value: '+91 98008 48155', href: 'tel:+919800848155' },
-  { label: 'Phone',   value: '+91 82508 41773', href: 'tel:+918250841773' },
-  { label: 'Email',   value: 'rameshsinghaldesign@gmail.com', href: 'mailto:rameshsinghaldesign@gmail.com' },
-  { label: 'Hours',   value: 'Mon-Fri: 9:00-22:00  |  Saturday: 11:00-20:00', href: null },
+  { label: 'Phone', value: '+91 98008 48155', href: 'tel:+919800848155' },
+  { label: 'Phone', value: '+91 82508 41773', href: 'tel:+918250841773' },
+  { label: 'Email', value: 'rameshsinghaldesign@gmail.com', href: 'mailto:rameshsinghaldesign@gmail.com' },
+  { label: 'Hours', value: 'Mon-Fri: 9:00-22:00  |  Saturday: 11:00-20:00', href: null },
 ]
 
 const LABEL_STYLE = {
@@ -88,9 +88,9 @@ const H2_STYLE = {
 function SectionDivider({ label }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '0 2rem', maxWidth: 1200, margin: '0 auto' }}>
-      <div style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.25)' }}/>
+      <div style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.25)' }} />
       <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C9A96E', whiteSpace: 'nowrap' }}>{label}</p>
-      <div style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.25)' }}/>
+      <div style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.25)' }} />
     </div>
   )
 }
@@ -126,19 +126,19 @@ const S = {
 }
 
 export default function Home() {
-  const [slide, setSlide]                     = useState(0)
-  const [tIndex, setTIndex]                   = useState(0)
-  const [filter, setFilter]                   = useState('all')
-  const [form, setForm]                       = useState({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' })
-  const [status, setStatus]                   = useState('idle')
-  const [focused, setFocused]                 = useState({})
+  const [slide, setSlide] = useState(0)
+  const [tIndex, setTIndex] = useState(0)
+  const [filter, setFilter] = useState('all')
+  const [form, setForm] = useState({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' })
+  const [status, setStatus] = useState('idle')
+  const [focused, setFocused] = useState({})
   const [selectedProject, setSelectedProject] = useState(null)
   const [selectedService, setSelectedService] = useState(null)
-  const intervalRef                           = useRef(null)
+  const intervalRef = useRef(null)
 
   const set = (key) => (e) => setForm(f => ({ ...f, [key]: e.target.value }))
   const focusField = (k) => setFocused(f => ({ ...f, [k]: true }))
-  const blurField  = (k) => setFocused(f => ({ ...f, [k]: false }))
+  const blurField = (k) => setFocused(f => ({ ...f, [k]: false }))
 
   const inputStyle = (isFocused) => ({
     width: '100%', padding: '0.85rem 1rem',
@@ -165,10 +165,10 @@ export default function Home() {
   }, [])
 
   const { ref: statsRef, inView: statsInView } = useInView({ triggerOnce: true, threshold: 0.3 })
-  const years  = useCounter(30,  statsInView)
-  const projs  = useCounter(500, statsInView)
-  const repeat = useCounter(90,  statsInView)
-  const types  = useCounter(6,   statsInView)
+  const years = useCounter(30, statsInView)
+  const projs = useCounter(500, statsInView)
+  const repeat = useCounter(90, statsInView)
+  const types = useCounter(6, statsInView)
 
   const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter)
 
@@ -189,18 +189,18 @@ export default function Home() {
       <section id="hero" style={{ height: '100svh', position: 'relative', overflow: 'hidden' }}>
         {heroSlides.map((s, i) => (
           <div key={i} style={{ position: 'absolute', inset: 0, backgroundImage: `url(${s.img})`, backgroundSize: 'cover', backgroundPosition: 'center', opacity: slide === i ? 1 : 0, transition: 'opacity 1.4s ease' }}>
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.88) 0%, rgba(26,26,24,0.55) 50%, rgba(26,26,24,0.3) 100%)' }}/>
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.88) 0%, rgba(26,26,24,0.55) 50%, rgba(26,26,24,0.3) 100%)' }} />
           </div>
         ))}
         <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 'clamp(0px,5vw,2.5rem) clamp(1rem,5vw,2.5rem) clamp(3rem,8vw,5rem)' }}>
           <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ display: 'block', width: 36, height: 1, background: S.gold }}/>
+            <span style={{ display: 'block', width: 36, height: 1, background: S.gold }} />
             Established 1995 &nbsp;·&nbsp; Siliguri, India
           </p>
           <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.5rem,3.5vw,2.8rem)', fontWeight: 400, lineHeight: 1.2, color: S.offwhite, marginBottom: '1rem', maxWidth: 680 }}>
             {heroSlides[slide].headline}
             {heroSlides[slide].headlineb && (
-              <><br/><em style={{ fontStyle: 'italic', color: S.stone }}>{heroSlides[slide].headlineb}</em></>
+              <><br /><em style={{ fontStyle: 'italic', color: S.stone }}>{heroSlides[slide].headlineb}</em></>
             )}
           </h1>
           <p style={{ fontSize: 'clamp(0.85rem,2vw,1rem)', color: 'rgba(255,255,255,0.88)', maxWidth: 560, marginBottom: '2.5rem', lineHeight: 1.75 }}>
@@ -217,8 +217,8 @@ export default function Home() {
                 }
               }}
               style={{ fontFamily: "'DM Mono',monospace", fontSize: 'clamp(0.68rem,2vw,0.78rem)', letterSpacing: '0.14em', textTransform: 'uppercase', padding: 'clamp(0.7rem,2vw,0.9rem) clamp(1.4rem,3vw,2.2rem)', background: S.gold, color: S.ink, border: 'none', fontWeight: 500, transition: 'background 0.3s', cursor: 'pointer' }}
-              onMouseEnter={e => e.currentTarget.style.background='#b8923d'}
-              onMouseLeave={e => e.currentTarget.style.background=S.gold}>
+              onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
+              onMouseLeave={e => e.currentTarget.style.background = S.gold}>
               {heroSlides[slide].cta}
             </button>
           </div>
@@ -226,7 +226,7 @@ export default function Home() {
         <div style={{ position: 'absolute', right: '1.5rem', bottom: '3rem', zIndex: 3, display: 'flex', flexDirection: 'column', gap: 8 }}>
           {heroSlides.map((_, i) => (
             <button key={i} onClick={() => goToSlide(i)}
-              style={{ width: 6, height: 6, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, background: slide === i ? S.gold : 'rgba(232,224,208,0.35)', transform: slide === i ? 'scale(1.4)' : 'scale(1)', transition: 'all 0.3s' }}/>
+              style={{ width: 6, height: 6, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, background: slide === i ? S.gold : 'rgba(232,224,208,0.35)', transform: slide === i ? 'scale(1.4)' : 'scale(1)', transition: 'all 0.3s' }} />
           ))}
         </div>
         <div style={{ position: 'absolute', left: '1.5rem', bottom: '3rem', zIndex: 3, fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.15em', color: 'rgba(232,224,208,0.5)' }}>
@@ -239,10 +239,10 @@ export default function Home() {
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
           <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '2rem', textAlign: 'center' }}>
             {[
-              { num: years,  suffix: '+', label: 'Years of Experience' },
-              { num: projs,  suffix: '+', label: 'Projects Delivered' },
+              { num: years, suffix: '+', label: 'Years of Experience' },
+              { num: projs, suffix: '+', label: 'Projects Delivered' },
               { num: repeat, suffix: '%', label: 'Repeat & Referral' },
-              { num: types,  suffix: '',  label: 'Project Typologies' },
+              { num: types, suffix: '', label: 'Project Typologies' },
             ].map((s, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,4vw,3rem)', color: S.gold, lineHeight: 1, marginBottom: '0.4rem' }}>{s.num}{s.suffix}</div>
@@ -264,7 +264,7 @@ export default function Home() {
               <h2 style={{ ...H2_STYLE, fontSize: 'clamp(2rem,4vw,3rem)', textAlign: 'center', marginBottom: '2rem' }}>
                 30 years of turning space into <em style={{ color: S.gold, fontStyle: 'italic' }}>legacy.</em>
               </h2>
-              <div style={{ width: 48, height: 1, background: S.gold, margin: '0 auto 2rem' }}/>
+              <div style={{ width: 48, height: 1, background: S.gold, margin: '0 auto 2rem' }} />
               <p style={{ fontSize: 'clamp(0.9rem,2vw,1.05rem)', color: S.mid, lineHeight: 1.9, maxWidth: 720, margin: '0 auto' }}>
                 For thirty years, our name has gone on the outcome, not just the drawings. When one firm holds the whole project, there's no one else to point to if something isn't right, and nothing to hide behind. We built the practice that way on purpose: an owner should have exactly one place to look when it matters. Three decades on, that's still the standard we answer to.
               </p>
@@ -277,8 +277,8 @@ export default function Home() {
           <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }} className="about-grid">
             <FadeIn>
               <div style={{ position: 'relative' }}>
-                <img src="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-13-1024x767.jpg" alt="About RSD" loading="lazy" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }}/>
-                <div style={{ position: 'absolute', bottom: '-1.2rem', right: '-1.2rem', width: '65%', height: '65%', border: '1px solid #C9A96E', zIndex: -1 }}/>
+                <img src="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-13-1024x767.jpg" alt="About RSD" loading="lazy" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }} />
+                <div style={{ position: 'absolute', bottom: '-1.2rem', right: '-1.2rem', width: '65%', height: '65%', border: '1px solid #C9A96E', zIndex: -1 }} />
                 <div style={{ position: 'absolute', top: '1.5rem', left: '-1.5rem', background: S.ink, padding: '1.2rem 1.6rem', textAlign: 'center' }}>
                   <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, lineHeight: 1 }}>30+</div>
                   <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.sage, marginTop: '0.3rem' }}>Years</div>
@@ -286,10 +286,10 @@ export default function Home() {
               </div>
             </FadeIn>
             <FadeIn delay={150}>
-              <span className="gold-rule"/>
+              <span className="gold-rule" />
               <p style={LABEL_STYLE}>Who We Are</p>
               <h2 style={{ ...H2_STYLE, marginBottom: '0.8rem' }}>
-                One studio. One standard.<br/><em>One name on every decision.</em>
+                One studio. One standard.<br /><em>One name on every decision.</em>
               </h2>
               <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '1.5rem', textTransform: 'uppercase' }}>About Raamesh Singhal Design</p>
               <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, marginBottom: '1rem' }}>
@@ -306,12 +306,12 @@ export default function Home() {
                   <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold }}>500+</div>
                   <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid }}>Projects Delivered</div>
                 </div>
-                <div style={{ width: 1, background: 'rgba(26,26,24,0.1)' }}/>
+                <div style={{ width: 1, background: 'rgba(26,26,24,0.1)' }} />
                 <div>
                   <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold }}>5</div>
                   <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid }}>States & Countries</div>
                 </div>
-                <div style={{ width: 1, background: 'rgba(26,26,24,0.1)' }}/>
+                <div style={{ width: 1, background: 'rgba(26,26,24,0.1)' }} />
                 <div>
                   <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold }}>1995</div>
                   <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid }}>Established</div>
@@ -327,10 +327,10 @@ export default function Home() {
             <FadeIn>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '3rem' }}>
                 <div style={{ maxWidth: 480 }}>
-                  <span className="gold-rule"/>
+                  <span className="gold-rule" />
                   <p style={LABEL_STYLE}>Recognition</p>
                   <h2 style={{ ...H2_STYLE, marginBottom: '1.5rem' }}>
-                    Recognition is flattering.<br/><em>Being trusted twice is the real award.</em>
+                    Recognition is flattering.<br /><em>Being trusted twice is the real award.</em>
                   </h2>
                   <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85 }}>
                     Our work has been honoured by some of the most respected names in design and industry. But the recognition we value most isn't on a shelf — it's the client who hands us their next project before the first is even finished.
@@ -346,7 +346,7 @@ export default function Home() {
                     { label: 'Press', val: 'To be updated' },
                   ].map((item, i) => (
                     <div key={i} style={{ padding: '1.2rem 1.5rem', border: '1px solid rgba(26,26,24,0.1)', background: '#fff', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: S.gold, flexShrink: 0 }}/>
+                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: S.gold, flexShrink: 0 }} />
                       <div>
                         <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.2rem' }}>{item.label}</p>
                         <p style={{ fontSize: '0.88rem', color: S.mid }}>{item.val}</p>
@@ -359,20 +359,46 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Block 3b — Press Mentions */}
+        <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+            <FadeIn>
+              <span className="gold-rule" />
+              <p style={LABEL_STYLE}>As Featured In</p>
+              <h2 style={{ ...H2_STYLE, marginBottom: '3rem' }}>
+                Stories worth <em>telling.</em>
+              </h2>
+            </FadeIn>
+            <div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1.5rem' }}>
+              {[1, 2, 3, 4].map((i) => (
+                <FadeIn key={i} delay={i * 60}>
+                  <div style={{ aspectRatio: '3/4', background: '#F0EBE3', border: '1px solid rgba(26,26,24,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '0.8rem' }}>
+                    <div style={{ width: 36, height: 36, borderRadius: '50%', border: `1px solid ${S.gold}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', color: S.gold, fontStyle: 'italic' }}>P</span>
+                    </div>
+                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid }}>Press feature</p>
+                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', color: S.sage }}>Coming soon</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* Block 4 — What We Do */}
         <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
-              <span className="gold-rule"/>
+              <span className="gold-rule" />
               <p style={LABEL_STYLE}>What We Do</p>
               <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
-                Three disciplines.<br/><em>One continuous decision.</em>
+                Three disciplines.<br /><em>One continuous decision.</em>
               </h2>
             </FadeIn>
             <div className="process-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
               {[
-                { num: '01', title: 'Architecture',     desc: 'The foundation everything stands on. We plan, orient, and engineer a space before a single material is chosen — because the most expensive mistakes are the ones drawn early and discovered late.' },
-                { num: '02', title: 'Interior Design',  desc: 'Where space becomes experience. Light, proportion, material, and detail composed to be lived in for years — not to photograph well for a single day.' },
+                { num: '01', title: 'Architecture', desc: 'The foundation everything stands on. We plan, orient, and engineer a space before a single material is chosen — because the most expensive mistakes are the ones drawn early and discovered late.' },
+                { num: '02', title: 'Interior Design', desc: 'Where space becomes experience. Light, proportion, material, and detail composed to be lived in for years — not to photograph well for a single day.' },
                 { num: '03', title: 'Turnkey Projects', desc: 'Our core. One point of ownership from first sketch to final handover. One firm accountable for the result. The end of vendor management as you know it.' },
               ].map((item, i) => (
                 <FadeIn key={i} delay={i * 100}>
@@ -395,10 +421,10 @@ export default function Home() {
         <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
-              <span className="gold-rule"/>
+              <span className="gold-rule" />
               <p style={LABEL_STYLE}>Our Process</p>
               <h2 style={{ ...H2_STYLE, marginBottom: '1rem' }}>
-                From a conversation to something<br/><em>worth inheriting.</em>
+                From a conversation to something<br /><em>worth inheriting.</em>
               </h2>
               <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 600, marginBottom: '3.5rem' }}>
                 Our process exists to remove the one thing that ruins great projects: the gap between people. Everything sits with us, so nothing falls between.
@@ -407,9 +433,9 @@ export default function Home() {
             <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
               {[
                 { num: '01', title: 'Understand', desc: "We begin with how you'll live, host, or operate — not with a mood board. The brief is built around outcomes, not finishes." },
-                { num: '02', title: 'Compose',    desc: "Architecture and interiors are designed as one decision, fully documented, so what's drawn is exactly what gets built." },
-                { num: '03', title: 'Deliver',    desc: "We control procurement, manage the site, and check quality at every stage. One schedule, one accountable team." },
-                { num: '04', title: 'Hand Over',  desc: "You receive a finished space, on time, exactly as promised — and a single name to call if you ever need us again." },
+                { num: '02', title: 'Compose', desc: "Architecture and interiors are designed as one decision, fully documented, so what's drawn is exactly what gets built." },
+                { num: '03', title: 'Deliver', desc: "We control procurement, manage the site, and check quality at every stage. One schedule, one accountable team." },
+                { num: '04', title: 'Hand Over', desc: "You receive a finished space, on time, exactly as promised — and a single name to call if you ever need us again." },
               ].map((item, i) => (
                 <FadeIn key={i} delay={i * 80}>
                   <div style={{ display: 'flex', gap: '1.5rem', padding: '2rem', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', transition: 'border-color 0.3s' }}
@@ -431,7 +457,7 @@ export default function Home() {
         <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
-              <span className="gold-rule"/>
+              <span className="gold-rule" />
               <p style={LABEL_STYLE}>Why Choose Us</p>
               <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
                 We'd rather be <em>answerable than impressive.</em>
@@ -440,15 +466,15 @@ export default function Home() {
             <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3rem' }}>
               {[
                 { title: 'One name, accountable for everything', desc: "When the architecture, the interiors, and the build all sit with us, there's no gap to lose your project in, and no third party to blame if something slips. The responsibility is ours, by design." },
-                { title: 'We build what we draw',               desc: "A beautiful drawing is easy to promise. We hold ourselves to turning it into the actual room exactly as shown, not approximately." },
-                { title: 'On time is part of the work',         desc: "Our systems, procurement control, and stage-by-stage checks exist so we can be held to a date — not so we can explain why we missed one." },
+                { title: 'We build what we draw', desc: "A beautiful drawing is easy to promise. We hold ourselves to turning it into the actual room exactly as shown, not approximately." },
+                { title: 'On time is part of the work', desc: "Our systems, procurement control, and stage-by-stage checks exist so we can be held to a date — not so we can explain why we missed one." },
                 { title: "If it doesn't last, we hear about it", desc: "Thirty years of clients means three decades of living with our own decisions. That's why we design for the decade, not the season." },
               ].map((item, i) => (
                 <FadeIn key={i} delay={i * 80}>
                   <div style={{ padding: '2rem', border: '1px solid rgba(26,26,24,0.08)', background: '#fff', transition: 'border-color 0.3s, box-shadow 0.3s' }}
                     onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
                     onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(26,26,24,0.08)'; e.currentTarget.style.boxShadow = 'none' }}>
-                    <div style={{ width: 32, height: 1, background: S.gold, marginBottom: '1rem' }}/>
+                    <div style={{ width: 32, height: 1, background: S.gold, marginBottom: '1rem' }} />
                     <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 600 }}>{item.title}</h3>
                     <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.85 }}>{item.desc}</p>
                   </div>
@@ -476,9 +502,9 @@ export default function Home() {
         <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
-              <span className="gold-rule"/>
+              <span className="gold-rule" />
               <h2 style={{ ...H2_STYLE, marginBottom: '1rem' }}>
-                The thinking behind every<br/><em style={{ color: S.gold }}>space we create.</em>
+                The thinking behind every<br /><em style={{ color: S.gold }}>space we create.</em>
               </h2>
               <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 680, marginBottom: '4rem' }}>
                 Exceptional spaces are never the result of design alone. They emerge when vision, functionality, human behaviour, and execution work in complete harmony. That belief has guided Raamesh Singhal Design since its inception.
@@ -487,12 +513,12 @@ export default function Home() {
             <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
               {[
                 { name: 'Raamesh Singhal', role: 'Co-Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality.', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-19-1024x768.jpg' },
-                { name: 'Sonika Singhal',  role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-11-1024x767.jpg' },
+                { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-11-1024x767.jpg' },
               ].map((founder, i) => (
                 <FadeIn key={i} delay={i * 150}>
                   <div style={{ background: '#fff', overflow: 'hidden', border: '1px solid rgba(26,26,24,0.08)' }}>
                     <div style={{ aspectRatio: '3/2', overflow: 'hidden' }}>
-                      <img src={founder.img} alt={founder.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
+                      <img src={founder.img} alt={founder.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                     </div>
                     <div style={{ padding: '2rem' }}>
                       <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem' }}>{founder.role}</p>
@@ -519,35 +545,35 @@ export default function Home() {
         <div style={{ maxWidth: 1300, margin: '0 auto', padding: '0 2rem' }}>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
             <FadeIn>
-              <span className="gold-rule"/>
+              <span className="gold-rule" />
               <p style={LABEL_STYLE}>Portfolio</p>
               <h2 style={{ ...H2_STYLE }}>Our Recent <em>Projects</em></h2>
             </FadeIn>
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-              {['all','residential','commercial','architecture','hospitality'].map((f, i, arr) => (
+              {['all', 'residential', 'commercial', 'architecture', 'hospitality'].map((f, i, arr) => (
                 <button key={f} onClick={() => setFilter(f)}
-                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.55rem 1.1rem', border: '1px solid rgba(26,26,24,0.15)', borderRight: i < arr.length-1 ? 'none' : '1px solid rgba(26,26,24,0.15)', cursor: 'pointer', background: filter===f ? S.ink : 'transparent', color: filter===f ? S.gold : S.mid, transition: 'all 0.25s' }}>
-                  {f === 'all' ? 'All' : f === 'hospitality' ? 'Hotels & Hospitality' : f === 'commercial' ? 'Builders & Developers' : f.charAt(0).toUpperCase()+f.slice(1)}
+                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.55rem 1.1rem', border: '1px solid rgba(26,26,24,0.15)', borderRight: i < arr.length - 1 ? 'none' : '1px solid rgba(26,26,24,0.15)', cursor: 'pointer', background: filter === f ? S.ink : 'transparent', color: filter === f ? S.gold : S.mid, transition: 'all 0.25s' }}>
+                  {f === 'all' ? 'All' : f === 'hospitality' ? 'Hotels & Hospitality' : f === 'commercial' ? 'Builders & Developers' : f.charAt(0).toUpperCase() + f.slice(1)}
                 </button>
               ))}
             </div>
           </div>
           <div className="portfolio-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5px' }}>
             {filtered.map((p, i) => (
-              <FadeIn key={p.id} delay={(i%9)*60}>
+              <FadeIn key={p.id} delay={(i % 9) * 60}>
                 <div
                   onClick={() => setSelectedProject(p)}
                   style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#d0c8b8', cursor: 'pointer' }}
-                  onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform='scale(1.06)'; e.currentTarget.querySelector('.ov').style.opacity='1' }}
-                  onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform='scale(1)'; e.currentTarget.querySelector('.ov').style.opacity='0' }}>
-                  <img src={p.img} alt={p.title} loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover', transition:'transform 0.6s ease', display:'block' }}/>
-                  <div className="ov" style={{ position:'absolute', inset:0, background:'linear-gradient(to top,rgba(26,26,24,0.8) 0%,transparent 55%)', opacity:0, transition:'opacity 0.3s', display:'flex', flexDirection:'column', justifyContent:'flex-end', padding:'1.5rem' }}>
-                    <span style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.6rem', letterSpacing:'0.14em', textTransform:'uppercase', color:S.gold, marginBottom:'0.3rem' }}>{p.category}</span>
-                    <p style={{ fontFamily:"'Playfair Display',serif", fontSize:'1rem', color:S.offwhite }}>{p.title}</p>
+                  onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'; e.currentTarget.querySelector('.ov').style.opacity = '1' }}
+                  onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1)'; e.currentTarget.querySelector('.ov').style.opacity = '0' }}>
+                  <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
+                  <div className="ov" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(26,26,24,0.8) 0%,transparent 55%)', opacity: 0, transition: 'opacity 0.3s', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.5rem' }}>
+                    <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{p.category}</span>
+                    <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', color: S.offwhite }}>{p.title}</p>
                   </div>
-                  <div style={{ position:'absolute', bottom:'0.8rem', right:'0.8rem', zIndex:2, pointerEvents:'none' }}>
+                  <div style={{ position: 'absolute', bottom: '0.8rem', right: '0.8rem', zIndex: 2, pointerEvents: 'none' }}>
                     <img src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png" alt="RSD"
-                      style={{ height:30, width:'auto', display:'block', filter:'drop-shadow(0 0 3px rgba(255,255,255,0.8)) drop-shadow(0 0 6px rgba(255,255,255,0.6))', opacity:0.9 }}/>
+                      style={{ height: 30, width: 'auto', display: 'block', filter: 'drop-shadow(0 0 3px rgba(255,255,255,0.8)) drop-shadow(0 0 6px rgba(255,255,255,0.6))', opacity: 0.9 }} />
                   </div>
                 </div>
               </FadeIn>
@@ -563,7 +589,7 @@ export default function Home() {
       <section id="testimonials" style={{ background: '#F0EBE3', padding: '7rem 0' }}>
         <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 2rem' }}>
           <FadeIn>
-            <span className="gold-rule"/>
+            <span className="gold-rule" />
             <p style={LABEL_STYLE}>Testimonials</p>
             <h2 style={{ ...H2_STYLE, marginBottom: '3rem' }}>
               Heard from those who <em>lived</em> our work
@@ -572,32 +598,32 @@ export default function Home() {
           <div className="testimonial-wrapper" style={{ position: 'relative', padding: '0 2.5rem' }}>
             <button className="t-arrow-left"
               onClick={() => setTIndex(i => (i - 1 + testimonials.length) % testimonials.length)}
-              style={{ position:'absolute', left:'0', top:'50%', transform:'translateY(-50%)', background:'none', border:'none', cursor:'pointer', fontSize:'2.5rem', color:'rgba(26,26,24,0.4)', transition:'color 0.25s', lineHeight:1, padding:0, zIndex:2 }}
+              style={{ position: 'absolute', left: '0', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '2.5rem', color: 'rgba(26,26,24,0.4)', transition: 'color 0.25s', lineHeight: 1, padding: 0, zIndex: 2 }}
               onMouseEnter={e => e.currentTarget.style.color = S.ink}
               onMouseLeave={e => e.currentTarget.style.color = 'rgba(26,26,24,0.4)'}>
               &#8249;
             </button>
-            <div className="t-card" style={{ background:'#fff', padding:'2.5rem', borderLeft:`2px solid ${S.gold}` }}>
-              <p style={{ fontFamily:"'Playfair Display',serif", fontSize:'clamp(0.95rem,2vw,1.1rem)', fontStyle:'italic', color:S.ink, lineHeight:1.8, marginBottom:'1.5rem', wordBreak:'break-word', overflowWrap:'break-word' }}>
-                <span style={{ fontSize:'2rem', color:S.gold, lineHeight:0, verticalAlign:'-0.4rem', marginRight:'0.2rem' }}>"</span>
+            <div className="t-card" style={{ background: '#fff', padding: '2.5rem', borderLeft: `2px solid ${S.gold}` }}>
+              <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(0.95rem,2vw,1.1rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.8, marginBottom: '1.5rem', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+                <span style={{ fontSize: '2rem', color: S.gold, lineHeight: 0, verticalAlign: '-0.4rem', marginRight: '0.2rem' }}>"</span>
                 {testimonials[tIndex].text}
               </p>
-              <p style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.75rem', letterSpacing:'0.12em', textTransform:'uppercase', color:S.gold }}>
+              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.gold }}>
                 — {testimonials[tIndex].name}
               </p>
             </div>
             <button className="t-arrow-right"
               onClick={() => setTIndex(i => (i + 1) % testimonials.length)}
-              style={{ position:'absolute', right:'0', top:'50%', transform:'translateY(-50%)', background:'none', border:'none', cursor:'pointer', fontSize:'2.5rem', color:'rgba(26,26,24,0.4)', transition:'color 0.25s', lineHeight:1, padding:0, zIndex:2 }}
+              style={{ position: 'absolute', right: '0', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '2.5rem', color: 'rgba(26,26,24,0.4)', transition: 'color 0.25s', lineHeight: 1, padding: 0, zIndex: 2 }}
               onMouseEnter={e => e.currentTarget.style.color = S.ink}
               onMouseLeave={e => e.currentTarget.style.color = 'rgba(26,26,24,0.4)'}>
               &#8250;
             </button>
           </div>
-          <div style={{ display:'flex', gap:'0.6rem', marginTop:'1.5rem', justifyContent:'center' }}>
+          <div style={{ display: 'flex', gap: '0.6rem', marginTop: '1.5rem', justifyContent: 'center' }}>
             {testimonials.map((_, i) => (
               <button key={i} onClick={() => setTIndex(i)}
-                style={{ width:8, height:8, borderRadius:'50%', border:'none', cursor:'pointer', padding:0, background: tIndex===i ? S.gold : 'rgba(201,169,110,0.25)', transform: tIndex===i ? 'scale(1.3)' : 'scale(1)', transition:'all 0.3s' }}/>
+                style={{ width: 8, height: 8, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, background: tIndex === i ? S.gold : 'rgba(201,169,110,0.25)', transform: tIndex === i ? 'scale(1.3)' : 'scale(1)', transition: 'all 0.3s' }} />
             ))}
           </div>
         </div>
@@ -610,7 +636,7 @@ export default function Home() {
       <section id="services" style={{ background: S.offwhite, padding: '7rem 0' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
           <FadeIn>
-            <span className="gold-rule"/>
+            <span className="gold-rule" />
             <p style={LABEL_STYLE}>What We Do</p>
             <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
               A complete range of <em>design services</em>
@@ -620,8 +646,8 @@ export default function Home() {
             {services.map((svc, i) => (
               <FadeIn key={i} delay={i * 80}>
                 <div style={{ background: '#fff', padding: '2.5rem', borderBottom: '2px solid transparent', transition: 'border-color 0.3s, box-shadow 0.3s', cursor: 'default', height: '100%' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor=S.gold; e.currentTarget.style.boxShadow='0 4px 24px rgba(201,169,110,0.1)' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor='transparent'; e.currentTarget.style.boxShadow='none' }}>
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.boxShadow = 'none' }}>
                   <div style={{ marginBottom: '1.5rem' }}>{svc.icon}</div>
                   <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.16em', color: S.gold, marginBottom: '0.6rem', textTransform: 'uppercase' }}>{svc.num}</p>
                   <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.2rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 400 }}>{svc.title}</h3>
@@ -638,9 +664,9 @@ export default function Home() {
               {areaList.map((area, i) => (
                 <FadeIn key={i} delay={i * 60}>
                   <div style={{ padding: '1rem 1.5rem', border: '1px solid rgba(26,26,24,0.1)', background: '#fff', display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '0.9rem', color: S.ink, transition: 'border-color 0.3s' }}
-                    onMouseEnter={e => e.currentTarget.style.borderColor=S.gold}
-                    onMouseLeave={e => e.currentTarget.style.borderColor='rgba(26,26,24,0.1)'}>
-                    <span style={{ width: 5, height: 5, borderRadius: '50%', background: S.gold, flexShrink: 0 }}/>
+                    onMouseEnter={e => e.currentTarget.style.borderColor = S.gold}
+                    onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(26,26,24,0.1)'}>
+                    <span style={{ width: 5, height: 5, borderRadius: '50%', background: S.gold, flexShrink: 0 }} />
                     {area}
                   </div>
                 </FadeIn>
@@ -659,76 +685,76 @@ export default function Home() {
           <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '5rem', alignItems: 'start' }}>
             <div>
               <FadeIn>
-                <span className="gold-rule"/>
+                <span className="gold-rule" />
                 <p style={LABEL_STYLE}>Get In Touch</p>
                 <h2 style={{ ...H2_STYLE, marginBottom: '2.5rem' }}>
-                  Feel free to<br/><em>contact us</em> anytime
+                  Feel free to<br /><em>contact us</em> anytime
                 </h2>
               </FadeIn>
-              <div style={{ display:'flex', flexDirection:'column', gap:'1.5rem', marginBottom:'3rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}>
                 {contactInfo.map((item, i) => (
-                  <FadeIn key={i} delay={i*80}>
+                  <FadeIn key={i} delay={i * 80}>
                     <div>
-                      <p style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.62rem', letterSpacing:'0.14em', textTransform:'uppercase', color:S.gold, marginBottom:'0.3rem' }}>{item.label}</p>
+                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{item.label}</p>
                       {item.href
-                        ? <a href={item.href} style={{ fontSize:'0.92rem', color:S.ink, textDecoration:'none', transition:'color 0.25s' }} onMouseEnter={e=>e.currentTarget.style.color=S.gold} onMouseLeave={e=>e.currentTarget.style.color=S.ink}>{item.value}</a>
-                        : <p style={{ fontSize:'0.92rem', color:S.mid }}>{item.value}</p>
+                        ? <a href={item.href} style={{ fontSize: '0.92rem', color: S.ink, textDecoration: 'none', transition: 'color 0.25s' }} onMouseEnter={e => e.currentTarget.style.color = S.gold} onMouseLeave={e => e.currentTarget.style.color = S.ink}>{item.value}</a>
+                        : <p style={{ fontSize: '0.92rem', color: S.mid }}>{item.value}</p>
                       }
                     </div>
                   </FadeIn>
                 ))}
               </div>
               <FadeIn delay={200}>
-                <div style={{ width:'100%', height:260, overflow:'hidden' }}>
-                  <iframe src="https://maps.google.com/maps?q=Time+Square+Sevoke+Road+Siliguri&t=m&z=15&output=embed&iwloc=near" title="Location" width="100%" height="100%" style={{ border:'none', display:'block' }} loading="lazy"/>
+                <div style={{ width: '100%', height: 260, overflow: 'hidden' }}>
+                  <iframe src="https://maps.google.com/maps?q=Time+Square+Sevoke+Road+Siliguri&t=m&z=15&output=embed&iwloc=near" title="Location" width="100%" height="100%" style={{ border: 'none', display: 'block' }} loading="lazy" />
                 </div>
               </FadeIn>
             </div>
             <FadeIn delay={150}>
-              <div style={{ background:'#fff', padding:'3rem', boxShadow:'0 4px 40px rgba(26,26,24,0.06)' }}>
-                <p style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.7rem', letterSpacing:'0.14em', textTransform:'uppercase', color:S.gold, marginBottom:'0.6rem' }}>Send a Message</p>
-                <h3 style={{ fontFamily:"'Playfair Display',serif", fontSize:'1.6rem', fontWeight:400, color:S.ink, marginBottom:'2rem' }}>Start Your Project</h3>
+              <div style={{ background: '#fff', padding: '3rem', boxShadow: '0 4px 40px rgba(26,26,24,0.06)' }}>
+                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.6rem' }}>Send a Message</p>
+                <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', fontWeight: 400, color: S.ink, marginBottom: '2rem' }}>Start Your Project</h3>
                 {status === 'sent' ? (
-                  <div style={{ textAlign:'center', padding:'3rem 1rem' }}>
-                    <div style={{ fontFamily:"'Playfair Display',serif", fontSize:'2rem', color:S.gold, marginBottom:'1rem' }}>Thank you</div>
-                    <p style={{ fontSize:'0.95rem', color:S.mid, lineHeight:1.7 }}>Your message has been received. We will get back to you within 24 hours.</p>
+                  <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
+                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, marginBottom: '1rem' }}>Thank you</div>
+                    <p style={{ fontSize: '0.95rem', color: S.mid, lineHeight: 1.7 }}>Your message has been received. We will get back to you within 24 hours.</p>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} noValidate>
-                    <div className="form-row" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'1rem' }}>
-                      <div style={{ marginBottom:'1.2rem' }}>
-                        <label style={{ display:'block', fontFamily:"'DM Mono',monospace", fontSize:'0.68rem', letterSpacing:'0.12em', textTransform:'uppercase', color:S.mid, marginBottom:'0.5rem' }}>First Name <span style={{color:S.gold}}>*</span></label>
-                        <input value={form.firstName} onChange={set('firstName')} onFocus={()=>focusField('firstName')} onBlur={()=>blurField('firstName')} placeholder="Raamesh" style={inputStyle(focused.firstName)}/>
+                    <div className="form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                      <div style={{ marginBottom: '1.2rem' }}>
+                        <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>First Name <span style={{ color: S.gold }}>*</span></label>
+                        <input value={form.firstName} onChange={set('firstName')} onFocus={() => focusField('firstName')} onBlur={() => blurField('firstName')} placeholder="Raamesh" style={inputStyle(focused.firstName)} />
                       </div>
-                      <div style={{ marginBottom:'1.2rem' }}>
-                        <label style={{ display:'block', fontFamily:"'DM Mono',monospace", fontSize:'0.68rem', letterSpacing:'0.12em', textTransform:'uppercase', color:S.mid, marginBottom:'0.5rem' }}>Last Name</label>
-                        <input value={form.lastName} onChange={set('lastName')} onFocus={()=>focusField('lastName')} onBlur={()=>blurField('lastName')} placeholder="Singhal" style={inputStyle(focused.lastName)}/>
+                      <div style={{ marginBottom: '1.2rem' }}>
+                        <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Last Name</label>
+                        <input value={form.lastName} onChange={set('lastName')} onFocus={() => focusField('lastName')} onBlur={() => blurField('lastName')} placeholder="Singhal" style={inputStyle(focused.lastName)} />
                       </div>
                     </div>
-                    <div style={{ marginBottom:'1.2rem' }}>
-                      <label style={{ display:'block', fontFamily:"'DM Mono',monospace", fontSize:'0.68rem', letterSpacing:'0.12em', textTransform:'uppercase', color:S.mid, marginBottom:'0.5rem' }}>Phone <span style={{color:S.gold}}>*</span></label>
-                      <input type="tel" value={form.phone} onChange={set('phone')} onFocus={()=>focusField('phone')} onBlur={()=>blurField('phone')} placeholder="+91 98765 43210" style={inputStyle(focused.phone)}/>
+                    <div style={{ marginBottom: '1.2rem' }}>
+                      <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Phone <span style={{ color: S.gold }}>*</span></label>
+                      <input type="tel" value={form.phone} onChange={set('phone')} onFocus={() => focusField('phone')} onBlur={() => blurField('phone')} placeholder="+91 98765 43210" style={inputStyle(focused.phone)} />
                     </div>
-                    <div style={{ marginBottom:'1.2rem' }}>
-                      <label style={{ display:'block', fontFamily:"'DM Mono',monospace", fontSize:'0.68rem', letterSpacing:'0.12em', textTransform:'uppercase', color:S.mid, marginBottom:'0.5rem' }}>Email <span style={{color:S.gold}}>*</span></label>
-                      <input type="email" value={form.email} onChange={set('email')} onFocus={()=>focusField('email')} onBlur={()=>blurField('email')} placeholder="your@email.com" style={inputStyle(focused.email)}/>
+                    <div style={{ marginBottom: '1.2rem' }}>
+                      <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Email <span style={{ color: S.gold }}>*</span></label>
+                      <input type="email" value={form.email} onChange={set('email')} onFocus={() => focusField('email')} onBlur={() => blurField('email')} placeholder="your@email.com" style={inputStyle(focused.email)} />
                     </div>
-                    <div style={{ marginBottom:'1.2rem' }}>
-                      <label style={{ display:'block', fontFamily:"'DM Mono',monospace", fontSize:'0.68rem', letterSpacing:'0.12em', textTransform:'uppercase', color:S.mid, marginBottom:'0.5rem' }}>Service Required</label>
-                      <select value={form.service} onChange={set('service')} onFocus={()=>focusField('service')} onBlur={()=>blurField('service')} style={{ ...inputStyle(focused.service), appearance:'none', cursor:'pointer' }}>
+                    <div style={{ marginBottom: '1.2rem' }}>
+                      <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Service Required</label>
+                      <select value={form.service} onChange={set('service')} onFocus={() => focusField('service')} onBlur={() => blurField('service')} style={{ ...inputStyle(focused.service), appearance: 'none', cursor: 'pointer' }}>
                         <option value="">Select a service...</option>
-                        {['Residential Interior Design','Architecture','Hospitality Design','Commercial / Retail','Vedic Vastu Consultation','Other'].map(o=><option key={o}>{o}</option>)}
+                        {['Residential Interior Design', 'Architecture', 'Hospitality Design', 'Commercial / Retail', 'Vedic Vastu Consultation', 'Other'].map(o => <option key={o}>{o}</option>)}
                       </select>
                     </div>
-                    <div style={{ marginBottom:'1.2rem' }}>
-                      <label style={{ display:'block', fontFamily:"'DM Mono',monospace", fontSize:'0.68rem', letterSpacing:'0.12em', textTransform:'uppercase', color:S.mid, marginBottom:'0.5rem' }}>Message <span style={{color:S.gold}}>*</span></label>
-                      <textarea rows={5} value={form.message} onChange={set('message')} onFocus={()=>focusField('message')} onBlur={()=>blurField('message')} placeholder="Tell us about your project..." style={{ ...inputStyle(focused.message), resize:'vertical' }}/>
+                    <div style={{ marginBottom: '1.2rem' }}>
+                      <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Message <span style={{ color: S.gold }}>*</span></label>
+                      <textarea rows={5} value={form.message} onChange={set('message')} onFocus={() => focusField('message')} onBlur={() => blurField('message')} placeholder="Tell us about your project..." style={{ ...inputStyle(focused.message), resize: 'vertical' }} />
                     </div>
-                    <button type="submit" disabled={status==='sending'}
-                      style={{ width:'100%', padding:'1rem', background:status==='sending' ? S.sage : S.gold, color:S.ink, border:'none', cursor:status==='sending'?'not-allowed':'pointer', fontFamily:"'DM Mono',monospace", fontSize:'0.75rem', letterSpacing:'0.16em', textTransform:'uppercase', transition:'background 0.3s' }}
-                      onMouseEnter={e=>{ if(status!=='sending') e.currentTarget.style.background='#b8923d' }}
-                      onMouseLeave={e=>{ if(status!=='sending') e.currentTarget.style.background=S.gold }}>
-                      {status==='sending' ? 'Sending...' : 'Send Message'}
+                    <button type="submit" disabled={status === 'sending'}
+                      style={{ width: '100%', padding: '1rem', background: status === 'sending' ? S.sage : S.gold, color: S.ink, border: 'none', cursor: status === 'sending' ? 'not-allowed' : 'pointer', fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', transition: 'background 0.3s' }}
+                      onMouseEnter={e => { if (status !== 'sending') e.currentTarget.style.background = '#b8923d' }}
+                      onMouseLeave={e => { if (status !== 'sending') e.currentTarget.style.background = S.gold }}>
+                      {status === 'sending' ? 'Sending...' : 'Send Message'}
                     </button>
                   </form>
                 )}
@@ -742,16 +768,16 @@ export default function Home() {
       <section style={{ background: S.gold, padding: '5rem 0', textAlign: 'center' }}>
         <div style={{ maxWidth: 700, margin: '0 auto', padding: '0 2rem' }}>
           <FadeIn>
-            <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:'clamp(1.8rem,4vw,2.6rem)', fontWeight:400, color:S.ink, marginBottom:'1.5rem', lineHeight:1.2 }}>
+            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.6rem)', fontWeight: 400, color: S.ink, marginBottom: '1.5rem', lineHeight: 1.2 }}>
               Book Your Appointment for Quality &amp; Reliable Services
             </h2>
-            <p style={{ fontSize:'0.95rem', color:'rgba(26,26,24,0.7)', marginBottom:'2rem', lineHeight:1.7 }}>
+            <p style={{ fontSize: '0.95rem', color: 'rgba(26,26,24,0.7)', marginBottom: '2rem', lineHeight: 1.7 }}>
               Let us help you create the home of your dreams.
             </p>
-            <a href="#contact" onClick={e=>{ e.preventDefault(); document.getElementById('contact').scrollIntoView({behavior:'smooth'}) }}
-              style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.78rem', letterSpacing:'0.14em', textTransform:'uppercase', padding:'1rem 2.8rem', background:S.ink, color:S.gold, textDecoration:'none', display:'inline-block', transition:'all 0.3s', cursor:'pointer' }}
-              onMouseEnter={e=>{ e.currentTarget.style.background=S.offwhite; e.currentTarget.style.color=S.ink }}
-              onMouseLeave={e=>{ e.currentTarget.style.background=S.ink; e.currentTarget.style.color=S.gold }}>
+            <a href="#contact" onClick={e => { e.preventDefault(); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) }}
+              style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '1rem 2.8rem', background: S.ink, color: S.gold, textDecoration: 'none', display: 'inline-block', transition: 'all 0.3s', cursor: 'pointer' }}
+              onMouseEnter={e => { e.currentTarget.style.background = S.offwhite; e.currentTarget.style.color = S.ink }}
+              onMouseLeave={e => { e.currentTarget.style.background = S.ink; e.currentTarget.style.color = S.gold }}>
               Book Appointment
             </a>
           </FadeIn>
@@ -760,21 +786,21 @@ export default function Home() {
 
       {/* ── PROJECT MODAL ── */}
       {selectedProject && (
-        <div onClick={() => setSelectedProject(null)} style={{ position:'fixed', inset:0, zIndex:200, background:'rgba(26,26,24,0.92)', display:'flex', alignItems:'center', justifyContent:'center', padding:'1.5rem', backdropFilter:'blur(6px)' }}>
-          <div onClick={e => e.stopPropagation()} className="project-modal-grid" style={{ background:'#fff', maxWidth:900, width:'100%', maxHeight:'90vh', overflow:'auto', display:'grid', gridTemplateColumns:'1.2fr 1fr', position:'relative' }}>
-            <button onClick={() => setSelectedProject(null)} style={{ position:'absolute', top:'1rem', right:'1rem', width:36, height:36, background:'rgba(26,26,24,0.7)', border:'none', cursor:'pointer', color:'#fff', fontSize:'1.1rem', display:'flex', alignItems:'center', justifyContent:'center', zIndex:10 }}>&#10005;</button>
-            <div style={{ position:'relative', minHeight:320 }}>
-              <img src={selectedProject.img} alt={selectedProject.title} style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }}/>
+        <div onClick={() => setSelectedProject(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(26,26,24,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(6px)' }}>
+          <div onClick={e => e.stopPropagation()} className="project-modal-grid" style={{ background: '#fff', maxWidth: 900, width: '100%', maxHeight: '90vh', overflow: 'auto', display: 'grid', gridTemplateColumns: '1.2fr 1fr', position: 'relative' }}>
+            <button onClick={() => setSelectedProject(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', width: 36, height: 36, background: 'rgba(26,26,24,0.7)', border: 'none', cursor: 'pointer', color: '#fff', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>&#10005;</button>
+            <div style={{ position: 'relative', minHeight: 320 }}>
+              <img src={selectedProject.img} alt={selectedProject.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             </div>
-            <div style={{ padding:'3rem 2.5rem', display:'flex', flexDirection:'column', justifyContent:'center' }}>
-              <span style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.65rem', letterSpacing:'0.18em', textTransform:'uppercase', color:S.gold, marginBottom:'0.8rem', display:'block' }}>{selectedProject.category}</span>
-              <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:'clamp(1.4rem,3vw,2rem)', fontWeight:400, color:S.ink, lineHeight:1.2, marginBottom:'1.5rem' }}>{selectedProject.title}</h2>
-              <div style={{ width:40, height:1, background:S.gold, marginBottom:'1.5rem' }}/>
-              <p style={{ fontSize:'0.92rem', color:S.mid, lineHeight:1.85, marginBottom:'2rem' }}>{selectedProject.desc}</p>
-              <button onClick={() => { setSelectedProject(null); document.getElementById('contact').scrollIntoView({ behavior:'smooth' }) }}
-                style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.72rem', letterSpacing:'0.14em', textTransform:'uppercase', padding:'0.85rem 1.8rem', background:S.gold, color:S.ink, border:'none', cursor:'pointer', transition:'background 0.3s', alignSelf:'flex-start' }}
-                onMouseEnter={e => e.currentTarget.style.background='#b8923d'}
-                onMouseLeave={e => e.currentTarget.style.background=S.gold}>
+            <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.8rem', display: 'block' }}>{selectedProject.category}</span>
+              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.4rem,3vw,2rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1.5rem' }}>{selectedProject.title}</h2>
+              <div style={{ width: 40, height: 1, background: S.gold, marginBottom: '1.5rem' }} />
+              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, marginBottom: '2rem' }}>{selectedProject.desc}</p>
+              <button onClick={() => { setSelectedProject(null); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) }}
+                style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.85rem 1.8rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s', alignSelf: 'flex-start' }}
+                onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
+                onMouseLeave={e => e.currentTarget.style.background = S.gold}>
                 Enquire About This Project
               </button>
             </div>
@@ -784,20 +810,20 @@ export default function Home() {
 
       {/* ── SERVICE MODAL ── */}
       {selectedService && (
-        <div onClick={() => setSelectedService(null)} style={{ position:'fixed', inset:0, zIndex:200, background:'rgba(26,26,24,0.92)', display:'flex', alignItems:'center', justifyContent:'center', padding:'1.5rem', backdropFilter:'blur(6px)' }}>
-          <div onClick={e => e.stopPropagation()} style={{ background:'#fff', maxWidth:700, width:'100%', maxHeight:'90vh', overflow:'auto', position:'relative', padding:'3.5rem' }}>
-            <button onClick={() => setSelectedService(null)} style={{ position:'absolute', top:'1.2rem', right:'1.2rem', width:36, height:36, background:'rgba(26,26,24,0.08)', border:'none', cursor:'pointer', fontSize:'1rem', display:'flex', alignItems:'center', justifyContent:'center' }}>&#10005;</button>
-            <div style={{ fontFamily:"'Playfair Display',serif", fontSize:'4rem', color:S.gold, opacity:0.15, lineHeight:1, marginBottom:'0.5rem', fontWeight:700 }}>{selectedService.num}</div>
-            <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:'clamp(1.8rem,4vw,2.5rem)', fontWeight:400, color:S.ink, lineHeight:1.2, marginBottom:'1.5rem' }}>{selectedService.title}</h2>
-            <div style={{ width:48, height:1, background:S.gold, marginBottom:'1.5rem' }}/>
-            <p style={{ fontSize:'1rem', color:S.mid, lineHeight:1.9, marginBottom:'2rem' }}>{selectedService.desc}</p>
-            <div style={{ width:'100%', aspectRatio:'16/9', background:'#F0EBE3', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'2rem' }}>
-              <p style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.65rem', letterSpacing:'0.14em', textTransform:'uppercase', color:S.gold }}>Image coming soon</p>
+        <div onClick={() => setSelectedService(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(26,26,24,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(6px)' }}>
+          <div onClick={e => e.stopPropagation()} style={{ background: '#fff', maxWidth: 700, width: '100%', maxHeight: '90vh', overflow: 'auto', position: 'relative', padding: '3.5rem' }}>
+            <button onClick={() => setSelectedService(null)} style={{ position: 'absolute', top: '1.2rem', right: '1.2rem', width: 36, height: 36, background: 'rgba(26,26,24,0.08)', border: 'none', cursor: 'pointer', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10005;</button>
+            <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '4rem', color: S.gold, opacity: 0.15, lineHeight: 1, marginBottom: '0.5rem', fontWeight: 700 }}>{selectedService.num}</div>
+            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.5rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1.5rem' }}>{selectedService.title}</h2>
+            <div style={{ width: 48, height: 1, background: S.gold, marginBottom: '1.5rem' }} />
+            <p style={{ fontSize: '1rem', color: S.mid, lineHeight: 1.9, marginBottom: '2rem' }}>{selectedService.desc}</p>
+            <div style={{ width: '100%', aspectRatio: '16/9', background: '#F0EBE3', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem' }}>
+              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Image coming soon</p>
             </div>
-            <button onClick={() => { setSelectedService(null); document.getElementById('contact').scrollIntoView({ behavior:'smooth' }) }}
-              style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.72rem', letterSpacing:'0.14em', textTransform:'uppercase', padding:'0.85rem 2rem', background:S.gold, color:S.ink, border:'none', cursor:'pointer', transition:'background 0.3s' }}
-              onMouseEnter={e => e.currentTarget.style.background='#b8923d'}
-              onMouseLeave={e => e.currentTarget.style.background=S.gold}>
+            <button onClick={() => { setSelectedService(null); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) }}
+              style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.85rem 2rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s' }}
+              onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
+              onMouseLeave={e => e.currentTarget.style.background = S.gold}>
               Start a Conversation →
             </button>
           </div>
