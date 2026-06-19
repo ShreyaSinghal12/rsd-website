@@ -73,3 +73,9 @@ body { background-color: #F7F4EF; color: #1A1A18; font-family: 'DM Sans', sans-s
 @media (max-width: 768px) {
   .press-grid { grid-template-columns: repeat(2,1fr) !important; }
 }
+.about-grid + div::-webkit-scrollbar,
+div[style*="overflowX: auto"]::-webkit-scrollbar {
+  display: none;
+}
+.moodboard-scroll::-webkit-scrollbar { display: none; }
+.moodboard-scroll { scrollbar-width: none; }

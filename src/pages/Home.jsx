@@ -359,30 +359,20 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Block 3b — Press Mentions */}
-        <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-            <FadeIn>
-              <span className="gold-rule" />
-              <p style={LABEL_STYLE}>As Featured In</p>
-              <h2 style={{ ...H2_STYLE, marginBottom: '3rem' }}>
-                Stories worth <em>telling.</em>
-              </h2>
-            </FadeIn>
-            <div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1.5rem' }}>
-              {[1, 2, 3, 4].map((i) => (
-                <FadeIn key={i} delay={i * 60}>
-                  <div style={{ aspectRatio: '3/4', background: '#F0EBE3', border: '1px solid rgba(26,26,24,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '0.8rem' }}>
-                    <div style={{ width: 36, height: 36, borderRadius: '50%', border: `1px solid ${S.gold}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', color: S.gold, fontStyle: 'italic' }}>P</span>
-                    </div>
-                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid }}>Press feature</p>
-                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', color: S.sage }}>Coming soon</p>
-                  </div>
-                </FadeIn>
-              ))}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', minWidth: 280 }}>
+          {[
+            { label: 'Award', val: 'Pending confirmation' },
+            { label: 'Award', val: 'Pending confirmation' },
+            { label: 'Press', val: 'Pending confirmation' },
+          ].map((item, i) => (
+            <div key={i} style={{ padding: '1.2rem 1.5rem', border: '1px dashed rgba(201,169,110,0.4)', background: '#fff', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <span style={{ width: 5, height: 5, borderRadius: '50%', background: S.gold, flexShrink: 0 }} />
+              <div>
+                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.2rem' }}>{item.label}</p>
+                <p style={{ fontSize: '0.85rem', color: S.sage, fontStyle: 'italic' }}>{item.val}</p>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
 
         {/* Block 4 — What We Do */}
@@ -533,6 +523,31 @@ export default function Home() {
                 </FadeIn>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Decorative moodboard strip */}
+        <div style={{ background: S.offwhite, padding: '4rem 0', overflow: 'hidden' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem 2rem' }}>
+            <FadeIn>
+              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: S.mid, textAlign: 'center' }}>
+                Design Inspiration
+              </p>
+            </FadeIn>
+          </div>
+          <div className="moodboard-scroll" style={{ display: 'flex', gap: '1rem', overflowX: 'auto', padding: '0 2rem 1rem', scrollbarWidth: 'none' }}>
+            {[1, 2, 3, 5, 6, 7, 8, 9].map((n, i) => (
+              <FadeIn key={n} delay={i * 50}>
+                <div style={{ flexShrink: 0, width: 220, aspectRatio: '3/4', overflow: 'hidden', boxShadow: '0 4px 20px rgba(26,26,24,0.08)' }}>
+                  <img
+                    src={`/images/press/mag${n}.jpg`}
+                    alt="Design inspiration"
+                    loading="lazy"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
+              </FadeIn>
+            ))}
           </div>
         </div>
       </section>
