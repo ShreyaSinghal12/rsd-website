@@ -85,4 +85,5 @@ const projects = [
   { id: 81, title: "Visionary Spaces",               category: "architecture", img: "http://raameshsinghaldesign.com/wp-content/uploads/2023/04/Visionary-Spaces-1.jpg",    desc: "Architecture born from vision — spaces that challenge convention and point toward new possibilities." },
 ]
 
+
 export default projects

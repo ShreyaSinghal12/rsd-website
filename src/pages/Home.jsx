@@ -134,6 +134,7 @@ export default function Home() {
   const [focused, setFocused] = useState({})
   const [selectedProject, setSelectedProject] = useState(null)
   const [selectedService, setSelectedService] = useState(null)
+  const [selectedPress, setSelectedPress] = useState(null)
   const intervalRef = useRef(null)
 
   const set = (key) => (e) => setForm(f => ({ ...f, [key]: e.target.value }))
@@ -322,38 +323,63 @@ export default function Home() {
         </div>
 
         {/* Block 3 — Awards */}
-
-
-        {/* Press & Awards — Projects-style grid */}
-<div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
-  {[
-    { type: 'Award', title: 'Best Residential Design 2023', org: 'North East Design Awards', img: '/images/press/award1.jpg' },
-    { type: 'Award', title: 'Excellence in Architecture 2021', org: 'IIID', img: '/images/press/award2.jpg' },
-    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag1.jpg' },
-    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag2.jpg' },
-    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag3.jpg' },
-    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag4.jpg' },
-    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag5.jpg' },
-    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag6.jpg' },
-    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag7.jpg' },
-    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag8.jpg' },
-    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag9.jpg' },
-  ].map((item, i) => (
-    <FadeIn key={i} delay={i * 80}>
-      <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#d0c8b8', cursor: 'pointer' }}
-        onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform='scale(1.06)'; e.currentTarget.querySelector('.ov').style.opacity='1' }}
-        onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform='scale(1)'; e.currentTarget.querySelector('.ov').style.opacity='0' }}>
-        <img src={item.img} alt={item.title} loading="lazy"
-          style={{ width:'100%', height:'100%', objectFit:'cover', transition:'transform 0.6s ease', display:'block' }}/>
-        <div className="ov" style={{ position:'absolute', inset:0, background:'linear-gradient(to top,rgba(26,26,24,0.8) 0%,transparent 55%)', opacity:0, transition:'opacity 0.3s', display:'flex', flexDirection:'column', justifyContent:'flex-end', padding:'1.5rem' }}>
-          <span style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.6rem', letterSpacing:'0.14em', textTransform:'uppercase', color:S.gold, marginBottom:'0.3rem' }}>{item.type}</span>
-          <p style={{ fontFamily:"'Playfair Display',serif", fontSize:'1rem', color:S.offwhite }}>{item.title}</p>
-          <p style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.65rem', color:'rgba(247,244,239,0.7)', marginTop:'0.2rem' }}>{item.org}</p>
+        {/* Block 3a — Awards */}
+        <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+            <FadeIn>
+              <span className="gold-rule" />
+              <p style={LABEL_STYLE}>Recognition</p>
+              <h2 style={{ ...H2_STYLE, marginBottom: '1.5rem' }}>
+                Recognition is flattering.<br /><em>Being trusted twice is the real award.</em>
+              </h2>
+              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 700, marginBottom: '3rem' }}>
+                Our work has been honoured by some of the most respected names in design and industry. But the recognition we value most isn't on a shelf — it's the client who hands us their next project before the first is even finished.
+              </p>
+            </FadeIn>
+            <div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
+              {[
+                { type: 'Award', title: 'Pending confirmation', org: '', img: null },
+                { type: 'Award', title: 'Pending confirmation', org: '', img: null },
+                { type: 'Award', title: 'Pending confirmation', org: '', img: null },
+              ].map((item, i) => (
+                <FadeIn key={i} delay={i * 80}>
+                  <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#fff', border: '1px dashed rgba(201,169,110,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '0.6rem' }}>
+                    <div style={{ width: 40, height: 40, borderRadius: '50%', border: `1px solid ${S.gold}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.gold, fontStyle: 'italic' }}>A</span>
+                    </div>
+                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>{item.type}</p>
+                    <p style={{ fontSize: '0.82rem', color: S.sage, fontStyle: 'italic' }}>{item.title}</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+            <FadeIn delay={200}>
+              <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8, marginTop: '2.5rem', fontStyle: 'italic' }}>
+                Thirty years. 500+ projects delivered. Multiple cities. Three decades is not a number we mention in passing. That's the whole point.
+              </p>
+            </FadeIn>
+          </div>
         </div>
-      </div>
-    </FadeIn>
-  ))}
-</div>
+
+        {/* Block 3b — Press */}
+        <div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
+          {pressItems.map((item, i) => (
+            <FadeIn key={item.id} delay={i * 80}>
+              <div
+                onClick={() => setSelectedPress(item)}
+                style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#d0c8b8', cursor: 'pointer' }}
+                onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'; e.currentTarget.querySelector('.ov').style.opacity = '1' }}
+                onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1)'; e.currentTarget.querySelector('.ov').style.opacity = '0' }}>
+                <img src={item.img} alt={item.title} loading="lazy"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
+                <div className="ov" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(26,26,24,0.8) 0%,transparent 55%)', opacity: 0, transition: 'opacity 0.3s', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.5rem' }}>
+                  <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{item.type}</span>
+                  <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', color: S.offwhite }}>{item.title}</p>
+                </div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
 
         {/* Block 4 — What We Do */}
         <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
@@ -821,6 +847,24 @@ export default function Home() {
               onMouseLeave={e => e.currentTarget.style.background = S.gold}>
               Start a Conversation →
             </button>
+          </div>
+        </div>
+      )}
+      {/* ── PRESS MODAL ── */}
+      {selectedPress && (
+        <div onClick={() => setSelectedPress(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(26,26,24,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(6px)' }}>
+          <div onClick={e => e.stopPropagation()} className="project-modal-grid" style={{ background: '#fff', maxWidth: 900, width: '100%', maxHeight: '90vh', overflow: 'auto', display: 'grid', gridTemplateColumns: '1.2fr 1fr', position: 'relative' }}>
+            <button onClick={() => setSelectedPress(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', width: 36, height: 36, background: 'rgba(26,26,24,0.7)', border: 'none', cursor: 'pointer', color: '#fff', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>&#10005;</button>
+            <div style={{ position: 'relative', minHeight: 320 }}>
+              <img src={selectedPress.img} alt={selectedPress.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
+            <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.8rem', display: 'block' }}>{selectedPress.type}</span>
+              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.4rem,3vw,2rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '0.8rem' }}>{selectedPress.title}</h2>
+              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', color: S.mid, marginBottom: '1.5rem' }}>{selectedPress.org}</p>
+              <div style={{ width: 40, height: 1, background: S.gold, marginBottom: '1.5rem' }} />
+              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85 }}>{selectedPress.desc}</p>
+            </div>
           </div>
         </div>
       )}
