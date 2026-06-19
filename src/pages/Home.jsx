@@ -42,6 +42,83 @@ const heroSlides = [
   },
 ]
 
+const pressItems = [
+  // Add real entries here once you have confirmed press coverage
+  // Example structure:
+  {
+    id: 1,
+    type: 'Press',
+    title: 'Featured in [Publication Name]',
+    org: '[Publication Name] — [Year]',
+    img: '/images/press/mag1.jpg',
+    desc: 'Description of the feature.',
+ },
+  {
+    id: 2,
+    type: 'Press',
+    title: 'Featured in [Publication Name]',
+    org: '[Publication Name] — [Year]',
+    img: '/images/press/mag2.jpg',
+    desc: 'Description of the feature.',
+ },
+  {
+    id: 3,
+    type: 'Press',
+    title: 'Featured in [Publication Name]',
+    org: '[Publication Name] — [Year]',
+    img: '/images/press/mag3.jpg',
+    desc: 'Description of the feature.',
+ },
+  {
+    id: 4,
+    type: 'Press',
+    title: 'Featured in [Publication Name]',
+    org: '[Publication Name] — [Year]',
+    img: '/images/press/mag4.jpg',
+    desc: 'Description of the feature.',
+ },
+  {
+    id: 5,
+    type: 'Press',
+    title: 'Featured in [Publication Name]',
+    org: '[Publication Name] — [Year]',
+    img: '/images/press/mag5.jpg',
+    desc: 'Description of the feature.',
+ },
+  {
+    id: 6,
+    type: 'Press',
+    title: 'Featured in [Publication Name]',
+    org: '[Publication Name] — [Year]',
+    img: '/images/press/mag6.jpg',
+    desc: 'Description of the feature.',
+ },
+  {
+    id: 7,
+    type: 'Press',
+    title: 'Featured in [Publication Name]',
+    org: '[Publication Name] — [Year]',
+    img: '/images/press/mag7.jpg',
+    desc: 'Description of the feature.',
+ },
+  {
+    id: 8,
+    type: 'Press',
+    title: 'Featured in [Publication Name]',
+    org: '[Publication Name] — [Year]',
+    img: '/images/press/mag8.jpg',
+    desc: 'Description of the feature.',
+ },
+  {
+    id: 9,
+    type: 'Press',
+    title: 'Featured in [Publication Name]',
+    org: '[Publication Name] — [Year]',
+    img: '/images/press/mag9.jpg',
+    desc: 'Description of the feature.',
+ },
+]
+
 const services = [
   { num: "01", title: "Architecture", desc: "From structural layout to MEP coordination — complete architecture services including exterior and landscape design.", icon: (<svg viewBox="0 0 36 36" fill="none" stroke="#C9A96E" strokeWidth="1.2" width="36" height="36"><polyline points="2 34 18 6 34 34" /><line x1="7" y1="24" x2="29" y2="24" /></svg>) },
   { num: "02", title: "Interior Design", desc: "Color schemes, furniture curation, space planning and full implementation — tailored to your lifestyle.", icon: (<svg viewBox="0 0 36 36" fill="none" stroke="#C9A96E" strokeWidth="1.2" width="36" height="36"><rect x="3" y="8" width="30" height="22" rx="1" /><line x1="3" y1="15" x2="33" y2="15" /><line x1="16" y1="15" x2="16" y2="30" /></svg>) },
