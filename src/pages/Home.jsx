@@ -322,58 +322,33 @@ export default function Home() {
         </div>
 
         {/* Block 3 — Awards */}
-        <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-            <FadeIn>
-              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '3rem' }}>
-                <div style={{ maxWidth: 480 }}>
-                  <span className="gold-rule" />
-                  <p style={LABEL_STYLE}>Recognition</p>
-                  <h2 style={{ ...H2_STYLE, marginBottom: '1.5rem' }}>
-                    Recognition is flattering.<br /><em>Being trusted twice is the real award.</em>
-                  </h2>
-                  <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85 }}>
-                    Our work has been honoured by some of the most respected names in design and industry. But the recognition we value most isn't on a shelf — it's the client who hands us their next project before the first is even finished.
-                  </p>
-                  <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8, marginTop: '1.5rem', fontStyle: 'italic' }}>
-                    Thirty years. 500+ projects delivered. Multiple cities. Three decades is not a number we mention in passing. That's the whole point.
-                  </p>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', minWidth: 280 }}>
-                  {[
-                    { label: 'Award', val: 'To be updated' },
-                    { label: 'Award', val: 'To be updated' },
-                    { label: 'Press', val: 'To be updated' },
-                  ].map((item, i) => (
-                    <div key={i} style={{ padding: '1.2rem 1.5rem', border: '1px solid rgba(26,26,24,0.1)', background: '#fff', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: S.gold, flexShrink: 0 }} />
-                      <div>
-                        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.2rem' }}>{item.label}</p>
-                        <p style={{ fontSize: '0.88rem', color: S.mid }}>{item.val}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', minWidth: 280 }}>
-          {[
-            { label: 'Award', val: 'Pending confirmation' },
-            { label: 'Award', val: 'Pending confirmation' },
-            { label: 'Press', val: 'Pending confirmation' },
-          ].map((item, i) => (
-            <div key={i} style={{ padding: '1.2rem 1.5rem', border: '1px dashed rgba(201,169,110,0.4)', background: '#fff', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+
+        {[
+          { label: 'Award', val: 'Best Residential Design 2023 — North East Design Awards', img: null },
+          { label: 'Award', val: 'Excellence in Architecture 2021 — IIID', img: null },
+          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag1.jpg' },
+          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag2.jpg' },
+          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag3.jpg' },
+          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag4.jpg' },
+          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag5.jpg' },
+          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag6.jpg' },
+          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag7.jpg' },
+          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag8.jpg' },
+          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag9.jpg' },
+        ].map((item, i) => (
+          <div key={i} style={{ padding: '1.2rem 1.5rem', border: '1px solid rgba(26,26,24,0.1)', background: '#fff', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            {item.img ? (
+              <img src={item.img} alt={item.label} style={{ width: 48, height: 48, objectFit: 'cover', flexShrink: 0 }} />
+            ) : (
               <span style={{ width: 5, height: 5, borderRadius: '50%', background: S.gold, flexShrink: 0 }} />
-              <div>
-                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.2rem' }}>{item.label}</p>
-                <p style={{ fontSize: '0.85rem', color: S.sage, fontStyle: 'italic' }}>{item.val}</p>
-              </div>
+            )}
+            <div>
+              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.2rem' }}>{item.label}</p>
+              <p style={{ fontSize: '0.85rem', color: S.mid }}>{item.val}</p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
 
         {/* Block 4 — What We Do */}
         <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
