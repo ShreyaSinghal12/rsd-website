@@ -324,31 +324,36 @@ export default function Home() {
         {/* Block 3 — Awards */}
 
 
-        {[
-          { label: 'Award', val: 'Best Residential Design 2023 — North East Design Awards', img: null },
-          { label: 'Award', val: 'Excellence in Architecture 2021 — IIID', img: null },
-          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag1.jpg' },
-          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag2.jpg' },
-          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag3.jpg' },
-          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag4.jpg' },
-          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag5.jpg' },
-          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag6.jpg' },
-          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag7.jpg' },
-          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag8.jpg' },
-          { label: 'Press', val: 'Featured in Architectural Digest — 2022', img: '/images/press/mag9.jpg' },
-        ].map((item, i) => (
-          <div key={i} style={{ padding: '1.2rem 1.5rem', border: '1px solid rgba(26,26,24,0.1)', background: '#fff', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            {item.img ? (
-              <img src={item.img} alt={item.label} style={{ width: 48, height: 48, objectFit: 'cover', flexShrink: 0 }} />
-            ) : (
-              <span style={{ width: 5, height: 5, borderRadius: '50%', background: S.gold, flexShrink: 0 }} />
-            )}
-            <div>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.2rem' }}>{item.label}</p>
-              <p style={{ fontSize: '0.85rem', color: S.mid }}>{item.val}</p>
-            </div>
-          </div>
-        ))}
+        {/* Press & Awards — Projects-style grid */}
+<div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
+  {[
+    { type: 'Award', title: 'Best Residential Design 2023', org: 'North East Design Awards', img: '/images/press/award1.jpg' },
+    { type: 'Award', title: 'Excellence in Architecture 2021', org: 'IIID', img: '/images/press/award2.jpg' },
+    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag1.jpg' },
+    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag2.jpg' },
+    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag3.jpg' },
+    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag4.jpg' },
+    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag5.jpg' },
+    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag6.jpg' },
+    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag7.jpg' },
+    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag8.jpg' },
+    { type: 'Press', title: 'Featured in Architectural Digest', org: '2022 Issue', img: '/images/press/mag9.jpg' },
+  ].map((item, i) => (
+    <FadeIn key={i} delay={i * 80}>
+      <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#d0c8b8', cursor: 'pointer' }}
+        onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform='scale(1.06)'; e.currentTarget.querySelector('.ov').style.opacity='1' }}
+        onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform='scale(1)'; e.currentTarget.querySelector('.ov').style.opacity='0' }}>
+        <img src={item.img} alt={item.title} loading="lazy"
+          style={{ width:'100%', height:'100%', objectFit:'cover', transition:'transform 0.6s ease', display:'block' }}/>
+        <div className="ov" style={{ position:'absolute', inset:0, background:'linear-gradient(to top,rgba(26,26,24,0.8) 0%,transparent 55%)', opacity:0, transition:'opacity 0.3s', display:'flex', flexDirection:'column', justifyContent:'flex-end', padding:'1.5rem' }}>
+          <span style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.6rem', letterSpacing:'0.14em', textTransform:'uppercase', color:S.gold, marginBottom:'0.3rem' }}>{item.type}</span>
+          <p style={{ fontFamily:"'Playfair Display',serif", fontSize:'1rem', color:S.offwhite }}>{item.title}</p>
+          <p style={{ fontFamily:"'DM Mono',monospace", fontSize:'0.65rem', color:'rgba(247,244,239,0.7)', marginTop:'0.2rem' }}>{item.org}</p>
+        </div>
+      </div>
+    </FadeIn>
+  ))}
+</div>
 
         {/* Block 4 — What We Do */}
         <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
