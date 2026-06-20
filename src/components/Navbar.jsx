@@ -16,7 +16,6 @@ export default function Navbar() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024)
     const { pathname } = useLocation()
     const navigate = useNavigate()
-    const isProjectsActive = pathname.startsWith('/projects')
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 1024)
@@ -32,7 +31,7 @@ export default function Navbar() {
                 setActiveLink('projects-page')
                 return
             }
-            const active = link.anchor === 'portfolio' ? (pathname === '/' ? activeLink === 'portfolio' : isProjectsActive) : activeLink === link.anchor
+            
 
             const sections = links.map(link => {
                 const el = document.getElementById(link.anchor)
@@ -96,7 +95,7 @@ export default function Navbar() {
                     {!isMobile && (
                         <ul style={{ display: 'flex', listStyle: 'none', gap: '0.2rem', margin: 0, padding: 0, flex: 1, justifyContent: 'center' }}>
                             {links.map(link => {
-                                const active = activeLink === link.anchor
+                                const active = link.anchor === 'portfolio' ? (pathname === '/' ? activeLink === 'portfolio' : isProjectsActive) : activeLink === link.anchor
                                 return (
                                     <li key={link.anchor}>
                                         <button onClick={() => scrollTo(link.anchor)}
@@ -175,7 +174,7 @@ export default function Navbar() {
 
                         {/* Links */}
                         {links.map((link, i) => {
-                            const active = activeLink === link.anchor
+                            const isProjectsActive = pathname.startsWith('/projects')
                             return (
                                 <button key={link.anchor}
                                     onClick={() => { setMenuOpen(false); setTimeout(() => scrollTo(link.anchor), 350) }}
