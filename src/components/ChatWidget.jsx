@@ -16,7 +16,7 @@ export default function ChatWidget() {
     }, 800)
   }
 
-  const wrapStyle = { position: 'fixed', bottom: '1.5rem', right: '1.5rem', zIndex: 60 }
+  const wrapStyle = { position: 'fixed', bottom: '1.5rem', right: '5.5rem', zIndex: 60 }
   const bubbleStyle = { width: 56, height: 56, borderRadius: '50%', background: '#1A1A18', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 20px rgba(26,26,24,0.35)', transition: 'transform 0.3s ease' }
   const panelStyle = { position: 'absolute', bottom: 70, right: 0, width: 320, maxWidth: '85vw', background: '#fff', borderRadius: 8, boxShadow: '0 10px 40px rgba(26,26,24,0.25)', overflow: 'hidden', opacity: open ? 1 : 0, transform: open ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)', pointerEvents: open ? 'auto' : 'none', transition: 'all 0.25s ease' }
 

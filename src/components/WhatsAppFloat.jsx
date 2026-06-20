@@ -6,7 +6,7 @@ const links = [
 ]
 
 export default function WhatsAppFloat() {
-  const wrapStyle = { position: 'fixed', bottom: '1.5rem', right: '5.5rem', zIndex: 50, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }
+  const wrapStyle = { position: 'fixed', bottom: '1.5rem', right: '1.5rem', zIndex: 50, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }
   const itemStyle = (link) => ({ width: 42, height: 42, borderRadius: '50%', background: link.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 14px rgba(26,26,24,0.25)', textDecoration: 'none', transition: 'transform 0.25s ease' })
 
   return (
