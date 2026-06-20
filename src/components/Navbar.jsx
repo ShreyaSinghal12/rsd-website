@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 
 const links = [
-  { label: 'Home',         anchor: 'hero' },
-  { label: 'About Us',     anchor: 'about' },
-  { label: 'Projects',     anchor: 'portfolio' },
-  { label: 'Testimonials', anchor: 'testimonials' },
-  { label: 'Services',     anchor: 'services' },
-  { label: 'Contact Us',   anchor: 'contact' },
+    { label: 'Home', anchor: 'hero' },
+    { label: 'About Us', anchor: 'about' },
+    { label: 'Projects', anchor: 'portfolio' },
+    { label: 'Testimonials', anchor: 'testimonials' },
+    { label: 'Services', anchor: 'services' },
+    { label: 'Contact Us', anchor: 'contact' },
 ]
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
@@ -23,15 +23,28 @@ export default function Navbar() {
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 60)
-            const offsets = links.map(link => {
+
+            const sections = links.map(link => {
                 const el = document.getElementById(link.anchor)
-                if (!el) return { anchor: link.anchor, top: Infinity }
-                return { anchor: link.anchor, top: Math.abs(el.getBoundingClientRect().top - 80) }
-            })
-            const closest = offsets.reduce((a, b) => a.top < b.top ? a : b)
-            setActiveLink(closest.anchor)
+                if (!el) return null
+                const rect = el.getBoundingClientRect()
+                return { anchor: link.anchor, top: rect.top, bottom: rect.bottom }
+            }).filter(Boolean)
+
+            // Find the section whose range contains the scroll trigger line (80px from top)
+            const triggerLine = 100
+            let current = sections[0]?.anchor
+
+            for (const s of sections) {
+                if (s.top <= triggerLine) {
+                    current = s.anchor
+                }
+            }
+
+            setActiveLink(current)
         }
         window.addEventListener('scroll', handleScroll, { passive: true })
+        handleScroll() // run once on mount
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
@@ -146,7 +159,7 @@ export default function Navbar() {
                             &#10005;
                         </button>
 
-                        
+
                         {/* Links */}
                         {links.map((link, i) => {
                             const active = activeLink === link.anchor
