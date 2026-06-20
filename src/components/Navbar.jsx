@@ -6,7 +6,7 @@ const links = [
     { label: 'About Us', anchor: 'about' },
     { label: 'Projects', anchor: 'portfolio' },
     { label: 'Services', anchor: 'services' },
-    { label: 'Awards and News', anchor: 'services' },
+    { label: 'Awards and News', anchor: 'awards-news' },
     { label: 'Testimonials', anchor: 'testimonials' },
     { label: 'Contact Us', anchor: 'contact' },
 ]
@@ -30,23 +30,27 @@ export default function Navbar() {
             setScrolled(window.scrollY > 60)
 
             if (pathname !== '/') {
-                setActiveLink('projects-page')
+                setActiveLink('projects-route')
                 return
             }
-            
 
-            const sections = links.map(link => {
-                const el = document.getElementById(link.anchor)
-                if (!el) return null
-                const rect = el.getBoundingClientRect()
-                return { anchor: link.anchor, top: rect.top, bottom: rect.bottom }
-            }).filter(Boolean)
+            const sections = links
+                .map(link => {
+                    const el = document.getElementById(link.anchor)
+                    if (!el) return null
+                    const rect = el.getBoundingClientRect()
+                    return { anchor: link.anchor, top: rect.top }
+                })
+                .filter(Boolean)
+                .sort((a, b) => a.top - b.top) // sort by actual DOM position, not array order
 
             const triggerLine = 100
             let current = sections[0]?.anchor
+
             for (const s of sections) {
                 if (s.top <= triggerLine) current = s.anchor
             }
+
             setActiveLink(current)
         }
         window.addEventListener('scroll', handleScroll, { passive: true })
