@@ -16,6 +16,7 @@ export default function Navbar() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024)
     const { pathname } = useLocation()
     const navigate = useNavigate()
+    const isProjectsActive = pathname.startsWith('/projects')
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 1024)
@@ -174,7 +175,7 @@ export default function Navbar() {
 
                         {/* Links */}
                         {links.map((link, i) => {
-                            const isProjectsActive = pathname.startsWith('/projects')
+                            const active = link.anchor === 'portfolio' ? (pathname === '/' ? activeLink === 'portfolio' : isProjectsActive) : activeLink === link.anchor
                             return (
                                 <button key={link.anchor}
                                     onClick={() => { setMenuOpen(false); setTimeout(() => scrollTo(link.anchor), 350) }}
