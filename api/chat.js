@@ -1,11 +1,11 @@
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' })
-  }
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' })
+    }
 
-  const { messages } = req.body
+    const { messages } = req.body
 
-  const systemPrompt = `You are the AI assistant for Raamesh Singhal Design (RSD), an architecture and interior design firm established in 1995, based in Siliguri, West Bengal, India.
+    const systemPrompt = `You are the AI assistant for Raamesh Singhal Design (RSD), an architecture and interior design firm established in 1995, based in Siliguri, West Bengal, India.
 
 About the firm:
 - Founded by Raamesh Singhal and Sonika Singhal
@@ -26,30 +26,38 @@ Your job:
 - If asked something unrelated to architecture/interior design/the firm, politely redirect to how RSD can help with their space
 - Never make up specific pricing, timelines, or claims about awards/press that aren't confirmed above`
 
-  const contents = messages.map(m => ({
-    role: m.role === 'user' ? 'user' : 'model',
-    parts: [{ text: m.content }],
-  }))
+    const contents = messages.map(m => ({
+        role: m.role === 'user' ? 'user' : 'model',
+        parts: [{ text: m.content }],
+    }))
 
-  try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: systemPrompt }] },
-          contents,
-        }),
-      }
-    )
+    try {
+        const response = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                    contents,
+                }),
+            }
+        )
 
-    const data = await response.json()
-    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that. Please contact us directly at +91 98008 48155."
+        const data = await response.json()
+        console.log('Gemini raw response:', JSON.stringify(data))
 
-    res.status(200).json({ reply })
-  } catch (error) {
-    console.error('Chat API error:', error)
-    res.status(500).json({ reply: "Something went wrong. Please contact us directly at +91 98008 48155." })
-  }
+        if (data.error) {
+            console.error('Gemini API error:', data.error)
+            return res.status(200).json({ reply: `Debug error: ${data.error.message}` })
+        }
+
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that. Please contact us directly at +91 98008 48155."
+
+        res.status(200).json({ reply })
+        res.status(200).json({ reply })
+    } catch (error) {
+        console.error('Chat API error:', error)
+        res.status(500).json({ reply: "Something went wrong. Please contact us directly at +91 98008 48155." })
+    }
 }
