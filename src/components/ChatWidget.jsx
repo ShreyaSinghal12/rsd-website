@@ -6,14 +6,34 @@ export default function ChatWidget() {
     { from: 'bot', text: "Hi! Welcome to Raamesh Singhal Design. How can we help you today?" },
   ])
   const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const send = () => {
-    if (!input.trim()) return
-    setMessages(m => [...m, { from: 'user', text: input }])
+  const send = async () => {
+    if (!input.trim() || loading) return
+    const userMsg = { from: 'user', text: input }
+    const newMessages = [...messages, userMsg]
+    setMessages(newMessages)
     setInput('')
-    setTimeout(() => {
-      setMessages(m => [...m, { from: 'bot', text: "Thanks for reaching out! Our team will get back to you shortly. For immediate help, you can also WhatsApp or call us directly." }])
-    }, 800)
+    setLoading(true)
+
+    try {
+      const apiMessages = newMessages.map(m => ({
+        role: m.from === 'user' ? 'user' : 'model',
+        content: m.text,
+      }))
+
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: apiMessages }),
+      })
+      const data = await res.json()
+      setMessages(m => [...m, { from: 'bot', text: data.reply }])
+    } catch (err) {
+      setMessages(m => [...m, { from: 'bot', text: "Something went wrong. Please contact us directly at +91 98008 48155." }])
+    } finally {
+      setLoading(false)
+    }
   }
 
   const wrapStyle = { position: 'fixed', bottom: '1.5rem', right: '5.5rem', zIndex: 60 }
@@ -33,7 +53,7 @@ export default function ChatWidget() {
             <div key={i} style={{
               alignSelf: m.from === 'bot' ? 'flex-start' : 'flex-end',
               background: m.from === 'bot' ? '#fff' : '#C9A96E',
-              color: m.from === 'bot' ? '#1A1A18' : '#1A1A18',
+              color: '#1A1A18',
               padding: '0.6rem 0.9rem',
               borderRadius: 10,
               fontSize: '0.82rem',
@@ -44,6 +64,11 @@ export default function ChatWidget() {
               {m.text}
             </div>
           ))}
+          {loading && (
+            <div style={{ alignSelf: 'flex-start', background: '#fff', padding: '0.6rem 0.9rem', borderRadius: 10, fontSize: '0.82rem', color: '#8A9B8E', fontStyle: 'italic' }}>
+              Typing...
+            </div>
+          )}
         </div>
 
         <div style={{ display: 'flex', borderTop: '1px solid rgba(26,26,24,0.08)' }}>
@@ -54,8 +79,8 @@ export default function ChatWidget() {
             placeholder="Type a message..."
             style={{ flex: 1, border: 'none', outline: 'none', padding: '0.8rem 1rem', fontSize: '0.85rem', fontFamily: "'DM Sans',sans-serif" }}
           />
-          <button onClick={send} style={{ background: '#1A1A18', color: '#C9A96E', border: 'none', padding: '0 1.2rem', cursor: 'pointer', fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-            Send
+          <button onClick={send} disabled={loading} style={{ background: loading ? '#8A9B8E' : '#1A1A18', color: '#C9A96E', border: 'none', padding: '0 1.2rem', cursor: loading ? 'not-allowed' : 'pointer', fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+            {loading ? '...' : 'Send'}
           </button>
         </div>
       </div>
@@ -68,7 +93,7 @@ export default function ChatWidget() {
           </svg>
         ) : (
           <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
-            <path d="M12 2C6.48 2 2 6.04 2 11c0 2.61 1.23 4.94 3.18 6.6L4 22l4.79-1.55C9.78 20.81 10.87 21 12 21c5.52 0 10-4.04 10-9S17.52 2 12 2z"/>
+            <path d="M12 2C6.48 2 2 6.04 2 11c0 2.61 1.23 4.94 3.18 6.6L4 22l4.79-1.55C9.78 20.81 10.87 21 12 21c5.52 0 10-4.04 10-9S17.52 2 12 2z" />
           </svg>
         )}
       </button>
