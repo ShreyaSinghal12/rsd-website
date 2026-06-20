@@ -483,6 +483,88 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Block 2 — How We Do It */}
+        <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+            <FadeIn>
+              <span className="gold-rule" />
+              <p style={LABEL_STYLE}>Our Process</p>
+              <h2 style={{ ...H2_STYLE, marginBottom: '1rem' }}>
+                From a conversation to something<br /><em>worth inheriting.</em>
+              </h2>
+              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 600, marginBottom: '3.5rem' }}>
+                Our process exists to remove the one thing that ruins great projects: the gap between people. Everything sits with us, so nothing falls between.
+              </p>
+            </FadeIn>
+            <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+              {[
+                { num: '01', title: 'Understand', desc: "We begin with how you'll live, host, or operate — not with a mood board. The brief is built around outcomes, not finishes." },
+                { num: '02', title: 'Compose', desc: "Architecture and interiors are designed as one decision, fully documented, so what's drawn is exactly what gets built." },
+                { num: '03', title: 'Deliver', desc: "We control procurement, manage the site, and check quality at every stage. One schedule, one accountable team." },
+                { num: '04', title: 'Hand Over', desc: "You receive a finished space, on time, exactly as promised — and a single name to call if you ever need us again." },
+              ].map((item, i) => (
+                <FadeIn key={i} delay={i * 80}>
+                  <div style={{ display: 'flex', gap: '1.5rem', padding: '2rem', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', transition: 'border-color 0.3s' }}
+                    onMouseEnter={e => e.currentTarget.style.borderColor = S.gold}
+                    onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(26,26,24,0.08)'}>
+                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, opacity: 0.3, lineHeight: 1, flexShrink: 0, fontWeight: 700 }}>{item.num}</div>
+                    <div>
+                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.ink, marginBottom: '0.5rem', fontWeight: 600 }}>{item.title}</h3>
+                      <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8 }}>{item.desc}</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Block 3 — Why Choose Us */}
+        <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+            <FadeIn>
+              <span className="gold-rule" />
+              <p style={LABEL_STYLE}>Why Choose Us</p>
+              <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
+                We'd rather be <em>answerable than impressive.</em>
+              </h2>
+            </FadeIn>
+            <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3rem' }}>
+              {[
+                { title: 'One name, accountable for everything', desc: "When the architecture, the interiors, and the build all sit with us, there's no gap to lose your project in, and no third party to blame if something slips. The responsibility is ours, by design." },
+                { title: 'We build what we draw', desc: "A beautiful drawing is easy to promise. We hold ourselves to turning it into the actual room exactly as shown, not approximately." },
+                { title: 'On time is part of the work', desc: "Our systems, procurement control, and stage-by-stage checks exist so we can be held to a date — not so we can explain why we missed one." },
+                { title: "If it doesn't last, we hear about it", desc: "Thirty years of clients means three decades of living with our own decisions. That's why we design for the decade, not the season." },
+              ].map((item, i) => (
+                <FadeIn key={i} delay={i * 80}>
+                  <div style={{ padding: '2rem', border: '1px solid rgba(26,26,24,0.08)', background: '#fff', transition: 'border-color 0.3s, box-shadow 0.3s' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(26,26,24,0.08)'; e.currentTarget.style.boxShadow = 'none' }}>
+                    <div style={{ width: 32, height: 1, background: S.gold, marginBottom: '1rem' }} />
+                    <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 600 }}>{item.title}</h3>
+                    <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.85 }}>{item.desc}</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+            <FadeIn>
+              <div style={{ textAlign: 'center', padding: '3rem 2rem', background: '#F0EBE3', border: '1px solid rgba(26,26,24,0.08)' }}>
+                <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.1rem,2.5vw,1.4rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.7, maxWidth: 600, margin: '0 auto 2rem' }}>
+                  "Your project deserves a single, certain answer. Tell us what you're building and we'll tell you how it ends."
+                </p>
+                <button
+                  onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', padding: '0.9rem 2.5rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s' }}
+                  onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
+                  onMouseLeave={e => e.currentTarget.style.background = S.gold}>
+                  Begin a Project Conversation →
+                </button>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+
       </section>
 
       {/* ── SECTION DIVIDER ── */}
@@ -611,87 +693,7 @@ export default function Home() {
 
 
 
-        {/* Block 2 — How We Do It */}
-        <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-            <FadeIn>
-              <span className="gold-rule" />
-              <p style={LABEL_STYLE}>Our Process</p>
-              <h2 style={{ ...H2_STYLE, marginBottom: '1rem' }}>
-                From a conversation to something<br /><em>worth inheriting.</em>
-              </h2>
-              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 600, marginBottom: '3.5rem' }}>
-                Our process exists to remove the one thing that ruins great projects: the gap between people. Everything sits with us, so nothing falls between.
-              </p>
-            </FadeIn>
-            <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-              {[
-                { num: '01', title: 'Understand', desc: "We begin with how you'll live, host, or operate — not with a mood board. The brief is built around outcomes, not finishes." },
-                { num: '02', title: 'Compose', desc: "Architecture and interiors are designed as one decision, fully documented, so what's drawn is exactly what gets built." },
-                { num: '03', title: 'Deliver', desc: "We control procurement, manage the site, and check quality at every stage. One schedule, one accountable team." },
-                { num: '04', title: 'Hand Over', desc: "You receive a finished space, on time, exactly as promised — and a single name to call if you ever need us again." },
-              ].map((item, i) => (
-                <FadeIn key={i} delay={i * 80}>
-                  <div style={{ display: 'flex', gap: '1.5rem', padding: '2rem', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', transition: 'border-color 0.3s' }}
-                    onMouseEnter={e => e.currentTarget.style.borderColor = S.gold}
-                    onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(26,26,24,0.08)'}>
-                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, opacity: 0.3, lineHeight: 1, flexShrink: 0, fontWeight: 700 }}>{item.num}</div>
-                    <div>
-                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.ink, marginBottom: '0.5rem', fontWeight: 600 }}>{item.title}</h3>
-                      <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8 }}>{item.desc}</p>
-                    </div>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Block 3 — Why Choose Us */}
-        <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-            <FadeIn>
-              <span className="gold-rule" />
-              <p style={LABEL_STYLE}>Why Choose Us</p>
-              <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
-                We'd rather be <em>answerable than impressive.</em>
-              </h2>
-            </FadeIn>
-            <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3rem' }}>
-              {[
-                { title: 'One name, accountable for everything', desc: "When the architecture, the interiors, and the build all sit with us, there's no gap to lose your project in, and no third party to blame if something slips. The responsibility is ours, by design." },
-                { title: 'We build what we draw', desc: "A beautiful drawing is easy to promise. We hold ourselves to turning it into the actual room exactly as shown, not approximately." },
-                { title: 'On time is part of the work', desc: "Our systems, procurement control, and stage-by-stage checks exist so we can be held to a date — not so we can explain why we missed one." },
-                { title: "If it doesn't last, we hear about it", desc: "Thirty years of clients means three decades of living with our own decisions. That's why we design for the decade, not the season." },
-              ].map((item, i) => (
-                <FadeIn key={i} delay={i * 80}>
-                  <div style={{ padding: '2rem', border: '1px solid rgba(26,26,24,0.08)', background: '#fff', transition: 'border-color 0.3s, box-shadow 0.3s' }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(26,26,24,0.08)'; e.currentTarget.style.boxShadow = 'none' }}>
-                    <div style={{ width: 32, height: 1, background: S.gold, marginBottom: '1rem' }} />
-                    <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 600 }}>{item.title}</h3>
-                    <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.85 }}>{item.desc}</p>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-            <FadeIn>
-              <div style={{ textAlign: 'center', padding: '3rem 2rem', background: '#F0EBE3', border: '1px solid rgba(26,26,24,0.08)' }}>
-                <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.1rem,2.5vw,1.4rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.7, maxWidth: 600, margin: '0 auto 2rem' }}>
-                  "Your project deserves a single, certain answer. Tell us what you're building and we'll tell you how it ends."
-                </p>
-                <button
-                  onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', padding: '0.9rem 2.5rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s' }}
-                  onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
-                  onMouseLeave={e => e.currentTarget.style.background = S.gold}>
-                  Begin a Project Conversation →
-                </button>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-
+        
 
 
 
