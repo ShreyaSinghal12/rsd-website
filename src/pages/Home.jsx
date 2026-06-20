@@ -530,7 +530,7 @@ export default function Home() {
           <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem 2rem' }}>
             <FadeIn>
               <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: S.mid, textAlign: 'center' }}>
-                Design Inspiration
+                Magazines
               </p>
             </FadeIn>
           </div>
