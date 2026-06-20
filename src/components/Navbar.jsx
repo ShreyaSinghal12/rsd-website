@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const links = [
     { label: 'Home', anchor: 'hero' },
@@ -13,6 +14,9 @@ export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
     const [activeLink, setActiveLink] = useState('hero')
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024)
+    const { pathname } = useLocation()
+    const navigate = useNavigate()
+    const isProjectsActive = pathname.startsWith('/projects')
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 1024)
@@ -24,6 +28,12 @@ export default function Navbar() {
         const handleScroll = () => {
             setScrolled(window.scrollY > 60)
 
+            if (pathname !== '/') {
+                setActiveLink('projects-page')
+                return
+            }
+            const active = link.anchor === 'portfolio' ? (pathname === '/' ? activeLink === 'portfolio' : isProjectsActive) : activeLink === link.anchor
+
             const sections = links.map(link => {
                 const el = document.getElementById(link.anchor)
                 if (!el) return null
@@ -31,26 +41,29 @@ export default function Navbar() {
                 return { anchor: link.anchor, top: rect.top, bottom: rect.bottom }
             }).filter(Boolean)
 
-            // Find the section whose range contains the scroll trigger line (80px from top)
             const triggerLine = 100
             let current = sections[0]?.anchor
-
             for (const s of sections) {
-                if (s.top <= triggerLine) {
-                    current = s.anchor
-                }
+                if (s.top <= triggerLine) current = s.anchor
             }
-
             setActiveLink(current)
         }
         window.addEventListener('scroll', handleScroll, { passive: true })
-        handleScroll() // run once on mount
+        handleScroll()
         return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
+    }, [pathname])
 
     const scrollTo = (anchor) => {
-        const el = document.getElementById(anchor)
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
+        if (pathname !== '/') {
+            navigate('/')
+            setTimeout(() => {
+                const el = document.getElementById(anchor)
+                if (el) el.scrollIntoView({ behavior: 'smooth' })
+            }, 300)
+        } else {
+            const el = document.getElementById(anchor)
+            if (el) el.scrollIntoView({ behavior: 'smooth' })
+        }
     }
 
     return (
