@@ -483,13 +483,13 @@ export default function Home() {
             </div>
           </div>
         </div>
-        </section>
+      </section>
 
-         {/* ── SECTION DIVIDER ── */}
-        <SectionDivider label="Awards and News" />
+      {/* ── SECTION DIVIDER ── */}
+      <SectionDivider label="Awards and News" />
 
-        {/* Block 1a — Awards */}
-        <section>
+      {/* Block 1a — Awards */}
+      <section>
         <div id="awards-news" style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
@@ -549,61 +549,36 @@ export default function Home() {
             ))}
           </div>
         </div>
-        </section>
-          {/* ── SECTION DIVIDER ── */}
-        <SectionDivider label="Our Services" />
-
-        {/* ── SERVICES ── */}
-        <section>
-        {/* Block 1 — How We Do It */}
-      <section id="services" style={{ background: S.offwhite, padding: '7rem 0' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <FadeIn>
-            <span className="gold-rule" />
-            <p style={LABEL_STYLE}>Services</p>
-            <h2 style={{ ...H2_STYLE, marginBottom: '1.5rem' }}>
-              The Three Capabilities the Market<br /><em>Now Expects Under One Roof</em>
-            </h2>
-            <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 700, marginBottom: '3.5rem' }}>
-              Architecture, interior design and full turnkey execution, held under one accountable team. The vision and the delivery never separate, so nothing falls through the gaps between firms.
-            </p>
-          </FadeIn>
-          <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
-            {services.map((svc, i) => (
-              <FadeIn key={i} delay={i * 80}>
-                <div style={{ background: '#fff', padding: '2.5rem', borderBottom: '2px solid transparent', transition: 'border-color 0.3s, box-shadow 0.3s', cursor: 'default', height: '100%' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.boxShadow = 'none' }}>
-                  <div style={{ marginBottom: '1.5rem' }}>{svc.icon}</div>
-                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.16em', color: S.gold, marginBottom: '0.6rem', textTransform: 'uppercase' }}>{svc.num}</p>
-                  <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.2rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 400 }}>{svc.title}</h3>
-                  <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '0.95rem', fontStyle: 'italic', color: S.gold, marginBottom: '1rem', lineHeight: 1.5 }}>{svc.headline}</p>
-                  <p style={{ fontSize: '0.85rem', color: S.mid, lineHeight: 1.75 }}>{svc.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-          <div style={{ marginTop: '4rem' }}>
-            <FadeIn>
-              <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', fontWeight: 400, color: S.ink, marginBottom: '1.5rem' }}>Areas of <em>Service</em></h3>
-            </FadeIn>
-            <div className="areas-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1rem' }}>
-              {areaList.map((area, i) => (
-                <FadeIn key={i} delay={i * 60}>
-                  <div style={{ padding: '1rem 1.5rem', border: '1px solid rgba(26,26,24,0.1)', background: '#fff', display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '0.9rem', color: S.ink, transition: 'border-color 0.3s' }}
-                    onMouseEnter={e => e.currentTarget.style.borderColor = S.gold}
-                    onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(26,26,24,0.1)'}>
-                    <span style={{ width: 5, height: 5, borderRadius: '50%', background: S.gold, flexShrink: 0 }} />
-                    {area}
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </div>
       </section>
+      {/* ── SECTION DIVIDER ── */}
+      <SectionDivider label="Our Services" />
 
-        
+      {/* ── SERVICES ── */}
+      <section>
+        {/* Block 1 — How We Do It */}
+        <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5px' }}>
+          {services.map((svc, i) => (
+            <FadeIn key={i} delay={i * 80}>
+              <div
+                onClick={() => setSelectedService(svc)}
+                style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#1A1A18', cursor: 'pointer' }}
+                onMouseEnter={e => { e.currentTarget.querySelector('.svc-overlay').style.opacity = '1'; e.currentTarget.querySelector('.svc-icon').style.transform = 'scale(1.1)' }}
+                onMouseLeave={e => { e.currentTarget.querySelector('.svc-overlay').style.opacity = '0.85'; e.currentTarget.querySelector('.svc-icon').style.transform = 'scale(1)' }}>
+
+                <div className="svc-overlay" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #1A1A18 0%, #2a2a26 100%)', opacity: 0.85, transition: 'opacity 0.3s' }} />
+
+                <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', textAlign: 'center' }}>
+                  <div className="svc-icon" style={{ marginBottom: '1.5rem', transition: 'transform 0.4s ease' }}>{svc.icon}</div>
+                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.16em', color: S.gold, marginBottom: '0.6rem', textTransform: 'uppercase' }}>{svc.num}</p>
+                  <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.offwhite, marginBottom: '0.8rem', fontWeight: 400 }}>{svc.title}</h3>
+                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Click to View →</p>
+                </div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+
+
 
         {/* Block 2 — How We Do It */}
         <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
@@ -717,9 +692,9 @@ export default function Home() {
           ))}
         </div>
       </section>
-      
 
-      
+
+
 
       {/* ── SECTION DIVIDER ── */}
       <SectionDivider label="Testimonials" />
