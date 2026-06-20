@@ -4,10 +4,9 @@ import { useLocation, useNavigate } from 'react-router-dom'
 const links = [
     { label: 'Home', anchor: 'hero' },
     { label: 'About Us', anchor: 'about' },
-    { label: 'Projects', anchor: 'portfolio' },
-    
-    { label: 'Services', anchor: 'services' },
     { label: 'Awards and News', anchor: 'awards-news' },
+     { label: 'Services', anchor: 'services' },
+    { label: 'Projects', anchor: 'portfolio' },
     { label: 'Testimonials', anchor: 'testimonials' },
     { label: 'Contact Us', anchor: 'contact' },
 ]
