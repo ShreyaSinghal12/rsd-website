@@ -872,7 +872,7 @@ export default function Home() {
               style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '1rem 2.8rem', background: S.ink, color: S.gold, textDecoration: 'none', display: 'inline-block', transition: 'all 0.3s', cursor: 'pointer' }}
               onMouseEnter={e => { e.currentTarget.style.background = S.offwhite; e.currentTarget.style.color = S.ink }}
               onMouseLeave={e => { e.currentTarget.style.background = S.ink; e.currentTarget.style.color = S.gold }}>
-              Book Appointment
+              Get Your Quote
             </a>
           </FadeIn>
         </div>
