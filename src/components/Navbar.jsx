@@ -116,13 +116,13 @@ export default function Navbar() {
                         </ul>
                     )}
 
-                    {/* Desktop Book Consultation */}
+                    {/* Desktop Get Your Quote */}
                     {!isMobile && (
                         <button onClick={() => scrollTo('contact')}
                             style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.16em', textTransform: 'uppercase', padding: '0.6rem 1.4rem', border: '1px solid #C9A96E', color: '#C9A96E', background: 'transparent', cursor: 'pointer', transition: 'all 0.3s', whiteSpace: 'nowrap', marginLeft: '1rem' }}
                             onMouseEnter={e => { e.currentTarget.style.background = '#C9A96E'; e.currentTarget.style.color = '#1A1A18' }}
                             onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#C9A96E' }}>
-                            Book Consultation
+                            Get Your Quote
                         </button>
                     )}
 
@@ -209,13 +209,13 @@ export default function Navbar() {
                         {/* Divider */}
                         <div style={{ height: 1, background: 'rgba(26,26,24,0.08)', margin: '1rem 0' }} />
 
-                        {/* Book Consultation */}
+                        {/*  Get Your Quote */}
                         <button
                             onClick={() => { setMenuOpen(false); setTimeout(() => scrollTo('contact'), 350) }}
                             style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.8rem 1rem', border: '1px solid #C9A96E', color: '#C9A96E', background: 'transparent', cursor: 'pointer', width: '100%', transition: 'all 0.3s' }}
                             onMouseEnter={e => { e.currentTarget.style.background = '#C9A96E'; e.currentTarget.style.color = '#1A1A18' }}
                             onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#C9A96E' }}>
-                            Book Consultation
+                            Get Your Quote
                         </button>
 
                         {/* Contact info at bottom */}
