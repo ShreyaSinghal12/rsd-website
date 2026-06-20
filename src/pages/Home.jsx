@@ -52,7 +52,7 @@ const pressItems = [
     org: '[Publication Name] — [Year]',
     img: '/images/press/mag1.jpg',
     desc: 'Description of the feature.',
- },
+  },
   {
     id: 2,
     type: 'Press',
@@ -60,7 +60,7 @@ const pressItems = [
     org: '[Publication Name] — [Year]',
     img: '/images/press/mag2.jpg',
     desc: 'Description of the feature.',
- },
+  },
   {
     id: 3,
     type: 'Press',
@@ -68,7 +68,7 @@ const pressItems = [
     org: '[Publication Name] — [Year]',
     img: '/images/press/mag3.jpg',
     desc: 'Description of the feature.',
- },
+  },
   {
     id: 4,
     type: 'Press',
@@ -76,7 +76,7 @@ const pressItems = [
     org: '[Publication Name] — [Year]',
     img: '/images/press/mag4.jpg',
     desc: 'Description of the feature.',
- },
+  },
   {
     id: 5,
     type: 'Press',
@@ -84,7 +84,7 @@ const pressItems = [
     org: '[Publication Name] — [Year]',
     img: '/images/press/mag5.jpg',
     desc: 'Description of the feature.',
- },
+  },
   {
     id: 6,
     type: 'Press',
@@ -92,7 +92,7 @@ const pressItems = [
     org: '[Publication Name] — [Year]',
     img: '/images/press/mag6.jpg',
     desc: 'Description of the feature.',
- },
+  },
   {
     id: 7,
     type: 'Press',
@@ -100,7 +100,7 @@ const pressItems = [
     org: '[Publication Name] — [Year]',
     img: '/images/press/mag7.jpg',
     desc: 'Description of the feature.',
- },
+  },
   {
     id: 8,
     type: 'Press',
@@ -108,7 +108,7 @@ const pressItems = [
     org: '[Publication Name] — [Year]',
     img: '/images/press/mag8.jpg',
     desc: 'Description of the feature.',
- },
+  },
   {
     id: 9,
     type: 'Press',
@@ -116,7 +116,7 @@ const pressItems = [
     org: '[Publication Name] — [Year]',
     img: '/images/press/mag9.jpg',
     desc: 'Description of the feature.',
- },
+  },
 ]
 
 const services = [
@@ -397,554 +397,535 @@ export default function Home() {
               </div>
             </FadeIn>
           </div>
+          <FadeIn delay={200}>
+            <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8, marginTop: '2.5rem', fontStyle: 'italic' }}>
+              Thirty years. 500+ projects delivered. Multiple cities. Three decades is not a number we mention in passing. That's the whole point.
+            </p>
+          </FadeIn>
         </div>
-
-        {/* Block 3 — Awards */}
-        {/* Block 3a — Awards */}
-        <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-            <FadeIn>
-              <span className="gold-rule" />
-              <p style={LABEL_STYLE}>Recognition</p>
-              <h2 style={{ ...H2_STYLE, marginBottom: '1.5rem' }}>
-                Recognition is flattering.<br /><em>Being trusted twice is the real award.</em>
-              </h2>
-              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 700, marginBottom: '3rem' }}>
-                Our work has been honoured by some of the most respected names in design and industry. But the recognition we value most isn't on a shelf — it's the client who hands us their next project before the first is even finished.
-              </p>
-            </FadeIn>
-            <div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
-              {[
-                { type: 'Award', title: 'Pending confirmation', org: '', img: null },
-                { type: 'Award', title: 'Pending confirmation', org: '', img: null },
-                { type: 'Award', title: 'Pending confirmation', org: '', img: null },
-              ].map((item, i) => (
-                <FadeIn key={i} delay={i * 80}>
-                  <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#fff', border: '1px dashed rgba(201,169,110,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '0.6rem' }}>
-                    <div style={{ width: 40, height: 40, borderRadius: '50%', border: `1px solid ${S.gold}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.gold, fontStyle: 'italic' }}>A</span>
-                    </div>
-                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>{item.type}</p>
-                    <p style={{ fontSize: '0.82rem', color: S.sage, fontStyle: 'italic' }}>{item.title}</p>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-            <FadeIn delay={200}>
-              <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8, marginTop: '2.5rem', fontStyle: 'italic' }}>
-                Thirty years. 500+ projects delivered. Multiple cities. Three decades is not a number we mention in passing. That's the whole point.
-              </p>
-            </FadeIn>
-          </div>
-        </div>
-
-        {/* Block 3b — Press */}
-        <div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
-          {pressItems.map((item, i) => (
-            <FadeIn key={item.id} delay={i * 80}>
-              <div
-                onClick={() => setSelectedPress(item)}
-                style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#d0c8b8', cursor: 'pointer' }}
-                onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'; e.currentTarget.querySelector('.ov').style.opacity = '1' }}
-                onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1)'; e.currentTarget.querySelector('.ov').style.opacity = '0' }}>
-                <img src={item.img} alt={item.title} loading="lazy"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
-                <div className="ov" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(26,26,24,0.8) 0%,transparent 55%)', opacity: 0, transition: 'opacity 0.3s', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.5rem' }}>
-                  <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{item.type}</span>
-                  <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', color: S.offwhite }}>{item.title}</p>
-                </div>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-
-        {/* Block 4 — What We Do */}
-        <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-            <FadeIn>
-              <span className="gold-rule" />
-              <p style={LABEL_STYLE}>What We Do</p>
-              <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
-                Three disciplines.<br /><em>One continuous decision.</em>
-              </h2>
-            </FadeIn>
-            <div className="process-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
-              {[
-                { num: '01', title: 'Architecture', desc: 'The foundation everything stands on. We plan, orient, and engineer a space before a single material is chosen — because the most expensive mistakes are the ones drawn early and discovered late.' },
-                { num: '02', title: 'Interior Design', desc: 'Where space becomes experience. Light, proportion, material, and detail composed to be lived in for years — not to photograph well for a single day.' },
-                { num: '03', title: 'Turnkey Projects', desc: 'Our core. One point of ownership from first sketch to final handover. One firm accountable for the result. The end of vendor management as you know it.' },
-              ].map((item, i) => (
-                <FadeIn key={i} delay={i * 100}>
-                  <div
-                    onClick={() => setSelectedService(item)}
-                    style={{ padding: '2.5rem', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', borderTop: '2px solid transparent', transition: 'border-color 0.3s, box-shadow 0.3s', height: '100%', cursor: 'pointer' }}
-                    onMouseEnter={e => { e.currentTarget.style.borderTopColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
-                    onMouseLeave={e => { e.currentTarget.style.borderTopColor = 'transparent'; e.currentTarget.style.boxShadow = 'none' }}>
-                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '3rem', color: S.gold, opacity: 0.2, lineHeight: 1, marginBottom: '1rem', fontWeight: 700 }}>{item.num}</div>
-                    <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.ink, marginBottom: '1rem', fontWeight: 600 }}>{item.title}</h3>
-                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Learn More →</p>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Block 5 — How We Do It */}
-        <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-            <FadeIn>
-              <span className="gold-rule" />
-              <p style={LABEL_STYLE}>Our Process</p>
-              <h2 style={{ ...H2_STYLE, marginBottom: '1rem' }}>
-                From a conversation to something<br /><em>worth inheriting.</em>
-              </h2>
-              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 600, marginBottom: '3.5rem' }}>
-                Our process exists to remove the one thing that ruins great projects: the gap between people. Everything sits with us, so nothing falls between.
-              </p>
-            </FadeIn>
-            <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-              {[
-                { num: '01', title: 'Understand', desc: "We begin with how you'll live, host, or operate — not with a mood board. The brief is built around outcomes, not finishes." },
-                { num: '02', title: 'Compose', desc: "Architecture and interiors are designed as one decision, fully documented, so what's drawn is exactly what gets built." },
-                { num: '03', title: 'Deliver', desc: "We control procurement, manage the site, and check quality at every stage. One schedule, one accountable team." },
-                { num: '04', title: 'Hand Over', desc: "You receive a finished space, on time, exactly as promised — and a single name to call if you ever need us again." },
-              ].map((item, i) => (
-                <FadeIn key={i} delay={i * 80}>
-                  <div style={{ display: 'flex', gap: '1.5rem', padding: '2rem', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', transition: 'border-color 0.3s' }}
-                    onMouseEnter={e => e.currentTarget.style.borderColor = S.gold}
-                    onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(26,26,24,0.08)'}>
-                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, opacity: 0.3, lineHeight: 1, flexShrink: 0, fontWeight: 700 }}>{item.num}</div>
-                    <div>
-                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.ink, marginBottom: '0.5rem', fontWeight: 600 }}>{item.title}</h3>
-                      <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8 }}>{item.desc}</p>
-                    </div>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Block 6 — Why Choose Us */}
-        <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-            <FadeIn>
-              <span className="gold-rule" />
-              <p style={LABEL_STYLE}>Why Choose Us</p>
-              <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
-                We'd rather be <em>answerable than impressive.</em>
-              </h2>
-            </FadeIn>
-            <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3rem' }}>
-              {[
-                { title: 'One name, accountable for everything', desc: "When the architecture, the interiors, and the build all sit with us, there's no gap to lose your project in, and no third party to blame if something slips. The responsibility is ours, by design." },
-                { title: 'We build what we draw', desc: "A beautiful drawing is easy to promise. We hold ourselves to turning it into the actual room exactly as shown, not approximately." },
-                { title: 'On time is part of the work', desc: "Our systems, procurement control, and stage-by-stage checks exist so we can be held to a date — not so we can explain why we missed one." },
-                { title: "If it doesn't last, we hear about it", desc: "Thirty years of clients means three decades of living with our own decisions. That's why we design for the decade, not the season." },
-              ].map((item, i) => (
-                <FadeIn key={i} delay={i * 80}>
-                  <div style={{ padding: '2rem', border: '1px solid rgba(26,26,24,0.08)', background: '#fff', transition: 'border-color 0.3s, box-shadow 0.3s' }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(26,26,24,0.08)'; e.currentTarget.style.boxShadow = 'none' }}>
-                    <div style={{ width: 32, height: 1, background: S.gold, marginBottom: '1rem' }} />
-                    <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 600 }}>{item.title}</h3>
-                    <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.85 }}>{item.desc}</p>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-            <FadeIn>
-              <div style={{ textAlign: 'center', padding: '3rem 2rem', background: '#F0EBE3', border: '1px solid rgba(26,26,24,0.08)' }}>
-                <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.1rem,2.5vw,1.4rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.7, maxWidth: 600, margin: '0 auto 2rem' }}>
-                  "Your project deserves a single, certain answer. Tell us what you're building and we'll tell you how it ends."
-                </p>
-                <button
-                  onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', padding: '0.9rem 2.5rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s' }}
-                  onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
-                  onMouseLeave={e => e.currentTarget.style.background = S.gold}>
-                  Begin a Project Conversation →
-                </button>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-
-        {/* Founders */}
-        <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-            <FadeIn>
-              <span className="gold-rule" />
-              <h2 style={{ ...H2_STYLE, marginBottom: '1rem' }}>
-                The thinking behind every<br /><em style={{ color: S.gold }}>space we create.</em>
-              </h2>
-              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 680, marginBottom: '4rem' }}>
-                Exceptional spaces are never the result of design alone. They emerge when vision, functionality, human behaviour, and execution work in complete harmony. That belief has guided Raamesh Singhal Design since its inception.
-              </p>
-            </FadeIn>
-            <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-              {[
-                { name: 'Raamesh Singhal', role: 'Co-Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality.', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-19-1024x768.jpg' },
-                { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-11-1024x767.jpg' },
-              ].map((founder, i) => (
-                <FadeIn key={i} delay={i * 150}>
-                  <div style={{ background: '#fff', overflow: 'hidden', border: '1px solid rgba(26,26,24,0.08)' }}>
-                    <div style={{ aspectRatio: '3/2', overflow: 'hidden' }}>
-                      <img src={founder.img} alt={founder.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                    </div>
-                    <div style={{ padding: '2rem' }}>
-                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem' }}>{founder.role}</p>
-                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.ink, marginBottom: '1rem', fontWeight: 400 }}>{founder.name}</h3>
-                      <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', fontStyle: 'italic', color: S.mid, lineHeight: 1.75 }}>
-                        <span style={{ color: S.gold, fontSize: '1.5rem', lineHeight: 0, verticalAlign: '-0.3rem', marginRight: '0.2rem' }}>"</span>
-                        {founder.quote}
-                      </p>
-                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.12em', color: S.gold, marginTop: '1rem' }}>— {founder.name}</p>
-                    </div>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Decorative moodboard strip */}
-        <div style={{ background: S.offwhite, padding: '4rem 0', overflow: 'hidden' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem 2rem' }}>
-            <FadeIn>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: S.mid, textAlign: 'center' }}>
-                Design Inspiration
-              </p>
-            </FadeIn>
-          </div>
-          <div className="moodboard-scroll" style={{ display: 'flex', gap: '1rem', overflowX: 'auto', padding: '0 2rem 1rem', scrollbarWidth: 'none' }}>
-            {[1, 2, 3, 5, 6, 7, 8, 9].map((n, i) => (
-              <FadeIn key={n} delay={i * 50}>
-                <div style={{ flexShrink: 0, width: 220, aspectRatio: '3/4', overflow: 'hidden', boxShadow: '0 4px 20px rgba(26,26,24,0.08)' }}>
-                  <img
-                    src={`/images/press/mag${n}.jpg`}
-                    alt="Design inspiration"
-                    loading="lazy"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                  />
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION DIVIDER ── */}
-      <SectionDivider label="Our Projects" />
-
-      {/* ── PORTFOLIO ── */}
-      <section id="portfolio" style={{ padding: '7rem 0', background: S.offwhite }}>
-        <div style={{ maxWidth: 1300, margin: '0 auto', padding: '0 2rem' }}>
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
-            <FadeIn>
-              <span className="gold-rule" />
-              <p style={LABEL_STYLE}>Portfolio</p>
-              <h2 style={{ ...H2_STYLE }}>Our Recent <em>Projects</em></h2>
-            </FadeIn>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-              {['all', 'residential', 'commercial', 'architecture', 'hospitality'].map((f, i, arr) => (
-                <button key={f} onClick={() => setFilter(f)}
-                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.55rem 1.1rem', border: '1px solid rgba(26,26,24,0.15)', borderRight: i < arr.length - 1 ? 'none' : '1px solid rgba(26,26,24,0.15)', cursor: 'pointer', background: filter === f ? S.ink : 'transparent', color: filter === f ? S.gold : S.mid, transition: 'all 0.25s' }}>
-                  {f === 'all' ? 'All' : f === 'hospitality' ? 'Hotels & Hospitality' : f === 'commercial' ? 'Builders & Developers' : f.charAt(0).toUpperCase() + f.slice(1)}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="portfolio-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5px' }}>
-            {filtered.map((p, i) => (
-              <FadeIn key={p.id} delay={(i % 9) * 60}>
-                <div
-                  onClick={() => setSelectedProject(p)}
-                  style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#d0c8b8', cursor: 'pointer' }}
-                  onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'; e.currentTarget.querySelector('.ov').style.opacity = '1' }}
-                  onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1)'; e.currentTarget.querySelector('.ov').style.opacity = '0' }}>
-                  <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
-                  <div className="ov" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(26,26,24,0.8) 0%,transparent 55%)', opacity: 0, transition: 'opacity 0.3s', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.5rem' }}>
-                    <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{p.category}</span>
-                    <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', color: S.offwhite }}>{p.title}</p>
-                  </div>
-                  <div style={{ position: 'absolute', bottom: '0.8rem', right: '0.8rem', zIndex: 2, pointerEvents: 'none' }}>
-                    <img src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png" alt="RSD"
-                      style={{ height: 30, width: 'auto', display: 'block', filter: 'drop-shadow(0 0 3px rgba(255,255,255,0.8)) drop-shadow(0 0 6px rgba(255,255,255,0.6))', opacity: 0.9 }} />
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION DIVIDER ── */}
-      <SectionDivider label="Testimonials" />
-
-      {/* ── TESTIMONIALS ── */}
-      <section id="testimonials" style={{ background: '#F0EBE3', padding: '7rem 0' }}>
-        <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 2rem' }}>
+      
+      {/* Block 3a — Awards */}
+      <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <FadeIn>
             <span className="gold-rule" />
-            <p style={LABEL_STYLE}>Testimonials</p>
-            <h2 style={{ ...H2_STYLE, marginBottom: '3rem' }}>
-              Heard from those who <em>lived</em> our work
+            <p style={LABEL_STYLE}>Recognition</p>
+            <h2 style={{ ...H2_STYLE, marginBottom: '1.5rem' }}>
+              Recognition is flattering.<br /><em>Being trusted twice is the real award.</em>
             </h2>
+            <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 700, marginBottom: '3rem' }}>
+              Our work has been honoured by some of the most respected names in design and industry. But the recognition we value most isn't on a shelf — it's the client who hands us their next project before the first is even finished.
+            </p>
           </FadeIn>
-          <div className="testimonial-wrapper" style={{ position: 'relative', padding: '0 2.5rem' }}>
-            <button className="t-arrow-left"
-              onClick={() => setTIndex(i => (i - 1 + testimonials.length) % testimonials.length)}
-              style={{ position: 'absolute', left: '0', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '2.5rem', color: 'rgba(26,26,24,0.4)', transition: 'color 0.25s', lineHeight: 1, padding: 0, zIndex: 2 }}
-              onMouseEnter={e => e.currentTarget.style.color = S.ink}
-              onMouseLeave={e => e.currentTarget.style.color = 'rgba(26,26,24,0.4)'}>
-              &#8249;
-            </button>
-            <div className="t-card" style={{ background: '#fff', padding: '2.5rem', borderLeft: `2px solid ${S.gold}` }}>
-              <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(0.95rem,2vw,1.1rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.8, marginBottom: '1.5rem', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
-                <span style={{ fontSize: '2rem', color: S.gold, lineHeight: 0, verticalAlign: '-0.4rem', marginRight: '0.2rem' }}>"</span>
-                {testimonials[tIndex].text}
-              </p>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.gold }}>
-                — {testimonials[tIndex].name}
-              </p>
-            </div>
-            <button className="t-arrow-right"
-              onClick={() => setTIndex(i => (i + 1) % testimonials.length)}
-              style={{ position: 'absolute', right: '0', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '2.5rem', color: 'rgba(26,26,24,0.4)', transition: 'color 0.25s', lineHeight: 1, padding: 0, zIndex: 2 }}
-              onMouseEnter={e => e.currentTarget.style.color = S.ink}
-              onMouseLeave={e => e.currentTarget.style.color = 'rgba(26,26,24,0.4)'}>
-              &#8250;
-            </button>
-          </div>
-          <div style={{ display: 'flex', gap: '0.6rem', marginTop: '1.5rem', justifyContent: 'center' }}>
-            {testimonials.map((_, i) => (
-              <button key={i} onClick={() => setTIndex(i)}
-                style={{ width: 8, height: 8, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, background: tIndex === i ? S.gold : 'rgba(201,169,110,0.25)', transform: tIndex === i ? 'scale(1.3)' : 'scale(1)', transition: 'all 0.3s' }} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION DIVIDER ── */}
-      <SectionDivider label="Our Services" />
-
-      {/* ── SERVICES ── */}
-      <section id="services" style={{ background: S.offwhite, padding: '7rem 0' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <FadeIn>
-            <span className="gold-rule" />
-            <p style={LABEL_STYLE}>What We Do</p>
-            <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
-              A complete range of <em>design services</em>
-            </h2>
-          </FadeIn>
-          <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
-            {services.map((svc, i) => (
+          <div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
+            {[
+              { type: 'Award', title: 'Pending confirmation', org: '', img: null },
+              { type: 'Award', title: 'Pending confirmation', org: '', img: null },
+              { type: 'Award', title: 'Pending confirmation', org: '', img: null },
+            ].map((item, i) => (
               <FadeIn key={i} delay={i * 80}>
-                <div style={{ background: '#fff', padding: '2.5rem', borderBottom: '2px solid transparent', transition: 'border-color 0.3s, box-shadow 0.3s', cursor: 'default', height: '100%' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.boxShadow = 'none' }}>
-                  <div style={{ marginBottom: '1.5rem' }}>{svc.icon}</div>
-                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.16em', color: S.gold, marginBottom: '0.6rem', textTransform: 'uppercase' }}>{svc.num}</p>
-                  <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.2rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 400 }}>{svc.title}</h3>
-                  <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.75 }}>{svc.desc}</p>
+                <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#fff', border: '1px dashed rgba(201,169,110,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '0.6rem' }}>
+                  <div style={{ width: 40, height: 40, borderRadius: '50%', border: `1px solid ${S.gold}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.gold, fontStyle: 'italic' }}>A</span>
+                  </div>
+                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>{item.type}</p>
+                  <p style={{ fontSize: '0.82rem', color: S.sage, fontStyle: 'italic' }}>{item.title}</p>
                 </div>
               </FadeIn>
             ))}
+            </div>
           </div>
-          <div style={{ marginTop: '4rem' }}>
-            <FadeIn>
-              <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', fontWeight: 400, color: S.ink, marginBottom: '1.5rem' }}>Areas of <em>Service</em></h3>
-            </FadeIn>
-            <div className="areas-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1rem' }}>
-              {areaList.map((area, i) => (
-                <FadeIn key={i} delay={i * 60}>
-                  <div style={{ padding: '1rem 1.5rem', border: '1px solid rgba(26,26,24,0.1)', background: '#fff', display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '0.9rem', color: S.ink, transition: 'border-color 0.3s' }}
-                    onMouseEnter={e => e.currentTarget.style.borderColor = S.gold}
-                    onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(26,26,24,0.1)'}>
-                    <span style={{ width: 5, height: 5, borderRadius: '50%', background: S.gold, flexShrink: 0 }} />
-                    {area}
+          </div>
+
+          {/* Decorative moodboard strip */}
+          <div style={{ background: S.offwhite, padding: '4rem 0', overflow: 'hidden' }}>
+            <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem 2rem' }}>
+              <FadeIn>
+                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: S.mid, textAlign: 'center' }}>
+                  Design Inspiration
+                </p>
+              </FadeIn>
+            </div>
+            <div className="moodboard-scroll" style={{ display: 'flex', gap: '1rem', overflowX: 'auto', padding: '0 2rem 1rem', scrollbarWidth: 'none' }}>
+              {[1, 2, 3, 5, 6, 7, 8, 9].map((n, i) => (
+                <FadeIn key={n} delay={i * 50}>
+                  <div style={{ flexShrink: 0, width: 220, aspectRatio: '3/4', overflow: 'hidden', boxShadow: '0 4px 20px rgba(26,26,24,0.08)' }}>
+                    <img
+                      src={`/images/press/mag${n}.jpg`}
+                      alt="Design inspiration"
+                      loading="lazy"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    />
                   </div>
                 </FadeIn>
               ))}
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ── SECTION DIVIDER ── */}
-      <SectionDivider label="Contact Us" />
-
-      {/* ── CONTACT ── */}
-      <section id="contact" style={{ padding: '7rem 0', background: '#F0EBE3' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '5rem', alignItems: 'start' }}>
-            <div>
+          {/* Block 4 — What We Do */}
+          <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
+            <div style={{ maxWidth: 1200, margin: '0 auto' }}>
               <FadeIn>
                 <span className="gold-rule" />
-                <p style={LABEL_STYLE}>Get In Touch</p>
-                <h2 style={{ ...H2_STYLE, marginBottom: '2.5rem' }}>
-                  Feel free to<br /><em>contact us</em> anytime
+                <p style={LABEL_STYLE}>What We Do</p>
+                <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
+                  Three disciplines.<br /><em>One continuous decision.</em>
                 </h2>
               </FadeIn>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}>
-                {contactInfo.map((item, i) => (
-                  <FadeIn key={i} delay={i * 80}>
-                    <div>
-                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{item.label}</p>
-                      {item.href
-                        ? <a href={item.href} style={{ fontSize: '0.92rem', color: S.ink, textDecoration: 'none', transition: 'color 0.25s' }} onMouseEnter={e => e.currentTarget.style.color = S.gold} onMouseLeave={e => e.currentTarget.style.color = S.ink}>{item.value}</a>
-                        : <p style={{ fontSize: '0.92rem', color: S.mid }}>{item.value}</p>
-                      }
+              <div className="process-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
+                {[
+                  { num: '01', title: 'Architecture', desc: 'The foundation everything stands on. We plan, orient, and engineer a space before a single material is chosen — because the most expensive mistakes are the ones drawn early and discovered late.' },
+                  { num: '02', title: 'Interior Design', desc: 'Where space becomes experience. Light, proportion, material, and detail composed to be lived in for years — not to photograph well for a single day.' },
+                  { num: '03', title: 'Turnkey Projects', desc: 'Our core. One point of ownership from first sketch to final handover. One firm accountable for the result. The end of vendor management as you know it.' },
+                ].map((item, i) => (
+                  <FadeIn key={i} delay={i * 100}>
+                    <div
+                      onClick={() => setSelectedService(item)}
+                      style={{ padding: '2.5rem', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', borderTop: '2px solid transparent', transition: 'border-color 0.3s, box-shadow 0.3s', height: '100%', cursor: 'pointer' }}
+                      onMouseEnter={e => { e.currentTarget.style.borderTopColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
+                      onMouseLeave={e => { e.currentTarget.style.borderTopColor = 'transparent'; e.currentTarget.style.boxShadow = 'none' }}>
+                      <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '3rem', color: S.gold, opacity: 0.2, lineHeight: 1, marginBottom: '1rem', fontWeight: 700 }}>{item.num}</div>
+                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.ink, marginBottom: '1rem', fontWeight: 600 }}>{item.title}</h3>
+                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Learn More →</p>
                     </div>
                   </FadeIn>
                 ))}
               </div>
-              <FadeIn delay={200}>
-                <div style={{ width: '100%', height: 260, overflow: 'hidden' }}>
-                  <iframe src="https://maps.google.com/maps?q=Time+Square+Sevoke+Road+Siliguri&t=m&z=15&output=embed&iwloc=near" title="Location" width="100%" height="100%" style={{ border: 'none', display: 'block' }} loading="lazy" />
+            </div>
+          </div>
+
+          {/* Block 5 — How We Do It */}
+          <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
+            <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+              <FadeIn>
+                <span className="gold-rule" />
+                <p style={LABEL_STYLE}>Our Process</p>
+                <h2 style={{ ...H2_STYLE, marginBottom: '1rem' }}>
+                  From a conversation to something<br /><em>worth inheriting.</em>
+                </h2>
+                <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 600, marginBottom: '3.5rem' }}>
+                  Our process exists to remove the one thing that ruins great projects: the gap between people. Everything sits with us, so nothing falls between.
+                </p>
+              </FadeIn>
+              <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                {[
+                  { num: '01', title: 'Understand', desc: "We begin with how you'll live, host, or operate — not with a mood board. The brief is built around outcomes, not finishes." },
+                  { num: '02', title: 'Compose', desc: "Architecture and interiors are designed as one decision, fully documented, so what's drawn is exactly what gets built." },
+                  { num: '03', title: 'Deliver', desc: "We control procurement, manage the site, and check quality at every stage. One schedule, one accountable team." },
+                  { num: '04', title: 'Hand Over', desc: "You receive a finished space, on time, exactly as promised — and a single name to call if you ever need us again." },
+                ].map((item, i) => (
+                  <FadeIn key={i} delay={i * 80}>
+                    <div style={{ display: 'flex', gap: '1.5rem', padding: '2rem', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', transition: 'border-color 0.3s' }}
+                      onMouseEnter={e => e.currentTarget.style.borderColor = S.gold}
+                      onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(26,26,24,0.08)'}>
+                      <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, opacity: 0.3, lineHeight: 1, flexShrink: 0, fontWeight: 700 }}>{item.num}</div>
+                      <div>
+                        <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.ink, marginBottom: '0.5rem', fontWeight: 600 }}>{item.title}</h3>
+                        <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8 }}>{item.desc}</p>
+                      </div>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Block 6 — Why Choose Us */}
+          <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
+            <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+              <FadeIn>
+                <span className="gold-rule" />
+                <p style={LABEL_STYLE}>Why Choose Us</p>
+                <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
+                  We'd rather be <em>answerable than impressive.</em>
+                </h2>
+              </FadeIn>
+              <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3rem' }}>
+                {[
+                  { title: 'One name, accountable for everything', desc: "When the architecture, the interiors, and the build all sit with us, there's no gap to lose your project in, and no third party to blame if something slips. The responsibility is ours, by design." },
+                  { title: 'We build what we draw', desc: "A beautiful drawing is easy to promise. We hold ourselves to turning it into the actual room exactly as shown, not approximately." },
+                  { title: 'On time is part of the work', desc: "Our systems, procurement control, and stage-by-stage checks exist so we can be held to a date — not so we can explain why we missed one." },
+                  { title: "If it doesn't last, we hear about it", desc: "Thirty years of clients means three decades of living with our own decisions. That's why we design for the decade, not the season." },
+                ].map((item, i) => (
+                  <FadeIn key={i} delay={i * 80}>
+                    <div style={{ padding: '2rem', border: '1px solid rgba(26,26,24,0.08)', background: '#fff', transition: 'border-color 0.3s, box-shadow 0.3s' }}
+                      onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
+                      onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(26,26,24,0.08)'; e.currentTarget.style.boxShadow = 'none' }}>
+                      <div style={{ width: 32, height: 1, background: S.gold, marginBottom: '1rem' }} />
+                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 600 }}>{item.title}</h3>
+                      <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.85 }}>{item.desc}</p>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+              <FadeIn>
+                <div style={{ textAlign: 'center', padding: '3rem 2rem', background: '#F0EBE3', border: '1px solid rgba(26,26,24,0.08)' }}>
+                  <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.1rem,2.5vw,1.4rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.7, maxWidth: 600, margin: '0 auto 2rem' }}>
+                    "Your project deserves a single, certain answer. Tell us what you're building and we'll tell you how it ends."
+                  </p>
+                  <button
+                    onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                    style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', padding: '0.9rem 2.5rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s' }}
+                    onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
+                    onMouseLeave={e => e.currentTarget.style.background = S.gold}>
+                    Begin a Project Conversation →
+                  </button>
                 </div>
               </FadeIn>
             </div>
-            <FadeIn delay={150}>
-              <div style={{ background: '#fff', padding: '3rem', boxShadow: '0 4px 40px rgba(26,26,24,0.06)' }}>
-                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.6rem' }}>Send a Message</p>
-                <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', fontWeight: 400, color: S.ink, marginBottom: '2rem' }}>Start Your Project</h3>
-                {status === 'sent' ? (
-                  <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
-                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, marginBottom: '1rem' }}>Thank you</div>
-                    <p style={{ fontSize: '0.95rem', color: S.mid, lineHeight: 1.7 }}>Your message has been received. We will get back to you within 24 hours.</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} noValidate>
-                    <div className="form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                      <div style={{ marginBottom: '1.2rem' }}>
-                        <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>First Name <span style={{ color: S.gold }}>*</span></label>
-                        <input value={form.firstName} onChange={set('firstName')} onFocus={() => focusField('firstName')} onBlur={() => blurField('firstName')} placeholder="Raamesh" style={inputStyle(focused.firstName)} />
+          </div>
+
+          {/* Founders */}
+          <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
+            <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+              <FadeIn>
+                <span className="gold-rule" />
+                <h2 style={{ ...H2_STYLE, marginBottom: '1rem' }}>
+                  The thinking behind every<br /><em style={{ color: S.gold }}>space we create.</em>
+                </h2>
+                <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 680, marginBottom: '4rem' }}>
+                  Exceptional spaces are never the result of design alone. They emerge when vision, functionality, human behaviour, and execution work in complete harmony. That belief has guided Raamesh Singhal Design since its inception.
+                </p>
+              </FadeIn>
+              <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+                {[
+                  { name: 'Raamesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality.', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-19-1024x768.jpg' },
+                  { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-11-1024x767.jpg' },
+                ].map((founder, i) => (
+                  <FadeIn key={i} delay={i * 150}>
+                    <div style={{ background: '#fff', overflow: 'hidden', border: '1px solid rgba(26,26,24,0.08)' }}>
+                      <div style={{ aspectRatio: '3/2', overflow: 'hidden' }}>
+                        <img src={founder.img} alt={founder.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                       </div>
-                      <div style={{ marginBottom: '1.2rem' }}>
-                        <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Last Name</label>
-                        <input value={form.lastName} onChange={set('lastName')} onFocus={() => focusField('lastName')} onBlur={() => blurField('lastName')} placeholder="Singhal" style={inputStyle(focused.lastName)} />
+                      <div style={{ padding: '2rem' }}>
+                        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem' }}>{founder.role}</p>
+                        <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.ink, marginBottom: '1rem', fontWeight: 400 }}>{founder.name}</h3>
+                        <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', fontStyle: 'italic', color: S.mid, lineHeight: 1.75 }}>
+                          <span style={{ color: S.gold, fontSize: '1.5rem', lineHeight: 0, verticalAlign: '-0.3rem', marginRight: '0.2rem' }}>"</span>
+                          {founder.quote}
+                        </p>
+                        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.12em', color: S.gold, marginTop: '1rem' }}>— {founder.name}</p>
                       </div>
                     </div>
-                    <div style={{ marginBottom: '1.2rem' }}>
-                      <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Phone <span style={{ color: S.gold }}>*</span></label>
-                      <input type="tel" value={form.phone} onChange={set('phone')} onFocus={() => focusField('phone')} onBlur={() => blurField('phone')} placeholder="+91 98765 43210" style={inputStyle(focused.phone)} />
-                    </div>
-                    <div style={{ marginBottom: '1.2rem' }}>
-                      <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Email <span style={{ color: S.gold }}>*</span></label>
-                      <input type="email" value={form.email} onChange={set('email')} onFocus={() => focusField('email')} onBlur={() => blurField('email')} placeholder="your@email.com" style={inputStyle(focused.email)} />
-                    </div>
-                    <div style={{ marginBottom: '1.2rem' }}>
-                      <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Service Required</label>
-                      <select value={form.service} onChange={set('service')} onFocus={() => focusField('service')} onBlur={() => blurField('service')} style={{ ...inputStyle(focused.service), appearance: 'none', cursor: 'pointer' }}>
-                        <option value="">Select a service...</option>
-                        {['Residential Interior Design', 'Architecture', 'Hospitality Design', 'Commercial / Retail', 'Vedic Vastu Consultation', 'Other'].map(o => <option key={o}>{o}</option>)}
-                      </select>
-                    </div>
-                    <div style={{ marginBottom: '1.2rem' }}>
-                      <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Message <span style={{ color: S.gold }}>*</span></label>
-                      <textarea rows={5} value={form.message} onChange={set('message')} onFocus={() => focusField('message')} onBlur={() => blurField('message')} placeholder="Tell us about your project..." style={{ ...inputStyle(focused.message), resize: 'vertical' }} />
-                    </div>
-                    <button type="submit" disabled={status === 'sending'}
-                      style={{ width: '100%', padding: '1rem', background: status === 'sending' ? S.sage : S.gold, color: S.ink, border: 'none', cursor: status === 'sending' ? 'not-allowed' : 'pointer', fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', transition: 'background 0.3s' }}
-                      onMouseEnter={e => { if (status !== 'sending') e.currentTarget.style.background = '#b8923d' }}
-                      onMouseLeave={e => { if (status !== 'sending') e.currentTarget.style.background = S.gold }}>
-                      {status === 'sending' ? 'Sending...' : 'Send Message'}
-                    </button>
-                  </form>
-                )}
+                  </FadeIn>
+                ))}
               </div>
+            </div>
+          </div>
+
+                
+        </section>
+
+        {/* ── SECTION DIVIDER ── */}
+        <SectionDivider label="Our Projects" />
+
+        {/* ── PORTFOLIO ── */}
+        <section id="portfolio" style={{ padding: '7rem 0', background: S.offwhite }}>
+          <div style={{ maxWidth: 1300, margin: '0 auto', padding: '0 2rem' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+              <FadeIn>
+                <span className="gold-rule" />
+                <p style={LABEL_STYLE}>Portfolio</p>
+                <h2 style={{ ...H2_STYLE }}>Our Recent <em>Projects</em></h2>
+              </FadeIn>
+              <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                {['all', 'residential', 'commercial', 'architecture', 'hospitality'].map((f, i, arr) => (
+                  <button key={f} onClick={() => setFilter(f)}
+                    style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.55rem 1.1rem', border: '1px solid rgba(26,26,24,0.15)', borderRight: i < arr.length - 1 ? 'none' : '1px solid rgba(26,26,24,0.15)', cursor: 'pointer', background: filter === f ? S.ink : 'transparent', color: filter === f ? S.gold : S.mid, transition: 'all 0.25s' }}>
+                    {f === 'all' ? 'All' : f === 'hospitality' ? 'Hotels & Hospitality' : f === 'commercial' ? 'Builders & Developers' : f.charAt(0).toUpperCase() + f.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="portfolio-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5px' }}>
+              {filtered.map((p, i) => (
+                <FadeIn key={p.id} delay={(i % 9) * 60}>
+                  <div
+                    onClick={() => setSelectedProject(p)}
+                    style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#d0c8b8', cursor: 'pointer' }}
+                    onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'; e.currentTarget.querySelector('.ov').style.opacity = '1' }}
+                    onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1)'; e.currentTarget.querySelector('.ov').style.opacity = '0' }}>
+                    <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
+                    <div className="ov" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(26,26,24,0.8) 0%,transparent 55%)', opacity: 0, transition: 'opacity 0.3s', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.5rem' }}>
+                      <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{p.category}</span>
+                      <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', color: S.offwhite }}>{p.title}</p>
+                    </div>
+                    <div style={{ position: 'absolute', bottom: '0.8rem', right: '0.8rem', zIndex: 2, pointerEvents: 'none' }}>
+                      <img src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png" alt="RSD"
+                        style={{ height: 30, width: 'auto', display: 'block', filter: 'drop-shadow(0 0 3px rgba(255,255,255,0.8)) drop-shadow(0 0 6px rgba(255,255,255,0.6))', opacity: 0.9 }} />
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── SECTION DIVIDER ── */}
+        <SectionDivider label="Testimonials" />
+
+        {/* ── TESTIMONIALS ── */}
+        <section id="testimonials" style={{ background: '#F0EBE3', padding: '7rem 0' }}>
+          <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 2rem' }}>
+            <FadeIn>
+              <span className="gold-rule" />
+              <p style={LABEL_STYLE}>Testimonials</p>
+              <h2 style={{ ...H2_STYLE, marginBottom: '3rem' }}>
+                Heard from those who <em>lived</em> our work
+              </h2>
+            </FadeIn>
+            <div className="testimonial-wrapper" style={{ position: 'relative', padding: '0 2.5rem' }}>
+              <button className="t-arrow-left"
+                onClick={() => setTIndex(i => (i - 1 + testimonials.length) % testimonials.length)}
+                style={{ position: 'absolute', left: '0', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '2.5rem', color: 'rgba(26,26,24,0.4)', transition: 'color 0.25s', lineHeight: 1, padding: 0, zIndex: 2 }}
+                onMouseEnter={e => e.currentTarget.style.color = S.ink}
+                onMouseLeave={e => e.currentTarget.style.color = 'rgba(26,26,24,0.4)'}>
+                &#8249;
+              </button>
+              <div className="t-card" style={{ background: '#fff', padding: '2.5rem', borderLeft: `2px solid ${S.gold}` }}>
+                <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(0.95rem,2vw,1.1rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.8, marginBottom: '1.5rem', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+                  <span style={{ fontSize: '2rem', color: S.gold, lineHeight: 0, verticalAlign: '-0.4rem', marginRight: '0.2rem' }}>"</span>
+                  {testimonials[tIndex].text}
+                </p>
+                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.gold }}>
+                  — {testimonials[tIndex].name}
+                </p>
+              </div>
+              <button className="t-arrow-right"
+                onClick={() => setTIndex(i => (i + 1) % testimonials.length)}
+                style={{ position: 'absolute', right: '0', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '2.5rem', color: 'rgba(26,26,24,0.4)', transition: 'color 0.25s', lineHeight: 1, padding: 0, zIndex: 2 }}
+                onMouseEnter={e => e.currentTarget.style.color = S.ink}
+                onMouseLeave={e => e.currentTarget.style.color = 'rgba(26,26,24,0.4)'}>
+                &#8250;
+              </button>
+            </div>
+            <div style={{ display: 'flex', gap: '0.6rem', marginTop: '1.5rem', justifyContent: 'center' }}>
+              {testimonials.map((_, i) => (
+                <button key={i} onClick={() => setTIndex(i)}
+                  style={{ width: 8, height: 8, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, background: tIndex === i ? S.gold : 'rgba(201,169,110,0.25)', transform: tIndex === i ? 'scale(1.3)' : 'scale(1)', transition: 'all 0.3s' }} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── SECTION DIVIDER ── */}
+        <SectionDivider label="Our Services" />
+
+        {/* ── SERVICES ── */}
+        <section id="services" style={{ background: S.offwhite, padding: '7rem 0' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
+            <FadeIn>
+              <span className="gold-rule" />
+              <p style={LABEL_STYLE}>What We Do</p>
+              <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
+                A complete range of <em>design services</em>
+              </h2>
+            </FadeIn>
+            <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
+              {services.map((svc, i) => (
+                <FadeIn key={i} delay={i * 80}>
+                  <div style={{ background: '#fff', padding: '2.5rem', borderBottom: '2px solid transparent', transition: 'border-color 0.3s, box-shadow 0.3s', cursor: 'default', height: '100%' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.boxShadow = 'none' }}>
+                    <div style={{ marginBottom: '1.5rem' }}>{svc.icon}</div>
+                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.16em', color: S.gold, marginBottom: '0.6rem', textTransform: 'uppercase' }}>{svc.num}</p>
+                    <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.2rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 400 }}>{svc.title}</h3>
+                    <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.75 }}>{svc.desc}</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+            <div style={{ marginTop: '4rem' }}>
+              <FadeIn>
+                <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', fontWeight: 400, color: S.ink, marginBottom: '1.5rem' }}>Areas of <em>Service</em></h3>
+              </FadeIn>
+              <div className="areas-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1rem' }}>
+                {areaList.map((area, i) => (
+                  <FadeIn key={i} delay={i * 60}>
+                    <div style={{ padding: '1rem 1.5rem', border: '1px solid rgba(26,26,24,0.1)', background: '#fff', display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '0.9rem', color: S.ink, transition: 'border-color 0.3s' }}
+                      onMouseEnter={e => e.currentTarget.style.borderColor = S.gold}
+                      onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(26,26,24,0.1)'}>
+                      <span style={{ width: 5, height: 5, borderRadius: '50%', background: S.gold, flexShrink: 0 }} />
+                      {area}
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── SECTION DIVIDER ── */}
+        <SectionDivider label="Contact Us" />
+
+        {/* ── CONTACT ── */}
+        <section id="contact" style={{ padding: '7rem 0', background: '#F0EBE3' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
+            <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '5rem', alignItems: 'start' }}>
+              <div>
+                <FadeIn>
+                  <span className="gold-rule" />
+                  <p style={LABEL_STYLE}>Get In Touch</p>
+                  <h2 style={{ ...H2_STYLE, marginBottom: '2.5rem' }}>
+                    Feel free to<br /><em>contact us</em> anytime
+                  </h2>
+                </FadeIn>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}>
+                  {contactInfo.map((item, i) => (
+                    <FadeIn key={i} delay={i * 80}>
+                      <div>
+                        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{item.label}</p>
+                        {item.href
+                          ? <a href={item.href} style={{ fontSize: '0.92rem', color: S.ink, textDecoration: 'none', transition: 'color 0.25s' }} onMouseEnter={e => e.currentTarget.style.color = S.gold} onMouseLeave={e => e.currentTarget.style.color = S.ink}>{item.value}</a>
+                          : <p style={{ fontSize: '0.92rem', color: S.mid }}>{item.value}</p>
+                        }
+                      </div>
+                    </FadeIn>
+                  ))}
+                </div>
+                <FadeIn delay={200}>
+                  <div style={{ width: '100%', height: 260, overflow: 'hidden' }}>
+                    <iframe src="https://maps.google.com/maps?q=Time+Square+Sevoke+Road+Siliguri&t=m&z=15&output=embed&iwloc=near" title="Location" width="100%" height="100%" style={{ border: 'none', display: 'block' }} loading="lazy" />
+                  </div>
+                </FadeIn>
+              </div>
+              <FadeIn delay={150}>
+                <div style={{ background: '#fff', padding: '3rem', boxShadow: '0 4px 40px rgba(26,26,24,0.06)' }}>
+                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.6rem' }}>Send a Message</p>
+                  <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', fontWeight: 400, color: S.ink, marginBottom: '2rem' }}>Start Your Project</h3>
+                  {status === 'sent' ? (
+                    <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
+                      <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, marginBottom: '1rem' }}>Thank you</div>
+                      <p style={{ fontSize: '0.95rem', color: S.mid, lineHeight: 1.7 }}>Your message has been received. We will get back to you within 24 hours.</p>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} noValidate>
+                      <div className="form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                        <div style={{ marginBottom: '1.2rem' }}>
+                          <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>First Name <span style={{ color: S.gold }}>*</span></label>
+                          <input value={form.firstName} onChange={set('firstName')} onFocus={() => focusField('firstName')} onBlur={() => blurField('firstName')} placeholder="Raamesh" style={inputStyle(focused.firstName)} />
+                        </div>
+                        <div style={{ marginBottom: '1.2rem' }}>
+                          <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Last Name</label>
+                          <input value={form.lastName} onChange={set('lastName')} onFocus={() => focusField('lastName')} onBlur={() => blurField('lastName')} placeholder="Singhal" style={inputStyle(focused.lastName)} />
+                        </div>
+                      </div>
+                      <div style={{ marginBottom: '1.2rem' }}>
+                        <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Phone <span style={{ color: S.gold }}>*</span></label>
+                        <input type="tel" value={form.phone} onChange={set('phone')} onFocus={() => focusField('phone')} onBlur={() => blurField('phone')} placeholder="+91 98765 43210" style={inputStyle(focused.phone)} />
+                      </div>
+                      <div style={{ marginBottom: '1.2rem' }}>
+                        <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Email <span style={{ color: S.gold }}>*</span></label>
+                        <input type="email" value={form.email} onChange={set('email')} onFocus={() => focusField('email')} onBlur={() => blurField('email')} placeholder="your@email.com" style={inputStyle(focused.email)} />
+                      </div>
+                      <div style={{ marginBottom: '1.2rem' }}>
+                        <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Service Required</label>
+                        <select value={form.service} onChange={set('service')} onFocus={() => focusField('service')} onBlur={() => blurField('service')} style={{ ...inputStyle(focused.service), appearance: 'none', cursor: 'pointer' }}>
+                          <option value="">Select a service...</option>
+                          {['Residential Interior Design', 'Architecture', 'Hospitality Design', 'Commercial / Retail', 'Vedic Vastu Consultation', 'Other'].map(o => <option key={o}>{o}</option>)}
+                        </select>
+                      </div>
+                      <div style={{ marginBottom: '1.2rem' }}>
+                        <label style={{ display: 'block', fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid, marginBottom: '0.5rem' }}>Message <span style={{ color: S.gold }}>*</span></label>
+                        <textarea rows={5} value={form.message} onChange={set('message')} onFocus={() => focusField('message')} onBlur={() => blurField('message')} placeholder="Tell us about your project..." style={{ ...inputStyle(focused.message), resize: 'vertical' }} />
+                      </div>
+                      <button type="submit" disabled={status === 'sending'}
+                        style={{ width: '100%', padding: '1rem', background: status === 'sending' ? S.sage : S.gold, color: S.ink, border: 'none', cursor: status === 'sending' ? 'not-allowed' : 'pointer', fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', transition: 'background 0.3s' }}
+                        onMouseEnter={e => { if (status !== 'sending') e.currentTarget.style.background = '#b8923d' }}
+                        onMouseLeave={e => { if (status !== 'sending') e.currentTarget.style.background = S.gold }}>
+                        {status === 'sending' ? 'Sending...' : 'Send Message'}
+                      </button>
+                    </form>
+                  )}
+                </div>
+              </FadeIn>
+            </div>
+          </div>
+        </section>
+
+        {/* ── BOOK APPOINTMENT CTA ── */}
+        <section style={{ background: S.gold, padding: '5rem 0', textAlign: 'center' }}>
+          <div style={{ maxWidth: 700, margin: '0 auto', padding: '0 2rem' }}>
+            <FadeIn>
+              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.6rem)', fontWeight: 400, color: S.ink, marginBottom: '1.5rem', lineHeight: 1.2 }}>
+                Book Your Appointment for Quality &amp; Reliable Services
+              </h2>
+              <p style={{ fontSize: '0.95rem', color: 'rgba(26,26,24,0.7)', marginBottom: '2rem', lineHeight: 1.7 }}>
+                Let us help you create the home of your dreams.
+              </p>
+              <a href="#contact" onClick={e => { e.preventDefault(); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) }}
+                style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '1rem 2.8rem', background: S.ink, color: S.gold, textDecoration: 'none', display: 'inline-block', transition: 'all 0.3s', cursor: 'pointer' }}
+                onMouseEnter={e => { e.currentTarget.style.background = S.offwhite; e.currentTarget.style.color = S.ink }}
+                onMouseLeave={e => { e.currentTarget.style.background = S.ink; e.currentTarget.style.color = S.gold }}>
+                Book Appointment
+              </a>
             </FadeIn>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ── BOOK APPOINTMENT CTA ── */}
-      <section style={{ background: S.gold, padding: '5rem 0', textAlign: 'center' }}>
-        <div style={{ maxWidth: 700, margin: '0 auto', padding: '0 2rem' }}>
-          <FadeIn>
-            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.6rem)', fontWeight: 400, color: S.ink, marginBottom: '1.5rem', lineHeight: 1.2 }}>
-              Book Your Appointment for Quality &amp; Reliable Services
-            </h2>
-            <p style={{ fontSize: '0.95rem', color: 'rgba(26,26,24,0.7)', marginBottom: '2rem', lineHeight: 1.7 }}>
-              Let us help you create the home of your dreams.
-            </p>
-            <a href="#contact" onClick={e => { e.preventDefault(); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) }}
-              style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '1rem 2.8rem', background: S.ink, color: S.gold, textDecoration: 'none', display: 'inline-block', transition: 'all 0.3s', cursor: 'pointer' }}
-              onMouseEnter={e => { e.currentTarget.style.background = S.offwhite; e.currentTarget.style.color = S.ink }}
-              onMouseLeave={e => { e.currentTarget.style.background = S.ink; e.currentTarget.style.color = S.gold }}>
-              Book Appointment
-            </a>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ── PROJECT MODAL ── */}
-      {selectedProject && (
-        <div onClick={() => setSelectedProject(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(26,26,24,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(6px)' }}>
-          <div onClick={e => e.stopPropagation()} className="project-modal-grid" style={{ background: '#fff', maxWidth: 900, width: '100%', maxHeight: '90vh', overflow: 'auto', display: 'grid', gridTemplateColumns: '1.2fr 1fr', position: 'relative' }}>
-            <button onClick={() => setSelectedProject(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', width: 36, height: 36, background: 'rgba(26,26,24,0.7)', border: 'none', cursor: 'pointer', color: '#fff', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>&#10005;</button>
-            <div style={{ position: 'relative', minHeight: 320 }}>
-              <img src={selectedProject.img} alt={selectedProject.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        {/* ── PROJECT MODAL ── */}
+        {selectedProject && (
+          <div onClick={() => setSelectedProject(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(26,26,24,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(6px)' }}>
+            <div onClick={e => e.stopPropagation()} className="project-modal-grid" style={{ background: '#fff', maxWidth: 900, width: '100%', maxHeight: '90vh', overflow: 'auto', display: 'grid', gridTemplateColumns: '1.2fr 1fr', position: 'relative' }}>
+              <button onClick={() => setSelectedProject(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', width: 36, height: 36, background: 'rgba(26,26,24,0.7)', border: 'none', cursor: 'pointer', color: '#fff', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>&#10005;</button>
+              <div style={{ position: 'relative', minHeight: 320 }}>
+                <img src={selectedProject.img} alt={selectedProject.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.8rem', display: 'block' }}>{selectedProject.category}</span>
+                <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.4rem,3vw,2rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1.5rem' }}>{selectedProject.title}</h2>
+                <div style={{ width: 40, height: 1, background: S.gold, marginBottom: '1.5rem' }} />
+                <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, marginBottom: '2rem' }}>{selectedProject.desc}</p>
+                <button onClick={() => { setSelectedProject(null); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) }}
+                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.85rem 1.8rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s', alignSelf: 'flex-start' }}
+                  onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
+                  onMouseLeave={e => e.currentTarget.style.background = S.gold}>
+                  Enquire About This Project
+                </button>
+              </div>
             </div>
-            <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.8rem', display: 'block' }}>{selectedProject.category}</span>
-              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.4rem,3vw,2rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1.5rem' }}>{selectedProject.title}</h2>
-              <div style={{ width: 40, height: 1, background: S.gold, marginBottom: '1.5rem' }} />
-              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, marginBottom: '2rem' }}>{selectedProject.desc}</p>
-              <button onClick={() => { setSelectedProject(null); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) }}
-                style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.85rem 1.8rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s', alignSelf: 'flex-start' }}
+          </div>
+        )}
+
+        {/* ── SERVICE MODAL ── */}
+        {selectedService && (
+          <div onClick={() => setSelectedService(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(26,26,24,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(6px)' }}>
+            <div onClick={e => e.stopPropagation()} style={{ background: '#fff', maxWidth: 700, width: '100%', maxHeight: '90vh', overflow: 'auto', position: 'relative', padding: '3.5rem' }}>
+              <button onClick={() => setSelectedService(null)} style={{ position: 'absolute', top: '1.2rem', right: '1.2rem', width: 36, height: 36, background: 'rgba(26,26,24,0.08)', border: 'none', cursor: 'pointer', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10005;</button>
+              <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '4rem', color: S.gold, opacity: 0.15, lineHeight: 1, marginBottom: '0.5rem', fontWeight: 700 }}>{selectedService.num}</div>
+              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.5rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1.5rem' }}>{selectedService.title}</h2>
+              <div style={{ width: 48, height: 1, background: S.gold, marginBottom: '1.5rem' }} />
+              <p style={{ fontSize: '1rem', color: S.mid, lineHeight: 1.9, marginBottom: '2rem' }}>{selectedService.desc}</p>
+              <div style={{ width: '100%', aspectRatio: '16/9', background: '#F0EBE3', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem' }}>
+                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Image coming soon</p>
+              </div>
+              <button onClick={() => { setSelectedService(null); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) }}
+                style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.85rem 2rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s' }}
                 onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
                 onMouseLeave={e => e.currentTarget.style.background = S.gold}>
-                Enquire About This Project
+                Start a Conversation →
               </button>
             </div>
           </div>
-        </div>
-      )}
-
-      {/* ── SERVICE MODAL ── */}
-      {selectedService && (
-        <div onClick={() => setSelectedService(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(26,26,24,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(6px)' }}>
-          <div onClick={e => e.stopPropagation()} style={{ background: '#fff', maxWidth: 700, width: '100%', maxHeight: '90vh', overflow: 'auto', position: 'relative', padding: '3.5rem' }}>
-            <button onClick={() => setSelectedService(null)} style={{ position: 'absolute', top: '1.2rem', right: '1.2rem', width: 36, height: 36, background: 'rgba(26,26,24,0.08)', border: 'none', cursor: 'pointer', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10005;</button>
-            <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '4rem', color: S.gold, opacity: 0.15, lineHeight: 1, marginBottom: '0.5rem', fontWeight: 700 }}>{selectedService.num}</div>
-            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.5rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1.5rem' }}>{selectedService.title}</h2>
-            <div style={{ width: 48, height: 1, background: S.gold, marginBottom: '1.5rem' }} />
-            <p style={{ fontSize: '1rem', color: S.mid, lineHeight: 1.9, marginBottom: '2rem' }}>{selectedService.desc}</p>
-            <div style={{ width: '100%', aspectRatio: '16/9', background: '#F0EBE3', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem' }}>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Image coming soon</p>
-            </div>
-            <button onClick={() => { setSelectedService(null); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) }}
-              style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.85rem 2rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s' }}
-              onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
-              onMouseLeave={e => e.currentTarget.style.background = S.gold}>
-              Start a Conversation →
-            </button>
-          </div>
-        </div>
-      )}
-      {/* ── PRESS MODAL ── */}
-      {selectedPress && (
-        <div onClick={() => setSelectedPress(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(26,26,24,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(6px)' }}>
-          <div onClick={e => e.stopPropagation()} className="project-modal-grid" style={{ background: '#fff', maxWidth: 900, width: '100%', maxHeight: '90vh', overflow: 'auto', display: 'grid', gridTemplateColumns: '1.2fr 1fr', position: 'relative' }}>
-            <button onClick={() => setSelectedPress(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', width: 36, height: 36, background: 'rgba(26,26,24,0.7)', border: 'none', cursor: 'pointer', color: '#fff', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>&#10005;</button>
-            <div style={{ position: 'relative', minHeight: 320 }}>
-              <img src={selectedPress.img} alt={selectedPress.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-            </div>
-            <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.8rem', display: 'block' }}>{selectedPress.type}</span>
-              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.4rem,3vw,2rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '0.8rem' }}>{selectedPress.title}</h2>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', color: S.mid, marginBottom: '1.5rem' }}>{selectedPress.org}</p>
-              <div style={{ width: 40, height: 1, background: S.gold, marginBottom: '1.5rem' }} />
-              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85 }}>{selectedPress.desc}</p>
+        )}
+        {/* ── PRESS MODAL ── */}
+        {selectedPress && (
+          <div onClick={() => setSelectedPress(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(26,26,24,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(6px)' }}>
+            <div onClick={e => e.stopPropagation()} className="project-modal-grid" style={{ background: '#fff', maxWidth: 900, width: '100%', maxHeight: '90vh', overflow: 'auto', display: 'grid', gridTemplateColumns: '1.2fr 1fr', position: 'relative' }}>
+              <button onClick={() => setSelectedPress(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', width: 36, height: 36, background: 'rgba(26,26,24,0.7)', border: 'none', cursor: 'pointer', color: '#fff', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>&#10005;</button>
+              <div style={{ position: 'relative', minHeight: 320 }}>
+                <img src={selectedPress.img} alt={selectedPress.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+              <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.8rem', display: 'block' }}>{selectedPress.type}</span>
+                <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.4rem,3vw,2rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '0.8rem' }}>{selectedPress.title}</h2>
+                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', color: S.mid, marginBottom: '1.5rem' }}>{selectedPress.org}</p>
+                <div style={{ width: 40, height: 1, background: S.gold, marginBottom: '1.5rem' }} />
+                <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85 }}>{selectedPress.desc}</p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </>
-  )
+        )}
+      </>
+      )
 }
