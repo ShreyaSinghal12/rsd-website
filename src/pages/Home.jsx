@@ -644,6 +644,52 @@ export default function Home() {
           ))}
         </div>
       </section>
+      {/* ── SECTION DIVIDER ── */}
+      <SectionDivider label="Our Services" />
+
+      {/* ── SERVICES ── */}
+      <section id="services" style={{ background: S.offwhite, padding: '7rem 0' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
+          <FadeIn>
+            <span className="gold-rule" />
+            <p style={LABEL_STYLE}>What We Do</p>
+            <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
+              A complete range of <em>design services</em>
+            </h2>
+          </FadeIn>
+          <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
+            {services.map((svc, i) => (
+              <FadeIn key={i} delay={i * 80}>
+                <div style={{ background: '#fff', padding: '2.5rem', borderBottom: '2px solid transparent', transition: 'border-color 0.3s, box-shadow 0.3s', cursor: 'default', height: '100%' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.boxShadow = 'none' }}>
+                  <div style={{ marginBottom: '1.5rem' }}>{svc.icon}</div>
+                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.16em', color: S.gold, marginBottom: '0.6rem', textTransform: 'uppercase' }}>{svc.num}</p>
+                  <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.2rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 400 }}>{svc.title}</h3>
+                  <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.75 }}>{svc.desc}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+          <div style={{ marginTop: '4rem' }}>
+            <FadeIn>
+              <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', fontWeight: 400, color: S.ink, marginBottom: '1.5rem' }}>Areas of <em>Service</em></h3>
+            </FadeIn>
+            <div className="areas-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1rem' }}>
+              {areaList.map((area, i) => (
+                <FadeIn key={i} delay={i * 60}>
+                  <div style={{ padding: '1rem 1.5rem', border: '1px solid rgba(26,26,24,0.1)', background: '#fff', display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '0.9rem', color: S.ink, transition: 'border-color 0.3s' }}
+                    onMouseEnter={e => e.currentTarget.style.borderColor = S.gold}
+                    onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(26,26,24,0.1)'}>
+                    <span style={{ width: 5, height: 5, borderRadius: '50%', background: S.gold, flexShrink: 0 }} />
+                    {area}
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ── SECTION DIVIDER ── */}
       <SectionDivider label="Testimonials" />
@@ -692,52 +738,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION DIVIDER ── */}
-      <SectionDivider label="Our Services" />
-
-      {/* ── SERVICES ── */}
-      <section id="services" style={{ background: S.offwhite, padding: '7rem 0' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <FadeIn>
-            <span className="gold-rule" />
-            <p style={LABEL_STYLE}>What We Do</p>
-            <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
-              A complete range of <em>design services</em>
-            </h2>
-          </FadeIn>
-          <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
-            {services.map((svc, i) => (
-              <FadeIn key={i} delay={i * 80}>
-                <div style={{ background: '#fff', padding: '2.5rem', borderBottom: '2px solid transparent', transition: 'border-color 0.3s, box-shadow 0.3s', cursor: 'default', height: '100%' }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.boxShadow = 'none' }}>
-                  <div style={{ marginBottom: '1.5rem' }}>{svc.icon}</div>
-                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.16em', color: S.gold, marginBottom: '0.6rem', textTransform: 'uppercase' }}>{svc.num}</p>
-                  <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.2rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 400 }}>{svc.title}</h3>
-                  <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.75 }}>{svc.desc}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-          <div style={{ marginTop: '4rem' }}>
-            <FadeIn>
-              <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', fontWeight: 400, color: S.ink, marginBottom: '1.5rem' }}>Areas of <em>Service</em></h3>
-            </FadeIn>
-            <div className="areas-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1rem' }}>
-              {areaList.map((area, i) => (
-                <FadeIn key={i} delay={i * 60}>
-                  <div style={{ padding: '1rem 1.5rem', border: '1px solid rgba(26,26,24,0.1)', background: '#fff', display: 'flex', alignItems: 'center', gap: '0.8rem', fontSize: '0.9rem', color: S.ink, transition: 'border-color 0.3s' }}
-                    onMouseEnter={e => e.currentTarget.style.borderColor = S.gold}
-                    onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(26,26,24,0.1)'}>
-                    <span style={{ width: 5, height: 5, borderRadius: '50%', background: S.gold, flexShrink: 0 }} />
-                    {area}
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* ── SECTION DIVIDER ── */}
       <SectionDivider label="Contact Us" />

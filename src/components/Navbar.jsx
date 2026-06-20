@@ -5,8 +5,9 @@ const links = [
     { label: 'Home', anchor: 'hero' },
     { label: 'About Us', anchor: 'about' },
     { label: 'Projects', anchor: 'portfolio' },
-    { label: 'Testimonials', anchor: 'testimonials' },
     { label: 'Services', anchor: 'services' },
+    { label: 'Awards and News', anchor: 'services' },
+    { label: 'Testimonials', anchor: 'testimonials' },
     { label: 'Contact Us', anchor: 'contact' },
 ]
 export default function Navbar() {
