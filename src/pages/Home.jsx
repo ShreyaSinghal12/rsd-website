@@ -396,13 +396,7 @@ export default function Home() {
                 </div>
               </div>
             </FadeIn>
-          </div>
-          <FadeIn delay={200}>
-            <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8, marginTop: '2.5rem', fontStyle: 'italic' }}>
-              Thirty years. 500+ projects delivered. Multiple cities. Three decades is not a number we mention in passing. That's the whole point.
-            </p>
-          </FadeIn>
-        </div>
+          
       
       {/* Block 3a — Awards */}
       <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
@@ -417,6 +411,13 @@ export default function Home() {
               Our work has been honoured by some of the most respected names in design and industry. But the recognition we value most isn't on a shelf — it's the client who hands us their next project before the first is even finished.
             </p>
           </FadeIn>
+          </div>
+          <FadeIn delay={200}>
+            <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8, marginTop: '2.5rem', fontStyle: 'italic' }}>
+              Thirty years. 500+ projects delivered. Multiple cities. Three decades is not a number we mention in passing. That's the whole point.
+            </p>
+          </FadeIn>
+        </div>
           <div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
             {[
               { type: 'Award', title: 'Pending confirmation', org: '', img: null },
