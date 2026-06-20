@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { useInView } from 'react-intersection-observer'
 import projects from '../data/projects'
 import testimonials from '../data/testimonials'
