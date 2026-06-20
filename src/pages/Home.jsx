@@ -414,7 +414,82 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Block 3a — Awards */}
+        {/* Founders */}
+        <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+            <FadeIn>
+              <span className="gold-rule" />
+              <h2 style={{ ...H2_STYLE, marginBottom: '1rem' }}>
+                The thinking behind every<br /><em style={{ color: S.gold }}>space we create.</em>
+              </h2>
+              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 680, marginBottom: '4rem' }}>
+                Exceptional spaces are never the result of design alone. They emerge when vision, functionality, human behaviour, and execution work in complete harmony. That belief has guided Raamesh Singhal Design since its inception.
+              </p>
+            </FadeIn>
+            <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
+              {[
+                { name: 'Raamesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality.', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-19-1024x768.jpg' },
+                { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-11-1024x767.jpg' },
+              ].map((founder, i) => (
+                <FadeIn key={i} delay={i * 150}>
+                  <div style={{ background: '#fff', overflow: 'hidden', border: '1px solid rgba(26,26,24,0.08)' }}>
+                    <div style={{ aspectRatio: '3/2', overflow: 'hidden' }}>
+                      <img src={founder.img} alt={founder.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                    </div>
+                    <div style={{ padding: '2rem' }}>
+                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem' }}>{founder.role}</p>
+                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.ink, marginBottom: '1rem', fontWeight: 400 }}>{founder.name}</h3>
+                      <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', fontStyle: 'italic', color: S.mid, lineHeight: 1.75 }}>
+                        <span style={{ color: S.gold, fontSize: '1.5rem', lineHeight: 0, verticalAlign: '-0.3rem', marginRight: '0.2rem' }}>"</span>
+                        {founder.quote}
+                      </p>
+                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.12em', color: S.gold, marginTop: '1rem' }}>— {founder.name}</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Book */}
+        <div id="book" style={{ background: S.offwhite, padding: '7rem 2rem' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+            <FadeIn>
+              <span className="gold-rule" />
+              <p style={LABEL_STYLE}>The Book</p>
+              <h2 style={{ ...H2_STYLE, marginBottom: '3rem' }}>
+                Words Behind <em>the Work</em>
+              </h2>
+            </FadeIn>
+            <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: '3rem', alignItems: 'center' }} className="about-grid">
+              <FadeIn delay={100}>
+                <div style={{ aspectRatio: '3/4', background: '#F0EBE3', border: '1px dashed rgba(201,169,110,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '0.8rem' }}>
+                  <div style={{ width: 48, height: 48, borderRadius: '50%', border: `1px solid ${S.gold}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.gold, fontStyle: 'italic' }}>B</span>
+                  </div>
+                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Book Cover</p>
+                  <p style={{ fontSize: '0.82rem', color: S.sage, fontStyle: 'italic' }}>Coming Soon</p>
+                </div>
+              </FadeIn>
+              <FadeIn delay={150}>
+                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '1rem', textTransform: 'uppercase' }}>
+                  By Raamesh Singhal
+                </p>
+                <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, fontStyle: 'italic' }}>
+                  Title, cover, and description to be added soon.
+                </p>
+              </FadeIn>
+            </div>
+          </div>
+        </div>
+        </section>
+
+         {/* ── SECTION DIVIDER ── */}
+        <SectionDivider label="Awards and News" />
+
+        {/* Block 1a — Awards */}
+        <section>
         <div id="awards-news" style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
@@ -474,191 +549,13 @@ export default function Home() {
             ))}
           </div>
         </div>
+        </section>
+          {/* ── SECTION DIVIDER ── */}
+        <SectionDivider label="Our Services" />
 
-        {/* Block 4 — What We Do */}
-        <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-            <FadeIn>
-              <span className="gold-rule" />
-              <p style={LABEL_STYLE}>What We Do</p>
-              <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
-                Three disciplines.<br /><em>One continuous decision.</em>
-              </h2>
-            </FadeIn>
-            <div className="process-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
-              {[
-                { num: '01', title: 'Architecture', desc: 'The foundation everything stands on. We plan, orient, and engineer a space before a single material is chosen — because the most expensive mistakes are the ones drawn early and discovered late.' },
-                { num: '02', title: 'Interior Design', desc: 'Where space becomes experience. Light, proportion, material, and detail composed to be lived in for years — not to photograph well for a single day.' },
-                { num: '03', title: 'Turnkey Projects', desc: 'Our core. One point of ownership from first sketch to final handover. One firm accountable for the result. The end of vendor management as you know it.' },
-              ].map((item, i) => (
-                <FadeIn key={i} delay={i * 100}>
-                  <div
-                    onClick={() => setSelectedService(item)}
-                    style={{ padding: '2.5rem', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', borderTop: '2px solid transparent', transition: 'border-color 0.3s, box-shadow 0.3s', height: '100%', cursor: 'pointer' }}
-                    onMouseEnter={e => { e.currentTarget.style.borderTopColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
-                    onMouseLeave={e => { e.currentTarget.style.borderTopColor = 'transparent'; e.currentTarget.style.boxShadow = 'none' }}>
-                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '3rem', color: S.gold, opacity: 0.2, lineHeight: 1, marginBottom: '1rem', fontWeight: 700 }}>{item.num}</div>
-                    <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.ink, marginBottom: '1rem', fontWeight: 600 }}>{item.title}</h3>
-                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Learn More →</p>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Block 5 — How We Do It */}
-        <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-            <FadeIn>
-              <span className="gold-rule" />
-              <p style={LABEL_STYLE}>Our Process</p>
-              <h2 style={{ ...H2_STYLE, marginBottom: '1rem' }}>
-                From a conversation to something<br /><em>worth inheriting.</em>
-              </h2>
-              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 600, marginBottom: '3.5rem' }}>
-                Our process exists to remove the one thing that ruins great projects: the gap between people. Everything sits with us, so nothing falls between.
-              </p>
-            </FadeIn>
-            <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-              {[
-                { num: '01', title: 'Understand', desc: "We begin with how you'll live, host, or operate — not with a mood board. The brief is built around outcomes, not finishes." },
-                { num: '02', title: 'Compose', desc: "Architecture and interiors are designed as one decision, fully documented, so what's drawn is exactly what gets built." },
-                { num: '03', title: 'Deliver', desc: "We control procurement, manage the site, and check quality at every stage. One schedule, one accountable team." },
-                { num: '04', title: 'Hand Over', desc: "You receive a finished space, on time, exactly as promised — and a single name to call if you ever need us again." },
-              ].map((item, i) => (
-                <FadeIn key={i} delay={i * 80}>
-                  <div style={{ display: 'flex', gap: '1.5rem', padding: '2rem', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', transition: 'border-color 0.3s' }}
-                    onMouseEnter={e => e.currentTarget.style.borderColor = S.gold}
-                    onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(26,26,24,0.08)'}>
-                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, opacity: 0.3, lineHeight: 1, flexShrink: 0, fontWeight: 700 }}>{item.num}</div>
-                    <div>
-                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.ink, marginBottom: '0.5rem', fontWeight: 600 }}>{item.title}</h3>
-                      <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8 }}>{item.desc}</p>
-                    </div>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Block 6 — Why Choose Us */}
-        <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-            <FadeIn>
-              <span className="gold-rule" />
-              <p style={LABEL_STYLE}>Why Choose Us</p>
-              <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
-                We'd rather be <em>answerable than impressive.</em>
-              </h2>
-            </FadeIn>
-            <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3rem' }}>
-              {[
-                { title: 'One name, accountable for everything', desc: "When the architecture, the interiors, and the build all sit with us, there's no gap to lose your project in, and no third party to blame if something slips. The responsibility is ours, by design." },
-                { title: 'We build what we draw', desc: "A beautiful drawing is easy to promise. We hold ourselves to turning it into the actual room exactly as shown, not approximately." },
-                { title: 'On time is part of the work', desc: "Our systems, procurement control, and stage-by-stage checks exist so we can be held to a date — not so we can explain why we missed one." },
-                { title: "If it doesn't last, we hear about it", desc: "Thirty years of clients means three decades of living with our own decisions. That's why we design for the decade, not the season." },
-              ].map((item, i) => (
-                <FadeIn key={i} delay={i * 80}>
-                  <div style={{ padding: '2rem', border: '1px solid rgba(26,26,24,0.08)', background: '#fff', transition: 'border-color 0.3s, box-shadow 0.3s' }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(26,26,24,0.08)'; e.currentTarget.style.boxShadow = 'none' }}>
-                    <div style={{ width: 32, height: 1, background: S.gold, marginBottom: '1rem' }} />
-                    <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 600 }}>{item.title}</h3>
-                    <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.85 }}>{item.desc}</p>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-            <FadeIn>
-              <div style={{ textAlign: 'center', padding: '3rem 2rem', background: '#F0EBE3', border: '1px solid rgba(26,26,24,0.08)' }}>
-                <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.1rem,2.5vw,1.4rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.7, maxWidth: 600, margin: '0 auto 2rem' }}>
-                  "Your project deserves a single, certain answer. Tell us what you're building and we'll tell you how it ends."
-                </p>
-                <button
-                  onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', padding: '0.9rem 2.5rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s' }}
-                  onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
-                  onMouseLeave={e => e.currentTarget.style.background = S.gold}>
-                  Begin a Project Conversation →
-                </button>
-              </div>
-            </FadeIn>
-          </div>
-        </div>
-
-        {/* Founders */}
-        <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-            <FadeIn>
-              <span className="gold-rule" />
-              <h2 style={{ ...H2_STYLE, marginBottom: '1rem' }}>
-                The thinking behind every<br /><em style={{ color: S.gold }}>space we create.</em>
-              </h2>
-              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 680, marginBottom: '4rem' }}>
-                Exceptional spaces are never the result of design alone. They emerge when vision, functionality, human behaviour, and execution work in complete harmony. That belief has guided Raamesh Singhal Design since its inception.
-              </p>
-            </FadeIn>
-            <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-              {[
-                { name: 'Raamesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality.', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-19-1024x768.jpg' },
-                { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-11-1024x767.jpg' },
-              ].map((founder, i) => (
-                <FadeIn key={i} delay={i * 150}>
-                  <div style={{ background: '#fff', overflow: 'hidden', border: '1px solid rgba(26,26,24,0.08)' }}>
-                    <div style={{ aspectRatio: '3/2', overflow: 'hidden' }}>
-                      <img src={founder.img} alt={founder.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                    </div>
-                    <div style={{ padding: '2rem' }}>
-                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem' }}>{founder.role}</p>
-                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.ink, marginBottom: '1rem', fontWeight: 400 }}>{founder.name}</h3>
-                      <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', fontStyle: 'italic', color: S.mid, lineHeight: 1.75 }}>
-                        <span style={{ color: S.gold, fontSize: '1.5rem', lineHeight: 0, verticalAlign: '-0.3rem', marginRight: '0.2rem' }}>"</span>
-                        {founder.quote}
-                      </p>
-                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.12em', color: S.gold, marginTop: '1rem' }}>— {founder.name}</p>
-                    </div>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-          </div>
-        </div>
-
-
-      </section>
-
-      {/* ── SECTION DIVIDER ── */}
-      <SectionDivider label="Our Projects" />
-
-      {/* ── PORTFOLIO ── */}
-      <section id="portfolio" style={{ padding: '7rem 0', background: S.offwhite }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }} className="why-grid">
-          {[
-            { key: 'residential', label: 'Residential', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/04/The-Unruffled.jpg', route: '/projects/residential' },
-            { key: 'hospitality', label: 'Hotels & Hospitality', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/04/Swanky-Suite-1.jpg', route: '/projects/hospitality' },
-            { key: 'commercial', label: 'Builders & Developers', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/04/Stunning-Structures-1.jpg', route: '/projects/builders' },
-          ].map((cat, i) => (
-            <FadeIn key={cat.key} delay={i * 100}>
-              <Link to={cat.route} style={{ display: 'block', position: 'relative', aspectRatio: '4/5', overflow: 'hidden', textDecoration: 'none' }}
-                onMouseEnter={e => e.currentTarget.querySelector('img').style.transform = 'scale(1.08)'}
-                onMouseLeave={e => e.currentTarget.querySelector('img').style.transform = 'scale(1)'}>
-                <img src={cat.img} alt={cat.label} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease' }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.8) 0%, rgba(26,26,24,0.2) 60%, transparent 100%)' }} />
-                <div style={{ position: 'absolute', bottom: '2rem', left: '2rem' }}>
-                  <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.5rem', color: S.offwhite, marginBottom: '0.5rem' }}>{cat.label}</p>
-                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.14em', color: S.gold, textTransform: 'uppercase' }}>View Projects →</p>
-                </div>
-              </Link>
-            </FadeIn>
-          ))}
-        </div>
-      </section>
-      {/* ── SECTION DIVIDER ── */}
-      <SectionDivider label="Our Services" />
-
-      {/* ── SERVICES ── */}
+        {/* ── SERVICES ── */}
+        <section>
+        {/* Block 1 — How We Do It */}
       <section id="services" style={{ background: S.offwhite, padding: '7rem 0' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
           <FadeIn>
@@ -705,6 +602,124 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+        
+
+        {/* Block 2 — How We Do It */}
+        <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+            <FadeIn>
+              <span className="gold-rule" />
+              <p style={LABEL_STYLE}>Our Process</p>
+              <h2 style={{ ...H2_STYLE, marginBottom: '1rem' }}>
+                From a conversation to something<br /><em>worth inheriting.</em>
+              </h2>
+              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 600, marginBottom: '3.5rem' }}>
+                Our process exists to remove the one thing that ruins great projects: the gap between people. Everything sits with us, so nothing falls between.
+              </p>
+            </FadeIn>
+            <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+              {[
+                { num: '01', title: 'Understand', desc: "We begin with how you'll live, host, or operate — not with a mood board. The brief is built around outcomes, not finishes." },
+                { num: '02', title: 'Compose', desc: "Architecture and interiors are designed as one decision, fully documented, so what's drawn is exactly what gets built." },
+                { num: '03', title: 'Deliver', desc: "We control procurement, manage the site, and check quality at every stage. One schedule, one accountable team." },
+                { num: '04', title: 'Hand Over', desc: "You receive a finished space, on time, exactly as promised — and a single name to call if you ever need us again." },
+              ].map((item, i) => (
+                <FadeIn key={i} delay={i * 80}>
+                  <div style={{ display: 'flex', gap: '1.5rem', padding: '2rem', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', transition: 'border-color 0.3s' }}
+                    onMouseEnter={e => e.currentTarget.style.borderColor = S.gold}
+                    onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(26,26,24,0.08)'}>
+                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, opacity: 0.3, lineHeight: 1, flexShrink: 0, fontWeight: 700 }}>{item.num}</div>
+                    <div>
+                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.ink, marginBottom: '0.5rem', fontWeight: 600 }}>{item.title}</h3>
+                      <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8 }}>{item.desc}</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Block 3 — Why Choose Us */}
+        <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+            <FadeIn>
+              <span className="gold-rule" />
+              <p style={LABEL_STYLE}>Why Choose Us</p>
+              <h2 style={{ ...H2_STYLE, marginBottom: '3.5rem' }}>
+                We'd rather be <em>answerable than impressive.</em>
+              </h2>
+            </FadeIn>
+            <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3rem' }}>
+              {[
+                { title: 'One name, accountable for everything', desc: "When the architecture, the interiors, and the build all sit with us, there's no gap to lose your project in, and no third party to blame if something slips. The responsibility is ours, by design." },
+                { title: 'We build what we draw', desc: "A beautiful drawing is easy to promise. We hold ourselves to turning it into the actual room exactly as shown, not approximately." },
+                { title: 'On time is part of the work', desc: "Our systems, procurement control, and stage-by-stage checks exist so we can be held to a date — not so we can explain why we missed one." },
+                { title: "If it doesn't last, we hear about it", desc: "Thirty years of clients means three decades of living with our own decisions. That's why we design for the decade, not the season." },
+              ].map((item, i) => (
+                <FadeIn key={i} delay={i * 80}>
+                  <div style={{ padding: '2rem', border: '1px solid rgba(26,26,24,0.08)', background: '#fff', transition: 'border-color 0.3s, box-shadow 0.3s' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.boxShadow = '0 4px 24px rgba(201,169,110,0.1)' }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(26,26,24,0.08)'; e.currentTarget.style.boxShadow = 'none' }}>
+                    <div style={{ width: 32, height: 1, background: S.gold, marginBottom: '1rem' }} />
+                    <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 600 }}>{item.title}</h3>
+                    <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.85 }}>{item.desc}</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+            <FadeIn>
+              <div style={{ textAlign: 'center', padding: '3rem 2rem', background: '#F0EBE3', border: '1px solid rgba(26,26,24,0.08)' }}>
+                <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.1rem,2.5vw,1.4rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.7, maxWidth: 600, margin: '0 auto 2rem' }}>
+                  "Your project deserves a single, certain answer. Tell us what you're building and we'll tell you how it ends."
+                </p>
+                <button
+                  onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.16em', textTransform: 'uppercase', padding: '0.9rem 2.5rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s' }}
+                  onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
+                  onMouseLeave={e => e.currentTarget.style.background = S.gold}>
+                  Begin a Project Conversation →
+                </button>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+
+
+
+
+      </section>
+
+      {/* ── SECTION DIVIDER ── */}
+      <SectionDivider label="Our Projects" />
+
+      {/* ── PORTFOLIO ── */}
+      <section id="portfolio" style={{ padding: '7rem 0', background: S.offwhite }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }} className="why-grid">
+          {[
+            { key: 'residential', label: 'Residential', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/04/The-Unruffled.jpg', route: '/projects/residential' },
+            { key: 'hospitality', label: 'Hotels & Hospitality', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/04/Swanky-Suite-1.jpg', route: '/projects/hospitality' },
+            { key: 'commercial', label: 'Builders & Developers', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/04/Stunning-Structures-1.jpg', route: '/projects/builders' },
+          ].map((cat, i) => (
+            <FadeIn key={cat.key} delay={i * 100}>
+              <Link to={cat.route} style={{ display: 'block', position: 'relative', aspectRatio: '4/5', overflow: 'hidden', textDecoration: 'none' }}
+                onMouseEnter={e => e.currentTarget.querySelector('img').style.transform = 'scale(1.08)'}
+                onMouseLeave={e => e.currentTarget.querySelector('img').style.transform = 'scale(1)'}>
+                <img src={cat.img} alt={cat.label} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.8) 0%, rgba(26,26,24,0.2) 60%, transparent 100%)' }} />
+                <div style={{ position: 'absolute', bottom: '2rem', left: '2rem' }}>
+                  <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.5rem', color: S.offwhite, marginBottom: '0.5rem' }}>{cat.label}</p>
+                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.14em', color: S.gold, textTransform: 'uppercase' }}>View Projects →</p>
+                </div>
+              </Link>
+            </FadeIn>
+          ))}
+        </div>
+      </section>
+      
+
+      
 
       {/* ── SECTION DIVIDER ── */}
       <SectionDivider label="Testimonials" />
