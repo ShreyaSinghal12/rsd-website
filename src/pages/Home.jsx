@@ -428,8 +428,8 @@ export default function Home() {
             </FadeIn>
             <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
               {[
-                { name: 'Raamesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality.', img: '/images/Founders/Ramesh_Singhal.jpg' },
-                { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: '/images/Founders/Sonika_Singhal.jpg' },
+                { name: 'Raamesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality.', img: '/images/Founders/Ramesh_singhal.jpeg' },
+                { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: '/images/Founders/Sonika_Singhal.jpeg' },
               ].map((founder, i) => (
                 <FadeIn key={i} delay={i * 150}>
                   <div style={{ background: '#fff', overflow: 'hidden', border: '1px solid rgba(26,26,24,0.08)' }}>
