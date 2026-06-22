@@ -220,6 +220,7 @@ const S = {
 }
 
 export default function Home() {
+  const [slide, setSlide] = useState(0)
   const [tIndex, setTIndex] = useState(0)
   const [filter, setFilter] = useState('all')
   const [form, setForm] = useState({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' })
@@ -242,7 +243,16 @@ export default function Home() {
     transition: 'border-color 0.25s', borderRadius: 0,
   })
 
+  useEffect(() => {
+    intervalRef.current = setInterval(() => setSlide(s => (s + 1) % heroSlides.length), 5000)
+    return () => clearInterval(intervalRef.current)
+  }, [])
 
+  const goToSlide = (i) => {
+    clearInterval(intervalRef.current)
+    setSlide(i)
+    intervalRef.current = setInterval(() => setSlide(s => (s + 1) % heroSlides.length), 5000)
+  }
 
   useEffect(() => {
     const t = setInterval(() => setTIndex(i => (i + 1) % testimonials.length), 5000)
@@ -270,44 +280,73 @@ export default function Home() {
 
   return (
     <>
-      {/* ── INTRO + STATS ── */}
-      <section id="hero" style={{ background: S.offwhite, paddingTop: 'calc(68px + 4rem)', paddingBottom: '4rem' }}>
-        <div style={{ maxWidth: 1300, margin: '0 auto', padding: '0 2rem' }}>
-          <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: '4rem', alignItems: 'center' }}>
-
-            {/* Left — Story content */}
-            <FadeIn>
-              <p style={{ ...LABEL_STYLE, marginBottom: '1.2rem' }}>Est. 1995 — Siliguri, India</p>
-              <h1 style={{ ...H2_STYLE, fontSize: 'clamp(2.2rem,4.5vw,3.5rem)', marginBottom: '2rem' }}>
-                30 years of turning space into <em style={{ color: S.gold, fontStyle: 'italic' }}>legacy.</em>
-              </h1>
-              <div style={{ width: 48, height: 1, background: S.gold, marginBottom: '2rem' }} />
-              <p style={{ fontSize: 'clamp(0.9rem,2vw,1.05rem)', color: S.mid, lineHeight: 1.9, maxWidth: 560 }}>
-                For thirty years, our name has gone on the outcome, not just the drawings. When one firm holds the whole project, there's no one else to point to if something isn't right, and nothing to hide behind. We built the practice that way on purpose: an owner should have exactly one place to look when it matters. Three decades on, that's still the standard we answer to.
-              </p>
-            </FadeIn>
-
-            {/* Right — Stats */}
-            <FadeIn delay={150}>
-              <div ref={statsRef} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem' }}>
-                {[
-                  { num: years, suffix: '+', label: 'Years of Experience' },
-                  { num: projs, suffix: '+', label: 'Projects Delivered' },
-                  { num: repeat, suffix: '%', label: 'Repeat & Referral' },
-                  { num: types, suffix: '', label: 'Project Typologies' },
-                ].map((s, i) => (
-                  <div key={i}>
-                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2.2rem,4vw,3.2rem)', color: S.gold, lineHeight: 1, marginBottom: '0.5rem' }}>{s.num}{s.suffix}</div>
-                    <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.mid }}>{s.label}</div>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
+      {/* ── HERO ── */}
+      <section id="hero" style={{ height: '100svh', position: 'relative', overflow: 'hidden' }}>
+        {heroSlides.map((s, i) => (
+          <div key={i} style={{ position: 'absolute', inset: 0, backgroundImage: `url(${s.img})`, backgroundSize: 'cover', backgroundPosition: 'center', opacity: slide === i ? 1 : 0, transition: 'opacity 1.4s ease' }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.88) 0%, rgba(26,26,24,0.55) 50%, rgba(26,26,24,0.3) 100%)' }} />
           </div>
+        ))}
+        <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 'clamp(0px,5vw,2.5rem) clamp(1rem,5vw,2.5rem) clamp(3rem,8vw,5rem)' }}>
+          <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <span style={{ display: 'block', width: 36, height: 1, background: S.gold }} />
+            Established 1995 &nbsp;·&nbsp; Siliguri, India
+          </p>
+          <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.5rem,3.5vw,2.8rem)', fontWeight: 400, lineHeight: 1.2, color: S.offwhite, marginBottom: '1rem', maxWidth: 680 }}>
+            {heroSlides[slide].headline}
+            {heroSlides[slide].headlineb && (
+              <><br /><em style={{ fontStyle: 'italic', color: S.stone }}>{heroSlides[slide].headlineb}</em></>
+            )}
+          </h1>
+          <p style={{ fontSize: 'clamp(0.85rem,2vw,1rem)', color: 'rgba(255,255,255,0.88)', maxWidth: 560, marginBottom: '2.5rem', lineHeight: 1.75 }}>
+            {heroSlides[slide].sub}
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => {
+                if (heroSlides[slide].ctaAction === 'contact') {
+                  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })
+                } else {
+                  setFilter(heroSlides[slide].ctaAction)
+                  document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
+              style={{ fontFamily: "'DM Mono',monospace", fontSize: 'clamp(0.68rem,2vw,0.78rem)', letterSpacing: '0.14em', textTransform: 'uppercase', padding: 'clamp(0.7rem,2vw,0.9rem) clamp(1.4rem,3vw,2.2rem)', background: S.gold, color: S.ink, border: 'none', fontWeight: 500, transition: 'background 0.3s', cursor: 'pointer' }}
+              onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
+              onMouseLeave={e => e.currentTarget.style.background = S.gold}>
+              {heroSlides[slide].cta}
+            </button>
+          </div>
+        </div>
+        <div style={{ position: 'absolute', right: '1.5rem', bottom: '3rem', zIndex: 3, display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {heroSlides.map((_, i) => (
+            <button key={i} onClick={() => goToSlide(i)}
+              style={{ width: 6, height: 6, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, background: slide === i ? S.gold : 'rgba(232,224,208,0.35)', transform: slide === i ? 'scale(1.4)' : 'scale(1)', transition: 'all 0.3s' }} />
+          ))}
+        </div>
+        <div style={{ position: 'absolute', left: '1.5rem', bottom: '3rem', zIndex: 3, fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.15em', color: 'rgba(232,224,208,0.5)' }}>
+          0{slide + 1} / 0{heroSlides.length}
         </div>
       </section>
 
-
+      {/* ── STATS ── */}
+      <section ref={statsRef} style={{ background: '#F0EBE3', padding: '4rem 0' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
+          <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '2rem', textAlign: 'center' }}>
+            {[
+              { num: years, suffix: '+', label: 'Years of Experience' },
+              { num: projs, suffix: '+', label: 'Projects Delivered' },
+              { num: repeat, suffix: '%', label: 'Repeat & Referral' },
+              { num: types, suffix: '', label: 'Project Typologies' },
+            ].map((s, i) => (
+              <FadeIn key={i} delay={i * 100}>
+                <div style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,4vw,3rem)', color: S.gold, lineHeight: 1, marginBottom: '0.4rem' }}>{s.num}{s.suffix}</div>
+                <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.mid }}>{s.label}</div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ── ABOUT ── */}
       <section id="about" style={{ background: S.offwhite }}>
