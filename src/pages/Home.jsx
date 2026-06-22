@@ -834,7 +834,7 @@ export default function Home() {
       </section>
 
       {/* ── BOOK APPOINTMENT CTA ── */}
-      <section style={{ background: rgb(225, 190, 126), padding: '5rem 0', textAlign: 'center' }}>
+      <section style={{ background: 'rgb(225, 190, 126)', padding: '5rem 0', textAlign: 'center' }}>
         <div style={{ maxWidth: 700, margin: '0 auto', padding: '0 2rem' }}>
           <FadeIn>
             <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.6rem)', fontWeight: 400, color: S.ink, marginBottom: '1.5rem', lineHeight: 1.2 }}>
