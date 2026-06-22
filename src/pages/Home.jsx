@@ -433,8 +433,8 @@ export default function Home() {
               ].map((founder, i) => (
                 <FadeIn key={i} delay={i * 150}>
                   <div style={{ background: '#fff', overflow: 'hidden', border: '1px solid rgba(26,26,24,0.08)' }}>
-                    <div style={{ aspectRatio: '3/2', overflow: 'hidden' }}>
-                      <img src={founder.img} alt={founder.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                    <div style={{ aspectRatio: '4/5', overflow: 'hidden', background: '#F0EBE3' }}>
+                      <img src={founder.img} alt={founder.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
                     </div>
                     <div style={{ padding: '2rem' }}>
                       <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem' }}>{founder.role}</p>
@@ -693,7 +693,7 @@ export default function Home() {
 
 
 
-        
+
 
 
 
