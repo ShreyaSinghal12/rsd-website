@@ -179,7 +179,7 @@ const H2_STYLE = {
 
 function SectionDivider({ label, bg = '#F7F4EF' }) {
   return (
-    <div style={{ background: bg, padding: '1.5rem 0' }}>
+    <div style={{ background: bg, padding: '0.75rem 0' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '0 2rem', maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.25)' }} />
         <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C9A96E', whiteSpace: 'nowrap' }}>{label}</p>
@@ -287,7 +287,7 @@ export default function Home() {
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.88) 0%, rgba(26,26,24,0.55) 50%, rgba(26,26,24,0.3) 100%)' }} />
           </div>
         ))}
-        <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 'clamp(0px,5vw,2.5rem) clamp(1rem,5vw,2.5rem) clamp(3rem,8vw,5rem)' }}>
+        <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 'clamp(0px,5vw,2.5rem) clamp(1rem,5vw,2.5rem) clamp(2rem,6vw,3.5rem)' }}>
           <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <span style={{ display: 'block', width: 36, height: 1, background: S.gold }} />
             Established 1995 &nbsp;·&nbsp; Siliguri, India
@@ -330,7 +330,7 @@ export default function Home() {
       </section>
 
       {/* ── STATS ── */}
-      <section ref={statsRef} style={{ background: '#F0EBE3', padding: '4rem 0' }}>
+      <section ref={statsRef} style={{ background: '#F0EBE3', padding: '2.5rem 0' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
           <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '2rem', textAlign: 'center' }}>
             {[
