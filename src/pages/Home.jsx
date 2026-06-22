@@ -432,8 +432,8 @@ export default function Home() {
                 { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: '/images/Founders/Sonika_Singhal.jpeg' },
               ].map((founder, i) => (
                 <FadeIn key={i} delay={i * 150}>
-                  <div style={{ background: '#fff', overflow: 'hidden', border: '1px solid rgba(26,26,24,0.08)' }}>
-                    <div style={{ aspectRatio: '4/5', overflow: 'hidden', background: '#F0EBE3' }}>
+                  <div style={{ background: '#fff', overflow: 'hidden', border: '1px solid rgba(26,26,24,0.08)', maxWidth: 360, margin: '0 auto' }}>
+                    <div style={{ aspectRatio: '3/4', overflow: 'hidden', background: '#F0EBE3' }}>
                       <img src={founder.img} alt={founder.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
                     </div>
                     <div style={{ padding: '2rem' }}>
