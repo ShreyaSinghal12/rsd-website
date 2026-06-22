@@ -275,7 +275,7 @@ export default function Home() {
       {/* ── HERO ── */}
       <section id="hero" style={{ height: '100svh', position: 'relative', overflow: 'hidden' }}>
         {heroSlides.map((s, i) => (
-          <div key={i} style={{ position: 'absolute', inset: 0, backgroundImage: `url(${s.img})`, backgroundSize: 'cover', backgroundPosition: 'center', opacity: slide === i ? 1 : 0, transition: 'opacity 3.4s ease' }}>
+          <div key={i} style={{ position: 'absolute', inset: 0, backgroundImage: `url(${s.img})`, backgroundSize: 'cover', backgroundPosition: 'center', opacity: slide === i ? 1 : 0, transition: 'opacity 1.4s ease' }}>
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.88) 0%, rgba(26,26,24,0.55) 50%, rgba(26,26,24,0.3) 100%)' }} />
           </div>
         ))}
@@ -313,7 +313,7 @@ export default function Home() {
         <div style={{ position: 'absolute', right: '1.5rem', bottom: '3rem', zIndex: 3, display: 'flex', flexDirection: 'column', gap: 8 }}>
           {heroSlides.map((_, i) => (
             <button key={i} onClick={() => goToSlide(i)}
-              style={{ width: 6, height: 6, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, background: slide === i ? S.gold : 'rgba(232,224,208,0.35)', transform: slide === i ? 'scale(1.4)' : 'scale(1)', transition: 'all 0.3s' }} />
+              style={{ width: 6, height: 6, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, background: slide === i ? S.gold : 'rgba(232,224,208,0.35)', transform: slide === i ? 'scale(1.4)' : 'scale(1)', transition: 'all 2.3s' }} />
           ))}
         </div>
         <div style={{ position: 'absolute', left: '1.5rem', bottom: '3rem', zIndex: 3, fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.15em', color: 'rgba(232,224,208,0.5)' }}>
