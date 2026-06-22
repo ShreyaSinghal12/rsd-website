@@ -6,23 +6,15 @@ import testimonials from '../data/testimonials'
 
 const heroSlides = [
   {
-    img: "http://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg",
+    img: "/images/slides/1stSlide.jpg",
     label: "The Brand Hero",
     headline: "You're not building a space.",
     headlineb: "You're building what people will say about you for the next thirty years.",
     sub: "A single studio, holding the vision from first sketch to final handover, so your legacy is left to no one's chance but ours.",
-    cta: "Begin Your Journey With Us →",
-    ctaAction: "contact",
-  },
-  {
-    img: "http://raameshsinghaldesign.com/wp-content/uploads/2023/04/The-Unruffled.jpg",
-    label: "Residential",
-    headline: "You can afford anything.",
-    headlineb: "So why does the result so rarely feel like it?",
-    sub: "The difference was never the budget. It's who holds every decision.",
-    cta: "Explore Residences →",
+    cta: "Residential",
     ctaAction: "residential",
   },
+  
   {
     img: "http://raameshsinghaldesign.com/wp-content/uploads/2023/04/Stunning-Structures-1.jpg",
     label: "Builders & Developers",
@@ -33,7 +25,7 @@ const heroSlides = [
     ctaAction: "commercial",
   },
   {
-    img: "http://raameshsinghaldesign.com/wp-content/uploads/2023/04/Swanky-Suite-1.jpg",
+    img: "/images/slides/3rdSlide.jpeg",
     label: "Hotels & Hospitality",
     headline: "How many vendors are you managing just to open a single hotel?",
     headlineb: "",
@@ -283,7 +275,7 @@ export default function Home() {
       {/* ── HERO ── */}
       <section id="hero" style={{ height: '100svh', position: 'relative', overflow: 'hidden' }}>
         {heroSlides.map((s, i) => (
-          <div key={i} style={{ position: 'absolute', inset: 0, backgroundImage: `url(${s.img})`, backgroundSize: 'cover', backgroundPosition: 'center', opacity: slide === i ? 1 : 0, transition: 'opacity 2.4s ease' }}>
+          <div key={i} style={{ position: 'absolute', inset: 0, backgroundImage: `url(${s.img})`, backgroundSize: 'cover', backgroundPosition: 'center', opacity: slide === i ? 1 : 0, transition: 'opacity 3.4s ease' }}>
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.88) 0%, rgba(26,26,24,0.55) 50%, rgba(26,26,24,0.3) 100%)' }} />
           </div>
         ))}
@@ -417,7 +409,7 @@ export default function Home() {
         </div>
 
         {/* Founders */}
-        <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
+        <div style={{ background: '#F0EBE3', padding: '3rem 2rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
               <span className="gold-rule" />
