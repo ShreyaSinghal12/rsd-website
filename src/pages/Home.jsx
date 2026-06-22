@@ -464,12 +464,13 @@ export default function Home() {
             </FadeIn>
             <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: '3rem', alignItems: 'center' }} className="about-grid">
               <FadeIn delay={100}>
-                <div style={{ aspectRatio: '3/4', background: '#F0EBE3', border: '1px dashed rgba(201,169,110,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '0.8rem' }}>
-                  <div style={{ width: 48, height: 48, borderRadius: '50%', border: `1px solid ${S.gold}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.gold, fontStyle: 'italic' }}>B</span>
-                  </div>
-                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Book Cover</p>
-                  <p style={{ fontSize: '0.82rem', color: S.sage, fontStyle: 'italic' }}>Coming Soon</p>
+                <div style={{ aspectRatio: '3/4', overflow: 'hidden', boxShadow: '0 10px 30px rgba(26,26,24,0.15)' }}>
+                  <img
+                    src="/images/book/book_image.jpg"
+                    alt="Book by Raamesh Singhal"
+                    loading="lazy"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
                 </div>
               </FadeIn>
               <FadeIn delay={150}>
