@@ -90,3 +90,9 @@ div[style*="overflowX: auto"]::-webkit-scrollbar {
     margin: 0 auto;
   }
 }
+@media (max-width: 768px) {
+  #hero .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+}
