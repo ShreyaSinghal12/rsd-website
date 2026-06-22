@@ -467,7 +467,7 @@ export default function Home() {
               <FadeIn delay={100}>
                 <div style={{ aspectRatio: '3/4', overflow: 'hidden', boxShadow: '0 10px 30px rgba(26,26,24,0.15)', background: '#F0EBE3' }}>
                   <img
-                    src="/images/book/cover.jpg"
+                    src="/images/book/book_image.jpeg"
                     alt="Book by Raamesh Singhal"
                     loading="lazy"
                     style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
