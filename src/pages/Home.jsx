@@ -179,7 +179,7 @@ const H2_STYLE = {
 
 function SectionDivider({ label, bg = '#F7F4EF' }) {
   return (
-    <div style={{ background: bg, padding: '3rem 0' }}>
+    <div style={{ background: bg, padding: '1.5rem 0' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '0 2rem', maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.25)' }} />
         <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C9A96E', whiteSpace: 'nowrap' }}>{label}</p>
@@ -644,7 +644,7 @@ export default function Home() {
       {/* ── SERVICES ── */}
       <section>
         {/* Block 1 — How We Do It */}
-        <section id="services" style={{ background: S.offwhite, padding: '7rem 0' }}>
+        <section id="services" style={{ background: S.offwhite, padding: '7rem 0 4rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
             <FadeIn>
               <span className="gold-rule" />
