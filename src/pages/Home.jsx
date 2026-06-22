@@ -16,7 +16,7 @@ const heroSlides = [
   },
   
   {
-    img: "http://raameshsinghaldesign.com/wp-content/uploads/2023/04/Stunning-Structures-1.jpg",
+    img: "/images/slides/2ndSlide.jpeg",
     label: "Builders & Developers",
     headline: "Why does the identical project next door keep selling faster than yours?",
     headlineb: "",
@@ -25,7 +25,7 @@ const heroSlides = [
     ctaAction: "commercial",
   },
   {
-    img: "/images/slides/3rdSlide.jpeg",
+    img: "/images/slides/3rdSLide.jpeg",
     label: "Hotels & Hospitality",
     headline: "How many vendors are you managing just to open a single hotel?",
     headlineb: "",
