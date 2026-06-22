@@ -368,7 +368,7 @@ export default function Home() {
         </div>
 
         {/* Block 2 — Who We Are */}
-        <div style={{ padding: '7rem 2rem', background: S.offwhite }}>
+        <div style={{ padding: '3rem 2rem', background: S.offwhite }}>
           <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }} className="about-grid">
             <FadeIn>
               <div style={{ position: 'relative' }}>
@@ -455,7 +455,7 @@ export default function Home() {
         </div>
 
         {/* Book */}
-        <div id="book" style={{ background: S.offwhite, padding: '7rem 2rem' }}>
+        <div id="book" style={{ background: S.offwhite, padding: '3rem 2rem' }}>
           <div style={{ maxWidth: 900, margin: '0 auto' }}>
             <FadeIn>
               <span className="gold-rule" />
@@ -578,7 +578,7 @@ export default function Home() {
 
       {/* Block 1a — Awards */}
       <section>
-        <div id="awards-news" style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
+        <div id="awards-news" style={{ background: '#F0EBE3', padding: '3rem 2rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
               <span className="gold-rule" />
@@ -644,7 +644,7 @@ export default function Home() {
       {/* ── SERVICES ── */}
       <section>
         {/* Block 1 — How We Do It */}
-        <section id="services" style={{ background: S.offwhite, padding: '7rem 0 4rem' }}>
+        <section id="services" style={{ background: S.offwhite, padding: '3rem 0 4rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
             <FadeIn>
               <span className="gold-rule" />
@@ -709,7 +709,7 @@ export default function Home() {
       <SectionDivider label="Our Projects" />
 
       {/* ── PORTFOLIO ── */}
-      <section id="portfolio" style={{ padding: '7rem 0', background: S.offwhite }}>
+      <section id="portfolio" style={{ padding: '3rem 0', background: S.offwhite }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }} className="why-grid">
           {[
             { key: 'residential', label: 'Residential', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/04/The-Unruffled.jpg', route: '/projects/residential' },
@@ -739,7 +739,7 @@ export default function Home() {
       <SectionDivider label="Testimonials" />
 
       {/* ── TESTIMONIALS ── */}
-      <section id="testimonials" style={{ background: '#F0EBE3', padding: '7rem 0' }}>
+      <section id="testimonials" style={{ background: '#F0EBE3', padding: '3rem 0' }}>
         <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 2rem' }}>
           <FadeIn>
             <span className="gold-rule" />
@@ -788,7 +788,7 @@ export default function Home() {
       <SectionDivider label="Contact Us" bg="#F0EBE3" />
 
       {/* ── CONTACT ── */}
-      <section id="contact" style={{ padding: '7rem 0', background: '#F0EBE3' }}>
+      <section id="contact" style={{ padding: '3rem 0', background: '#F0EBE3' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
           <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '5rem', alignItems: 'start' }}>
             <div>
