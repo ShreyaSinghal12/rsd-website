@@ -177,12 +177,14 @@ const H2_STYLE = {
   lineHeight: 1.2,
 }
 
-function SectionDivider({ label }) {
+function SectionDivider({ label, bg = '#F7F4EF' }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '0 2rem', maxWidth: 1200, margin: '0 auto' }}>
-      <div style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.25)' }} />
-      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C9A96E', whiteSpace: 'nowrap' }}>{label}</p>
-      <div style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.25)' }} />
+    <div style={{ background: bg, padding: '3rem 0' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '0 2rem', maxWidth: 1200, margin: '0 auto' }}>
+        <div style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.25)' }} />
+        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.28em', textTransform: 'uppercase', color: '#C9A96E', whiteSpace: 'nowrap' }}>{label}</p>
+        <div style={{ flex: 1, height: 1, background: 'rgba(201,169,110,0.25)' }} />
+      </div>
     </div>
   )
 }
@@ -452,7 +454,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Book */}
         {/* Book */}
         <div id="book" style={{ background: S.offwhite, padding: '7rem 2rem' }}>
           <div style={{ maxWidth: 900, margin: '0 auto' }}>
@@ -784,7 +785,7 @@ export default function Home() {
 
 
       {/* ── SECTION DIVIDER ── */}
-      <SectionDivider label="Contact Us" />
+      <SectionDivider label="Contact Us" bg="#F0EBE3" />
 
       {/* ── CONTACT ── */}
       <section id="contact" style={{ padding: '7rem 0', background: '#F0EBE3' }}>
