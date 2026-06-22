@@ -491,7 +491,7 @@ export default function Home() {
         </div>
 
         {/* Block 2 — How We Do It */}
-        <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
+        {/* <div style={{ background: '#F0EBE3', padding: '7rem 2rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
               <span className="gold-rule" />
@@ -524,10 +524,10 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Block 3 — Why Choose Us */}
-        <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
+        {/* <div style={{ background: S.offwhite, padding: '7rem 2rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
               <span className="gold-rule" />
@@ -569,7 +569,7 @@ export default function Home() {
               </div>
             </FadeIn>
           </div>
-        </div>
+        </div> */}
 
       </section>
 
