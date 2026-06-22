@@ -79,3 +79,14 @@ div[style*="overflowX: auto"]::-webkit-scrollbar {
 }
 .moodboard-scroll::-webkit-scrollbar { display: none; }
 .moodboard-scroll { scrollbar-width: none; }
+
+@media (max-width: 768px) {
+  .book-grid {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+  }
+  .book-grid > div:first-child {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+}

@@ -453,8 +453,9 @@ export default function Home() {
         </div>
 
         {/* Book */}
+        {/* Book */}
         <div id="book" style={{ background: S.offwhite, padding: '7rem 2rem' }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ maxWidth: 900, margin: '0 auto' }}>
             <FadeIn>
               <span className="gold-rule" />
               <p style={LABEL_STYLE}>The Book</p>
@@ -462,14 +463,14 @@ export default function Home() {
                 Words Behind <em>the Work</em>
               </h2>
             </FadeIn>
-            <div style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: '3rem', alignItems: 'center' }} className="about-grid">
+            <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: '3.5rem', alignItems: 'center' }} className="book-grid">
               <FadeIn delay={100}>
-                <div style={{ aspectRatio: '3/4', overflow: 'hidden', boxShadow: '0 10px 30px rgba(26,26,24,0.15)' }}>
+                <div style={{ aspectRatio: '3/4', overflow: 'hidden', boxShadow: '0 10px 30px rgba(26,26,24,0.15)', background: '#F0EBE3' }}>
                   <img
-                    src="/images/book/book_image.jpeg"
+                    src="/images/book/cover.jpg"
                     alt="Book by Raamesh Singhal"
                     loading="lazy"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
                   />
                 </div>
               </FadeIn>
@@ -477,8 +478,11 @@ export default function Home() {
                 <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '1rem', textTransform: 'uppercase' }}>
                   By Raamesh Singhal
                 </p>
+                <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', color: S.ink, marginBottom: '1.2rem', fontWeight: 600, lineHeight: 1.3 }}>
+                  Title coming soon
+                </h3>
                 <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, fontStyle: 'italic' }}>
-                  Title, cover, and description to be added soon.
+                  Description to be added soon.
                 </p>
               </FadeIn>
             </div>
