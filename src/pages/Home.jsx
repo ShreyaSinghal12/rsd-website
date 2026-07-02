@@ -619,7 +619,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION DIVIDER ── */}
-      <SectionDivider label="Awards and News" />
+      {/* <SectionDivider label="Awards and News" /> */}
 
       {/* Block 1a — Awards */}
       <section>
