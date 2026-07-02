@@ -475,8 +475,8 @@ export default function Home() {
         </div>
 
         {/* Book */}
-        <div id="book" style={{ background: S.offwhite, padding: '3rem 2rem' }}>
-          <div style={{ maxWidth: 900, margin: '0 auto' }}>
+        <div id="book" style={{ background: '#F0EBE3', padding: '5rem 2rem' }}>
+          <div style={{ maxWidth: 1100, margin: '0 auto' }}>
             <FadeIn>
               <span className="gold-rule" />
               <p style={LABEL_STYLE}>The Book</p>
@@ -484,27 +484,52 @@ export default function Home() {
                 Words Behind <em>the Work</em>
               </h2>
             </FadeIn>
-            <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: '3.5rem', alignItems: 'center' }} className="book-grid">
+            <div style={{ display: 'grid', gridTemplateColumns: '340px 1fr', gap: '4rem', alignItems: 'center', background: '#fff', padding: '3.5rem', boxShadow: '0 20px 60px rgba(26,26,24,0.1)' }} className="book-grid">
               <FadeIn delay={100}>
-                <div style={{ aspectRatio: '3/4', overflow: 'hidden', boxShadow: '0 10px 30px rgba(26,26,24,0.15)', background: '#F0EBE3' }}>
+                <div style={{ position: 'relative' }}>
+                  <div style={{ position: 'absolute', top: '1.2rem', left: '-1.2rem', width: '100%', height: '100%', border: `1px solid ${S.gold}`, zIndex: -1 }} />
                   <img
                     src="/images/book/book_image.jpeg"
-                    alt="Book by Raamesh Singhal"
+                    alt="Why Luxury Homes Don't Sell by Raamesh Singhal"
                     loading="lazy"
-                    style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
+                    style={{ width: '100%', display: 'block', boxShadow: '0 25px 50px rgba(26,26,24,0.25)' }}
                   />
                 </div>
               </FadeIn>
               <FadeIn delay={150}>
-                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '1rem', textTransform: 'uppercase' }}>
+                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.14em', color: S.gold, marginBottom: '1.2rem', textTransform: 'uppercase' }}>
                   By Raamesh Singhal
                 </p>
-                <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', color: S.ink, marginBottom: '1.2rem', fontWeight: 600, lineHeight: 1.3 }}>
-                  Title coming soon
+                <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.6rem,3vw,2.2rem)', color: S.ink, marginBottom: '0.6rem', fontWeight: 600, lineHeight: 1.25 }}>
+                  Why Luxury Homes Don't Sell:
                 </h3>
-                <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, fontStyle: 'italic' }}>
-                  Description to be added soon.
+                <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.15rem', fontStyle: 'italic', color: S.gold, marginBottom: '1.8rem' }}>
+                  The Blind Spot Costing Developers Crores
                 </p>
+                <div style={{ width: 40, height: 1, background: S.gold, marginBottom: '1.8rem' }} />
+                <p style={{ fontSize: '0.95rem', color: S.mid, lineHeight: 1.9, marginBottom: '2.2rem', maxWidth: 480 }}>
+                  It's not the market. It's the misunderstanding. Drawing on three decades of building luxury spaces, Raamesh Singhal uncovers the blind spots costing developers crores — and lays out what it actually takes to design projects that sell faster, at better value.
+                </p>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '2.2rem' }}>
+                  {[
+                    'Uncover the blind spots in your projects',
+                    "Understand what today's premium buyer truly desires",
+                    'Design, position & communicate for maximum desire',
+                    'Create projects that sell faster, at better value',
+                  ].map((point, i) => (
+                    <div key={i} style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-start' }}>
+                      <span style={{ color: S.gold, fontSize: '0.9rem', marginTop: '0.1rem' }}>✓</span>
+                      <p style={{ fontSize: '0.82rem', color: S.mid, lineHeight: 1.6 }}>{point}</p>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.85rem 2rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s' }}
+                  onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
+                  onMouseLeave={e => e.currentTarget.style.background = S.gold}>
+                  Get in Touch to Order →
+                </button>
               </FadeIn>
             </div>
           </div>
@@ -612,23 +637,23 @@ export default function Home() {
             </FadeIn>
 
             <div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
-  {[
-    { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award2.jpeg' },
-    { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award3.jpeg' },
-    { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award1.jpeg' },
-  ].map((item, i) => (
-    <FadeIn key={i} delay={i * 80}>
-      <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#fff', border: '1px solid rgba(26,26,24,0.08)' }}>
-        <img src={item.img} alt={item.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', background: '#F0EBE3' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.85) 0%, transparent 55%)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.2rem' }}>
-          <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{item.type}</p>
-          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '0.95rem', color: S.offwhite, marginBottom: '0.2rem' }}>{item.title}</p>
-          <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', color: 'rgba(247,244,239,0.7)' }}>{item.org}</p>
-        </div>
-      </div>
-    </FadeIn>
-  ))}
-</div>
+              {[
+                { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award2.jpeg' },
+                { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award3.jpeg' },
+                { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award1.jpeg' },
+              ].map((item, i) => (
+                <FadeIn key={i} delay={i * 80}>
+                  <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#fff', border: '1px solid rgba(26,26,24,0.08)' }}>
+                    <img src={item.img} alt={item.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', background: '#F0EBE3' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.85) 0%, transparent 55%)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.2rem' }}>
+                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{item.type}</p>
+                      <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '0.95rem', color: S.offwhite, marginBottom: '0.2rem' }}>{item.title}</p>
+                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', color: 'rgba(247,244,239,0.7)' }}>{item.org}</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
           </div>
         </div>
 
