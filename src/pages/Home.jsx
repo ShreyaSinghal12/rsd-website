@@ -273,13 +273,13 @@ export default function Home() {
   return (
     <>
       {/* ── HERO ── */}
-      <section id="hero" style={{ position: 'relative', background: S.ink, paddingTop: 68 }}>
-        <div style={{ maxWidth: 1400, margin: '0 auto', padding: '3rem 2rem' }}>
+      <section id="hero" style={{ position: 'relative', background: S.offwhite, paddingTop: 68 }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', padding: '1.5rem 2rem' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: '1.5rem', alignItems: 'stretch' }} className="hero-split">
 
             {/* Left — Video */}
             <FadeIn>
-              <div style={{ position: 'relative', height: '100%', minHeight: 520, overflow: 'hidden' }}>
+              <div style={{ position: 'relative', height: '100%', minHeight: 400, overflow: 'hidden' }}>
                 <video
                   autoPlay
                   muted
@@ -326,7 +326,7 @@ export default function Home() {
                 { num: '03', key: 'hospitality', label: 'Hotels & Hospitality', headline: 'How many vendors are you managing just to open one hotel?', img: '/images/slides/3rdSLide.jpeg', route: '/projects/hospitality' },
               ].map((cat, i) => (
                 <FadeIn key={cat.key} delay={i * 100}>
-                  <Link to={cat.route} style={{ display: 'block', position: 'relative', height: 165, overflow: 'hidden', textDecoration: 'none' }}
+                  <Link to={cat.route} style={{ display: 'block', position: 'relative', height: 128, overflow: 'hidden', textDecoration: 'none' }}
                     onMouseEnter={e => e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'}
                     onMouseLeave={e => e.currentTarget.querySelector('img').style.transform = 'scale(1)'}>
                     <img src={cat.img} alt={cat.label} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
