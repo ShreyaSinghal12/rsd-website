@@ -445,8 +445,8 @@ export default function Home() {
             </FadeIn>
             <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
               {[
-                { name: 'Raamesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality.', img: '/images/Founders/Ramesh_Singhal.jpeg' },
-                { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: '/images/Founders/Sonika_Singhal.jpeg' },
+                { name: 'Ramesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality. ', img: '/images/Founders/Ramesh_Singhal.jpeg' },
+                { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave. ', img: '/images/Founders/Sonika_Singhal.jpeg' },
               ].map((founder, i) => (
                 <FadeIn key={i} delay={i * 150}>
                   <div style={{ background: '#fff', overflow: 'hidden', border: '1px solid rgba(26,26,24,0.08)' }}>
@@ -470,7 +470,7 @@ export default function Home() {
         </div>
 
         {/* Book */}
-        <div id="book" style={{ background: '#F0EBE3', padding: '5rem 2rem' }}>
+        <div id="book" style={{ background: '#F0EBE3', padding: '3rem 2rem' }}>
           <div style={{ maxWidth: 1100, margin: '0 auto' }}>
             <FadeIn>
               <span className="gold-rule" />
@@ -479,13 +479,13 @@ export default function Home() {
                 Words Behind <em>the Work</em>
               </h2>
             </FadeIn>
-            <div style={{ display: 'grid', gridTemplateColumns: '340px 1fr', gap: '4rem', alignItems: 'center', padding: '3.5rem 0' }} className="book-grid">
+            <div style={{ display: 'grid', gridTemplateColumns: '340px 1fr', gap: '2rem', alignItems: 'center', padding: '3.5rem 0' }} className="book-grid">
               <FadeIn delay={100}>
                 <div style={{ position: 'relative' }}>
                   <div style={{ position: 'absolute', top: '1.2rem', left: '-1.2rem', width: '100%', height: '100%', border: `1px solid ${S.gold}`, zIndex: -1 }} />
                   <img
                     src="/images/book/book_image.jpeg"
-                    alt="Why Luxury Homes Don't Sell by Raamesh Singhal"
+                    alt="Why Luxury Homes Don't Sell by Ramesh Singhal"
                     loading="lazy"
                     style={{ width: '100%', display: 'block', boxShadow: '0 25px 50px rgba(26,26,24,0.25)' }}
                   />
@@ -702,16 +702,14 @@ export default function Home() {
                 <FadeIn key={i} delay={i * 80}>
                   <div
                     onClick={() => setSelectedService(svc)}
-                    style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#1A1A18', cursor: 'pointer' }}
-                    onMouseEnter={e => { e.currentTarget.querySelector('.svc-overlay').style.opacity = '1'; e.currentTarget.querySelector('.svc-icon').style.transform = 'scale(1.1)' }}
-                    onMouseLeave={e => { e.currentTarget.querySelector('.svc-overlay').style.opacity = '0.85'; e.currentTarget.querySelector('.svc-icon').style.transform = 'scale(1)' }}>
+                    style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', borderTop: '3px solid transparent', cursor: 'pointer', transition: 'border-color 0.3s, box-shadow 0.3s' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderTopColor = S.gold; e.currentTarget.style.boxShadow = '0 12px 40px rgba(201,169,110,0.15)' }}
+                    onMouseLeave={e => { e.currentTarget.style.borderTopColor = 'transparent'; e.currentTarget.style.boxShadow = 'none' }}>
 
-                    <div className="svc-overlay" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #1A1A18 0%, #2a2a26 100%)', opacity: 0.85, transition: 'opacity 0.3s' }} />
-
-                    <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', textAlign: 'center' }}>
-                      <div className="svc-icon" style={{ marginBottom: '1.5rem', transition: 'transform 0.4s ease' }}>{svc.icon}</div>
+                    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', textAlign: 'center' }}>
+                      <div style={{ marginBottom: '1.5rem' }}>{svc.icon}</div>
                       <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.16em', color: S.gold, marginBottom: '0.6rem', textTransform: 'uppercase' }}>{svc.num}</p>
-                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.offwhite, marginBottom: '0.8rem', fontWeight: 400 }}>{svc.title}</h3>
+                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 600 }}>{svc.title}</h3>
                       <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Click to View →</p>
                     </div>
                   </div>
