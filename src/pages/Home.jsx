@@ -275,8 +275,8 @@ export default function Home() {
       {/* ── HERO ── */}
       <section id="hero" style={{ height: '100svh', position: 'relative', overflow: 'hidden' }}>
         {heroSlides.map((s, i) => (
-          <div key={i} style={{ position: 'absolute', inset: 0, backgroundImage: `url(${s.img})`, backgroundSize: 'contain',
-backgroundPosition: s.pos || 'center',backgroundrepeat: 'no-repeat',opacity: slide === i ? 1 : 0, transition: 'opacity 1.4s ease' }}>
+          <div key={i} style={{ position: 'absolute', inset: 0, backgroundImage: `url(${s.img})`, backgroundSize: 'cover',
+backgroundPosition: s.pos || 'center',backgroundRepeat: 'no-repeat',opacity: slide === i ? 1 : 0, transition: 'opacity 1.4s ease' }}>
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.88) 0%, rgba(26,26,24,0.55) 50%, rgba(26,26,24,0.3) 100%)' }} />
           </div>
         ))}
