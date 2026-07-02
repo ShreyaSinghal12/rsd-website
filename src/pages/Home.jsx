@@ -612,22 +612,23 @@ export default function Home() {
             </FadeIn>
 
             <div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
-              {[
-                { type: 'Award', title: 'Pending confirmation', org: '', img: "/images/awardsAndCertificates/Award1.jpeg" },
-                { type: 'Award', title: 'Pending confirmation', org: '', img: "/images/awardsAndCertificates/Award2.jpeg" },
-                { type: 'Award', title: 'Pending confirmation', org: '', img: "/images/awardsAndCertificates/Award1.jpeg" },
-              ].map((item, i) => (
-                <FadeIn key={i} delay={i * 80}>
-                  <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#fff', border: '1px dashed rgba(201,169,110,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '0.6rem' }}>
-                    <div style={{ width: 40, height: 40, borderRadius: '50%', border: `1px solid ${S.gold}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.gold, fontStyle: 'italic' }}>A</span>
-                    </div>
-                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>{item.type}</p>
-                    <p style={{ fontSize: '0.82rem', color: S.sage, fontStyle: 'italic' }}>{item.title}</p>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
+  {[
+    { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award2.jpeg' },
+    { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award3.jpeg' },
+    { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award1.jpeg' },
+  ].map((item, i) => (
+    <FadeIn key={i} delay={i * 80}>
+      <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#fff', border: '1px solid rgba(26,26,24,0.08)' }}>
+        <img src={item.img} alt={item.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.85) 0%, transparent 55%)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.2rem' }}>
+          <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{item.type}</p>
+          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '0.95rem', color: S.offwhite, marginBottom: '0.2rem' }}>{item.title}</p>
+          <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', color: 'rgba(247,244,239,0.7)' }}>{item.org}</p>
+        </div>
+      </div>
+    </FadeIn>
+  ))}
+</div>
           </div>
         </div>
 
