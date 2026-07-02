@@ -275,11 +275,11 @@ export default function Home() {
       {/* ── HERO ── */}
       <section id="hero" style={{ position: 'relative', background: S.offwhite, paddingTop: 68 }}>
         <div style={{ maxWidth: 1400, margin: '0 auto', padding: '1.5rem 2rem' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: '1.5rem', alignItems: 'stretch' }} className="hero-split">
+          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 320px', gap: '1.5rem', alignItems: 'stretch' }} className="hero-split">
 
             {/* Left — Video */}
             <FadeIn>
-              <div style={{ position: 'relative', height: '100%', minHeight: 400, overflow: 'hidden' }}>
+              <div style={{ position: 'relative', height: '581px', minHeight: 500, overflow: 'hidden',width:'100%' }}>
                 <video
                   autoPlay
                   muted
@@ -319,23 +319,23 @@ export default function Home() {
             </FadeIn>
 
             {/* Right — Category cards stacked */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem',position:'relative',zIndex:2 }}>
               {[
-                { num: '01', key: 'residential', label: 'Residential', headline: "You can afford anything. So why does the result so rarely feel like it?", img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/04/The-Unruffled.jpg', route: '/projects/residential' },
-                { num: '02', key: 'commercial', label: 'Builders & Developers', headline: 'Why does the identical project next door keep selling faster?', img: '/images/slides/2ndSlide.jpeg', route: '/projects/builders' },
-                { num: '03', key: 'hospitality', label: 'Hotels & Hospitality', headline: 'How many vendors are you managing just to open one hotel?', img: '/images/slides/3rdSLide.jpeg', route: '/projects/hospitality' },
+                { num: '01', key: 'residential', label: 'Residential', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/04/The-Unruffled.jpg', route: '/projects/residential' },
+                { num: '02', key: 'commercial', label: 'Builders & Developers', img: '/images/slides/2ndSlide.jpeg', route: '/projects/builders' },
+                { num: '03', key: 'hospitality', label: 'Hotels & Hospitality', img: '/images/slides/3rdSLide.jpeg', route: '/projects/hospitality' },
               ].map((cat, i) => (
                 <FadeIn key={cat.key} delay={i * 100}>
-                  <Link to={cat.route} style={{ display: 'block', position: 'relative', height: 128, overflow: 'hidden', textDecoration: 'none' }}
+                  <Link to={cat.route} style={{ display: 'block', position: 'relative', height: 185, overflow: 'hidden', textDecoration: 'none' }}
                     onMouseEnter={e => e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'}
                     onMouseLeave={e => e.currentTarget.querySelector('img').style.transform = 'scale(1)'}>
-                    <img src={cat.img} alt={cat.label} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(26,26,24,0.9) 0%, rgba(26,26,24,0.55) 60%, rgba(26,26,24,0.25) 100%)' }} />
-                    <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '1.5rem' }}>
-                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '0.4rem' }}>{cat.num} —</p>
-                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem' }}>{cat.label}</p>
-                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '0.95rem', color: S.offwhite, lineHeight: 1.35, marginBottom: '0.7rem', maxWidth: 260 }}>{cat.headline}</h3>
-                      <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.gold }}>Explore →</span>
+                    <img src={cat.img} alt={cat.label} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block',objectPosition: 'center',filter: 'brightness(1.4) saturate(1.18) contrast(1.05)', }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(26,26,24,0.70) 0%, rgba(26,26,24,0.40) 60%, rgba(26,26,24,0.17) 100%)' }} />
+                    <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.5rem' }}>
+                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '0.6rem' ,fontWeight:600}}>{cat.num} —</p>
+                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem',fontWeight:600 }}>{cat.label}</p>
+                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '0.95rem', color: S.offwhite, lineHeight: 1.35, marginBottom: '0.7rem', maxWidth: 260,fontweight:600,textShadow: '0 2px 10px rgba(0,0,0,0.6)',}}>{cat.headline}</h3>
+                      <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.gold , fontweight:600,textShadow: '0 1px 6px rgba(0,0,0,0.6)',}}>Explore →</span>
                     </div>
                   </Link>
                 </FadeIn>
@@ -347,7 +347,7 @@ export default function Home() {
       {/* ── STATS ── */}
       <section ref={statsRef} style={{ background: '#F0EBE3', padding: '2.5rem 0' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '2rem', textAlign: 'center' }}>
+          <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: '80% 20%', gap: '0.75rem', alignItems: 'stretch' }}>
             {[
               { num: years, suffix: '+', label: 'Years of Experience' },
               { num: projs, suffix: '+', label: 'Projects Delivered' },
@@ -831,7 +831,7 @@ export default function Home() {
       {/* ── CONTACT ── */}
       <section id="contact" style={{ padding: '3rem 0', background: '#F0EBE3' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
-          <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: '5rem', alignItems: 'start' }}>
+          <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', gap: '5rem', alignItems: 'start' }}>
             <div>
               <FadeIn>
                 <span className="gold-rule" />
@@ -840,7 +840,7 @@ export default function Home() {
                   Feel free to<br /><em>contact us</em> anytime
                 </h2>
               </FadeIn>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '3rem' }}>
                 {contactInfo.map((item, i) => (
                   <FadeIn key={i} delay={i * 80}>
                     <div>
