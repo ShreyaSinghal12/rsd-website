@@ -274,7 +274,7 @@ export default function Home() {
     <>
       {/* ── HERO ── */}
       <section id="hero" style={{ position: 'relative', background: S.ink }}>
-        <div style={{ position: 'relative', height: '58vh', minHeight: 420, overflow: 'hidden', paddingTop: 68 }}>
+        <div style={{ position: 'relative', height: '50vh', minHeight: 380, overflow: 'hidden', paddingTop: 68 }}>
           <img
             src="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg"
             alt="Raamesh Singhal Design"
@@ -316,7 +316,7 @@ export default function Home() {
 
         {/* Curved transition — sits OUTSIDE the overflow:hidden image container */}
         <div style={{ position: 'relative', background: S.ink, lineHeight: 0 }}>
-          <svg viewBox="0 0 1440 100" style={{ display: 'block', width: '100%', height: 70 }} preserveAspectRatio="none">
+          <svg viewBox="0 0 1440 100" style={{ display: 'block', width: '100%', height: 50 }} preserveAspectRatio="none">
             <path d="M0,100 C480,0 960,0 1440,100 L1440,100 L0,100 Z" fill={S.offwhite} />
           </svg>
         </div>
@@ -331,7 +331,7 @@ export default function Home() {
                 { num: '03', key: 'hospitality', label: 'Hotels & Hospitality', headline: 'How many vendors are you managing just to open one hotel?', img: '/images/slides/3rdSLide.jpeg', route: '/projects/hospitality' },
               ].map((cat, i) => (
                 <FadeIn key={cat.key} delay={i * 100}>
-                  <Link to={cat.route} style={{ display: 'block', position: 'relative', aspectRatio: '4/5', overflow: 'hidden', textDecoration: 'none', boxShadow: '0 10px 40px rgba(26,26,24,0.15)' }}
+                  <Link to={cat.route} style={{ display: 'block', position: 'relative', aspectRatio: '4/3', overflow: 'hidden', textDecoration: 'none', boxShadow: '0 10px 40px rgba(26,26,24,0.15)' }}
                     onMouseEnter={e => e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'}
                     onMouseLeave={e => e.currentTarget.querySelector('img').style.transform = 'scale(1)'}>
                     <img src={cat.img} alt={cat.label} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
