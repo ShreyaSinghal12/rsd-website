@@ -292,7 +292,7 @@ export default function Home() {
                 </video>
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(26,26,24,0.15) 0%, rgba(26,26,24,0.6) 100%)' }} />
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '2.5rem' }}>
-                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: S.gold, marginBottom: '1rem' }}>
+                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color:S.gold, marginBottom: '1rem',fontweight:1200 }}>
                     Established 1995 · Siliguri, India
                   </p>
                   <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.5rem,2.8vw,2.2rem)', fontWeight: 400, lineHeight: 1.25, color: S.offwhite, marginBottom: '1.2rem', maxWidth: 520 }}>
@@ -301,7 +301,7 @@ export default function Home() {
                   <div style={{ display: 'flex', gap: '0.9rem', flexWrap: 'wrap' }}>
                     <button
                       onClick={() => document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })}
-                      style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.13em', textTransform: 'uppercase', padding: '0.8rem 1.7rem', background: S.gold, color: S.ink, border: 'none', fontWeight: 500, cursor: 'pointer', transition: 'background 0.3s' }}
+                      style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.13em', textTransform: 'uppercase', padding: '0.8rem 1.7rem', background: S.gold, color: S.ink, border: 'none', fontWeight: 700, cursor: 'pointer', transition: 'background 0.3s' }}
                       onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
                       onMouseLeave={e => e.currentTarget.style.background = S.gold}>
                       View Projects →
