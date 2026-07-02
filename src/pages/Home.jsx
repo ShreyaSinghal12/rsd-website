@@ -6,32 +6,44 @@ import testimonials from '../data/testimonials'
 
 const heroSlides = [
   {
-    img: "/images/slides/1stSlide.jpg",
+    img: "http://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg",
     label: "The Brand Hero",
     headline: "You're not building a space.",
     headlineb: "You're building what people will say about you for the next thirty years.",
     sub: "A single studio, holding the vision from first sketch to final handover, so your legacy is left to no one's chance but ours.",
-    cta: "Residential",
-    ctaAction: "residential",
+    cta: "Begin Your Journey With Us →",
+    ctaAction: "contact",
+    pos: "center center",
   },
-  
   {
-    img: "/images/slides/2ndSlide.jpeg",
+    img: "http://raameshsinghaldesign.com/wp-content/uploads/2023/04/The-Unruffled.jpg",
+    label: "Residential",
+    headline: "You can afford anything.",
+    headlineb: "So why does the result so rarely feel like it?",
+    sub: "The difference was never the budget. It's who holds every decision.",
+    cta: "Explore Residences →",
+    ctaAction: "residential",
+    pos: "center top",
+  },
+  {
+    img: "http://raameshsinghaldesign.com/wp-content/uploads/2023/04/Stunning-Structures-1.jpg",
     label: "Builders & Developers",
     headline: "Why does the identical project next door keep selling faster than yours?",
     headlineb: "",
     sub: "The difference buyers can't name is the difference we design.",
     cta: "For Developers →",
     ctaAction: "commercial",
+    pos: "center 30%",
   },
   {
-    img: "/images/slides/3rdSLide.jpeg",
+    img: "http://raameshsinghaldesign.com/wp-content/uploads/2023/04/Swanky-Suite-1.jpg",
     label: "Hotels & Hospitality",
     headline: "How many vendors are you managing just to open a single hotel?",
     headlineb: "",
     sub: "With us, the answer is one.",
     cta: "Meet The One →",
     ctaAction: "hospitality",
+    pos: "center center",
   },
 ]
 
@@ -276,7 +288,7 @@ export default function Home() {
       <section id="hero" style={{ height: '100svh', position: 'relative', overflow: 'hidden' }}>
         {heroSlides.map((s, i) => (
           <div key={i} style={{ position: 'absolute', inset: 0, backgroundImage: `url(${s.img})`, backgroundSize: 'cover',
-backgroundPosition: 'center',opacity: slide === i ? 1 : 0, transition: 'opacity 1.4s ease' }}>
+backgroundPosition: s.pos || 'center',opacity: slide === i ? 1 : 0, transition: 'opacity 1.4s ease' }}>
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.88) 0%, rgba(26,26,24,0.55) 50%, rgba(26,26,24,0.3) 100%)' }} />
           </div>
         ))}
