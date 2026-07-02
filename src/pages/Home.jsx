@@ -274,7 +274,7 @@ export default function Home() {
     <>
       {/* ── HERO ── */}
       <section id="hero" style={{ position: 'relative', background: S.ink }}>
-        <div style={{ position: 'relative', minHeight: '78vh', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', minHeight: '62vh', overflow: 'hidden' }}>
           <img
             src="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg"
             alt="Raamesh Singhal Design"
@@ -282,13 +282,13 @@ export default function Home() {
           />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(26,26,24,0.92) 0%, rgba(26,26,24,0.55) 55%, rgba(26,26,24,0.15) 100%)' }} />
 
-          <div style={{ position: 'relative', zIndex: 2, maxWidth: 1300, margin: '0 auto', padding: '6rem 2rem 8rem' }}>
+          <div style={{ position: 'relative', zIndex: 2, maxWidth: 1300, margin: '0 auto', padding: '4rem 2rem 5.5rem' }}>
             <FadeIn>
               <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                 <span style={{ width: 24, height: 1, background: S.gold, display: 'inline-block' }} />
                 Established 1995 · Siliguri, India
               </p>
-              <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2rem,4.5vw,3.4rem)', fontWeight: 400, lineHeight: 1.2, color: S.offwhite, marginBottom: '1.3rem', maxWidth: 600 }}>
+              <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 400, lineHeight: 1.25, color: S.offwhite, marginBottom: '1.2rem', maxWidth: 520 }}>
                 You're not building a space.<br />You're building what people will say about you for the next thirty years.
               </h1>
               <p style={{ fontSize: 'clamp(0.9rem,2vw,1rem)', color: 'rgba(247,244,239,0.82)', maxWidth: 480, marginBottom: '2.2rem', lineHeight: 1.75 }}>
