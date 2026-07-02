@@ -14,7 +14,7 @@ const heroSlides = [
     cta: "Residential",
     ctaAction: "residential",
   },
-  
+
   {
     img: "/images/slides/2ndSlide.jpeg",
     label: "Builders & Developers",
@@ -273,52 +273,101 @@ export default function Home() {
   return (
     <>
       {/* ── HERO ── */}
-      <section id="hero" style={{ height: '100svh', position: 'relative', overflow: 'hidden' }}>
-        {heroSlides.map((s, i) => (
-          <div key={i} style={{ position: 'absolute', inset: 0, backgroundImage: `url(${s.img})`, backgroundSize: 'cover',
-backgroundPosition: s.pos || 'center',backgroundRepeat: 'no-repeat',opacity: slide === i ? 1 : 0, transition: 'opacity 1.4s ease' }}>
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.88) 0%, rgba(26,26,24,0.55) 50%, rgba(26,26,24,0.3) 100%)' }} />
+      <section id="hero" style={{ position: 'relative' }}>
+        <div style={{ height: '85vh', minHeight: 560, position: 'relative', overflow: 'hidden' }}>
+          {/* Swap this img tag for a <video> later — see note below */}
+          <img
+            src="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg"
+            alt="Raamesh Singhal Design"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(26,26,24,0.55) 0%, rgba(26,26,24,0.35) 45%, rgba(26,26,24,0.75) 100%)' }} />
+
+          <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', maxWidth: 1300, margin: '0 auto', padding: '0 2rem' }}>
+            <FadeIn>
+              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.2rem' }}>
+                Established 1995 · Siliguri, India
+              </p>
+              <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2.2rem,5.5vw,4.2rem)', fontWeight: 400, lineHeight: 1.1, color: S.offwhite, marginBottom: '1.2rem', maxWidth: 720 }}>
+                Spaces Designed<br />to Outlast Trends.
+              </h1>
+              <p style={{ fontSize: 'clamp(0.9rem,2vw,1.05rem)', color: 'rgba(255,255,255,0.85)', maxWidth: 520, marginBottom: '2.2rem', lineHeight: 1.75 }}>
+                Architecture, interiors, and turnkey execution — one studio, one team, one name accountable for every decision.
+              </p>
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                <button
+                  onClick={() => document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })}
+                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.95rem 2.2rem', background: S.gold, color: S.ink, border: 'none', fontWeight: 500, cursor: 'pointer', transition: 'background 0.3s' }}
+                  onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
+                  onMouseLeave={e => e.currentTarget.style.background = S.gold}>
+                  View Projects
+                </button>
+                <button
+                  onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.95rem 2.2rem', background: 'transparent', color: S.offwhite, border: '1px solid rgba(247,244,239,0.5)', cursor: 'pointer', transition: 'all 0.3s' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.color = S.gold }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(247,244,239,0.5)'; e.currentTarget.style.color = S.offwhite }}>
+                  Book Consultation
+                </button>
+              </div>
+            </FadeIn>
           </div>
-        ))}
-        <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 'clamp(0px,5vw,2.5rem) clamp(1rem,5vw,2.5rem) clamp(2rem,6vw,3.5rem)' }}>
-          <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ display: 'block', width: 36, height: 1, background: S.gold }} />
-            Established 1995 &nbsp;·&nbsp; Siliguri, India
-          </p>
-          <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.5rem,3.5vw,2.8rem)', fontWeight: 400, lineHeight: 1.2, color: S.offwhite, marginBottom: '1rem', maxWidth: 680 }}>
-            {heroSlides[slide].headline}
-            {heroSlides[slide].headlineb && (
-              <><br /><em style={{ fontStyle: 'italic', color: S.stone }}>{heroSlides[slide].headlineb}</em></>
-            )}
-          </h1>
-          <p style={{ fontSize: 'clamp(0.85rem,2vw,1rem)', color: 'rgba(255,255,255,0.88)', maxWidth: 560, marginBottom: '2.5rem', lineHeight: 1.75 }}>
-            {heroSlides[slide].sub}
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+        </div>
+
+        {/* Overlapping category cards */}
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem', position: 'relative', zIndex: 3, marginTop: '-4.5rem' }}>
+          <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
+            {[
+              { key: 'residential', label: 'Residential', desc: 'Homes that hold their value.', route: '/projects/residential', icon: <svg viewBox="0 0 36 36" fill="none" stroke={S.gold} strokeWidth="1.2" width="26" height="26"><path d="M4 30 V14 L18 4 L32 14 V30" /><rect x="13" y="20" width="10" height="10" /></svg> },
+              { key: 'hospitality', label: 'Hotels & Hospitality', desc: 'Experiences guests remember.', route: '/projects/hospitality', icon: <svg viewBox="0 0 36 36" fill="none" stroke={S.gold} strokeWidth="1.2" width="26" height="26"><circle cx="18" cy="14" r="6" /><path d="M6 30 Q18 20 30 30" /></svg> },
+              { key: 'commercial', label: 'Builders & Developers', desc: 'Projects that sell themselves.', route: '/projects/builders', icon: <svg viewBox="0 0 36 36" fill="none" stroke={S.gold} strokeWidth="1.2" width="26" height="26"><rect x="4" y="10" width="28" height="22" /><rect x="10" y="4" width="16" height="6" /></svg> },
+            ].map((cat, i) => (
+              <FadeIn key={cat.key} delay={i * 100}>
+                <Link to={cat.route} style={{ display: 'block', background: '#fff', padding: '2rem', textDecoration: 'none', boxShadow: '0 10px 40px rgba(26,26,24,0.1)', transition: 'transform 0.3s, box-shadow 0.3s' }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 16px 50px rgba(26,26,24,0.16)' }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 10px 40px rgba(26,26,24,0.1)' }}>
+                  <div style={{ marginBottom: '1rem' }}>{cat.icon}</div>
+                  <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.2rem', color: S.ink, marginBottom: '0.5rem', fontWeight: 600 }}>{cat.label}</h3>
+                  <p style={{ fontSize: '0.85rem', color: S.mid, marginBottom: '1rem' }}>{cat.desc}</p>
+                  <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>View Projects →</span>
+                </Link>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+      {/* ── ABOUT PREVIEW ── */}
+      <section style={{ background: S.offwhite, padding: '6rem 2rem 3rem' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }} className="about-grid">
+          <FadeIn>
+            <img src="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-13-1024x767.jpg" alt="About RSD" loading="lazy" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }} />
+          </FadeIn>
+          <FadeIn delay={150}>
+            <p style={LABEL_STYLE}>About Us</p>
+            <h2 style={{ ...H2_STYLE, marginBottom: '1.2rem' }}>
+              30 Years of Turning<br /><em>Space into Legacy</em>
+            </h2>
+            <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, marginBottom: '2rem', maxWidth: 480 }}>
+              Since 1995, Raamesh Singhal Design has brought architecture, interiors, and execution together under one roof — so nothing falls through the gaps between firms.
+            </p>
             <button
-              onClick={() => {
-                if (heroSlides[slide].ctaAction === 'contact') {
-                  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })
-                } else {
-                  setFilter(heroSlides[slide].ctaAction)
-                  document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })
-                }
-              }}
-              style={{ fontFamily: "'DM Mono',monospace", fontSize: 'clamp(0.68rem,2vw,0.78rem)', letterSpacing: '0.14em', textTransform: 'uppercase', padding: 'clamp(0.7rem,2vw,0.9rem) clamp(1.4rem,3vw,2.2rem)', background: S.gold, color: S.ink, border: 'none', fontWeight: 500, transition: 'background 0.3s', cursor: 'pointer' }}
+              onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}
+              style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.9rem 2.2rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s' }}
               onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
               onMouseLeave={e => e.currentTarget.style.background = S.gold}>
-              {heroSlides[slide].cta}
+              Learn More About Us
             </button>
-          </div>
-        </div>
-        <div style={{ position: 'absolute', right: '1.5rem', bottom: '3rem', zIndex: 3, display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {heroSlides.map((_, i) => (
-            <button key={i} onClick={() => goToSlide(i)}
-              style={{ width: 6, height: 6, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, background: slide === i ? S.gold : 'rgba(232,224,208,0.35)', transform: slide === i ? 'scale(1.4)' : 'scale(1)', transition: 'all 2.3s' }} />
-          ))}
-        </div>
-        <div style={{ position: 'absolute', left: '1.5rem', bottom: '3rem', zIndex: 3, fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.15em', color: 'rgba(232,224,208,0.5)' }}>
-          0{slide + 1} / 0{heroSlides.length}
+            <div style={{ display: 'flex', gap: '2rem', marginTop: '2.5rem' }}>
+              <div>
+                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '0.3rem' }}>✓ TRUSTED EXPERIENCE</p>
+                <p style={{ fontSize: '0.82rem', color: S.mid }}>30+ years, 500+ projects delivered.</p>
+              </div>
+              <div>
+                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '0.3rem' }}>✓ PREMIUM QUALITY</p>
+                <p style={{ fontSize: '0.82rem', color: S.mid }}>One team, complete accountability.</p>
+              </div>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
