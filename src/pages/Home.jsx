@@ -274,7 +274,7 @@ export default function Home() {
     <>
       {/* ── HERO ── */}
       <section id="hero" style={{ position: 'relative', background: S.ink }}>
-        <div style={{ position: 'relative', minHeight: '52vh', overflow: 'hidden', paddingTop: 68 }}>
+        <div style={{ position: 'relative', height: '58vh', minHeight: 420, overflow: 'hidden', paddingTop: 68 }}>
           <img
             src="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg"
             alt="Raamesh Singhal Design"
@@ -282,29 +282,29 @@ export default function Home() {
           />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(26,26,24,0.92) 0%, rgba(26,26,24,0.55) 55%, rgba(26,26,24,0.15) 100%)' }} />
 
-          <div style={{ position: 'relative', zIndex: 2, maxWidth: 1300, margin: '0 auto', padding: '2.5rem 2rem 4rem' }}>
+          <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', maxWidth: 1300, margin: '0 auto', padding: '0 2rem' }}>
             <FadeIn>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
                 <span style={{ width: 24, height: 1, background: S.gold, display: 'inline-block' }} />
                 Established 1995 · Siliguri, India
               </p>
-              <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.3rem,2.4vw,1.9rem)', fontWeight: 400, lineHeight: 1.25, color: S.offwhite, marginBottom: '1.2rem', maxWidth: 520 }}>
+              <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.3rem,2.4vw,1.9rem)', fontWeight: 400, lineHeight: 1.25, color: S.offwhite, marginBottom: '0.9rem', maxWidth: 520 }}>
                 You're not building a space.<br />You're building what people will say about you for the next thirty years.
               </h1>
-              <p style={{ fontSize: 'clamp(0.9rem,2vw,1rem)', color: 'rgba(247,244,239,0.82)', maxWidth: 480, marginBottom: '1.4rem', lineHeight: 1.75 }}>
+              <p style={{ fontSize: 'clamp(0.82rem,1.6vw,0.92rem)', color: 'rgba(247,244,239,0.82)', maxWidth: 460, marginBottom: '1.4rem', lineHeight: 1.6 }}>
                 A single studio, holding the vision from first sketch to final handover, so your legacy is left to no one's chance but ours.
               </p>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '0.9rem', flexWrap: 'wrap' }}>
                 <button
                   onClick={() => document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })}
-                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.73rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.9rem 2rem', background: S.gold, color: S.ink, border: 'none', fontWeight: 500, cursor: 'pointer', transition: 'background 0.3s' }}
+                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.13em', textTransform: 'uppercase', padding: '0.8rem 1.7rem', background: S.gold, color: S.ink, border: 'none', fontWeight: 500, cursor: 'pointer', transition: 'background 0.3s' }}
                   onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
                   onMouseLeave={e => e.currentTarget.style.background = S.gold}>
                   View Projects →
                 </button>
                 <button
                   onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.73rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.9rem 2rem', background: 'transparent', color: S.offwhite, border: '1px solid rgba(247,244,239,0.5)', cursor: 'pointer', transition: 'all 0.3s' }}
+                  style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.13em', textTransform: 'uppercase', padding: '0.8rem 1.7rem', background: 'transparent', color: S.offwhite, border: '1px solid rgba(247,244,239,0.5)', cursor: 'pointer', transition: 'all 0.3s' }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.color = S.gold }}
                   onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(247,244,239,0.5)'; e.currentTarget.style.color = S.offwhite }}>
                   Book Consultation →
@@ -314,14 +314,16 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Curved transition */}
-        <svg viewBox="0 0 1440 80" style={{ display: 'block', width: '100%', height: 60, marginTop: -1 }} preserveAspectRatio="none">
-          <path d="M0,80 C480,0 960,0 1440,80 L1440,80 L0,80 Z" fill={S.offwhite} />
-        </svg>
+        {/* Curved transition — sits OUTSIDE the overflow:hidden image container */}
+        <div style={{ position: 'relative', background: S.ink, lineHeight: 0 }}>
+          <svg viewBox="0 0 1440 100" style={{ display: 'block', width: '100%', height: 70 }} preserveAspectRatio="none">
+            <path d="M0,100 C480,0 960,0 1440,100 L1440,100 L0,100 Z" fill={S.offwhite} />
+          </svg>
+        </div>
 
         {/* Category cards */}
-        <div style={{ background: S.offwhite, marginTop: '-3.5rem', position: 'relative', zIndex: 3 }}>
-          <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem 2rem' }}>
+        <div style={{ background: S.offwhite, paddingTop: '1rem' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem 3rem' }}>
             <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
               {[
                 { num: '01', key: 'residential', label: 'The Brand Hero', headline: "You're not building a space.", img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg', route: '/projects/residential' },
@@ -347,41 +349,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* ── ABOUT PREVIEW ── */}
-      <section style={{ background: S.offwhite, padding: '6rem 2rem 3rem' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'center' }} className="about-grid">
-          <FadeIn>
-            <img src="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-13-1024x767.jpg" alt="About RSD" loading="lazy" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }} />
-          </FadeIn>
-          <FadeIn delay={150}>
-            <p style={LABEL_STYLE}>About Us</p>
-            <h2 style={{ ...H2_STYLE, marginBottom: '1.2rem' }}>
-              30 Years of Turning<br /><em>Space into Legacy</em>
-            </h2>
-            <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, marginBottom: '2rem', maxWidth: 480 }}>
-              Since 1995, Raamesh Singhal Design has brought architecture, interiors, and execution together under one roof — so nothing falls through the gaps between firms.
-            </p>
-            <button
-              onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}
-              style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.9rem 2.2rem', background: S.gold, color: S.ink, border: 'none', cursor: 'pointer', transition: 'background 0.3s' }}
-              onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
-              onMouseLeave={e => e.currentTarget.style.background = S.gold}>
-              Learn More About Us
-            </button>
-            <div style={{ display: 'flex', gap: '2rem', marginTop: '2.5rem' }}>
-              <div>
-                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '0.3rem' }}>✓ TRUSTED EXPERIENCE</p>
-                <p style={{ fontSize: '0.82rem', color: S.mid }}>30+ years, 500+ projects delivered.</p>
-              </div>
-              <div>
-                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '0.3rem' }}>✓ PREMIUM QUALITY</p>
-                <p style={{ fontSize: '0.82rem', color: S.mid }}>One team, complete accountability.</p>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
       {/* ── STATS ── */}
       <section ref={statsRef} style={{ background: '#F0EBE3', padding: '2.5rem 0' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
