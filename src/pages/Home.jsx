@@ -619,7 +619,7 @@ export default function Home() {
   ].map((item, i) => (
     <FadeIn key={i} delay={i * 80}>
       <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#fff', border: '1px solid rgba(26,26,24,0.08)' }}>
-        <img src={item.img} alt={item.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+        <img src={item.img} alt={item.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', background: '#F0EBE3' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.85) 0%, transparent 55%)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.2rem' }}>
           <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{item.type}</p>
           <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '0.95rem', color: S.offwhite, marginBottom: '0.2rem' }}>{item.title}</p>
