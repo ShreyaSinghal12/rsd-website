@@ -613,9 +613,9 @@ export default function Home() {
 
             <div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
               {[
-                { type: 'Award', title: 'Pending confirmation', org: '', img: null },
-                { type: 'Award', title: 'Pending confirmation', org: '', img: null },
-                { type: 'Award', title: 'Pending confirmation', org: '', img: null },
+                { type: 'Award', title: 'Pending confirmation', org: '', img: "/images/awardsAndCertificates/Award1.jpeg" },
+                { type: 'Award', title: 'Pending confirmation', org: '', img: "/images/awardsAndCertificates/Award2.jpeg" },
+                { type: 'Award', title: 'Pending confirmation', org: '', img: "/images/awardsAndCertificates/Award1.jpeg" },
               ].map((item, i) => (
                 <FadeIn key={i} delay={i * 80}>
                   <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#fff', border: '1px dashed rgba(201,169,110,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '0.6rem' }}>
