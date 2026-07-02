@@ -97,3 +97,8 @@ div[style*="overflowX: auto"]::-webkit-scrollbar {
     gap: 2.5rem !important;
   }
 }
+@media (max-width: 900px) {
+  .hero-split {
+    grid-template-columns: 1fr !important;
+  }
+}
