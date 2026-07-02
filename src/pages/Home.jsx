@@ -702,16 +702,14 @@ export default function Home() {
                 <FadeIn key={i} delay={i * 80}>
                   <div
                     onClick={() => setSelectedService(svc)}
-                    style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#1A1A18', cursor: 'pointer' }}
-                    onMouseEnter={e => { e.currentTarget.querySelector('.svc-overlay').style.opacity = '1'; e.currentTarget.querySelector('.svc-icon').style.transform = 'scale(1.1)' }}
-                    onMouseLeave={e => { e.currentTarget.querySelector('.svc-overlay').style.opacity = '0.85'; e.currentTarget.querySelector('.svc-icon').style.transform = 'scale(1)' }}>
+                    style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', borderTop: '3px solid transparent', cursor: 'pointer', transition: 'border-color 0.3s, box-shadow 0.3s' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderTopColor = S.gold; e.currentTarget.style.boxShadow = '0 12px 40px rgba(201,169,110,0.15)' }}
+                    onMouseLeave={e => { e.currentTarget.style.borderTopColor = 'transparent'; e.currentTarget.style.boxShadow = 'none' }}>
 
-                    <div className="svc-overlay" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #1A1A18 0%, #2a2a26 100%)', opacity: 0.85, transition: 'opacity 0.3s' }} />
-
-                    <div style={{ position: 'relative', zIndex: 1, height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', textAlign: 'center' }}>
-                      <div className="svc-icon" style={{ marginBottom: '1.5rem', transition: 'transform 0.4s ease' }}>{svc.icon}</div>
+                    <div style={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', textAlign: 'center' }}>
+                      <div style={{ marginBottom: '1.5rem' }}>{svc.icon}</div>
                       <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.16em', color: S.gold, marginBottom: '0.6rem', textTransform: 'uppercase' }}>{svc.num}</p>
-                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.offwhite, marginBottom: '0.8rem', fontWeight: 400 }}>{svc.title}</h3>
+                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.ink, marginBottom: '0.8rem', fontWeight: 600 }}>{svc.title}</h3>
                       <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Click to View →</p>
                     </div>
                   </div>
