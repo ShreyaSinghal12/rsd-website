@@ -386,18 +386,7 @@ export default function Home() {
         <div style={{ padding: '3rem 2rem', background: S.offwhite }}>
           <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }} className="about-grid">
             <FadeIn>
-              <div style={{ position: 'relative', height: '581px', minHeight: 500, overflow: 'hidden', width: '100%' }}>
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                  poster="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                >
-                  <source src="/videos/hero.mp4" type="video/mp4" />
-                </video>
+              <FadeIn>
                 <div style={{ position: 'relative', height: '581px', minHeight: 500, overflow: 'hidden', width: '100%' }}>
                   <video
                     autoPlay
@@ -421,47 +410,47 @@ export default function Home() {
                   </div>
 
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(26,26,24,0.15) 0%, rgba(26,26,24,0.6) 100%)' }} />
-                
                   <div style={{ position: 'absolute', bottom: '-1.2rem', right: '-1.2rem', width: '65%', height: '65%', border: '1px solid #C9A96E', zIndex: -1 }} />
                   <div style={{ position: 'absolute', top: '1.5rem', left: '-1.5rem', background: S.ink, padding: '1.2rem 1.6rem', textAlign: 'center' }}>
                     <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, lineHeight: 1 }}>30+</div>
                     <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.sage, marginTop: '0.3rem' }}>Years</div>
                   </div>
                 </div>
-            </FadeIn>
-            <FadeIn delay={150}>
-              <span className="gold-rule" />
-              <p style={LABEL_STYLE}>Who We Are</p>
-              <h2 style={{ ...H2_STYLE, marginBottom: '0.8rem' }}>
-                One studio. One standard.<br /><em>One name on every decision.</em>
-              </h2>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '1.5rem', textTransform: 'uppercase' }}>About Raamesh Singhal Design</p>
-              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, marginBottom: '1rem' }}>
-                Since 1995, Raamesh Singhal Design has been creating spaces where design, functionality, and human experience come together. Founded on the belief that exceptional spaces require a complete vision — not disconnected solutions — we bring architecture, interiors, planning, procurement, and execution together under one roof.
-              </p>
-              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, marginBottom: '1rem' }}>
-                From our studio in Siliguri, we have designed and delivered luxury residences, hospitality spaces, and large-scale developments across Siliguri, Sikkim, Nepal, Bhutan, and Assam — creating spaces that are thoughtfully planned, carefully executed, and built to last.
-              </p>
-              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85 }}>
-                Every project we undertake carries one commitment: a single vision, a single standard, and complete ownership from concept to completion.
-              </p>
-              <div style={{ display: 'flex', gap: '2rem', marginTop: '2rem', flexWrap: 'wrap' }}>
-                <div>
-                  <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold }}>500+</div>
-                  <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid }}>Projects Delivered</div>
+              </FadeIn>
+              <FadeIn delay={150}>
+                <span className="gold-rule" />
+                <p style={LABEL_STYLE}>Who We Are</p>
+                <h2 style={{ ...H2_STYLE, marginBottom: '0.8rem' }}>
+                  One studio. One standard.<br /><em>One name on every decision.</em>
+                </h2>
+                <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.72rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '1.5rem', textTransform: 'uppercase' }}>About Raamesh Singhal Design</p>
+                <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, marginBottom: '1rem' }}>
+                  Since 1995, Raamesh Singhal Design has been creating spaces where design, functionality, and human experience come together. Founded on the belief that exceptional spaces require a complete vision — not disconnected solutions — we bring architecture, interiors, planning, procurement, and execution together under one roof.
+                </p>
+                <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, marginBottom: '1rem' }}>
+                  From our studio in Siliguri, we have designed and delivered luxury residences, hospitality spaces, and large-scale developments across Siliguri, Sikkim, Nepal, Bhutan, and Assam — creating spaces that are thoughtfully planned, carefully executed, and built to last.
+                </p>
+                <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85 }}>
+                  Every project we undertake carries one commitment: a single vision, a single standard, and complete ownership from concept to completion.
+                </p>
+                <div style={{ display: 'flex', gap: '2rem', marginTop: '2rem', flexWrap: 'wrap' }}>
+                  <div>
+                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold }}>500+</div>
+                    <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid }}>Projects Delivered</div>
+                  </div>
+                  <div style={{ width: 1, background: 'rgba(26,26,24,0.1)' }} />
+                  <div>
+                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold }}>5</div>
+                    <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid }}>States & Countries</div>
+                  </div>
+                  <div style={{ width: 1, background: 'rgba(26,26,24,0.1)' }} />
+                  <div>
+                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold }}>1995</div>
+                    <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid }}>Established</div>
+                  </div>
                 </div>
-                <div style={{ width: 1, background: 'rgba(26,26,24,0.1)' }} />
-                <div>
-                  <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold }}>5</div>
-                  <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid }}>States & Countries</div>
-                </div>
-                <div style={{ width: 1, background: 'rgba(26,26,24,0.1)' }} />
-                <div>
-                  <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold }}>1995</div>
-                  <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.mid }}>Established</div>
-                </div>
-              </div>
-            </FadeIn>
+              </FadeIn>
+              </FadeIn>
           </div>
         </div>
 
