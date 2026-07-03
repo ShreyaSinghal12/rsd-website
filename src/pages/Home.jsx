@@ -365,8 +365,8 @@ export default function Home() {
             <FadeIn>
               <div style={{ position: 'relative' }}>
                 <div style={{ position: 'relative', height: '581px', minHeight: 500, overflow: 'hidden', width: '100%' }}>
-                  <video autoPlay muted loop playsInline preload="auto" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', backgroundColor: '#1A1A18' }}>
-                    <source src="/videos/hero.mp4" type="video/mp4" />
+                  <video muted autoPlay loop playsInline preload="auto" width="100%" height="100%" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', backgroundColor: '#1A1A18' }}>
+                    <source src="/videos/OfficeVideos.mp4" type="video/mp4" />
                   </video>
 
                   {/* Watermark — bottom right, inside frame */}
