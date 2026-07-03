@@ -777,7 +777,7 @@ export default function Home() {
                 <FadeIn key={i} delay={i * 100}>
                   <div
                     onClick={() => setSelectedVideo(v)}
-                    style={{ position: 'relative', aspectRatio: '9/16', cursor: 'pointer', overflow: 'hidden', background: S.ink }}
+                    style={{ position: 'relative', aspectRatio: '16/9', cursor: 'pointer', overflow: 'hidden', background: S.ink }}
                     onMouseEnter={e => e.currentTarget.querySelector('.play-btn').style.transform = 'scale(1.1)'}
                     onMouseLeave={e => e.currentTarget.querySelector('.play-btn').style.transform = 'scale(1)'}>
                     <video src={v.video} muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
@@ -1011,7 +1011,7 @@ export default function Home() {
         <div onClick={() => setSelectedVideo(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(26,26,24,0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(6px)' }}>
           <div onClick={e => e.stopPropagation()} style={{ position: 'relative', maxWidth: 420, width: '100%' }}>
             <button onClick={() => setSelectedVideo(null)} style={{ position: 'absolute', top: '-3rem', right: 0, width: 36, height: 36, background: 'rgba(255,255,255,0.15)', border: 'none', cursor: 'pointer', color: '#fff', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10005;</button>
-            <video src={selectedVideo.video} controls autoPlay playsInline style={{ width: '100%', aspectRatio: '9/16', display: 'block', background: '#000' }} />
+            <video src={selectedVideo.video} controls autoPlay playsInline style={{ width: '100%', aspectRatio: '16/9', display: 'block', background: '#000' }} />
             <div style={{ padding: '1rem 0', textAlign: 'center' }}>
               <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.offwhite }}>{selectedVideo.name}</p>
               <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: S.gold, marginTop: '0.3rem' }}>{selectedVideo.role}</p>
