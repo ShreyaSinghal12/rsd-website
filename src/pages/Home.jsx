@@ -484,7 +484,7 @@ export default function Home() {
             <div style={{ display: 'grid', gridTemplateColumns: '340px 1fr', gap: '2rem', alignItems: 'center', padding: '3rem 0' }} className="book-grid">
               <FadeIn delay={100}>
                 <div style={{ position: 'relative' }}>
-                  <div style={{ position: 'absolute', top: '1.2rem', left: '-1.2rem', width: '100%', height: '100%', border: `1px solid ${S.gold}`, zIndex: -1 }} />
+                  <div style={{ position: 'absolute', top: '1.2rem', left: '-1.2rem', width: '100%', height: '100%',  zIndex: -1 }} />
                   <img
                     src="/images/book/book_image.png"
                     alt="Why Luxury Homes Don't Sell by Ramesh Singhal"
