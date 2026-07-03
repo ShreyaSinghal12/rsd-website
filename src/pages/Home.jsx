@@ -651,15 +651,19 @@ export default function Home() {
 
             <div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
               {[
-                { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award2.jpeg' },
-                { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award3.jpeg' },
-                { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award1.jpeg' },
-                { type: 'Certificate', title: 'Certificate Name Here', org: 'Issuing Body — Year', img: '/images/awardsAndCertificates/Certificate1.jpeg' },
-                { type: 'Certificate', title: 'Certificate Name Here', org: 'Issuing Body — Year', img: '/images/awardsAndCertificates/Certificate2.jpeg' },
-                { type: 'Certificate', title: 'Certificate Name Here', org: 'Issuing Body — Year', img: '/images/awardsAndCertificates/Certificate3.jpeg' },
+                { type: 'Award', title: 'The Keystone Architecture & Design Award', org: 'World Architecture & Design Forum — 2017', desc: "An international honor recognizing sustained excellence in architecture and design. Awarded to RSD nearly two decades into practice, it stands as outside confirmation of what the firm's clients had long experienced.", img: '/images/awardsAndCertificates/Award1.jpeg' },
+                { type: 'Award', title: 'The Horizon Luxury Living Award', org: 'International Council for Lifestyle Development — 2019', desc: 'Recognition for spaces designed around how people actually live in them. The Horizon honors work where luxury is measured not in finishes alone, but in the ease and comfort of the life a home makes possible.', img: '/images/awardsAndCertificates/Award2.jpeg' },
+                { type: 'Award', title: 'The Pillar, Project Execution Excellence', org: 'Global Project Delivery Institute — 2021', desc: 'An honor for execution discipline at scale. Timelines held, quality controlled, handovers met. Recognition of the project management systems RSD brings to every build, from private residences to large developments.', img: '/images/awardsAndCertificates/Award3.jpeg' },
+                { type: 'Certificate', title: 'Invited Speaker, India Interior Retailing Conclave', org: 'East & North-East India, Kolkata — 2026', desc: 'Invited to speak at the India Interior Retailing Conclave, sharing insights on design practice and execution with industry peers across East and North-East India.', img: '/images/awardsAndCertificates/Certificate1.jpeg' },
+                { type: 'Certificate', title: 'Contribution to NatzuraWoods Veneer Collection', org: 'Century Plyboards, AID Conclave 2.0 — 2025', desc: 'Recognized by Century Plyboards for contribution to the NatzuraWoods veneer collection at AID Conclave 2.0.', img: '/images/awardsAndCertificates/Certificate2.jpeg' },
+                { type: 'Certificate', title: 'Long Standing Partnership Award', org: 'Sonear Veneers — 2018', desc: 'Recognized by Sonear Veneers with the Long Standing Partnership Award for sustained collaboration.', img: '/images/awardsAndCertificates/Certificate3.jpeg' },
+                { type: 'Certificate', title: 'MahaVastu Certification', org: 'MahaVastu — 2021', desc: 'Certified in MahaVastu, integrating Vastu principles directly into spatial planning and design.', img: '/images/awardsAndCertificates/Certificate4.jpeg' },
+                { type: 'Certificate', title: 'MahaVastu Expert Certification', org: 'MahaVastu — 2020–21', desc: 'Certified MahaVastu Expert, with completed advanced coursework in Astro-MahaVastu remedies.', img: '/images/awardsAndCertificates/Certificate5.jpeg' },
               ].map((item, i) => (
                 <FadeIn key={i} delay={i * 80}>
-                  <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#fff', border: '1px solid rgba(26,26,24,0.08)' }}>
+                  <div
+                    onClick={() => setSelectedPress(item)}
+                    style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#fff', border: '1px solid rgba(26,26,24,0.08)', cursor: 'pointer' }}>
                     <img src={item.img} alt={item.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', background: '#F0EBE3' }} />
                     <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.85) 0%, transparent 55%)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.2rem' }}>
                       <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.3rem' }}>{item.type}</p>
