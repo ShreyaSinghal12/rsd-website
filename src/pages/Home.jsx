@@ -486,7 +486,7 @@ export default function Home() {
                 <div style={{ position: 'relative' }}>
                   <div style={{ position: 'absolute', top: '1.2rem', left: '-1.2rem', width: '100%', height: '100%', border: `1px solid ${S.gold}`, zIndex: -1 }} />
                   <img
-                    src="/images/book/book_image.jpeg"
+                    src="/images/book/book_image.png"
                     alt="Why Luxury Homes Don't Sell by Ramesh Singhal"
                     loading="lazy"
                     style={{ width: '100%', display: 'block', boxShadow: '0 25px 50px rgba(26,26,24,0.25)' }}
