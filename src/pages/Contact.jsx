@@ -1,18 +1,5 @@
 import { useState } from 'react'
-import { useInView } from 'react-intersection-observer'
-
-function FadeIn({ children, delay = 0 }) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
-  return (
-    <div ref={ref} style={{
-      opacity: inView ? 1 : 0,
-      transform: inView ? 'translateY(0)' : 'translateY(24px)',
-      transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
-    }}>
-      {children}
-    </div>
-  )
-}
+import FadeIn from '../components/Reveal'
 
 const S = {
   gold:     '#C9A96E',

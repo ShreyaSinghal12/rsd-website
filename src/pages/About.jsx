@@ -1,18 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useInView } from 'react-intersection-observer'
-
-function FadeIn({ children, delay = 0, className = '' }) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
-  return (
-    <div ref={ref} className={className} style={{
-      opacity: inView ? 1 : 0,
-      transform: inView ? 'translateY(0)' : 'translateY(28px)',
-      transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
-    }}>
-      {children}
-    </div>
-  )
-}
+import FadeIn from '../components/Reveal'
 
 const whyUs = [
   { num: '01', title: 'Experience',        desc: 'With over 27+ years of experience, Raamesh Singhal Designs is at the pinnacle of the designing sector in North East India.' },

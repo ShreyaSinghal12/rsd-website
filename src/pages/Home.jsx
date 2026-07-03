@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { useInView } from 'react-intersection-observer'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import FadeIn from '../components/Reveal'
+import Magnetic from '../components/Magnetic'
 import projects from '../data/projects'
 import testimonials from '../data/testimonials'
 
@@ -181,15 +184,6 @@ function SectionDivider({ label, bg = '#F7F4EF' }) {
   )
 }
 
-function FadeIn({ children, delay = 0 }) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
-  return (
-    <div ref={ref} style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(28px)', transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms` }}>
-      {children}
-    </div>
-  )
-}
-
 function useCounter(target, inView) {
   const [count, setCount] = useState(0)
   useEffect(() => {
@@ -222,6 +216,9 @@ export default function Home() {
   const [selectedService, setSelectedService] = useState(null)
   const [selectedPress, setSelectedPress] = useState(null)
   const intervalRef = useRef(null)
+  const heroRef = useRef(null)
+  const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
+  const heroVideoScale = useTransform(heroProgress, [0, 1], [1, 1.15])
 
   const set = (key) => (e) => setForm(f => ({ ...f, [key]: e.target.value }))
   const focusField = (k) => setFocused(f => ({ ...f, [k]: true }))
@@ -273,23 +270,23 @@ export default function Home() {
   return (
     <>
       {/* ── HERO ── */}
-      <section id="hero" style={{ position: 'relative', background: S.offwhite, paddingTop: 68 }}>
+      <section id="hero" ref={heroRef} style={{ position: 'relative', background: S.offwhite, paddingTop: 68 }}>
         <div style={{ maxWidth: 1400, margin: '0 auto', padding: '1.5rem 2rem' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 320px', gap: '1.5rem', alignItems: 'stretch' }} className="hero-split">
 
             {/* Left — Video */}
             <FadeIn>
               <div style={{ position: 'relative', height: '581px', minHeight: 500, overflow: 'hidden',width:'100%' }}>
-                <video
+                <motion.video
                   autoPlay
                   muted
                   loop
                   playsInline
                   poster="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', scale: heroVideoScale }}
                 >
                   <source src="/videos/hero.mp4" type="video/mp4" />
-                </video>
+                </motion.video>
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(26,26,24,0.15) 0%, rgba(26,26,24,0.6) 100%)' }} />
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '2.5rem' }}>
                   <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color:S.gold, marginBottom: '1rem',fontweight:1200 }}>
@@ -299,20 +296,24 @@ export default function Home() {
                     You're not building a space. You're building what people will say about you for the next thirty years.
                   </h1>
                   <div style={{ display: 'flex', gap: '0.9rem', flexWrap: 'wrap' }}>
-                    <button
-                      onClick={() => document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })}
-                      style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.13em', textTransform: 'uppercase', padding: '0.8rem 1.7rem', background: S.gold, color: S.ink, border: 'none', fontWeight: 700, cursor: 'pointer', transition: 'background 0.3s' }}
-                      onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
-                      onMouseLeave={e => e.currentTarget.style.background = S.gold}>
-                      View Projects →
-                    </button>
-                    <button
-                      onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-                      style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.13em', textTransform: 'uppercase', padding: '0.8rem 1.7rem', background: 'transparent', color: S.offwhite, border: '1px solid rgba(247,244,239,0.5)', cursor: 'pointer', transition: 'all 0.3s' }}
-                      onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.color = S.gold }}
-                      onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(247,244,239,0.5)'; e.currentTarget.style.color = S.offwhite }}>
-                      Book Consultation →
-                    </button>
+                    <Magnetic>
+                      <button
+                        onClick={() => document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' })}
+                        style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.13em', textTransform: 'uppercase', padding: '0.8rem 1.7rem', background: S.gold, color: S.ink, border: 'none', fontWeight: 700, cursor: 'pointer', transition: 'background 0.3s' }}
+                        onMouseEnter={e => e.currentTarget.style.background = '#b8923d'}
+                        onMouseLeave={e => e.currentTarget.style.background = S.gold}>
+                        View Projects →
+                      </button>
+                    </Magnetic>
+                    <Magnetic>
+                      <button
+                        onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                        style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.13em', textTransform: 'uppercase', padding: '0.8rem 1.7rem', background: 'transparent', color: S.offwhite, border: '1px solid rgba(247,244,239,0.5)', cursor: 'pointer', transition: 'all 0.3s' }}
+                        onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.color = S.gold }}
+                        onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(247,244,239,0.5)'; e.currentTarget.style.color = S.offwhite }}>
+                        Book Consultation →
+                      </button>
+                    </Magnetic>
                   </div>
                 </div>
               </div>
@@ -387,7 +388,7 @@ export default function Home() {
           <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }} className="about-grid">
             <FadeIn>
               <div style={{ position: 'relative' }}>
-                <img src="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-13-1024x767.jpg" alt="About RSD" loading="lazy" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }} />
+                <source src="/videos/rsd_web_video.mp4" type="video/mp4" alt="About RSD" loading="lazy" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }} />
                 <div style={{ position: 'absolute', bottom: '-1.2rem', right: '-1.2rem', width: '65%', height: '65%', border: '1px solid #C9A96E', zIndex: -1 }} />
                 <div style={{ position: 'absolute', top: '1.5rem', left: '-1.5rem', background: S.ink, padding: '1.2rem 1.6rem', textAlign: 'center' }}>
                   <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, lineHeight: 1 }}>30+</div>
@@ -795,14 +796,24 @@ export default function Home() {
               onMouseLeave={e => e.currentTarget.style.color = 'rgba(26,26,24,0.4)'}>
               &#8249;
             </button>
-            <div className="t-card" style={{ background: '#fff', padding: '2.5rem', borderLeft: `2px solid ${S.gold}` }}>
-              <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(0.95rem,2vw,1.1rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.8, marginBottom: '1.5rem', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
-                <span style={{ fontSize: '2rem', color: S.gold, lineHeight: 0, verticalAlign: '-0.4rem', marginRight: '0.2rem' }}>"</span>
-                {testimonials[tIndex].text}
-              </p>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.gold }}>
-                — {testimonials[tIndex].name}
-              </p>
+            <div className="t-card" style={{ background: '#fff', padding: '2.5rem', borderLeft: `2px solid ${S.gold}`, overflow: 'hidden' }}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={tIndex}
+                  initial={{ opacity: 0, x: 24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -24 }}
+                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(0.95rem,2vw,1.1rem)', fontStyle: 'italic', color: S.ink, lineHeight: 1.8, marginBottom: '1.5rem', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
+                    <span style={{ fontSize: '2rem', color: S.gold, lineHeight: 0, verticalAlign: '-0.4rem', marginRight: '0.2rem' }}>"</span>
+                    {testimonials[tIndex].text}
+                  </p>
+                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.gold }}>
+                    — {testimonials[tIndex].name}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
             </div>
             <button className="t-arrow-right"
               onClick={() => setTIndex(i => (i + 1) % testimonials.length)}
@@ -921,12 +932,14 @@ export default function Home() {
             <p style={{ fontSize: '0.95rem', color: 'rgba(26,26,24,0.7)', marginBottom: '2rem', lineHeight: 1.7 }}>
               Let us help you create the home of your dreams.
             </p>
-            <a href="#contact" onClick={e => { e.preventDefault(); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) }}
-              style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '1rem 2.8rem', background: S.ink, color: S.gold, textDecoration: 'none', display: 'inline-block', transition: 'all 0.3s', cursor: 'pointer' }}
-              onMouseEnter={e => { e.currentTarget.style.background = S.offwhite; e.currentTarget.style.color = S.ink }}
-              onMouseLeave={e => { e.currentTarget.style.background = S.ink; e.currentTarget.style.color = S.gold }}>
-              Get Your Quote
-            </a>
+            <Magnetic>
+              <a href="#contact" onClick={e => { e.preventDefault(); document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }) }}
+                style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '1rem 2.8rem', background: S.ink, color: S.gold, textDecoration: 'none', display: 'inline-block', transition: 'all 0.3s', cursor: 'pointer' }}
+                onMouseEnter={e => { e.currentTarget.style.background = S.offwhite; e.currentTarget.style.color = S.ink }}
+                onMouseLeave={e => { e.currentTarget.style.background = S.ink; e.currentTarget.style.color = S.gold }}>
+                Get Your Quote
+              </a>
+            </Magnetic>
           </FadeIn>
         </div>
       </section>

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useInView } from 'react-intersection-observer'
+import FadeIn from '../components/Reveal'
 import projects from '../data/projects'
 
 const S = {
@@ -24,15 +24,6 @@ const categoryInfo = {
     subtitle: 'Projects That Sell Themselves',
     banner: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/04/Stunning-Structures-1.jpg',
   },
-}
-
-function FadeIn({ children, delay = 0 }) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
-  return (
-    <div ref={ref} style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(28px)', transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms` }}>
-      {children}
-    </div>
-  )
 }
 
 export default function CategoryPage({ category }) {

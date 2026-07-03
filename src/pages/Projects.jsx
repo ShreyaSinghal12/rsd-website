@@ -1,21 +1,8 @@
 import { useState, useCallback } from 'react'
-import { useInView } from 'react-intersection-observer'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
+import FadeIn from '../components/Reveal'
 import projects from '../data/projects'
-
-function FadeIn({ children, delay = 0 }) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.08 })
-  return (
-    <div ref={ref} style={{
-      opacity: inView ? 1 : 0,
-      transform: inView ? 'translateY(0)' : 'translateY(24px)',
-      transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
-    }}>
-      {children}
-    </div>
-  )
-}
 
 const filters = [
   { key: 'all',          label: 'All' },

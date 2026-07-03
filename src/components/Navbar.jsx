@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { motion, useScroll, useSpring } from 'framer-motion'
+import Magnetic from './Magnetic'
 
 const links = [
     { label: 'Home', anchor: 'hero' },
@@ -18,6 +20,8 @@ export default function Navbar() {
     const { pathname } = useLocation()
     const navigate = useNavigate()
     const isProjectsActive = pathname.startsWith('/projects')
+    const { scrollYProgress } = useScroll()
+    const progressWidth = useSpring(scrollYProgress, { stiffness: 120, damping: 24, mass: 0.2 })
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 1024)
@@ -77,14 +81,15 @@ export default function Navbar() {
                 position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
                 background: 'rgba(247,244,239,0.97)',
                 backdropFilter: 'blur(14px)',
-                boxShadow: scrolled ? '0 1px 0 rgba(0,0,0,0.07)' : 'none',
+                boxShadow: scrolled ? '0 8px 24px rgba(26,26,24,0.08)' : 'none',
                 transition: 'box-shadow 0.45s ease',
             }}>
                 <div style={{
                     maxWidth: 1400, margin: '0 auto',
                     display: 'flex', alignItems: 'center',
                     justifyContent: 'space-between',
-                    height: 68, padding: '0 1.5rem',
+                    height: scrolled ? 58 : 68, padding: '0 1.5rem',
+                    transition: 'height 0.35s cubic-bezier(0.4,0,0.2,1)',
                 }}>
 
                     {/* Logo */}
@@ -93,7 +98,7 @@ export default function Navbar() {
                         <img
                             src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png"
                             alt="RSD"
-                            style={{ height: isMobile ? 32 : 38, width: 'auto' }}
+                            style={{ height: isMobile ? 32 : (scrolled ? 32 : 38), width: 'auto', transition: 'height 0.35s cubic-bezier(0.4,0,0.2,1)' }}
                         />
                     </button>
 
@@ -103,13 +108,20 @@ export default function Navbar() {
                             {links.map(link => {
                                 const active = link.anchor === 'portfolio' ? (pathname === '/' ? activeLink === 'portfolio' : isProjectsActive) : activeLink === link.anchor
                                 return (
-                                    <li key={link.anchor}>
+                                    <li key={link.anchor} style={{ position: 'relative' }}>
                                         <button onClick={() => scrollTo(link.anchor)}
-                                            style={{ display: 'block', padding: '0.5rem 1rem', fontFamily: "'DM Sans',sans-serif", fontSize: '0.82rem', fontWeight: active ? 500 : 400, color: active ? '#1A1A18' : '#6B6860', background: 'none', border: 'none', borderBottom: active ? '1px solid #C9A96E' : '1px solid transparent', cursor: 'pointer', transition: 'color 0.25s' }}
+                                            style={{ display: 'block', padding: '0.5rem 1rem', fontFamily: "'DM Sans',sans-serif", fontSize: '0.82rem', fontWeight: active ? 500 : 400, color: active ? '#1A1A18' : '#6B6860', background: 'none', border: 'none', borderBottom: '1px solid transparent', cursor: 'pointer', transition: 'color 0.25s' }}
                                             onMouseEnter={e => { if (!active) e.currentTarget.style.color = '#C9A96E' }}
                                             onMouseLeave={e => { if (!active) e.currentTarget.style.color = '#6B6860' }}>
                                             {link.label}
                                         </button>
+                                        {active && (
+                                            <motion.div
+                                                layoutId="nav-underline"
+                                                transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                                                style={{ position: 'absolute', left: '1rem', right: '1rem', bottom: 0, height: 1, background: '#C9A96E' }}
+                                            />
+                                        )}
                                     </li>
                                 )
                             })}
@@ -118,12 +130,14 @@ export default function Navbar() {
 
                     {/* Desktop Get Your Quote */}
                     {!isMobile && (
-                        <button onClick={() => scrollTo('contact')}
-                            style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.16em', textTransform: 'uppercase', padding: '0.6rem 1.4rem', border: '1px solid #C9A96E', color: '#C9A96E', background: 'transparent', cursor: 'pointer', transition: 'all 0.3s', whiteSpace: 'nowrap', marginLeft: '1rem' }}
-                            onMouseEnter={e => { e.currentTarget.style.background = '#C9A96E'; e.currentTarget.style.color = '#1A1A18' }}
-                            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#C9A96E' }}>
-                            Get Your Quote
-                        </button>
+                        <Magnetic strength={0.25}>
+                            <button onClick={() => scrollTo('contact')}
+                                style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.16em', textTransform: 'uppercase', padding: '0.6rem 1.4rem', border: '1px solid #C9A96E', color: '#C9A96E', background: 'transparent', cursor: 'pointer', transition: 'all 0.3s', whiteSpace: 'nowrap', marginLeft: '1rem' }}
+                                onMouseEnter={e => { e.currentTarget.style.background = '#C9A96E'; e.currentTarget.style.color = '#1A1A18' }}
+                                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#C9A96E' }}>
+                                Get Your Quote
+                            </button>
+                        </Magnetic>
                     )}
 
                     {/* Hamburger — mobile only */}
@@ -138,6 +152,16 @@ export default function Navbar() {
                         </button>
                     )}
                 </div>
+
+                {/* Scroll progress indicator */}
+                <motion.div
+                    style={{
+                        scaleX: progressWidth,
+                        transformOrigin: '0% 50%',
+                        height: 2,
+                        background: '#C9A96E',
+                    }}
+                />
             </nav>
 
             {/* Mobile full screen menu */}
