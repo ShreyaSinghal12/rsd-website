@@ -366,19 +366,13 @@ export default function Home() {
             <FadeIn>
               <div style={{ position: 'relative' }}>
                 <div style={{ position: 'relative', height: '581px', minHeight: 500, overflow: 'hidden', width: '100%' }}>
-                  <img
-                    src="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-13-1024x767.jpg"
-                    alt="Loading"
-                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: videoReady ? 0 : 1, transition: 'opacity 0.5s ease' }}
-                  />
                   <video
                     muted
                     autoPlay
                     loop
                     playsInline
                     preload="auto"
-                    onCanPlay={() => setVideoReady(true)}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', backgroundColor: '#1A1A18', opacity: videoReady ? 1 : 0, transition: 'opacity 0.5s ease', position: 'relative', zIndex: 1 }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   >
                     <source src="/videos/OfficeVideos.mp4" type="video/mp4" />
                   </video>
