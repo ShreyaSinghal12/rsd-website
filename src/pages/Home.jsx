@@ -397,7 +397,7 @@ export default function Home() {
                     poster="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                   >
-                    <source src="/videos/hero.mp4" type="video/mp4" />
+                    <source src="/videos/Office_video.mp4" type="video/mp4" />
                   </video>
 
                   {/* Watermark */}
