@@ -632,7 +632,7 @@ export default function Home() {
       </section>
 
       {/* ── SECTION DIVIDER ── */}
-      <SectionDivider label="Awards and News" />
+      {/* <SectionDivider label="Awards and News" /> */}
 
       {/* Block 1a — Awards */}
       <section>
@@ -642,7 +642,7 @@ export default function Home() {
               <span className="gold-rule" />
               <p style={LABEL_STYLE}>Recognition</p>
               <h2 style={{ ...H2_STYLE, marginBottom: '1.5rem' }}>
-                Recognition is flattering.<br /><em>Being trusted twice is the real award.</em>
+                Awards &amp; Certificates<br /><em>Being trusted twice is the real award.</em>
               </h2>
               <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 700, marginBottom: '3rem' }}>
                 Our work has been honoured by some of the most respected names in design and industry. But the recognition we value most isn't on a shelf — it's the client who hands us their next project before the first is even finished.
@@ -654,6 +654,9 @@ export default function Home() {
                 { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award2.jpeg' },
                 { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award3.jpeg' },
                 { type: 'Award', title: 'Award Name Here', org: 'Awarding Body — Year', img: '/images/awardsAndCertificates/Award1.jpeg' },
+                { type: 'Certificate', title: 'Certificate Name Here', org: 'Issuing Body — Year', img: '/images/awardsAndCertificates/Certificate1.jpeg' },
+                { type: 'Certificate', title: 'Certificate Name Here', org: 'Issuing Body — Year', img: '/images/awardsAndCertificates/Certificate2.jpeg' },
+                { type: 'Certificate', title: 'Certificate Name Here', org: 'Issuing Body — Year', img: '/images/awardsAndCertificates/Certificate3.jpeg' },
               ].map((item, i) => (
                 <FadeIn key={i} delay={i * 80}>
                   <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#fff', border: '1px solid rgba(26,26,24,0.08)' }}>
