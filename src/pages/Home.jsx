@@ -144,6 +144,10 @@ const areaList = [
   "Retail Store Interior Design",
 ]
 
+const videoTestimonials = [
+  { name: 'Client Name', role: 'Residential Client', video: '/videos/testimonials/testimonial1.mp4' },
+  { name: 'Client Name', role: 'Hospitality Client', video: '/videos/testimonials/testimonial2.mp4' },
+]
 const contactInfo = [
   { label: 'Address', value: 'Time Square, 3rd Floor, Opp Ravi Auto, Sevoke Road, Siliguri', href: null },
   { label: 'Phone', value: '+91 98008 48155', href: 'tel:+919800848155' },
@@ -221,6 +225,7 @@ export default function Home() {
   const [selectedProject, setSelectedProject] = useState(null)
   const [selectedService, setSelectedService] = useState(null)
   const [selectedPress, setSelectedPress] = useState(null)
+  const [selectedVideo, setSelectedVideo] = useState(null)
   const [videoReady, setVideoReady] = useState(false)
   const intervalRef = useRef(null)
 
@@ -766,6 +771,28 @@ export default function Home() {
       <section id="testimonials" style={{ background: '#F0EBE3', padding: '3rem 0' }}>
         <div style={{ maxWidth: 900, margin: '0 auto', padding: '0 2rem' }}>
           <FadeIn>
+            {/* Video Testimonials */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3.5rem', maxWidth: 560, marginLeft: 'auto', marginRight: 'auto' }}>
+              {videoTestimonials.map((v, i) => (
+                <FadeIn key={i} delay={i * 100}>
+                  <div
+                    onClick={() => setSelectedVideo(v)}
+                    style={{ position: 'relative', aspectRatio: '9/16', cursor: 'pointer', overflow: 'hidden', background: S.ink }}
+                    onMouseEnter={e => e.currentTarget.querySelector('.play-btn').style.transform = 'scale(1.1)'}
+                    onMouseLeave={e => e.currentTarget.querySelector('.play-btn').style.transform = 'scale(1)'}>
+                    <video src={v.video} muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(26,26,24,0.25)' }} />
+                    <div className="play-btn" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 56, height: 56, borderRadius: '50%', background: 'rgba(255,255,255,0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'transform 0.25s ease' }}>
+                      <svg viewBox="0 0 24 24" width="22" height="22" fill={S.ink}><path d="M8 5v14l11-7z" /></svg>
+                    </div>
+                    <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '1rem', background: 'linear-gradient(to top, rgba(26,26,24,0.85), transparent)' }}>
+                      <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '0.9rem', color: S.offwhite }}>{v.name}</p>
+                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: S.gold, marginTop: '0.2rem' }}>{v.role}</p>
+                    </div>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
             <span className="gold-rule" />
             <p style={LABEL_STYLE}>Testimonials</p>
             <h2 style={{ ...H2_STYLE, marginBottom: '3rem' }}>
@@ -975,6 +1002,19 @@ export default function Home() {
               <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', color: S.mid, marginBottom: '1.5rem' }}>{selectedPress.org}</p>
               <div style={{ width: 40, height: 1, background: S.gold, marginBottom: '1.5rem' }} />
               <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85 }}>{selectedPress.desc}</p>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* ── VIDEO TESTIMONIAL MODAL ── */}
+      {selectedVideo && (
+        <div onClick={() => setSelectedVideo(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(26,26,24,0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(6px)' }}>
+          <div onClick={e => e.stopPropagation()} style={{ position: 'relative', maxWidth: 420, width: '100%' }}>
+            <button onClick={() => setSelectedVideo(null)} style={{ position: 'absolute', top: '-3rem', right: 0, width: 36, height: 36, background: 'rgba(255,255,255,0.15)', border: 'none', cursor: 'pointer', color: '#fff', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&#10005;</button>
+            <video src={selectedVideo.video} controls autoPlay playsInline style={{ width: '100%', aspectRatio: '9/16', display: 'block', background: '#000' }} />
+            <div style={{ padding: '1rem 0', textAlign: 'center' }}>
+              <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.offwhite }}>{selectedVideo.name}</p>
+              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: S.gold, marginTop: '0.3rem' }}>{selectedVideo.role}</p>
             </div>
           </div>
         </div>
