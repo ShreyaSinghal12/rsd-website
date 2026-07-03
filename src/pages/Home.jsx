@@ -488,7 +488,7 @@ export default function Home() {
                     src="/images/book/book_image.png"
                     alt="Why Luxury Homes Don't Sell by Ramesh Singhal"
                     loading="lazy"
-                    style={{ width: '100%', display: 'block', boxShadow: '0 25px 50px rgba(26,26,24,0.25)' }}
+                    style={{ width: '100%', display: 'block', boxShadow: '0 25px 50px rgba(254, 254, 252, 0.25)' }}
                   />
                 </div>
               </FadeIn>
