@@ -385,7 +385,7 @@ export default function Home() {
         {/* Block 2 — Who We Are */}
         <div style={{ padding: '3rem 2rem', background: S.offwhite }}>
           <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }} className="about-grid">
-            <FadeIn>
+            
               <FadeIn>
                 <div style={{ position: 'relative', height: '581px', minHeight: 500, overflow: 'hidden', width: '100%' }}>
                   <video
@@ -450,7 +450,7 @@ export default function Home() {
                   </div>
                 </div>
               </FadeIn>
-              </FadeIn>
+            
           </div>
         </div>
 
