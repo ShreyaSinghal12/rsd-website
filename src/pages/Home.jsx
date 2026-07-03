@@ -366,7 +366,7 @@ export default function Home() {
               <div style={{ position: 'relative' }}>
                 <div style={{ position: 'relative', height: '581px', minHeight: 500, overflow: 'hidden', width: '100%' }}>
                   <video autoPlay muted loop playsInline preload="auto" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', backgroundColor: '#1A1A18' }}>
-                    <source src="/videos/hero.mp4" type="video/mp4" />
+                    <source src="/videos/OfficeVideos.mp4" type="video/mp4" />
                   </video>
 
                   {/* Watermark */}
@@ -381,10 +381,10 @@ export default function Home() {
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(26,26,24,0.15) 0%, rgba(26,26,24,0.6) 100%)' }} />
                 </div>
 
-                <div style={{ position: 'absolute', bottom: '-1.2rem', right: '-1.2rem', width: '65%', height: '65%', border: '1px solid #C9A96E', zIndex: -1 }} />
-                <div style={{ position: 'absolute', top: '-1.5rem', left: '-1.5rem', background: S.ink, padding: '1.2rem 1.6rem', textAlign: 'center', zIndex: 3 }}>
-                  <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, lineHeight: 1 }}>30+</div>
-                  <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.sage, marginTop: '0.3rem' }}>Years</div>
+                <div style={{ position: 'absolute', bottom: '-1.2rem', right: '-1.2rem', width: '55%', height: '55%', border: '1px solid #C9A96E', zIndex: -1 }} />
+                <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', background: S.ink, padding: '1.2rem 1.8rem', textAlign: 'center', zIndex: 3, boxShadow: '0 8px 24px rgba(26,26,24,0.3)' }}>
+                  <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2.2rem', color: S.gold, lineHeight: 1 }}>30+</div>
+                  <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.sage, marginTop: '0.4rem' }}>Years</div>
                 </div>
               </div>
             </FadeIn>
