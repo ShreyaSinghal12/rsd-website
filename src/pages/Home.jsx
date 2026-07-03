@@ -384,11 +384,11 @@ export default function Home() {
                   </video>
 
                   {/* Watermark — bottom right, inside frame */}
-                  <div style={{ position: 'absolute', bottom: '1.2rem', right: '1.2rem', zIndex: 3, pointerEvents: 'none', display: 'flex', alignItems: 'center', gap: '0.6rem', background: 'rgba(247,244,239,0.9)', padding: '0.5rem 0.9rem' }}>
+                  <div style={{ position: 'absolute', bottom: '1.2rem', right: '1.2rem', zIndex: 3, pointerEvents: 'none' }}>
                     <img
                       src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png"
                       alt="RSD"
-                      style={{ height: 28, width: 'auto', display: 'block' }}
+                      style={{ height: 32, width: 'auto', display: 'block', filter: 'brightness(100) drop-shadow(0 1px 4px rgba(0,0,0,0.7))', opacity: 0.95 }}
                     />
                   </div>
 
@@ -396,9 +396,9 @@ export default function Home() {
                 </div>
 
                 <div style={{ position: 'absolute', bottom: '-1.2rem', right: '-1.2rem', width: '55%', height: '55%', border: '1px solid #C9A96E', zIndex: -1 }} />
-                <div style={{ position: 'absolute', top: '-1.5rem', left: '-1.5rem', background: S.ink, padding: '1.2rem 1.8rem', textAlign: 'center', zIndex: 3, boxShadow: '0 8px 24px rgba(26,26,24,0.3)' }}>
+                <div style={{ position: 'absolute', top: '-1.5rem', left: '-1.5rem', background: '#fff', padding: '1.2rem 1.8rem', textAlign: 'center', zIndex: 3, boxShadow: '0 8px 24px rgba(26,26,24,0.15)' }}>
                   <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2.2rem', color: S.gold, lineHeight: 1 }}>30+</div>
-                  <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.sage, marginTop: '0.4rem' }}>Years</div>
+                  <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.mid, marginTop: '0.4rem' }}>Years</div>
                 </div>
               </div>
             </FadeIn>
