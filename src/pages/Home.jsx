@@ -396,7 +396,7 @@ export default function Home() {
                 </div>
 
                 <div style={{ position: 'absolute', bottom: '-1.2rem', right: '-1.2rem', width: '55%', height: '55%', border: '1px solid #C9A96E', zIndex: -1 }} />
-                <div style={{ position: 'absolute', top: '-1.5rem', left: '-1.5rem', background: '#fff', padding: '1.2rem 1.8rem', textAlign: 'center', zIndex: 3, boxShadow: '0 8px 24px rgba(26,26,24,0.15)' }}>
+                <div style={{ position: 'absolute', top: '-1.5rem', left: '-1.5rem', background: '#F0EBE3', padding: '1.2rem 1.8rem', textAlign: 'center', zIndex: 3, boxShadow: '0 8px 24px rgba(26,26,24,0.15)' }}>
                   <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2.2rem', color: S.gold, lineHeight: 1 }}>30+</div>
                   <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.mid, marginTop: '0.4rem' }}>Years</div>
                 </div>
