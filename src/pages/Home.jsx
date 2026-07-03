@@ -366,23 +366,23 @@ export default function Home() {
               <div style={{ position: 'relative' }}>
                 <div style={{ position: 'relative', height: '581px', minHeight: 500, overflow: 'hidden', width: '100%' }}>
                   <video autoPlay muted loop playsInline preload="auto" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', backgroundColor: '#1A1A18' }}>
-                    <source src="/videos/OfficeVideos.mp4" type="video/mp4" />
+                    <source src="/videos/hero.mp4" type="video/mp4" />
                   </video>
 
-                  {/* Watermark */}
-                  <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', zIndex: 3, pointerEvents: 'none' }}>
+                  {/* Watermark — bottom right, inside frame */}
+                  <div style={{ position: 'absolute', bottom: '1.2rem', right: '1.2rem', zIndex: 3, pointerEvents: 'none', display: 'flex', alignItems: 'center', gap: '0.6rem', background: 'rgba(247,244,239,0.9)', padding: '0.5rem 0.9rem' }}>
                     <img
                       src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png"
                       alt="RSD"
-                      style={{ height: 36, width: 'auto', display: 'block', filter: 'brightness(100) drop-shadow(0 1px 3px rgba(0,0,0,0.6))', opacity: 0.9 }}
+                      style={{ height: 28, width: 'auto', display: 'block' }}
                     />
                   </div>
 
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(26,26,24,0.15) 0%, rgba(26,26,24,0.6) 100%)' }} />
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(26,26,24,0.15) 0%, rgba(26,26,24,0.45) 100%)' }} />
                 </div>
 
                 <div style={{ position: 'absolute', bottom: '-1.2rem', right: '-1.2rem', width: '55%', height: '55%', border: '1px solid #C9A96E', zIndex: -1 }} />
-                <div style={{ position: 'absolute', bottom: '1.5rem', left: '1.5rem', background: S.ink, padding: '1.2rem 1.8rem', textAlign: 'center', zIndex: 3, boxShadow: '0 8px 24px rgba(26,26,24,0.3)' }}>
+                <div style={{ position: 'absolute', top: '-1.5rem', left: '-1.5rem', background: S.ink, padding: '1.2rem 1.8rem', textAlign: 'center', zIndex: 3, boxShadow: '0 8px 24px rgba(26,26,24,0.3)' }}>
                   <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2.2rem', color: S.gold, lineHeight: 1 }}>30+</div>
                   <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.sage, marginTop: '0.4rem' }}>Years</div>
                 </div>
