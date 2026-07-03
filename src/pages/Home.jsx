@@ -279,7 +279,7 @@ export default function Home() {
 
             {/* Left — Video */}
             <FadeIn>
-              <div style={{ position: 'relative', height: '581px', minHeight: 500, overflow: 'hidden',width:'100%' }}>
+              <div style={{ position: 'relative', height: '581px', minHeight: 500, overflow: 'hidden', width: '100%' }}>
                 <video
                   autoPlay
                   muted
@@ -292,7 +292,7 @@ export default function Home() {
                 </video>
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(26,26,24,0.15) 0%, rgba(26,26,24,0.6) 100%)' }} />
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '2.5rem' }}>
-                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color:S.gold, marginBottom: '1rem',fontweight:1200 }}>
+                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: S.gold, marginBottom: '1rem', fontweight: 1200 }}>
                     Established 1995 · Siliguri, India
                   </p>
                   <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.5rem,2.8vw,2.2rem)', fontWeight: 400, lineHeight: 1.25, color: S.offwhite, marginBottom: '1.2rem', maxWidth: 520 }}>
@@ -319,7 +319,7 @@ export default function Home() {
             </FadeIn>
 
             {/* Right — Category cards stacked */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem',position:'relative',zIndex:2 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', position: 'relative', zIndex: 2 }}>
               {[
                 { num: '01', key: 'residential', label: 'Residential', img: 'http://raameshsinghaldesign.com/wp-content/uploads/2023/04/The-Unruffled.jpg', route: '/projects/residential' },
                 { num: '02', key: 'commercial', label: 'Builders & Developers', img: '/images/slides/2ndSlide.jpeg', route: '/projects/builders' },
@@ -329,13 +329,13 @@ export default function Home() {
                   <Link to={cat.route} style={{ display: 'block', position: 'relative', height: 185, overflow: 'hidden', textDecoration: 'none' }}
                     onMouseEnter={e => e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'}
                     onMouseLeave={e => e.currentTarget.querySelector('img').style.transform = 'scale(1)'}>
-                    <img src={cat.img} alt={cat.label} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block',objectPosition: 'center',filter: 'brightness(1.4) saturate(1.18) contrast(1.05)', }} />
+                    <img src={cat.img} alt={cat.label} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block', objectPosition: 'center', filter: 'brightness(1.4) saturate(1.18) contrast(1.05)', }} />
                     <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(26,26,24,0.70) 0%, rgba(26,26,24,0.40) 60%, rgba(26,26,24,0.17) 100%)' }} />
                     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.5rem' }}>
-                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '0.6rem' ,fontWeight:600}}>{cat.num} —</p>
-                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem',fontWeight:600 }}>{cat.label}</p>
-                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '0.95rem', color: S.offwhite, lineHeight: 1.35, marginBottom: '0.7rem', maxWidth: 260,fontweight:600,textShadow: '0 2px 10px rgba(0,0,0,0.6)',}}>{cat.headline}</h3>
-                      <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.gold , fontweight:600,textShadow: '0 1px 6px rgba(0,0,0,0.6)',}}>Explore →</span>
+                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.1em', color: S.gold, marginBottom: '0.6rem', fontWeight: 600 }}>{cat.num} —</p>
+                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.5rem', fontWeight: 600 }}>{cat.label}</p>
+                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '0.95rem', color: S.offwhite, lineHeight: 1.35, marginBottom: '0.7rem', maxWidth: 260, fontweight: 600, textShadow: '0 2px 10px rgba(0,0,0,0.6)', }}>{cat.headline}</h3>
+                      <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.gold, fontweight: 600, textShadow: '0 1px 6px rgba(0,0,0,0.6)', }}>Explore →</span>
                     </div>
                   </Link>
                 </FadeIn>
@@ -386,16 +386,48 @@ export default function Home() {
         <div style={{ padding: '3rem 2rem', background: S.offwhite }}>
           <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }} className="about-grid">
             <FadeIn>
-              <div style={{ position: 'relative' }}>
-  <video autoPlay muted loop playsInline style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }}>
-    <source src="/videos/Office_video.mp4" type="video/mp4" />
-  </video>
-  <div style={{ position: 'absolute', bottom: '-1.2rem', right: '-1.2rem', width: '65%', height: '65%', border: '1px solid #C9A96E', zIndex: -1 }} />
-                <div style={{ position: 'absolute', top: '1.5rem', left: '-1.5rem', background: S.ink, padding: '1.2rem 1.6rem', textAlign: 'center' }}>
-                  <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, lineHeight: 1 }}>30+</div>
-                  <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.sage, marginTop: '0.3rem' }}>Years</div>
+              <div style={{ position: 'relative', height: '581px', minHeight: 500, overflow: 'hidden', width: '100%' }}>
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  poster="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg"
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                >
+                  <source src="/videos/hero.mp4" type="video/mp4" />
+                </video>
+                <div style={{ position: 'relative', height: '581px', minHeight: 500, overflow: 'hidden', width: '100%' }}>
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    poster="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  >
+                    <source src="/videos/hero.mp4" type="video/mp4" />
+                  </video>
+
+                  {/* Watermark */}
+                  <div style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', zIndex: 3, pointerEvents: 'none' }}>
+                    <img
+                      src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png"
+                      alt="RSD"
+                      style={{ height: 36, width: 'auto', display: 'block', filter: 'brightness(100) drop-shadow(0 1px 3px rgba(0,0,0,0.6))', opacity: 0.9 }}
+                    />
+                  </div>
+
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(26,26,24,0.15) 0%, rgba(26,26,24,0.6) 100%)' }} />
+                
+                  <div style={{ position: 'absolute', bottom: '-1.2rem', right: '-1.2rem', width: '65%', height: '65%', border: '1px solid #C9A96E', zIndex: -1 }} />
+                  <div style={{ position: 'absolute', top: '1.5rem', left: '-1.5rem', background: S.ink, padding: '1.2rem 1.6rem', textAlign: 'center' }}>
+                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, lineHeight: 1 }}>30+</div>
+                    <div style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.6rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.sage, marginTop: '0.3rem' }}>Years</div>
+                  </div>
                 </div>
-              </div>
             </FadeIn>
             <FadeIn delay={150}>
               <span className="gold-rule" />
