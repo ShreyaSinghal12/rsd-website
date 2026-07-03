@@ -17,7 +17,7 @@ body { background-color: #F7F4EF; color: #1A1A18; font-family: 'DM Sans', sans-s
 /* ── MOBILE & TABLET RESPONSIVE ── */
 
 /* Tablet (768px - 1024px) */
-@media (max-width: 1024px) {
+@media (max-width: 860px) {
   .about-grid    { grid-template-columns: 1fr !important; gap: 3rem !important; }
   .contact-grid  { grid-template-columns: 1fr !important; gap: 3rem !important; }
   .services-grid { grid-template-columns: repeat(2,1fr) !important; }

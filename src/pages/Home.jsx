@@ -493,7 +493,7 @@ export default function Home() {
         </div>
 
         {/* Book */}
-        <div id="book" style={{padding: '3rem 2rem' }}>
+        <div id="book" style={{ background: '#F0EBE3', padding: '3rem 2rem' }}>
           <div style={{ maxWidth: 1100, margin: '0 auto' }}>
             <FadeIn>
               <span className="gold-rule" />
