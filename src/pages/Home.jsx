@@ -658,35 +658,14 @@ export default function Home() {
                 </FadeIn>
               ))}
             </div>
-              </div>
-              </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION DIVIDER ── */}
+      <SectionDivider label="Our Services" />
 
 
-            {/* Decorative moodboard strip */}
-            <div style={{ background: S.offwhite, padding: '4rem 0', overflow: 'hidden' }}>
-              <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem 2rem' }}>
-                <FadeIn>
-                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: S.mid, textAlign: 'center' }}>
-                    Magazines
-                  </p>
-                </FadeIn>
-              </div>
-              <div className="moodboard-scroll" style={{ display: 'flex', gap: '1rem', overflowX: 'auto', padding: '0 2rem 1rem', scrollbarWidth: 'none' }}>
-                {[1, 2, 3, 5, 6, 7, 8, 9].map((n, i) => (
-                  <FadeIn key={n} delay={i * 50}>
-                    <div style={{ flexShrink: 0, width: 220, aspectRatio: '3/4', overflow: 'hidden', boxShadow: '0 4px 20px rgba(26,26,24,0.08)' }}>
-                      <img
-                        src={`/images/press/mag${n}.jpg`}
-                        alt="Design inspiration"
-                        loading="lazy"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                      />
-                    </div>
-                  </FadeIn>
-                ))}
-              </div>
-            </div>
-          </section>
           {/* ── SECTION DIVIDER ── */}
           <SectionDivider label="Our Services" />
 
