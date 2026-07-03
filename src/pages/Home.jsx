@@ -658,7 +658,8 @@ export default function Home() {
                 </FadeIn>
               ))}
             </div>
-
+              </div>
+              </div>
 
 
             {/* Decorative moodboard strip */}
