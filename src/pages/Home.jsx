@@ -172,7 +172,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" style={{ background: S.cream, padding: '5rem 2rem 4rem' }}>
+      <section id="about" style={{ background: S.cream, padding: '3.5rem 2rem 3rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', textAlign: 'center' }}>
           <FadeIn>
             <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.95rem', letterSpacing: '0.2em', color: S.mid, marginBottom: '1.2rem' }}>Est. 1995 — Siliguri, India</p>
@@ -193,7 +193,7 @@ export default function Home() {
               <FadeIn key={i} delay={i * 100}>
                 <div style={{ textAlign: 'center', padding: '0 1.5rem', borderRight: i < 3 ? `1px solid ${S.line}` : 'none' }}>
                   <div style={{ ...serifHeading, fontSize: 'clamp(2.8rem,5.5vw,4.2rem)', color: S.gold, lineHeight: 1, marginBottom: '0.5rem' }}>{s.num}{s.suffix}</div>
-<div style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontSize: '1.05rem', color: S.mid }}>{s.label}</div>
+                  <div style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontSize: '1.05rem', color: S.mid }}>{s.label}</div>
                 </div>
               </FadeIn>
             ))}
@@ -201,7 +201,7 @@ export default function Home() {
         </div>
 
         <FadeIn>
-          <div style={{ maxWidth: 1300, margin: '0 auto', position: 'relative', aspectRatio: '16/9', background: '#000', overflow: 'hidden' }}>
+          <div style={{ maxWidth: 850, margin: '0 auto', position: 'relative', aspectRatio: '16/9', background: '#000', overflow: 'hidden' }}>
             <video muted autoPlay loop playsInline preload="auto" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}>
               <source src="/videos/hero.mp4" type="video/mp4" />
             </video>
