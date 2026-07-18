@@ -157,7 +157,7 @@ export default function Home() {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(100deg, rgba(20,40,60,0.55) 0%, rgba(20,40,60,0.15) 55%, rgba(20,40,60,0.35) 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', maxWidth: 1300, margin: '0 auto', padding: '0 2.5rem' }}>
           <FadeIn>
-            <h1 style={{ ...roundedHeading, fontSize: 'clamp(2.2rem,5vw,3.6rem)', color: '#fff', lineHeight: 1.15, marginBottom: '1.4rem', maxWidth: 680 }}>
+            <h1 style={{ ...roundedHeading, fontSize: 'clamp(2.8rem,6vw,4.4rem)', color: '#fff', lineHeight: 1.15, marginBottom: '1.4rem', maxWidth: 680 }}>
               Where Imagination<br />Meets Interior Design
             </h1>
             <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.9)', maxWidth: 480, marginBottom: '2.2rem', lineHeight: 1.6 }}>
@@ -176,7 +176,7 @@ export default function Home() {
         <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
           <FadeIn>
             <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.85rem', letterSpacing: '0.2em', color: S.mid, marginBottom: '1.2rem' }}>Est. 1995 — Siliguri, India</p>
-            <h2 style={{ ...serifHeading, fontSize: 'clamp(2rem,4vw,3rem)', color: S.black, marginBottom: '2rem' }}>30+ years of turning Space into Legacy</h2>
+            <h2 style={{ ...serifHeading, fontSize: 'clamp(2.6rem,5vw,3.8rem)', color: S.black, marginBottom: '2rem' }}>30+ years of turning Space into Legacy</h2>
             <div style={{ width: 90, height: 1, background: S.line, margin: '0 auto 2rem' }} />
             <p style={{ fontSize: '0.98rem', color: S.mid, lineHeight: 1.85, marginBottom: '1rem' }}>
               Since 1995, Raamesh Singhal Design has been creating spaces where design, functionality, and human experience come together. Built on the belief that exceptional spaces require a unified vision, we seamlessly integrate architecture, interiors, planning, procurement, and execution under one roof.
@@ -192,7 +192,7 @@ export default function Home() {
             {[{ num: years, suffix: '+', label: 'Years of Experience' }, { num: projs, suffix: '+', label: 'Projects Delivered' }, { num: repeat, suffix: '%', label: 'Repeat & Referral' }, { num: types, suffix: '', label: 'Project Typologies' }].map((s, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <div style={{ textAlign: 'center', padding: '0 1.5rem', borderRight: i < 3 ? `1px solid ${S.line}` : 'none' }}>
-                  <div style={{ ...serifHeading, fontSize: 'clamp(2.2rem,4vw,3.2rem)', color: S.gold, lineHeight: 1, marginBottom: '0.5rem' }}>{s.num}{s.suffix}</div>
+                  <div style={{ ...serifHeading, fontSize: 'clamp(2.8rem,5.5vw,4.2rem)', color: S.gold, lineHeight: 1, marginBottom: '0.5rem' }}>{s.num}{s.suffix}</div>
                   <div style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontSize: '0.95rem', color: S.mid }}>{s.label}</div>
                 </div>
               </FadeIn>
@@ -216,7 +216,7 @@ export default function Home() {
       <section style={{ background: S.paper, padding: '5rem 2rem' }}>
         <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
           <FadeIn>
-            <h2 style={{ ...roundedHeading, fontSize: 'clamp(1.8rem,3.5vw,2.5rem)', color: S.ink, marginBottom: '1.4rem', lineHeight: 1.3 }}>
+            <h2 style={{ ...roundedHeading, fontSize: 'clamp(2.2rem,4.5vw,3.2rem)', color: S.ink, marginBottom: '1.4rem', lineHeight: 1.3 }}>
               The thinking behind every<br />space <em style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontWeight: 500 }}>we create</em>
             </h2>
             <p style={{ fontSize: '0.95rem', color: S.mid, lineHeight: 1.85, maxWidth: 680, margin: '0 auto 3.5rem' }}>
@@ -249,7 +249,7 @@ export default function Home() {
       <section style={{ background: S.cream, padding: '5rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <FadeIn>
-            <h2 style={{ ...metallicStyle('clamp(1.8rem,4vw,2.6rem)'), textAlign: 'center', marginBottom: '1rem' }}>Our Expertise</h2>
+            <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '1rem' }}>Our Expertise</h2>
             <p style={{ fontSize: '0.92rem', color: S.mid, textAlign: 'center', maxWidth: 700, margin: '0 auto 3rem', lineHeight: 1.7 }}>
               Architecture, interior design and full turnkey execution, held under one accountable team. The vision and the delivery never separate, so nothing falls through the gaps between firms.
             </p>
@@ -281,7 +281,7 @@ export default function Home() {
 
           <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.9fr 1.4fr', gap: '3rem' }}>
             <FadeIn>
-              <h3 style={{ ...roundedHeading, fontSize: 'clamp(1.8rem,3.5vw,2.4rem)', color: S.black, marginBottom: '1.2rem' }}>WHY US?</h3>
+              <h3 style={{ ...roundedHeading, fontSize: 'clamp(2.2rem,4.5vw,3rem)', color: S.black, marginBottom: '1.2rem' }}>WHY US?</h3>
               <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.75, maxWidth: 320 }}>
                 Thirty years of holding one standard: a single studio accountable for everything a project needs, from first sketch to final handover.
               </p>
@@ -291,7 +291,7 @@ export default function Home() {
                 <FadeIn key={i} delay={i * 60}>
                   <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'flex-start', borderBottom: i < whyUsPoints.length - 1 ? `1px solid ${S.line}` : 'none', paddingBottom: '1.6rem' }}>
                     <div>
-                      <p style={{ ...serifHeading, fontSize: '1.6rem', color: S.gold, lineHeight: 1, marginBottom: '0.2rem' }}>{p.num}</p>
+                      <p style={{ ...serifHeading, fontSize: '2.2rem', color: S.gold, lineHeight: 1, marginBottom: '0.2rem' }}>{p.num}</p>
                       <p style={{ fontWeight: 700, fontSize: '0.98rem', color: S.black }}>{p.title}</p>
                     </div>
                     <p style={{ fontSize: '0.82rem', color: S.mid, lineHeight: 1.6, marginTop: '2.1rem', flex: 1 }}>{p.desc}</p>
@@ -307,7 +307,7 @@ export default function Home() {
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center', marginBottom: '4rem' }}>
             <FadeIn>
-              <h2 style={{ ...serifHeading, fontSize: 'clamp(1.9rem,3.5vw,2.6rem)', color: S.black, marginBottom: '0.3rem' }}>Awards &amp; Certificates</h2>
+              <h2 style={{ ...serifHeading, fontSize: 'clamp(2.3rem,4.5vw,3.2rem)', color: S.black, marginBottom: '0.3rem' }}>Awards &amp; Certificates</h2>
               <h3 style={{ ...roundedHeading, fontSize: 'clamp(1.5rem,2.8vw,2rem)', color: S.black, marginBottom: '1.4rem', lineHeight: 1.25 }}>Being trusted twice<br />is the real award.</h3>
               <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.8 }}>
                 Our work has been honoured by some of the most respected names in design and industry. But the recognition we value most isn't on a shelf — it's the client who hands us their next project before the first is even finished.
@@ -439,7 +439,7 @@ export default function Home() {
       <section id="contact" style={{ background: S.cream, padding: '5rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
-            <FadeIn><h2 style={{ ...roundedHeading, fontSize: 'clamp(2.4rem,5vw,3.6rem)', color: S.black, letterSpacing: '0.02em' }}>CONTACT</h2></FadeIn>
+            <FadeIn><h2 style={{ ...roundedHeading, fontSize: 'clamp(3rem,6.5vw,4.6rem)', color: S.black, letterSpacing: '0.02em' }}>CONTACT</h2></FadeIn>
             <FadeIn delay={100}><p style={{ fontSize: '0.95rem', color: S.mid, textAlign: 'right' }}>Lets discuss your next<br />Project together</p></FadeIn>
           </div>
           <div style={{ width: '100%', height: 1, background: S.line, marginBottom: '2.5rem' }} />
