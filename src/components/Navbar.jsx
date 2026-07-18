@@ -5,6 +5,7 @@ const links = [
   { label: 'Home', anchor: 'hero' },
   { label: 'About us', anchor: 'about' },
   { label: 'Awards', anchor: 'awards-news' },
+  { label: 'Services', anchor: 'services' },
   { label: 'Projects', anchor: 'portfolio' },
   { label: 'Testimonials', anchor: 'testimonials' },
   { label: 'Contact us', anchor: 'contact' },

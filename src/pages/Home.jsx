@@ -251,10 +251,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="portfolio" style={{ background: S.cream, padding: '5rem 2rem' }}>
+      <section id="services" style={{ background: S.cream, padding: '5rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <FadeIn>
-            <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '1rem' }}>Our Projects</h2>
+            <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '1rem' }}>Our Expertise</h2>
             <p style={{ fontSize: '0.92rem', color: S.mid, textAlign: 'center', maxWidth: 700, margin: '0 auto 3rem', lineHeight: 1.7 }}>
               Architecture, interior design and full turnkey execution, held under one accountable team. The vision and the delivery never separate, so nothing falls through the gaps between firms.
             </p>
@@ -263,7 +263,7 @@ export default function Home() {
             {services4.map((s, i) => (
               <FadeIn key={i} delay={i * 90}>
                 <div style={{ marginTop: i % 2 === 1 ? '2.5rem' : 0 }}>
-                  <SlantCard img={s.img} title={s.title} onClick={() => scrollToId('portfolio')} />
+                  <SlantCard img={s.img} title={s.title} onClick={() => scrollToId('services')} />
                 </div>
               </FadeIn>
             ))}
@@ -271,10 +271,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={{ background: S.paper, padding: '5rem 2rem' }}>
+      <section id="portfolio" style={{ background: S.paper, padding: '5rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <FadeIn>
-            <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '3rem' }}>Types of Services</h2>
+            <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '3rem' }}>Our Projects</h2>
           </FadeIn>
           <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '4.5rem' }}>
             {typesOfServices.map((s, i) => (
