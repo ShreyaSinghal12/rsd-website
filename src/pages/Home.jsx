@@ -173,12 +173,12 @@ export default function Home() {
       </section>
 
       <section id="about" style={{ background: S.cream, padding: '5rem 2rem 4rem' }}>
-        <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', textAlign: 'center' }}>
           <FadeIn>
-            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.85rem', letterSpacing: '0.2em', color: S.mid, marginBottom: '1.2rem' }}>Est. 1995 — Siliguri, India</p>
-            <h2 style={{ ...serifHeading, fontSize: 'clamp(2.6rem,5vw,3.8rem)', color: S.black, marginBottom: '2rem' }}>30+ years of turning Space into Legacy</h2>
+            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.95rem', letterSpacing: '0.2em', color: S.mid, marginBottom: '1.2rem' }}>Est. 1995 — Siliguri, India</p>
+           <h2 style={{ ...serifHeading, fontSize: 'clamp(2.6rem,5vw,3.8rem)', color: S.black, marginBottom: '2rem' }}>30+ years of turning Space into Legacy</h2>
             <div style={{ width: 90, height: 1, background: S.line, margin: '0 auto 2rem' }} />
-            <p style={{ fontSize: '0.98rem', color: S.mid, lineHeight: 1.85, marginBottom: '1rem' }}>
+            <p style={{ fontSize: '1.08rem', color: S.mid, lineHeight: 1.9, marginBottom: '1rem' }}>
               Since 1995, Raamesh Singhal Design has been creating spaces where design, functionality, and human experience come together. Built on the belief that exceptional spaces require a unified vision, we seamlessly integrate architecture, interiors, planning, procurement, and execution under one roof.
             </p>
             <p style={{ fontSize: '0.98rem', color: S.mid, lineHeight: 1.85 }}>
@@ -187,13 +187,13 @@ export default function Home() {
           </FadeIn>
         </div>
 
-        <div ref={statsRef} style={{ maxWidth: 1100, margin: '4rem auto 4rem' }}>
+        <div ref={statsRef} style={{ maxWidth: 1300, margin: '4rem auto 4rem' }}>
           <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)' }}>
             {[{ num: years, suffix: '+', label: 'Years of Experience' }, { num: projs, suffix: '+', label: 'Projects Delivered' }, { num: repeat, suffix: '%', label: 'Repeat & Referral' }, { num: types, suffix: '', label: 'Project Typologies' }].map((s, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <div style={{ textAlign: 'center', padding: '0 1.5rem', borderRight: i < 3 ? `1px solid ${S.line}` : 'none' }}>
                   <div style={{ ...serifHeading, fontSize: 'clamp(2.8rem,5.5vw,4.2rem)', color: S.gold, lineHeight: 1, marginBottom: '0.5rem' }}>{s.num}{s.suffix}</div>
-                  <div style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontSize: '0.95rem', color: S.mid }}>{s.label}</div>
+<div style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontSize: '1.05rem', color: S.mid }}>{s.label}</div>
                 </div>
               </FadeIn>
             ))}
@@ -201,7 +201,7 @@ export default function Home() {
         </div>
 
         <FadeIn>
-          <div style={{ maxWidth: 1000, margin: '0 auto', position: 'relative', aspectRatio: '16/9', background: '#000', overflow: 'hidden' }}>
+          <div style={{ maxWidth: 1300, margin: '0 auto', position: 'relative', aspectRatio: '16/9', background: '#000', overflow: 'hidden' }}>
             <video muted autoPlay loop playsInline preload="auto" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}>
               <source src="/videos/hero.mp4" type="video/mp4" />
             </video>
