@@ -1,63 +1,189 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  ChevronRight,
+} from "lucide-react";
 
-const S = { gold: '#C9A96E', ink: '#111110', cream: '#F2EEE6', mid: '#A39F94', line: 'rgba(201,169,110,0.22)' }
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaLinkedinIn,
+  FaInstagram,
+} from "react-icons/fa";
 
-const quickLinks = [
-  { label: 'Home', anchor: 'hero' },
-  { label: 'About Us', anchor: 'about' },
-  { label: 'Services', anchor: 'services' },
-  { label: 'Projects', anchor: 'portfolio' },
-  { label: 'Awards and News', anchor: 'awards-news' },
-  { label: 'Testimonials', anchor: 'testimonials' },
-  { label: 'Contact Us', anchor: 'contact' },
-]
+/**
+ * RSD Footer ("footbar")
+ * 4 columns: brand/about, quick links, products, contact info
+ * + bottom bar with copyright and legal links.
+ * Swap the arrays / paragraph below once real copy is ready.
+ */
+
+const SOCIALS = [
+  { icon: Facebook, href: "#", label: "FaFacebookF" },
+  { icon: Twitter, href: "#", label: "FaTwitter" },
+  { icon: Linkedin, href: "#", label: "FaLinkedIn" },
+  { icon: Instagram, href: "#", label: "FaInstagram" },
+];
+
+const QUICK_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Products", href: "/products" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+  { label: "Contact Us", href: "/contact" },
+];
+
+const PRODUCTS = [
+  { label: "Rolling Shutters", href: "/products/rolling-shutters" },
+  { label: "Security Doors", href: "/products/security-doors" },
+  { label: "Fire Rated Doors", href: "/products/fire-rated-doors" },
+  { label: "Industrial Gates", href: "/products/industrial-gates" },
+  { label: "Automatic Doors", href: "/products/automatic-doors" },
+];
+
+const LEGAL_LINKS = [
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms & Conditions", href: "/terms" },
+];
 
 export default function Footer() {
-  const { pathname } = useLocation()
-  const navigate = useNavigate()
-
-  const scrollTo = (anchor) => {
-    if (pathname !== '/') {
-      navigate('/')
-      setTimeout(() => { const el = document.getElementById(anchor); if (el) el.scrollIntoView({ behavior: 'smooth' }) }, 300)
-    } else {
-      const el = document.getElementById(anchor)
-      if (el) el.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+  const year = new Date().getFullYear();
 
   return (
-    <footer style={{ background: S.ink, borderTop: `1px solid ${S.line}`, padding: '4rem 0 0' }}>
-      <div className="footer-grid" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem 3rem', display: 'grid', gridTemplateColumns: '1.4fr 1fr 1.2fr', gap: '3rem' }}>
+    <footer className="bg-[#0B1C32] text-slate-300 font-sans">
+      <div className="mx-auto max-w-7xl px-6 py-16">
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Brand */}
+          <div>
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-md bg-white/10">
+                <span className="text-lg font-extrabold tracking-tight text-[#F2811D]">
+                  RSD
+                </span>
+              </div>
+              <p className="text-lg font-extrabold tracking-tight text-white">
+                RSD Industries
+              </p>
+            </div>
+            <p className="text-sm leading-relaxed text-slate-400">
+              Engineering durable steel doors and rolling shutters for
+              industrial, commercial, and residential projects — built to
+              perform for decades.
+            </p>
+            <div className="mt-6 flex items-center gap-3">
+              {SOCIALS.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-600 text-slate-300 hover:border-[#F2811D] hover:text-[#F2811D] transition-colors"
+                >
+                  <Icon size={15} />
+                </a>
+              ))}
+            </div>
+          </div>
 
-        <div>
-          <img src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png" alt="Raamesh Singhal Design" style={{ height: 44, width: 'auto', display: 'block', filter: 'brightness(100)', marginBottom: '1.2rem' }} />
-          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.05rem', color: S.cream, marginBottom: '0.9rem', fontStyle: 'italic' }}>One studio. One standard. One name on every decision.</p>
-          <p style={{ fontSize: '0.85rem', color: S.mid, lineHeight: 1.8, maxWidth: 340 }}>Architecture, interiors, and turnkey execution held under one accountable team since 1995 — serving Siliguri, Sikkim, Nepal, Bhutan, and Assam.</p>
+          {/* Quick links */}
+          <div>
+            <h3 className="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-white">
+              Quick Links
+            </h3>
+            <ul className="space-y-3">
+              {QUICK_LINKS.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="group flex items-center gap-2 text-sm text-slate-400 hover:text-[#F2811D] transition-colors"
+                  >
+                    <ChevronRight
+                      size={14}
+                      className="text-[#F2811D] transition-transform group-hover:translate-x-0.5"
+                    />
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Products */}
+          <div>
+            <h3 className="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-white">
+              Our Products
+            </h3>
+            <ul className="space-y-3">
+              {PRODUCTS.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="group flex items-center gap-2 text-sm text-slate-400 hover:text-[#F2811D] transition-colors"
+                  >
+                    <ChevronRight
+                      size={14}
+                      className="text-[#F2811D] transition-transform group-hover:translate-x-0.5"
+                    />
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact info */}
+          <div>
+            <h3 className="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-white">
+              Contact Info
+            </h3>
+            <ul className="space-y-4 text-sm text-slate-400">
+              <li className="flex items-start gap-3">
+                <MapPin size={16} className="mt-0.5 shrink-0 text-[#F2811D]" />
+                <span>1245 Industrial Parkway, Suite 200, Springfield</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Phone size={16} className="mt-0.5 shrink-0 text-[#F2811D]" />
+                <a href="tel:+18005550142" className="hover:text-[#F2811D]">
+                  +1 (800) 555-0142
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <Mail size={16} className="mt-0.5 shrink-0 text-[#F2811D]" />
+                <a
+                  href="mailto:info@rsdindustries.com"
+                  className="hover:text-[#F2811D]"
+                >
+                  info@rsdindustries.com
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <Clock size={16} className="mt-0.5 shrink-0 text-[#F2811D]" />
+                <span>Mon – Sat: 9:00 AM – 6:00 PM</span>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
 
-        <div>
-          <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.2rem' }}>Quick Links</p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-            {quickLinks.map(link => (
-              <button key={link.anchor} onClick={() => scrollTo(link.anchor)} style={{ textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'DM Sans',sans-serif", fontSize: '0.88rem', color: S.mid, padding: 0, transition: 'color 0.25s' }} onMouseEnter={e => e.currentTarget.style.color = S.gold} onMouseLeave={e => e.currentTarget.style.color = S.mid}>{link.label}</button>
+      {/* Bottom bar */}
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-sm text-slate-400 sm:flex-row">
+          <p>© {year} RSD Industries. All Rights Reserved.</p>
+          <div className="flex items-center gap-6">
+            {LEGAL_LINKS.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="hover:text-[#F2811D] transition-colors"
+              >
+                {link.label}
+              </a>
             ))}
           </div>
         </div>
-
-        <div>
-          <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.2rem' }}>Contact</p>
-          <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8, marginBottom: '0.9rem' }}>Time Square, 3rd Floor, Opp Ravi Auto,<br />Sevoke Road, Siliguri</p>
-          <a href="tel:+919800848155" style={{ display: 'block', fontSize: '0.88rem', color: S.mid, textDecoration: 'none', marginBottom: '0.4rem', transition: 'color 0.25s' }} onMouseEnter={e => e.currentTarget.style.color = S.gold} onMouseLeave={e => e.currentTarget.style.color = S.mid}>+91 98008 48155</a>
-          <a href="tel:+918250841773" style={{ display: 'block', fontSize: '0.88rem', color: S.mid, textDecoration: 'none', marginBottom: '0.4rem', transition: 'color 0.25s' }} onMouseEnter={e => e.currentTarget.style.color = S.gold} onMouseLeave={e => e.currentTarget.style.color = S.mid}>+91 82508 41773</a>
-          <a href="mailto:rameshsinghaldesign@gmail.com" style={{ display: 'block', fontSize: '0.88rem', color: S.mid, textDecoration: 'none', marginBottom: '0.9rem', transition: 'color 0.25s' }} onMouseEnter={e => e.currentTarget.style.color = S.gold} onMouseLeave={e => e.currentTarget.style.color = S.mid}>rameshsinghaldesign@gmail.com</a>
-          <p style={{ fontSize: '0.82rem', color: S.mid, lineHeight: 1.7 }}>Mon-Fri: 9:00-22:00<br />Saturday: 11:00-20:00</p>
-        </div>
-      </div>
-
-      <div style={{ borderTop: `1px solid ${S.line}`, padding: '1.4rem 2rem', textAlign: 'center' }}>
-        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.12em', color: S.mid }}>© {new Date().getFullYear()} Raamesh Singhal Design. All rights reserved. · Est. 1995 · Siliguri, India</p>
       </div>
     </footer>
-  )
+  );
 }
