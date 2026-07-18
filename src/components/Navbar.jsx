@@ -8,12 +8,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 
-import {
-  FaFacebook,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
-} from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
 
 /**
  * RSD Navbar
