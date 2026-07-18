@@ -334,7 +334,7 @@ export default function Home() {
               </p>
             </FadeIn>
             <FadeIn delay={150}>
-              <div style={{ position: 'relative', width: '100%', aspectRatio: '602/685' }}>
+              <div style={{ position: 'relative', width: '100%', maxWidth: 480, aspectRatio: '602/685' }}>
                 {trophyStage.map((t, i) => {
                   const award = awardsAndCerts.filter(a => a.type === 'Award')[i]
                   const woodCyl = 'linear-gradient(97deg, #9C784992 0%, #D2B384 9%, #EDDAB0 22%, #FBF4E1 36%, #FFFBF0 46%, #F5E7C7 58%, #E2C797 72%, #C6A374 86%, #96713F 100%)'
