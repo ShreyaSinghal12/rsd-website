@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useInView } from 'react-intersection-observer'
-import projects from '../data/projects'
 import testimonials from '../data/testimonials'
 
 /* DESIGN TOKENS matching PDF */
@@ -123,11 +122,9 @@ function SlantCard({ img, title, onClick, big }) {
 
 export default function Home() {
   const [tIndex, setTIndex] = useState(0)
-  const [filter, setFilter] = useState('all')
   const [form, setForm] = useState({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' })
   const [status, setStatus] = useState('idle')
   const [focused, setFocused] = useState({})
-  const [selectedProject, setSelectedProject] = useState(null)
   const [selectedPress, setSelectedPress] = useState(null)
   const [playingVideo, setPlayingVideo] = useState(null)
 
@@ -148,7 +145,6 @@ export default function Home() {
   const repeat = useCounter(90, statsInView)
   const types = useCounter(6, statsInView)
 
-  const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter)
   const scrollToId = (id) => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }) }
 
   const handleSubmit = async (e) => {
@@ -255,10 +251,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="services" style={{ background: S.cream, padding: '5rem 2rem' }}>
+      <section id="portfolio" style={{ background: S.cream, padding: '5rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <FadeIn>
-            <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '1rem' }}>Our Expertise</h2>
+            <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '1rem' }}>Our Projects</h2>
             <p style={{ fontSize: '0.92rem', color: S.mid, textAlign: 'center', maxWidth: 700, margin: '0 auto 3rem', lineHeight: 1.7 }}>
               Architecture, interior design and full turnkey execution, held under one accountable team. The vision and the delivery never separate, so nothing falls through the gaps between firms.
             </p>
@@ -267,7 +263,7 @@ export default function Home() {
             {services4.map((s, i) => (
               <FadeIn key={i} delay={i * 90}>
                 <div style={{ marginTop: i % 2 === 1 ? '2.5rem' : 0 }}>
-                  <SlantCard img={s.img} title={s.title} onClick={() => scrollToId('services')} />
+                  <SlantCard img={s.img} title={s.title} onClick={() => scrollToId('portfolio')} />
                 </div>
               </FadeIn>
             ))}
@@ -422,33 +418,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="portfolio" style={{ background: S.cream, padding: '5rem 2rem' }}>
-        <div style={{ maxWidth: 1300, margin: '0 auto' }}>
-          <FadeIn>
-            <h2 style={{ ...roundedHeading, fontSize: 'clamp(1.8rem,3.5vw,2.4rem)', color: S.ink, textAlign: 'center', marginBottom: '1.5rem' }}>Our Projects</h2>
-          </FadeIn>
-          <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '0.6rem', marginBottom: '2.5rem' }}>
-            {['all', 'residential', 'commercial', 'architecture', 'hospitality'].map(f => (
-              <button key={f} onClick={() => setFilter(f)} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '0.8rem', padding: '0.55rem 1.2rem', borderRadius: 999, border: `1px solid ${filter === f ? S.gold : S.line}`, cursor: 'pointer', background: filter === f ? S.gold : 'transparent', color: filter === f ? '#fff' : S.mid }}>
-                {f === 'all' ? 'All' : f === 'hospitality' ? 'Hotels & Hospitality' : f === 'commercial' ? 'Builders & Developers' : f.charAt(0).toUpperCase() + f.slice(1)}
-              </button>
-            ))}
-          </div>
-          <div className="portfolio-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.2rem' }}>
-            {filtered.map((p, i) => (
-              <FadeIn key={p.id} delay={(i % 9) * 60}>
-                <div onClick={() => setSelectedProject(p)} style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', cursor: 'pointer' }} onMouseEnter={e => e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'} onMouseLeave={e => e.currentTarget.querySelector('img').style.transform = 'scale(1)'}>
-                  <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,20,18,0.8) 0%, transparent 55%)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.2rem' }}>
-                    <p style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontSize: '1rem', color: '#fff' }}>{p.title}</p>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section id="testimonials" style={{ background: S.paper, padding: '5rem 2rem' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <FadeIn>
@@ -559,20 +528,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {selectedProject && (
-        <div onClick={() => setSelectedProject(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(20,20,18,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem' }}>
-          <div onClick={e => e.stopPropagation()} className="project-modal-grid" style={{ background: '#fff', maxWidth: 900, width: '100%', maxHeight: '90vh', overflow: 'auto', display: 'grid', gridTemplateColumns: '1.2fr 1fr', position: 'relative', borderRadius: 8 }}>
-            <button onClick={() => setSelectedProject(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', width: 36, height: 36, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', cursor: 'pointer', color: '#fff', fontSize: '1rem' }}>&#10005;</button>
-            <img src={selectedProject.img} alt={selectedProject.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', minHeight: 300 }} />
-            <div style={{ padding: '2.5rem' }}>
-              <p style={{ fontSize: '0.75rem', color: S.gold, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.6rem' }}>{selectedProject.category}</p>
-              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', color: S.black, marginBottom: '1.2rem' }}>{selectedProject.title}</h2>
-              <p style={{ fontSize: '0.9rem', color: S.mid, lineHeight: 1.8 }}>{selectedProject.desc}</p>
-            </div>
-          </div>
-        </div>
-      )}
 
       {selectedPress && (
         <div onClick={() => setSelectedPress(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(20,20,18,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem' }}>
