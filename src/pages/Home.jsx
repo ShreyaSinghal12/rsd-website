@@ -64,10 +64,12 @@ const awardsAndCerts = [
 ]
 
 const trophyStage = [
-  { key: 'pillar', img: '/images/awardsAndCertificates/Award1.png', left: 15.8, width: 15.5, top: 7.5, height: 41, plateLeft: 3.5, plateWidth: 39, plateTop: 48.5, plateHeight: 3.6, stemLeft: 11, stemWidth: 24.5, stemTop: 52, stemHeight: 34 },
-  { key: 'horizon', img: '/images/awardsAndCertificates/Award2.png', left: 40, width: 28, top: 34, height: 30, plateLeft: 24, plateWidth: 60, plateTop: 63.5, plateHeight: 5.8, stemLeft: 40, stemWidth: 20, stemTop: 69, stemHeight: 31 },
-  { key: 'keystone', img: '/images/awardsAndCertificates/Award3.png', left: 66.5, width: 27, top: 1, height: 32, plateLeft: 62.5, plateWidth: 37.5, plateTop: 32, plateHeight: 5.2, stemLeft: 72, stemWidth: 20, stemTop: 37.5, stemHeight: 63 },
+  { key: 'pillar', img: '/images/awardsAndCertificates/Award1-trophy.png', left: 16.3, width: 13.4, top: 12.4, height: 40, plateLeft: 7.25, plateWidth: 32, plateTop: 52, plateHeight: 3, stemLeft: 11, stemWidth: 24.5, stemTop: 52, stemHeight: 34 },
+  { key: 'horizon', img: '/images/awardsAndCertificates/Award2-trophy.png', left: 40, width: 20.1, top: 42.4, height: 27, plateLeft: 27, plateWidth: 46, plateTop: 69, plateHeight: 3.2, stemLeft: 40, stemWidth: 20, stemTop: 69, stemHeight: 31 },
+  { key: 'keystone', img: '/images/awardsAndCertificates/Award3-trophy.png', left: 68.3, width: 25.9, top: 7.9, height: 30, plateLeft: 68.5, plateWidth: 27, plateTop: 37.5, plateHeight: 2.8, stemLeft: 72, stemWidth: 20, stemTop: 37.5, stemHeight: 63 },
 ]
+
+const woodGrainSVG = `data:image/svg+xml,${encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='140' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.9' numOctaves='3' seed='11' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.32  0 0 0 0 0.23  0 0 0 0 0.12  0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>")}`
 
 const videoTestimonials = [
   { name: 'Client Name', role: 'Residential Client', video: '/videos/Testimonials/Testimonial1.mp4' },
@@ -335,17 +337,42 @@ export default function Home() {
               <div style={{ position: 'relative', width: '100%', aspectRatio: '602/685' }}>
                 {trophyStage.map((t, i) => {
                   const award = awardsAndCerts.filter(a => a.type === 'Award')[i]
-                  const woodGradient = 'linear-gradient(100deg, #B08D5C 0%, #E4CDA0 22%, #F6E9C9 42%, #E4CDA0 62%, #C7A876 82%, #A98A5A 100%)'
+                  const woodCyl = 'linear-gradient(97deg, #9C784992 0%, #D2B384 9%, #EDDAB0 22%, #FBF4E1 36%, #FFFBF0 46%, #F5E7C7 58%, #E2C797 72%, #C6A374 86%, #96713F 100%)'
+                  const woodDisc = 'linear-gradient(100deg, #A9835470 0%, #DFC496 12%, #F7EAD0 26%, #FEFAEE 40%, #FDF6E4 50%, #F1E0B9 62%, #DCBD8C 76%, #B99668 90%, #8E6B3F 100%)'
+                  const stemCx = t.stemLeft + t.stemWidth / 2
                   return (
                     <div key={t.key}>
-                      <div style={{ position: 'absolute', left: `${t.plateLeft}%`, width: `${t.plateWidth}%`, top: `${t.plateTop}%`, height: `${t.plateHeight}%`, background: woodGradient, borderRadius: '50%', boxShadow: '0 10px 18px rgba(0,0,0,0.18)' }} />
-                      <div style={{ position: 'absolute', left: `${t.stemLeft}%`, width: `${t.stemWidth}%`, top: `${t.stemTop}%`, height: `${t.stemHeight}%`, background: woodGradient, borderRadius: '4% 4% 38% 38% / 3% 3% 14% 14%' }} />
+                      {/* contact shadow on the ground */}
+                      <div style={{ position: 'absolute', left: `${stemCx - t.stemWidth * 0.62}%`, width: `${t.stemWidth * 1.24}%`, top: `${t.stemTop + t.stemHeight - 1.2}%`, height: '3%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(30,20,8,0.34) 0%, rgba(30,20,8,0) 72%)' }} />
+
+                      {/* pedestal stem: rounded dome top, cylindrical body */}
+                      <div style={{ position: 'absolute', left: `${t.stemLeft}%`, width: `${t.stemWidth}%`, top: `${t.stemTop}%`, height: `${t.stemHeight}%`, borderRadius: '50% 50% 14% 14% / 46% 46% 7% 7%', overflow: 'hidden', background: woodCyl, boxShadow: 'inset -12px 0 22px rgba(70,48,22,0.32), inset 10px 0 16px rgba(255,255,255,0.4), 0 16px 24px rgba(30,20,10,0.18)' }}>
+                        {/* dome highlight */}
+                        <div style={{ position: 'absolute', left: '10%', right: '10%', top: '-6%', height: '38%', borderRadius: '50%', background: 'radial-gradient(ellipse at 38% 30%, rgba(255,253,246,0.95) 0%, rgba(255,253,246,0) 62%)' }} />
+                        {/* vertical specular streak */}
+                        <div style={{ position: 'absolute', left: '20%', width: '14%', top: '4%', bottom: '4%', background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0) 100%)', filter: 'blur(3px)' }} />
+                        {/* wood grain texture */}
+                        <div style={{ position: 'absolute', inset: 0, backgroundImage: `url("${woodGrainSVG}")`, backgroundSize: '60% 100%', mixBlendMode: 'multiply', opacity: 0.55 }} />
+                        {/* ambient occlusion where stem meets tray above */}
+                        <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: '10%', background: 'linear-gradient(180deg, rgba(60,42,20,0.28) 0%, rgba(60,42,20,0) 100%)' }} />
+                      </div>
+
+                      {/* tray edge (disc thickness) */}
+                      <div style={{ position: 'absolute', left: `${t.plateLeft}%`, width: `${t.plateWidth}%`, top: `${t.plateTop + t.plateHeight * 0.4}%`, height: `${t.plateHeight * 1.15}%`, borderRadius: '50%', background: 'linear-gradient(180deg, #A17F4F 0%, #6E5230 100%)' }} />
+                      {/* tray top surface */}
+                      <div style={{ position: 'absolute', left: `${t.plateLeft}%`, width: `${t.plateWidth}%`, top: `${t.plateTop}%`, height: `${t.plateHeight}%`, borderRadius: '50%', overflow: 'hidden', background: woodDisc, boxShadow: '0 8px 14px rgba(20,14,6,0.22)' }}>
+                        <div style={{ position: 'absolute', left: '8%', top: '-30%', width: '46%', height: '160%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(255,253,246,0.9) 0%, rgba(255,253,246,0) 65%)' }} />
+                        <div style={{ position: 'absolute', inset: 0, backgroundImage: `url("${woodGrainSVG}")`, backgroundSize: '160% 340%', mixBlendMode: 'multiply', opacity: 0.28 }} />
+                      </div>
+
                       <img
                         src={t.img}
                         alt={award?.title}
                         onClick={() => award && setSelectedPress(award)}
-                        style={{ position: 'absolute', left: `${t.left}%`, width: `${t.width}%`, top: `${t.top}%`, height: `${t.height}%`, objectFit: 'contain', cursor: 'pointer', filter: 'drop-shadow(0 8px 10px rgba(0,0,0,0.2))' }}
+                        style={{ position: 'absolute', left: `${t.left}%`, width: `${t.width}%`, top: `${t.top}%`, height: `${t.height}%`, objectFit: 'contain', objectPosition: 'center bottom', cursor: 'pointer', filter: 'drop-shadow(0 8px 10px rgba(0,0,0,0.2))' }}
                       />
+                      {/* contact shadow where the trophy meets the tray */}
+                      <div style={{ position: 'absolute', left: `${t.left + t.width * 0.14}%`, width: `${t.width * 0.72}%`, top: `${t.top + t.height - 0.6}%`, height: '1.6%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(25,17,7,0.4) 0%, rgba(25,17,7,0) 75%)' }} />
                     </div>
                   )
                 })}
