@@ -315,9 +315,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="awards-news" style={{ background: S.cream, padding: '5rem 2rem' }}>
+       <section id="awards-news" style={{ background: S.cream, padding: '5rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', alignItems: 'center', marginBottom: '4rem' }}>
+          <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.85fr 1fr', gap: '3rem', alignItems: 'start', marginBottom: '4rem' }}>
             <FadeIn>
               <h2 style={{ ...serifHeading, fontSize: 'clamp(2.3rem,4.5vw,3.2rem)', color: S.black, marginBottom: '0.3rem' }}>Awards &amp; Certificates</h2>
               <h3 style={{ ...roundedHeading, fontSize: 'clamp(1.5rem,2.8vw,2rem)', color: S.black, marginBottom: '1.4rem', lineHeight: 1.25 }}>Being trusted twice<br />is the real award.</h3>
@@ -326,16 +326,27 @@ export default function Home() {
               </p>
             </FadeIn>
             <FadeIn delay={150}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '0.8rem' }}>
-                {awardsAndCerts.filter(a => a.type === 'Award').map((a, i) => (
-                  <div key={i} onClick={() => setSelectedPress(a)} style={{ aspectRatio: '3/4', background: S.paper, border: `1px solid ${S.line}`, cursor: 'pointer', overflow: 'hidden' }}>
-                    <img src={a.img} alt={a.title} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
-                  </div>
-                ))}
+              <div style={{ position: 'relative', width: '100%', aspectRatio: '602/685' }}>
+                {trophyStage.map((t, i) => {
+                  const award = awardsAndCerts.filter(a => a.type === 'Award')[i]
+                  const woodGradient = 'linear-gradient(100deg, #B08D5C 0%, #E4CDA0 22%, #F6E9C9 42%, #E4CDA0 62%, #C7A876 82%, #A98A5A 100%)'
+                  return (
+                    <div key={t.key}>
+                      <div style={{ position: 'absolute', left: `${t.plateLeft}%`, width: `${t.plateWidth}%`, top: `${t.plateTop}%`, height: `${t.plateHeight}%`, background: woodGradient, borderRadius: '50%', boxShadow: '0 10px 18px rgba(0,0,0,0.18)' }} />
+                      <div style={{ position: 'absolute', left: `${t.stemLeft}%`, width: `${t.stemWidth}%`, top: `${t.stemTop}%`, height: `${t.stemHeight}%`, background: woodGradient, borderRadius: '4% 4% 38% 38% / 3% 3% 14% 14%' }} />
+                      <img
+                        src={t.img}
+                        alt={award?.title}
+                        onClick={() => award && setSelectedPress(award)}
+                        style={{ position: 'absolute', left: `${t.left}%`, width: `${t.width}%`, top: `${t.top}%`, height: `${t.height}%`, objectFit: 'contain', cursor: 'pointer', filter: 'drop-shadow(0 8px 10px rgba(0,0,0,0.2))' }}
+                      />
+                    </div>
+                  )
+                })}
               </div>
             </FadeIn>
           </div>
-
+ 
           <div className="moodboard-scroll" style={{ display: 'flex', gap: '1.2rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
             {awardsAndCerts.filter(a => a.type === 'Certificate').map((c, i) => (
               <FadeIn key={i} delay={i * 60}>
