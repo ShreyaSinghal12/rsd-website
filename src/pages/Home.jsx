@@ -4,16 +4,17 @@ import { useInView } from 'react-intersection-observer'
 import projects from '../data/projects'
 import testimonials from '../data/testimonials'
 
-/* ── DESIGN TOKENS (PDF dark theme) ── */
+/* ── DESIGN TOKENS (PDF light theme) ── */
 const S = {
-  gold: '#C9A96E',
-  ink: '#141412',
-  panel: '#1B1A17',
-  card: '#211F1B',
-  cream: '#F2EEE6',
-  stone: '#E8E0D0',
-  mid: '#A39F94',
-  line: 'rgba(201,169,110,0.22)',
+  gold: '#B4915B',
+  ink: '#FAF7EF',
+  panel: '#FFFFFF',
+  card: '#FFFFFF',
+  cream: '#1B1B18',
+  stone: '#F2EADA',
+  mid: '#6B6862',
+  line: 'rgba(180,145,91,0.28)',
+  navy: '#16324A',
 }
 
 const LABEL_STYLE = { fontFamily: "'DM Mono',monospace", fontSize: '0.8rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: S.gold, marginBottom: '1rem' }
@@ -27,9 +28,9 @@ const focusCards = [
 ]
 
 const services = [
-  { num: '01', title: 'Architecture', headline: 'The Drawings That Decide Everything Built After Them', desc: 'Ground-up architectural design that sets the bones of the project — form, structure, flow and light. We design from the inside out, so the architecture serves how the space will actually be lived in or operated, not just how it looks on an elevation. Structure, services and aesthetics are resolved together before a single wall is committed.' },
-  { num: '02', title: 'Interior Design', headline: 'The Interiors That Hold Their Value Long After Trends Expire', desc: 'End-to-end interior design across residential, hospitality and commercial spaces. We move from concept and material intelligence to full detailing — specifying every finish, fixture and bespoke element with longevity in mind. Craftsmanship is briefed and supervised, not left to chance.' },
-  { num: '03', title: 'Turnkey Projects', headline: 'The Single Point of Accountability the Whole Industry Is Moving Toward', desc: 'One partner for the entire journey, concept to completion, design through execution and delivery. Design, planning, procurement, quality control and on-site project management run as one integrated system under our control. You make decisions. We absorb the coordination, the vendors and the risk.' },
+  { num: '01', title: 'Architecture', headline: 'The Drawings That Decide Everything Built After Them', desc: 'Ground-up architectural design that sets the bones of the project — form, structure, flow and light. We design from the inside out, so the architecture serves how the space will actually be lived in or operated, not just how it looks on an elevation. Structure, services and aesthetics are resolved together before a single wall is committed.', img: '/images/projects/16.jpg' },
+  { num: '02', title: 'Interior Design', headline: 'The Interiors That Hold Their Value Long After Trends Expire', desc: 'End-to-end interior design across residential, hospitality and commercial spaces. We move from concept and material intelligence to full detailing — specifying every finish, fixture and bespoke element with longevity in mind. Craftsmanship is briefed and supervised, not left to chance.', img: '/images/projects/2.jpg' },
+  { num: '03', title: 'Turnkey Projects', headline: 'The Single Point of Accountability the Whole Industry Is Moving Toward', desc: 'One partner for the entire journey, concept to completion, design through execution and delivery. Design, planning, procurement, quality control and on-site project management run as one integrated system under our control. You make decisions. We absorb the coordination, the vendors and the risk.', img: '/images/slides/2ndSlide.jpeg' },
 ]
 
 const areaList = [
@@ -118,7 +119,7 @@ export default function Home() {
   const focusField = (k) => setFocused(f => ({ ...f, [k]: true }))
   const blurField = (k) => setFocused(f => ({ ...f, [k]: false }))
 
-  const inputStyle = (isFocused) => ({ width: '100%', padding: '0.85rem 1rem', border: `1px solid ${isFocused ? S.gold : 'rgba(242,238,230,0.15)'}`, background: S.ink, fontFamily: "'DM Sans',sans-serif", fontSize: '0.92rem', color: S.cream, outline: 'none', transition: 'border-color 0.25s', borderRadius: 0 })
+  const inputStyle = (isFocused) => ({ width: '100%', padding: '0.85rem 1rem', border: `1px solid ${isFocused ? S.gold : 'rgba(27,27,24,0.15)'}`, background: '#F7F4EC', fontFamily: "'DM Sans',sans-serif", fontSize: '0.92rem', color: S.cream, outline: 'none', transition: 'border-color 0.25s', borderRadius: 0 })
 
   useEffect(() => {
     const t = setInterval(() => setTIndex(i => (i + 1) % testimonials.length), 6000)
@@ -146,34 +147,21 @@ export default function Home() {
   return (
     <>
       {/* ── HERO ── */}
-      <section id="hero" style={{ background: S.ink, position: 'relative', overflow: 'hidden', paddingTop: 68 }}>
-        <BigNum style={{ position: 'absolute', top: '8rem', right: '-2rem', fontSize: 'clamp(8rem,20vw,18rem)', opacity: 0.5 }}>1995</BigNum>
-        <div style={{ maxWidth: 1300, margin: '0 auto', padding: '4rem 2rem 5rem', position: 'relative' }}>
-          <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: '4rem', alignItems: 'center' }}>
-            <FadeIn>
-              <p style={{ ...LABEL_STYLE, display: 'flex', alignItems: 'center', gap: '0.9rem' }}><span style={{ width: 32, height: 1, background: S.gold, display: 'inline-block' }} />Est. 1995 · Siliguri, India</p>
-              <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.9rem,3.6vw,3rem)', fontWeight: 500, lineHeight: 1.22, color: S.cream, marginBottom: '1.4rem', maxWidth: 620 }}>
-                You're not building a space. <em style={{ fontStyle: 'italic', color: S.gold }}>You're building what people will say about you for the next thirty years.</em>
-              </h1>
-              <p style={{ fontSize: 'clamp(0.9rem,1.8vw,1rem)', color: S.mid, maxWidth: 520, marginBottom: '2.2rem', lineHeight: 1.8 }}>
-                A single studio, holding the vision from first sketch to final handover, so your legacy is left to no one's chance but ours.
-              </p>
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                <button onClick={() => scrollToId('contact')} style={goldBtn} onMouseEnter={e => e.currentTarget.style.background = '#b8923d'} onMouseLeave={e => e.currentTarget.style.background = S.gold}>Begin Your Journey With Us →</button>
-                <button onClick={() => scrollToId('portfolio')} style={lineBtn} onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.color = S.gold }} onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(242,238,230,0.4)'; e.currentTarget.style.color = S.cream }}>Explore Our Work</button>
-              </div>
-            </FadeIn>
-            <FadeIn delay={150}>
-              <div style={{ position: 'relative', maxWidth: 440, margin: '0 auto' }}>
-                <div style={{ position: 'absolute', top: '1.4rem', left: '1.4rem', width: '100%', height: '100%', border: `1px solid ${S.line}`, borderRadius: '999px 999px 0 0', zIndex: 0 }} />
-                <div style={{ position: 'relative', borderRadius: '999px 999px 0 0', overflow: 'hidden', aspectRatio: '3.2/4', zIndex: 1, background: S.panel }}>
-                  <img src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg" alt="Raamesh Singhal Design" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,20,18,0.55) 0%, transparent 45%)' }} />
-                  <div style={{ position: 'absolute', bottom: '1.4rem', left: '50%', transform: 'translateX(-50%)', whiteSpace: 'nowrap', fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: S.gold, background: 'rgba(20,20,18,0.75)', padding: '0.55rem 1.1rem', border: `1px solid ${S.line}` }}>30+ Years of Legacy</div>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
+      <section id="hero" style={{ position: 'relative', overflow: 'hidden', minHeight: '92vh', display: 'flex', alignItems: 'center' }}>
+        <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+          <img src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg" alt="Raamesh Singhal Design interior" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(100deg, ${S.navy} 0%, rgba(22,50,74,0.75) 38%, rgba(22,50,74,0.25) 62%, rgba(22,50,74,0.15) 100%)` }} />
+        </div>
+        <div style={{ maxWidth: 1300, margin: '0 auto', padding: '9rem 2rem 4rem', position: 'relative', zIndex: 1, width: '100%' }}>
+          <FadeIn>
+            <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2.4rem,5.5vw,4.2rem)', fontWeight: 400, lineHeight: 1.08, color: '#FFFFFF', marginBottom: '1.6rem', maxWidth: 680 }}>
+              Where Imagination Meets Interior Design
+            </h1>
+            <p style={{ fontSize: 'clamp(0.95rem,1.8vw,1.05rem)', color: 'rgba(255,255,255,0.88)', maxWidth: 480, marginBottom: '2.4rem', lineHeight: 1.75 }}>
+              A single studio, holding the vision from first sketch to final handover, so your legacy is left to no one's chance but ours.
+            </p>
+            <button onClick={() => scrollToId('portfolio')} style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.9rem 2rem', background: 'transparent', color: '#FFFFFF', border: '1px solid rgba(255,255,255,0.6)', cursor: 'pointer', transition: 'all 0.3s' }} onMouseEnter={e => { e.currentTarget.style.background = '#FFFFFF'; e.currentTarget.style.color = S.navy }} onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#FFFFFF' }}>View Projects →</button>
+          </FadeIn>
         </div>
       </section>
 
@@ -193,25 +181,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── OUR FOCUS ── */}
+      {/* ── TYPES OF SERVICES ── */}
       <section style={{ background: S.ink, padding: '5rem 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem' }}>
           <FadeIn>
-            <p style={LABEL_STYLE}>Our Focus</p>
-            <h2 style={{ ...H2_STYLE, marginBottom: '3rem' }}>What are you <em style={{ color: S.gold }}>building?</em></h2>
+            <p style={{ ...LABEL_STYLE, textAlign: 'center' }}>Our Focus</p>
+            <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 800, fontSize: 'clamp(1.8rem,4vw,2.6rem)', letterSpacing: '0.02em', textTransform: 'uppercase', color: S.navy, textAlign: 'center', marginBottom: '3rem', background: `linear-gradient(180deg, ${S.navy} 0%, #5b7288 60%, ${S.navy} 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Types of Services</h2>
           </FadeIn>
-          <div className="process-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.8rem' }}>
+          <div className="process-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
             {focusCards.map((cat, i) => (
               <FadeIn key={cat.key} delay={i * 100}>
-                <Link to={cat.route} style={{ display: 'block', textDecoration: 'none' }} onMouseEnter={e => { const img = e.currentTarget.querySelector('img'); if (img) img.style.transform = 'scale(1.06)' }} onMouseLeave={e => { const img = e.currentTarget.querySelector('img'); if (img) img.style.transform = 'scale(1)' }}>
-                  <div style={{ position: 'relative', borderRadius: '999px 999px 0 0', overflow: 'hidden', aspectRatio: '3/3.6', background: S.panel, marginBottom: '1.4rem' }}>
-                    <img src={cat.img} alt={cat.label} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,20,18,0.75) 0%, transparent 55%)' }} />
-                  </div>
-                  <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.6rem' }}>{cat.num} — {cat.label}</p>
-                  <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.15rem', color: S.cream, lineHeight: 1.4, marginBottom: '0.6rem', fontWeight: 500 }}>{cat.headline}</h3>
-                  <p style={{ fontSize: '0.85rem', color: S.mid, lineHeight: 1.7, marginBottom: '0.9rem' }}>{cat.sub}</p>
-                  <span style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Explore →</span>
+                <Link to={cat.route} style={{ display: 'block', textDecoration: 'none', position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: S.panel }} onMouseEnter={e => { const img = e.currentTarget.querySelector('img'); if (img) img.style.transform = 'scale(1.06)' }} onMouseLeave={e => { const img = e.currentTarget.querySelector('img'); if (img) img.style.transform = 'scale(1)' }}>
+                  <img src={cat.img} alt={cat.label} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15,25,35,0.85) 0%, rgba(15,25,35,0.1) 55%, transparent 70%)' }} />
+                  <p style={{ position: 'absolute', left: '1.2rem', bottom: '1rem', fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: '#FFFFFF', margin: 0 }}>{cat.label}</p>
                 </Link>
               </FadeIn>
             ))}
@@ -263,18 +246,16 @@ export default function Home() {
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
               <p style={LABEL_STYLE}>What We Do</p>
-              <h2 style={{ ...H2_STYLE, marginBottom: '1.2rem' }}>Three disciplines.<br /><em style={{ color: S.gold }}>One continuous decision.</em></h2>
+              <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 800, fontSize: 'clamp(1.8rem,4vw,2.6rem)', letterSpacing: '0.02em', textTransform: 'uppercase', color: S.navy, marginBottom: '1.2rem', background: `linear-gradient(180deg, ${S.navy} 0%, #5b7288 60%, ${S.navy} 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Our Expertise</h2>
               <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 680, marginBottom: '3rem' }}>Architecture, interior design and full turnkey execution, held under one accountable team. The vision and the delivery never separate, so nothing falls through the gaps between firms.</p>
             </FadeIn>
             <div className="process-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
               {services.map((svc, i) => (
                 <FadeIn key={i} delay={i * 100}>
-                  <div onClick={() => setSelectedService(svc)} style={{ position: 'relative', padding: '2.5rem 2rem', background: S.card, border: `1px solid ${S.line}`, cursor: 'pointer', height: '100%', overflow: 'hidden', transition: 'border-color 0.3s, transform 0.3s' }} onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.transform = 'translateY(-4px)' }} onMouseLeave={e => { e.currentTarget.style.borderColor = S.line; e.currentTarget.style.transform = 'translateY(0)' }}>
-                    <BigNum style={{ position: 'absolute', top: '-1rem', right: '0.5rem', fontSize: '6.5rem' }}>{svc.num}</BigNum>
-                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.62rem', letterSpacing: '0.16em', color: S.gold, marginBottom: '0.8rem', textTransform: 'uppercase' }}>{svc.num}</p>
-                    <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.35rem', color: S.cream, marginBottom: '0.8rem', fontWeight: 600 }}>{svc.title}</h3>
-                    <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '0.95rem', fontStyle: 'italic', color: S.gold, marginBottom: '1.2rem', lineHeight: 1.5 }}>{svc.headline}</p>
-                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.gold }}>Learn More →</p>
+                  <div onClick={() => setSelectedService(svc)} style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden', cursor: 'pointer', background: S.panel }} onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1.06)' }} onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1)' }}>
+                    <img src={svc.img} alt={svc.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(15,25,35,0.85) 0%, rgba(15,25,35,0.05) 55%, transparent 70%)' }} />
+                    <p style={{ position: 'absolute', left: '1.1rem', bottom: '0.9rem', fontFamily: "'Playfair Display',serif", fontSize: '1.15rem', color: '#FFFFFF', margin: 0 }}>{svc.title}</p>
                   </div>
                 </FadeIn>
               ))}
@@ -324,16 +305,18 @@ export default function Home() {
         <div style={{ background: S.ink, padding: '5rem 2rem' }}>
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
-              <p style={LABEL_STYLE}>Why Choose Us</p>
-              <h2 style={{ ...H2_STYLE, marginBottom: '3rem' }}>We'd rather be <em style={{ color: S.gold }}>answerable than impressive.</em></h2>
+              <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 800, fontSize: 'clamp(2rem,5vw,3rem)', color: S.cream, marginBottom: '0.8rem' }}>WHY US?</h2>
+              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 520, marginBottom: '3rem' }}>We'd rather be answerable than impressive — here's what that means in practice.</p>
             </FadeIn>
             <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3rem' }}>
               {[{ title: 'One name, accountable for everything', desc: "When the architecture, the interiors, and the build all sit with us, there's no gap to lose your project in, and no third party to blame if something slips. The responsibility is ours, by design." }, { title: 'We build what we draw', desc: 'A beautiful drawing is easy to promise. We hold ourselves to turning it into the actual room exactly as shown, not approximately.' }, { title: 'On time is part of the work', desc: 'Our systems, procurement control, and stage-by-stage checks exist so we can be held to a date — not so we can explain why we missed one.' }, { title: "If it doesn't last, we hear about it", desc: "Thirty years of clients means three decades of living with our own decisions. That's why we design for the decade, not the season." }].map((item, i) => (
                 <FadeIn key={i} delay={i * 80}>
-                  <div style={{ padding: '2rem', border: `1px solid ${S.line}`, background: S.card, transition: 'border-color 0.3s' }} onMouseEnter={e => e.currentTarget.style.borderColor = S.gold} onMouseLeave={e => e.currentTarget.style.borderColor = S.line}>
-                    <div style={{ width: 32, height: 1, background: S.gold, marginBottom: '1rem' }} />
-                    <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.cream, marginBottom: '0.8rem', fontWeight: 600 }}>{item.title}</h3>
-                    <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.85 }}>{item.desc}</p>
+                  <div style={{ display: 'flex', gap: '1.2rem' }}>
+                    <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '2.2rem', fontWeight: 700, color: S.gold, lineHeight: 1, flexShrink: 0 }}>{String(i + 1).padStart(2, '0')}</span>
+                    <div>
+                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.1rem', color: S.cream, marginBottom: '0.6rem', fontWeight: 600 }}>{item.title}</h3>
+                      <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.85 }}>{item.desc}</p>
+                    </div>
                   </div>
                 </FadeIn>
               ))}
@@ -355,17 +338,19 @@ export default function Home() {
               <h2 style={{ ...H2_STYLE, marginBottom: '1.2rem' }}>The thinking behind every<br /><em style={{ color: S.gold }}>space we create.</em></h2>
               <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 680, marginBottom: '3.5rem' }}>Exceptional spaces are never the result of design alone. They emerge when vision, functionality, human behaviour, and execution work in complete harmony. That belief has guided Raamesh Singhal Design since its inception.</p>
             </FadeIn>
-            <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', maxWidth: 900, margin: '0 auto' }}>
+            <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem', maxWidth: 900, margin: '0 auto' }}>
               {[{ name: 'Raamesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality.', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-19-1024x768.jpg' }, { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-11-1024x767.jpg' }].map((founder, i) => (
                 <FadeIn key={i} delay={i * 150}>
-                  <div style={{ textAlign: 'center' }}>
-                    <div style={{ position: 'relative', borderRadius: '999px 999px 0 0', overflow: 'hidden', aspectRatio: '3.2/4', background: S.card, marginBottom: '1.4rem', maxWidth: 340, marginLeft: 'auto', marginRight: 'auto' }}>
+                  <div>
+                    <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: S.card }}>
                       <img src={founder.img} alt={founder.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
-                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,20,18,0.5) 0%, transparent 40%)' }} />
                     </div>
-                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: S.gold, marginBottom: '0.4rem' }}>{founder.role}</p>
-                    <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.35rem', color: S.cream, marginBottom: '0.9rem', fontWeight: 500 }}>{founder.name}</h3>
-                    <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '0.95rem', fontStyle: 'italic', color: S.mid, lineHeight: 1.75, maxWidth: 320, margin: '0 auto' }}><span style={{ color: S.gold, fontSize: '1.4rem', lineHeight: 0, verticalAlign: '-0.3rem', marginRight: '0.2rem' }}>"</span>{founder.quote}</p>
+                    <div style={{ background: S.stone, padding: '1.6rem 1.8rem', position: 'relative' }}>
+                      <span style={{ position: 'absolute', top: '1.2rem', right: '1.4rem', fontFamily: "'Playfair Display',serif", fontSize: '2.4rem', color: 'rgba(22,50,74,0.18)', lineHeight: 1 }}>&#8220;</span>
+                      <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: S.navy, marginBottom: '0.3rem' }}>{founder.role}</p>
+                      <h3 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.3rem', color: S.navy, marginBottom: '0.8rem', fontWeight: 600 }}>{founder.name}</h3>
+                      <p style={{ fontSize: '0.88rem', color: S.cream, lineHeight: 1.7 }}>"{founder.quote}"</p>
+                    </div>
                   </div>
                 </FadeIn>
               ))}
@@ -412,7 +397,8 @@ export default function Home() {
           <div style={{ maxWidth: 1200, margin: '0 auto' }}>
             <FadeIn>
               <p style={LABEL_STYLE}>Recognition</p>
-              <h2 style={{ ...H2_STYLE, marginBottom: '1.2rem' }}>Awards & <em style={{ color: S.gold }}>Certificates</em></h2>
+              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,4vw,2.6rem)', fontWeight: 500, color: S.cream, marginBottom: '0.4rem' }}>Awards & Certificates</h2>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '1.2rem', fontWeight: 700, color: S.navy, marginBottom: '1.2rem' }}>Being trusted twice is the real award.</p>
               <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85, maxWidth: 700, marginBottom: '3rem' }}>Our work has been honoured by some of the most respected names in design and industry. But the recognition we value most isn't on a shelf — it's the client who hands us their next project before the first is even finished.</p>
             </FadeIn>
             <div className="press-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5rem' }}>
@@ -495,48 +481,42 @@ export default function Home() {
       <section id="testimonials" style={{ background: S.ink, borderTop: `1px solid ${S.line}`, padding: '5rem 0', position: 'relative', overflow: 'hidden' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 2rem' }}>
           <FadeIn>
-            <p style={LABEL_STYLE}>Testimonials</p>
-            <h2 style={{ ...H2_STYLE, marginBottom: '3rem' }}>Heard from those who <em style={{ color: S.gold }}>lived</em> our work</h2>
+            <p style={{ ...LABEL_STYLE, textAlign: 'center' }}>Client's Testimonials</p>
+            <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 700, fontSize: 'clamp(1.4rem,3vw,2rem)', color: S.navy, textAlign: 'center', marginBottom: '3rem' }}>Heard from those who <em style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontWeight: 400 }}>lived our work</em></h2>
           </FadeIn>
 
-          {/* Video testimonials */}
-          <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '3.5rem' }}>
-            {videoTestimonials.map((v, i) => (
-              <FadeIn key={i} delay={i * 100}>
-                <div style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden', background: S.card, border: `1px solid ${S.line}`, cursor: playingVideo === i ? 'default' : 'pointer' }} onClick={() => { if (playingVideo !== i) setPlayingVideo(i) }}>
-                  <video src={v.video} muted={playingVideo !== i} controls={playingVideo === i} autoPlay={playingVideo === i} playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                  {playingVideo !== i && (
-                    <>
-                      <div style={{ position: 'absolute', inset: 0, background: 'rgba(20,20,18,0.3)', pointerEvents: 'none' }} />
-                      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 66, height: 66, borderRadius: '50%', background: 'rgba(242,238,230,0.95)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <svg viewBox="0 0 24 24" width="24" height="24" fill={S.ink}><path d="M8 5v14l11-7z" /></svg>
-                      </div>
-                      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '1.2rem', background: 'linear-gradient(to top, rgba(20,20,18,0.9), transparent)', pointerEvents: 'none' }}>
-                        <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', color: S.cream }}>{v.name}</p>
-                        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: S.gold, marginTop: '0.2rem' }}>{v.role}</p>
-                      </div>
-                    </>
-                  )}
+          {/* Text testimonial cards */}
+          <div className="testimonials-row" style={{ display: 'flex', gap: '1.2rem', overflowX: 'auto', paddingBottom: '0.5rem', marginBottom: '3rem' }}>
+            {testimonials.slice(0, 3).map((t, i) => (
+              <FadeIn key={t.id} delay={i * 100}>
+                <div style={{ background: S.gold, padding: '1.4rem 1.6rem', minWidth: 280, maxWidth: 320, display: 'flex', gap: '1rem' }}>
+                  <div style={{ width: 48, height: 48, background: 'rgba(0,0,0,0.15)', flexShrink: 0 }} />
+                  <div>
+                    <div style={{ marginBottom: '0.4rem' }}>{'★★★★★'.split('').map((s, si) => <span key={si} style={{ color: '#F4C430', fontSize: '0.8rem' }}>{s}</span>)}</div>
+                    <p style={{ fontSize: '0.78rem', color: '#FFFFFF', lineHeight: 1.5, marginBottom: '0.6rem' }}>{t.text}</p>
+                    <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', color: 'rgba(255,255,255,0.85)', textAlign: 'right' }}>-{t.name}</p>
+                  </div>
                 </div>
               </FadeIn>
             ))}
           </div>
 
-          {/* Text testimonial carousel */}
-          <div className="testimonial-wrapper" style={{ position: 'relative', padding: '0 2.5rem', maxWidth: 860, margin: '0 auto' }}>
-            <button className="t-arrow-left" onClick={() => setTIndex(i => (i - 1 + testimonials.length) % testimonials.length)} style={{ position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '2.5rem', color: 'rgba(242,238,230,0.4)', transition: 'color 0.25s', lineHeight: 1, padding: 0, zIndex: 2 }} onMouseEnter={e => e.currentTarget.style.color = S.gold} onMouseLeave={e => e.currentTarget.style.color = 'rgba(242,238,230,0.4)'}>&#8249;</button>
-            <div className="t-card" style={{ background: S.card, padding: '2.5rem', borderLeft: `2px solid ${S.gold}`, border: `1px solid ${S.line}`, borderLeftColor: S.gold, borderLeftWidth: 2 }}>
-              <p style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(0.95rem,2vw,1.1rem)', fontStyle: 'italic', color: S.cream, lineHeight: 1.8, marginBottom: '1.5rem', wordBreak: 'break-word', overflowWrap: 'break-word' }}>
-                <span style={{ fontSize: '2rem', color: S.gold, lineHeight: 0, verticalAlign: '-0.4rem', marginRight: '0.2rem' }}>"</span>
-                {testimonials[tIndex].text}
-              </p>
-              <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.75rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: S.gold }}>— {testimonials[tIndex].name}</p>
-            </div>
-            <button className="t-arrow-right" onClick={() => setTIndex(i => (i + 1) % testimonials.length)} style={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '2.5rem', color: 'rgba(242,238,230,0.4)', transition: 'color 0.25s', lineHeight: 1, padding: 0, zIndex: 2 }} onMouseEnter={e => e.currentTarget.style.color = S.gold} onMouseLeave={e => e.currentTarget.style.color = 'rgba(242,238,230,0.4)'}>&#8250;</button>
-          </div>
-          <div style={{ display: 'flex', gap: '0.6rem', marginTop: '1.5rem', justifyContent: 'center' }}>
-            {testimonials.map((_, i) => (
-              <button key={i} onClick={() => setTIndex(i)} style={{ width: 8, height: 8, borderRadius: '50%', border: 'none', cursor: 'pointer', padding: 0, background: tIndex === i ? S.gold : 'rgba(201,169,110,0.25)', transform: tIndex === i ? 'scale(1.3)' : 'scale(1)', transition: 'all 0.3s' }} />
+          {/* Video testimonials */}
+          <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+            {videoTestimonials.map((v, i) => (
+              <FadeIn key={i} delay={i * 100}>
+                <div style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden', background: '#111', cursor: playingVideo === i ? 'default' : 'pointer' }} onClick={() => { if (playingVideo !== i) setPlayingVideo(i) }}>
+                  <video src={v.video} muted={playingVideo !== i} controls={playingVideo === i} autoPlay={playingVideo === i} playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  {playingVideo !== i && (
+                    <>
+                      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.25)', pointerEvents: 'none' }} />
+                      <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 60, height: 60, borderRadius: '50%', border: '2px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M8 5v14l11-7z" /></svg>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -549,7 +529,8 @@ export default function Home() {
             <div>
               <FadeIn>
                 <p style={LABEL_STYLE}>Get In Touch</p>
-                <h2 style={{ ...H2_STYLE, marginBottom: '2.5rem' }}>Feel free to<br /><em style={{ color: S.gold }}>contact us</em> anytime</h2>
+                <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 300, fontSize: 'clamp(2.4rem,6vw,3.6rem)', color: S.cream, marginBottom: '0.6rem', letterSpacing: '0.02em' }}>CONTACT</h2>
+                <p style={{ fontSize: '1rem', color: S.mid, marginBottom: '2.5rem' }}>Let's discuss your next project together.</p>
               </FadeIn>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}>
                 {contactInfo.map((item, i) => (

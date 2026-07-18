@@ -3,12 +3,12 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 const links = [
   { label: 'Home', anchor: 'hero' },
-  { label: 'About Us', anchor: 'about' },
-  { label: 'Awards and News', anchor: 'awards-news' },
+  { label: 'About us', anchor: 'about' },
+  { label: 'Awards', anchor: 'awards-news' },
   { label: 'Services', anchor: 'services' },
   { label: 'Projects', anchor: 'portfolio' },
   { label: 'Testimonials', anchor: 'testimonials' },
-  { label: 'Contact Us', anchor: 'contact' },
+  { label: 'Contact us', anchor: 'contact' },
 ]
 
 const S = { gold: '#C9A96E', ink: '#141412', cream: '#F2EEE6', mid: '#A39F94', line: 'rgba(201,169,110,0.22)' }
@@ -81,7 +81,7 @@ export default function Navbar() {
           )}
 
           {!isMobile && (
-            <button onClick={() => scrollTo('contact')} style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', padding: '0.75rem 1.6rem', background: 'transparent', color: S.gold, border: `1px solid ${S.gold}`, cursor: 'pointer', transition: 'all 0.3s' }} onMouseEnter={e => { e.currentTarget.style.background = S.gold; e.currentTarget.style.color = S.ink }} onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = S.gold }}>Book Consultation</button>
+            <button onClick={() => scrollTo('contact')} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '0.85rem', fontWeight: 500, padding: '0.7rem 1.7rem', borderRadius: '999px', background: '#FFFFFF', color: '#141412', border: 'none', cursor: 'pointer', transition: 'all 0.3s' }} onMouseEnter={e => { e.currentTarget.style.background = S.gold; e.currentTarget.style.color = '#FFFFFF' }} onMouseLeave={e => { e.currentTarget.style.background = '#FFFFFF'; e.currentTarget.style.color = '#141412' }}>Get Quote</button>
           )}
 
           {isMobile && (
