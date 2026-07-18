@@ -288,28 +288,28 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.5fr', gap: '3rem', position: 'relative' }}>
+          <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.6fr', gap: '3rem' }}>
             <FadeIn>
-              <h3 style={{ ...roundedHeading, fontSize: 'clamp(3rem,6vw,4.2rem)', color: S.black, marginBottom: '1.4rem', lineHeight: 1 }}>WHY US?</h3>
-              <p style={{ fontSize: '1rem', color: S.mid, lineHeight: 1.75, maxWidth: 320 }}>
+              <h3 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize: 'clamp(3rem,6vw,4.2rem)', color: S.black, marginBottom: '1.4rem', lineHeight: 1 }}>WHY US?</h3>
+              <p style={{ fontSize: '1rem', color: S.mid, lineHeight: 1.75, maxWidth: 300 }}>
                 Thirty years of holding one standard: a single studio accountable for everything a project needs, from first sketch to final handover.
               </p>
             </FadeIn>
             <div style={{ position: 'relative' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
                 {whyUsPoints.map((p, i) => (
                   <FadeIn key={i} delay={i * 60}>
-                    <div style={{ display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
-                      <div style={{ minWidth: 160 }}>
-                        <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '2.4rem', color: S.gold, lineHeight: 1, marginBottom: '0' }}>{p.num}</p>
-                        <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '1.6rem', color: S.black, lineHeight: 1.15 }}>{p.title}</p>
+                    <div style={{ display: 'grid', gridTemplateColumns: '170px 1fr', columnGap: '2rem', alignItems: 'start', padding: '1.6rem 0' }}>
+                      <div>
+                        <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '2.2rem', color: S.gold, lineHeight: 1, marginBottom: '0.1rem' }}>{p.num}</p>
+                        <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '1.4rem', color: S.black, lineHeight: 1.2 }}>{p.title}</p>
                       </div>
-                      <p style={{ fontSize: '0.9rem', color: S.mid, lineHeight: 1.6, marginTop: '0.4rem', flex: 1 }}>{p.desc}</p>
+                      <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.65, marginTop: '0.5rem' }}>{p.desc}</p>
                     </div>
                   </FadeIn>
                 ))}
               </div>
-              <div style={{ position: 'absolute', top: 0, right: 0, width: 4, height: '60%', background: 'rgba(0,0,0,0.08)', borderRadius: 999 }} />
+              <div style={{ position: 'absolute', top: 0, right: '-1.5rem', width: 3, height: '55%', background: 'rgba(0,0,0,0.08)', borderRadius: 999 }} />
             </div>
           </div>
         </div>
