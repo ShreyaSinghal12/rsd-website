@@ -398,7 +398,7 @@ export default function Home() {
         <div style={{ maxWidth: 1000, margin: '0 auto' }}>
           <div className="book-grid" style={{ display: 'grid', gridTemplateColumns: '280px 1fr', alignItems: 'stretch' }}>
             <FadeIn>
-              <img src="/images/book/book_image.png" alt="Why Luxury Homes Don't Sell" style={{ width: '100%', display: 'block', filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.25))' }} />
+              <img src="/images/book/book_image.png" alt="Why Luxury Homes Don't Sell" style={{ width: '100%', display: 'block', transform: 'translateX(-20px)', filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.25))' }} />
             </FadeIn>
             <FadeIn delay={100}>
               <div style={{ background: S.gold, padding: '1.4rem 2rem', marginBottom: '1.8rem' }}>
