@@ -33,7 +33,7 @@ const CONTACT = {
 const SOCIALS = [
   { icon: FaFacebook, href: "#", label: "FaFacebook" },
   { icon: FaTwitter, href: "#", label: "FaTwitter" },
-  { icon: FaLinkedin, href: "#", label: "FaLinkedIn" },
+  { icon: FaLinkedIn, href: "#", label: "FaLinkedIn" },
   { icon: FaInstagram, href: "#", label: "FaInstagram" },
 ];
 
