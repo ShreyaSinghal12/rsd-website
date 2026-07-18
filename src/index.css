@@ -80,6 +80,11 @@ div[style*="overflowX: auto"]::-webkit-scrollbar {
 .moodboard-scroll::-webkit-scrollbar { display: none; }
 .moodboard-scroll { scrollbar-width: none; }
 
+.testimonial-scroll { scrollbar-width: thin; scrollbar-color: #C9A96E #F0EBE0; }
+.testimonial-scroll::-webkit-scrollbar { height: 4px; }
+.testimonial-scroll::-webkit-scrollbar-track { background: #F0EBE0; border-radius: 999px; }
+.testimonial-scroll::-webkit-scrollbar-thumb { background: #C9A96E; border-radius: 999px; }
+
 @media (max-width: 768px) {
   .book-grid {
     grid-template-columns: 1fr !important;

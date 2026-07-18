@@ -73,6 +73,8 @@ const woodGrainSVG = `data:image/svg+xml,${encodeURIComponent("<svg xmlns='http:
 const videoTestimonials = [
   { name: 'Client Name', role: 'Residential Client', video: '/videos/Testimonials/Testimonial1.mp4' },
   { name: 'Client Name', role: 'Hospitality Client', video: '/videos/Testimonials/Testimonial2.mp4' },
+  { name: 'Client Name', role: 'Residential Client', video: '/videos/Testimonials/Testimonial3.mp4', placeholder: true },
+  { name: 'Client Name', role: 'Builder & Developer Client', video: '/videos/Testimonials/Testimonial4.mp4', placeholder: true },
 ]
 
 const contactInfo = [
@@ -428,7 +430,7 @@ export default function Home() {
           </FadeIn>
 
           <div className="testimonial-wrapper" style={{ position: 'relative', marginBottom: '3rem' }}>
-            <div style={{ display: 'flex', gap: '1.2rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
+            <div className="testimonial-scroll" style={{ display: 'flex', gap: '1.2rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
               {testimonials.map((t, i) => (
                 <div key={i} style={{ flexShrink: 0, width: 320, background: S.gold, borderRadius: 8, padding: '1.4rem', display: 'flex', gap: '1rem' }}>
                   <div style={{ width: 48, height: 48, borderRadius: 8, background: '#000', flexShrink: 0 }} />
@@ -447,11 +449,16 @@ export default function Home() {
           <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.4rem', maxWidth: 800, margin: '0 auto' }}>
             {videoTestimonials.map((v, i) => (
               <FadeIn key={i} delay={i * 100}>
-                <div style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden', background: '#000', cursor: playingVideo === i ? 'default' : 'pointer' }} onClick={() => { if (playingVideo !== i) setPlayingVideo(i) }}>
-                  <video src={v.video} muted={playingVideo !== i} controls={playingVideo === i} autoPlay={playingVideo === i} playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                  {playingVideo !== i && (
-                    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 66, height: 66, borderRadius: '50%', border: '2px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z" /></svg>
+                <div style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden', background: '#000', cursor: v.placeholder ? 'default' : (playingVideo === i ? 'default' : 'pointer') }} onClick={() => { if (!v.placeholder && playingVideo !== i) setPlayingVideo(i) }}>
+                  {!v.placeholder && (
+                    <video src={v.video} muted={playingVideo !== i} controls={playingVideo === i} autoPlay={playingVideo === i} playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  )}
+                  {(v.placeholder || playingVideo !== i) && (
+                    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.6rem' }}>
+                      <div style={{ width: 66, height: 66, borderRadius: '50%', border: '2px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: v.placeholder ? 0.5 : 1 }}>
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z" /></svg>
+                      </div>
+                      {v.placeholder && <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '0.75rem', color: 'rgba(255,255,255,0.7)', letterSpacing: '0.05em' }}>Video coming soon</p>}
                     </div>
                   )}
                 </div>
