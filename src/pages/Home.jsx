@@ -177,7 +177,7 @@ export default function Home() {
         <div style={{ maxWidth: 1200, margin: '0 auto', textAlign: 'center' }}>
           <FadeIn>
             <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.95rem', letterSpacing: '0.2em', color: S.mid, marginBottom: '1.2rem' }}>Est. 1995 — Siliguri, India</p>
-           <h2 style={{ ...serifHeading, fontSize: 'clamp(2.6rem,5vw,3.8rem)', color: S.black, marginBottom: '2rem' }}>30+ years of turning Space into Legacy</h2>
+            <h2 style={{ ...serifHeading, fontSize: 'clamp(2.6rem,5vw,3.8rem)', color: S.black, marginBottom: '2rem' }}>30+ years of turning Space into Legacy</h2>
             <div style={{ width: 90, height: 1, background: S.line, margin: '0 auto 2rem' }} />
             <p style={{ fontSize: '1.08rem', color: S.mid, lineHeight: 1.9, marginBottom: '1rem' }}>
               Since 1995, Raamesh Singhal Design has been creating spaces where design, functionality, and human experience come together. Built on the belief that exceptional spaces require a unified vision, we seamlessly integrate architecture, interiors, planning, procurement, and execution under one roof.
@@ -255,10 +255,12 @@ export default function Home() {
               Architecture, interior design and full turnkey execution, held under one accountable team. The vision and the delivery never separate, so nothing falls through the gaps between firms.
             </p>
           </FadeIn>
-          <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1.8rem' }}>
+          <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1.8rem', alignItems: 'start' }}>
             {services4.map((s, i) => (
               <FadeIn key={i} delay={i * 90}>
-                <SlantCard img={s.img} title={s.title} onClick={() => scrollToId('services')} />
+                <div style={{ marginTop: i % 2 === 1 ? '2.5rem' : 0 }}>
+                  <SlantCard img={s.img} title={s.title} onClick={() => scrollToId('services')} />
+                </div>
               </FadeIn>
             ))}
           </div>
