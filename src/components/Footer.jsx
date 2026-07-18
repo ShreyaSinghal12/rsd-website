@@ -18,7 +18,7 @@ import { FaFacebook, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa
 const SOCIALS = [
   { icon: FaFacebook, href: "#", label: "FaFacebook" },
   { icon: FaTwitter, href: "#", label: "FaTwitter" },
-  { icon: FaLinkedIn, href: "#", label: "FaLinkedIn" },
+  { icon: FaLinkedinIn, href: "#", label: "LinkedIn" },
   { icon: FaInstagram, href: "#", label: "FaInstagram" },
 ];
 
