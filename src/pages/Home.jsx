@@ -268,15 +268,21 @@ export default function Home() {
       </section>
 
       <section style={{ background: S.paper, padding: '5rem 2rem' }}>
-        <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <FadeIn>
-            <h2 style={{ ...metallicStyle('clamp(1.8rem,4vw,2.6rem)'), textAlign: 'center', marginBottom: '3rem' }}>Types of Services</h2>
+            <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '3rem' }}>Types of Services</h2>
           </FadeIn>
-          <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.4rem', marginBottom: '4.5rem' }}>
+          <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '4.5rem' }}>
             {typesOfServices.map((s, i) => (
               <FadeIn key={i} delay={i * 100}>
                 <Link to={s.route} style={{ display: 'block', textDecoration: 'none' }}>
-                  <SlantCard img={s.img} title={s.title} big />
+                  <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '16/9', border: `1px solid ${S.line}` }}
+                    onMouseEnter={e => e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'}
+                    onMouseLeave={e => e.currentTarget.querySelector('img').style.transform = 'scale(1)'}>
+                    <img src={s.img} alt={s.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,20,18,0.7) 0%, transparent 45%)' }} />
+                    <p style={{ position: 'absolute', bottom: '1.2rem', left: '1.4rem', fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontSize: '1.4rem', color: '#fff' }}>{s.title}</p>
+                  </div>
                 </Link>
               </FadeIn>
             ))}
