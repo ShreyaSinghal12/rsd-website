@@ -103,7 +103,7 @@ function SlantCard({ img, title, onClick, big }) {
   return (
     <div
       onClick={onClick}
-      style={{ position: 'relative', overflow: 'hidden', cursor: onClick ? 'pointer' : 'default', aspectRatio: big ? '4/3.2' : '4/3', clipPath: 'polygon(0 22%, 22% 0, 100% 0, 100% 100%, 0 100%)', boxShadow: '0 8px 24px rgba(0,0,0,0.12)' }}
+      style={{ position: 'relative', overflow: 'hidden', cursor: onClick ? 'pointer' : 'default', aspectRatio: big ? '4/3.2' : '4/3', clipPath: 'polygon(0 30%, 45% 0, 100% 0, 100% 100%, 0 100%)', boxShadow: '0 8px 24px rgba(0,0,0,0.12)' }}
       onMouseEnter={e => { const i = e.currentTarget.querySelector('img'); if (i) i.style.transform = 'scale(1.07)' }}
       onMouseLeave={e => { const i = e.currentTarget.querySelector('img'); if (i) i.style.transform = 'scale(1)' }}>
       <img src={img} alt={title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
