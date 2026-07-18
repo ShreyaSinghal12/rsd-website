@@ -22,9 +22,10 @@ const serifHeading = { fontFamily: "'Playfair Display',serif" }
 function metallicStyle(fontSize) {
   return {
     fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize,
-    textTransform: 'uppercase', letterSpacing: '0.02em',
-    background: 'linear-gradient(180deg, #f5f5f5 0%, #b9b9b9 45%, #8a8a8a 55%, #d8d8d8 100%)',
+    textTransform: 'uppercase', letterSpacing: '0.01em',
+    background: 'linear-gradient(180deg, #8a8a8a 0%, #4a4a4a 35%, #6e6e6e 50%, #2e2e2e 65%, #7a7a7a 100%)',
     WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+    filter: 'drop-shadow(0 1px 0 rgba(255,255,255,0.4))',
   }
 }
 
@@ -102,7 +103,7 @@ function SlantCard({ img, title, onClick, big }) {
   return (
     <div
       onClick={onClick}
-      style={{ position: 'relative', overflow: 'hidden', cursor: onClick ? 'pointer' : 'default', aspectRatio: big ? '4/3.2' : '4/3', clipPath: 'polygon(12% 0, 100% 0, 100% 100%, 0 100%, 0 18%)' }}
+      style={{ position: 'relative', overflow: 'hidden', cursor: onClick ? 'pointer' : 'default', aspectRatio: big ? '4/3.2' : '4/3', clipPath: 'polygon(20% 0, 100% 0, 100% 100%, 0 100%, 0 10%)', boxShadow: '0 8px 24px rgba(0,0,0,0.12)' }}
       onMouseEnter={e => { const i = e.currentTarget.querySelector('img'); if (i) i.style.transform = 'scale(1.07)' }}
       onMouseLeave={e => { const i = e.currentTarget.querySelector('img'); if (i) i.style.transform = 'scale(1)' }}>
       <img src={img} alt={title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
@@ -246,7 +247,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={{ background: S.cream, padding: '5rem 2rem' }}>
+      <section id="services" style={{ background: S.cream, padding: '5rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <FadeIn>
             <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '1rem' }}>Our Expertise</h2>
@@ -254,7 +255,7 @@ export default function Home() {
               Architecture, interior design and full turnkey execution, held under one accountable team. The vision and the delivery never separate, so nothing falls through the gaps between firms.
             </p>
           </FadeIn>
-          <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1.2rem' }}>
+          <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1.8rem' }}>
             {services4.map((s, i) => (
               <FadeIn key={i} delay={i * 90}>
                 <SlantCard img={s.img} title={s.title} onClick={() => scrollToId('services')} />
@@ -264,7 +265,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="services" style={{ background: S.paper, padding: '5rem 2rem' }}>
+      <section style={{ background: S.paper, padding: '5rem 2rem' }}>
         <div style={{ maxWidth: 1000, margin: '0 auto' }}>
           <FadeIn>
             <h2 style={{ ...metallicStyle('clamp(1.8rem,4vw,2.6rem)'), textAlign: 'center', marginBottom: '3rem' }}>Types of Services</h2>
