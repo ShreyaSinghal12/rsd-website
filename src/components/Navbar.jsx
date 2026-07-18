@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 
 import {
-  FaFacebookF,
+  FaFacebook,
   FaTwitter,
   FaLinkedinIn,
   FaInstagram,
@@ -31,7 +31,7 @@ const CONTACT = {
 };
 
 const SOCIALS = [
-  { icon: Facebook, href: "#", label: "FaFacebookF" },
+  { icon: Facebook, href: "#", label: "FaFacebook" },
   { icon: Twitter, href: "#", label: "FaTwitter" },
   { icon: Linkedin, href: "#", label: "FaLinkedIn" },
   { icon: Instagram, href: "#", label: "FaInstagram" },
