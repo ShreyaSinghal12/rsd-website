@@ -63,6 +63,12 @@ const awardsAndCerts = [
   { type: 'Certificate', title: 'MahaVastu Expert Certification', org: 'MahaVastu — 2020–21', desc: 'Certified MahaVastu Expert, with completed advanced coursework in Astro-MahaVastu remedies.', img: '/images/awardsAndCertificates/certificate5.jpeg' },
 ]
 
+const trophyStage = [
+  { key: 'pillar', img: '/images/awardsAndCertificates/Award1.png', left: 15.8, width: 15.5, top: 7.5, height: 41, plateLeft: 3.5, plateWidth: 39, plateTop: 48.5, plateHeight: 3.6, stemLeft: 11, stemWidth: 24.5, stemTop: 52, stemHeight: 34 },
+  { key: 'horizon', img: '/images/awardsAndCertificates/Award2.png', left: 40, width: 28, top: 34, height: 30, plateLeft: 24, plateWidth: 60, plateTop: 63.5, plateHeight: 5.8, stemLeft: 40, stemWidth: 20, stemTop: 69, stemHeight: 31 },
+  { key: 'keystone', img: '/images/awardsAndCertificates/Award3.png', left: 66.5, width: 27, top: 1, height: 32, plateLeft: 62.5, plateWidth: 37.5, plateTop: 32, plateHeight: 5.2, stemLeft: 72, stemWidth: 20, stemTop: 37.5, stemHeight: 63 },
+]
+
 const videoTestimonials = [
   { name: 'Client Name', role: 'Residential Client', video: '/videos/Testimonials/Testimonial1.mp4' },
   { name: 'Client Name', role: 'Hospitality Client', video: '/videos/Testimonials/Testimonial2.mp4' },
@@ -315,7 +321,7 @@ export default function Home() {
         </div>
       </section>
 
-       <section id="awards-news" style={{ background: S.cream, padding: '5rem 2rem' }}>
+      <section id="awards-news" style={{ background: S.cream, padding: '5rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.85fr 1fr', gap: '3rem', alignItems: 'start', marginBottom: '4rem' }}>
             <FadeIn>
@@ -346,7 +352,7 @@ export default function Home() {
               </div>
             </FadeIn>
           </div>
- 
+
           <div className="moodboard-scroll" style={{ display: 'flex', gap: '1.2rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
             {awardsAndCerts.filter(a => a.type === 'Certificate').map((c, i) => (
               <FadeIn key={i} delay={i * 60}>
