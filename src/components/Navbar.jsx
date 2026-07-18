@@ -1,97 +1,115 @@
-import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
-/**
- * Raamesh Singhal Design — Navbar
- * Transparent over the hero image, turns solid navy on scroll.
- * Pill-shaped nav links, white "Get Quote" button — matches the PDF layout.
- */
+const links = [
+  { label: 'Home', anchor: 'hero' },
+  { label: 'About us', anchor: 'about' },
+  { label: 'Awards', anchor: 'awards-news' },
+  { label: 'Services', anchor: 'services' },
+  { label: 'Projects', anchor: 'portfolio' },
+  { label: 'Testimonials', anchor: 'testimonials' },
+  { label: 'Contact us', anchor: 'contact' },
+]
 
-const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "About us", href: "/about" },
-  { label: "Awards", href: "/awards" },
-  { label: "Services", href: "/services" },
-  { label: "Projects", href: "/projects" },
-  { label: "Testimonials", href: "/testimonials" },
-  { label: "Contact us", href: "/contact" },
-];
+const S = { gold: '#B98D4F', ink: '#1B2A38' }
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [activeLink, setActiveLink] = useState('hero')
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 1024 : false)
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
+  const isProjectsActive = pathname.startsWith('/projects')
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const onResize = () => setIsMobile(window.innerWidth <= 1024)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  const scrollTo = (anchor) => {
+    setMenuOpen(false)
+    if (pathname !== '/') {
+      navigate('/')
+      setTimeout(() => { const el = document.getElementById(anchor); if (el) el.scrollIntoView({ behavior: 'smooth' }) }, 300)
+    } else {
+      const el = document.getElementById(anchor)
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 60)
+      if (pathname !== '/') { setActiveLink('projects-route'); return }
+      const sections = links.map(link => {
+        const el = document.getElementById(link.anchor)
+        if (!el) return null
+        const rect = el.getBoundingClientRect()
+        return { anchor: link.anchor, top: rect.top }
+      }).filter(Boolean).sort((a, b) => a.top - b.top)
+      const triggerLine = 100
+      let current = sections[0]?.anchor
+      for (const s of sections) { if (s.top <= triggerLine) current = s.anchor }
+      setActiveLink(current)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [pathname])
+
+  const heroActive = pathname === '/' && !scrolled
+  const textColor = heroActive ? '#fff' : S.ink
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 font-sans transition-colors duration-300 ${
-        scrolled ? "bg-[#16232E]/95 backdrop-blur-sm shadow-lg" : "bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
-        {/* Logo — swap for real logo/wordmark later */}
-        <a href="/" className="text-3xl font-light tracking-wide text-white">
-          Logo
-        </a>
-
-        {/* Desktop nav pill */}
-        <nav className="hidden lg:flex items-center gap-1 rounded-full border border-white/25 bg-white/10 px-2 py-2 backdrop-blur-sm">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="rounded-full px-4 py-2 text-sm text-white/90 hover:bg-white/15 hover:text-white transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-4">
-          <a
-            href="/contact"
-            className="hidden lg:inline-flex items-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-[#16232E] hover:bg-white/90 transition-colors"
-          >
-            Get Quote
-          </a>
-          <button
-            onClick={() => setMobileOpen((v) => !v)}
-            className="lg:hidden flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-white"
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+    <>
+      <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, padding: '1.4rem 2rem', background: heroActive ? 'transparent' : 'rgba(250,248,242,0.96)', backdropFilter: heroActive ? 'none' : 'blur(10px)', boxShadow: heroActive ? 'none' : '0 2px 12px rgba(0,0,0,0.06)', transition: 'background 0.3s' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
+          <button onClick={() => scrollTo('hero')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: "'Poppins',sans-serif", fontWeight: 600, fontSize: '1.4rem', color: textColor }}>
+            RSD
           </button>
-        </div>
-      </div>
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="lg:hidden bg-[#16232E]/98 px-6 pb-6">
-          <nav className="flex flex-col gap-1">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="rounded-lg px-3 py-3 text-sm text-white/90 hover:bg-white/10"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="/contact"
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#16232E]"
-            >
+          {!isMobile && (
+            <nav style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', background: heroActive ? 'rgba(255,255,255,0.12)' : '#fff', borderRadius: 999, padding: '0.5rem 0.6rem', boxShadow: heroActive ? 'none' : '0 2px 10px rgba(0,0,0,0.06)' }}>
+              {links.map(link => {
+                const active = link.anchor === 'portfolio' ? (pathname === '/' ? activeLink === 'portfolio' : isProjectsActive) : (pathname === '/' && activeLink === link.anchor)
+                return (
+                  <button key={link.anchor} onClick={() => scrollTo(link.anchor)} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '0.88rem', fontWeight: active ? 600 : 400, color: active ? S.gold : textColor, background: 'none', border: 'none', cursor: 'pointer', padding: '0.5rem 0.9rem', borderRadius: 999, transition: 'color 0.2s' }}>
+                    {link.label}
+                  </button>
+                )
+              })}
+            </nav>
+          )}
+
+          {!isMobile && (
+            <button onClick={() => scrollTo('contact')} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '0.85rem', fontWeight: 500, padding: '0.75rem 1.6rem', background: heroActive ? '#fff' : S.ink, color: heroActive ? S.ink : '#fff', border: 'none', borderRadius: 999, cursor: 'pointer' }}>
               Get Quote
-            </a>
-          </nav>
+            </button>
+          )}
+
+          {isMobile && (
+            <button onClick={() => setMenuOpen(v => !v)} aria-label="Menu" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0.4rem', display: 'flex', flexDirection: 'column', gap: 5 }}>
+              <span style={{ width: 24, height: 2, background: textColor, display: 'block' }} />
+              <span style={{ width: 24, height: 2, background: textColor, display: 'block' }} />
+              <span style={{ width: 24, height: 2, background: textColor, display: 'block' }} />
+            </button>
+          )}
         </div>
+      </header>
+
+      {isMobile && (
+        <>
+          <div onClick={() => setMenuOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 98, background: 'rgba(0,0,0,0.5)', opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? 'auto' : 'none', transition: 'opacity 0.3s' }} />
+          <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 99, width: '72vw', maxWidth: 280, background: '#fff', transform: menuOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.35s ease', display: 'flex', flexDirection: 'column', padding: '5.5rem 2rem 2rem', gap: '0.4rem' }}>
+            {links.map(link => (
+              <button key={link.anchor} onClick={() => scrollTo(link.anchor)} style={{ textAlign: 'left', fontFamily: "'DM Sans',sans-serif", fontSize: '1rem', color: S.ink, background: 'none', border: 'none', cursor: 'pointer', padding: '0.75rem 0', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>{link.label}</button>
+            ))}
+            <button onClick={() => scrollTo('contact')} style={{ marginTop: '1.5rem', fontFamily: "'DM Sans',sans-serif", fontSize: '0.85rem', padding: '0.85rem 1.4rem', background: S.gold, color: '#fff', border: 'none', borderRadius: 999, cursor: 'pointer' }}>Get Quote</button>
+          </div>
+        </>
       )}
-    </header>
-  );
+    </>
+  )
 }
