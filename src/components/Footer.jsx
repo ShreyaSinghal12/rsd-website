@@ -21,10 +21,10 @@ import {
  */
 
 const SOCIALS = [
-  { icon: Facebook, href: "#", label: "FaFacebook" },
-  { icon: Twitter, href: "#", label: "FaTwitter" },
-  { icon: Linkedin, href: "#", label: "FaLinkedIn" },
-  { icon: Instagram, href: "#", label: "FaInstagram" },
+  { icon: FaFacebook, href: "#", label: "FaFacebook" },
+  { icon: FaTwitter, href: "#", label: "FaTwitter" },
+  { icon: FaLinkedin, href: "#", label: "FaLinkedIn" },
+  { icon: FaInstagram, href: "#", label: "FaInstagram" },
 ];
 
 const QUICK_LINKS = [
