@@ -1,114 +1,62 @@
-import { Link } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+
+const S = { gold: '#C9A96E', ink: '#111110', cream: '#F2EEE6', mid: '#A39F94', line: 'rgba(201,169,110,0.22)' }
 
 const quickLinks = [
-  { label: 'Home',         to: '/' },
-  { label: 'About Us',     to: '/about' },
-  { label: 'Services',     to: '/#services' },
-  { label: 'Projects',     to: '/projects' },
-  { label: 'Contact Us',   to: '/contact' },
-  { label: 'Testimonials', to: '/#testimonials' },
+  { label: 'Home', anchor: 'hero' },
+  { label: 'About Us', anchor: 'about' },
+  { label: 'Services', anchor: 'services' },
+  { label: 'Projects', anchor: 'portfolio' },
+  { label: 'Awards and News', anchor: 'awards-news' },
+  { label: 'Testimonials', anchor: 'testimonials' },
+  { label: 'Contact Us', anchor: 'contact' },
 ]
 
 export default function Footer() {
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
+
+  const scrollTo = (anchor) => {
+    if (pathname !== '/') {
+      navigate('/')
+      setTimeout(() => { const el = document.getElementById(anchor); if (el) el.scrollIntoView({ behavior: 'smooth' }) }, 300)
+    } else {
+      const el = document.getElementById(anchor)
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
-    <footer className="bg-[#111110] pt-16 pb-8">
-      <div className="max-w-6xl mx-auto px-6">
+    <footer style={{ background: S.ink, borderTop: `1px solid ${S.line}`, padding: '4rem 0 0' }}>
+      <div className="footer-grid" style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem 3rem', display: 'grid', gridTemplateColumns: '1.4fr 1fr 1.2fr', gap: '3rem' }}>
 
-        {/* Top grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pb-12 border-b border-white/[0.07]">
+        <div>
+          <img src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-rsd-logo-1.png" alt="Raamesh Singhal Design" style={{ height: 44, width: 'auto', display: 'block', filter: 'brightness(100)', marginBottom: '1.2rem' }} />
+          <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.05rem', color: S.cream, marginBottom: '0.9rem', fontStyle: 'italic' }}>One studio. One standard. One name on every decision.</p>
+          <p style={{ fontSize: '0.85rem', color: S.mid, lineHeight: 1.8, maxWidth: 340 }}>Architecture, interiors, and turnkey execution held under one accountable team since 1995 — serving Siliguri, Sikkim, Nepal, Bhutan, and Assam.</p>
+        </div>
 
-          {/* Brand */}
-          <div>
-            <img
-              src="http://raameshsinghaldesign.com/wp-content/uploads/2023/01/cropped-cropped-rsd-logo-1-1-203x110.png"
-              alt="Raamesh Singhal Design"
-              className="h-14 w-auto mb-4"
-            />
-            <p className="text-sm text-sage leading-relaxed max-w-xs">
-              An architecture and interior design practice crafting spaces that are
-              as functional as they are beautiful. Based in Siliguri since 1995.
-            </p>
-            {/* Social icons */}
-            <div className="flex gap-3 mt-6">
-              <a href="https://www.facebook.com/raameshsinghaldesign"
-                target="_blank" rel="noopener noreferrer"
-                className="w-9 h-9 border border-white/10 flex items-center justify-center
-                  text-sage hover:border-gold hover:text-gold transition-all duration-300 text-xs font-mono">
-                Fb
-              </a>
-              <a href="https://www.instagram.com/raameshsinghaldesign"
-                target="_blank" rel="noopener noreferrer"
-                className="w-9 h-9 border border-white/10 flex items-center justify-center
-                  text-sage hover:border-gold hover:text-gold transition-all duration-300 text-xs font-mono">
-                Ig
-              </a>
-              <a href="https://api.whatsapp.com/send?phone=919800848155"
-                target="_blank" rel="noopener noreferrer"
-                className="w-9 h-9 border border-white/10 flex items-center justify-center
-                  text-sage hover:border-gold hover:text-gold transition-all duration-300 text-xs font-mono">
-                Wa
-              </a>
-            </div>
-          </div>
-
-          {/* Quick links */}
-          <div>
-            <p className="font-mono text-[0.65rem] tracking-[0.18em] uppercase text-gold mb-5">
-              Quick Links
-            </p>
-            <ul className="flex flex-col gap-3">
-              {quickLinks.map(link => (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    className="text-sm text-sage hover:text-stone transition-colors duration-300"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact info */}
-          <div>
-            <p className="font-mono text-[0.65rem] tracking-[0.18em] uppercase text-gold mb-5">
-              Contact Info
-            </p>
-            <div className="flex flex-col gap-4 text-sm text-sage">
-              <div>
-                <p className="font-mono text-[0.6rem] tracking-widest text-gold/70 mb-1 uppercase">Address</p>
-                <p>Time Square, 3rd Floor, Opp Ravi Auto,<br />Sevoke Road, Siliguri</p>
-              </div>
-              <div>
-                <p className="font-mono text-[0.6rem] tracking-widest text-gold/70 mb-1 uppercase">Phone</p>
-                <a href="tel:+919800848155" className="hover:text-stone transition-colors">+91 98008 48155</a>
-              </div>
-              <div>
-                <p className="font-mono text-[0.6rem] tracking-widest text-gold/70 mb-1 uppercase">Email</p>
-                <a href="mailto:rameshsinghaldesign@gmail.com" className="hover:text-stone transition-colors">
-                  rameshsinghaldesign@gmail.com
-                </a>
-              </div>
-              <div>
-                <p className="font-mono text-[0.6rem] tracking-widest text-gold/70 mb-1 uppercase">Hours</p>
-                <p>Mon–Fri: 9:00 – 22:00</p>
-                <p>Saturday: 11:00 – 20:00</p>
-              </div>
-            </div>
+        <div>
+          <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.2rem' }}>Quick Links</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            {quickLinks.map(link => (
+              <button key={link.anchor} onClick={() => scrollTo(link.anchor)} style={{ textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'DM Sans',sans-serif", fontSize: '0.88rem', color: S.mid, padding: 0, transition: 'color 0.25s' }} onMouseEnter={e => e.currentTarget.style.color = S.gold} onMouseLeave={e => e.currentTarget.style.color = S.mid}>{link.label}</button>
+            ))}
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8">
-          <p className="text-xs text-stone">
-            &copy; 2024 Raamesh Singhal Design by Ramesh Singhal. All Rights Reserved.
-          </p>
-          <p className="text-xs text-stone font-mono tracking-widest uppercase">
-            Est. 1995 &mdash; Siliguri, India
-          </p>
+        <div>
+          <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: S.gold, marginBottom: '1.2rem' }}>Contact</p>
+          <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.8, marginBottom: '0.9rem' }}>Time Square, 3rd Floor, Opp Ravi Auto,<br />Sevoke Road, Siliguri</p>
+          <a href="tel:+919800848155" style={{ display: 'block', fontSize: '0.88rem', color: S.mid, textDecoration: 'none', marginBottom: '0.4rem', transition: 'color 0.25s' }} onMouseEnter={e => e.currentTarget.style.color = S.gold} onMouseLeave={e => e.currentTarget.style.color = S.mid}>+91 98008 48155</a>
+          <a href="tel:+918250841773" style={{ display: 'block', fontSize: '0.88rem', color: S.mid, textDecoration: 'none', marginBottom: '0.4rem', transition: 'color 0.25s' }} onMouseEnter={e => e.currentTarget.style.color = S.gold} onMouseLeave={e => e.currentTarget.style.color = S.mid}>+91 82508 41773</a>
+          <a href="mailto:rameshsinghaldesign@gmail.com" style={{ display: 'block', fontSize: '0.88rem', color: S.mid, textDecoration: 'none', marginBottom: '0.9rem', transition: 'color 0.25s' }} onMouseEnter={e => e.currentTarget.style.color = S.gold} onMouseLeave={e => e.currentTarget.style.color = S.mid}>rameshsinghaldesign@gmail.com</a>
+          <p style={{ fontSize: '0.82rem', color: S.mid, lineHeight: 1.7 }}>Mon-Fri: 9:00-22:00<br />Saturday: 11:00-20:00</p>
         </div>
+      </div>
 
+      <div style={{ borderTop: `1px solid ${S.line}`, padding: '1.4rem 2rem', textAlign: 'center' }}>
+        <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.65rem', letterSpacing: '0.12em', color: S.mid }}>© {new Date().getFullYear()} Raamesh Singhal Design. All rights reserved. · Est. 1995 · Siliguri, India</p>
       </div>
     </footer>
   )
