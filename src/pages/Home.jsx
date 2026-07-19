@@ -203,7 +203,7 @@ export default function Home() {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(100deg, rgba(20,40,60,0.55) 0%, rgba(20,40,60,0.15) 55%, rgba(20,40,60,0.35) 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', maxWidth: 1300, margin: '0 auto', padding: '0 2.5rem' }}>
           <FadeIn key={heroIndex}>
-            <h1 style={{ ...roundedHeading, fontSize: 'clamp(2.8rem,6vw,4.4rem)', color: '#fff', lineHeight: 1.15, marginBottom: '1.4rem', maxWidth: 720 }}>
+            <h1 style={{ ...roundedHeading, fontSize: 'clamp(0.8rem,4vw,2.4rem)', color: '#fff', lineHeight: 1.15, marginBottom: '1.4rem', maxWidth: 720 }}>
               {heroSlides[heroIndex].heading.map((line, i) => <span key={i}>{line}{i < heroSlides[heroIndex].heading.length - 1 && <br />}</span>)}
             </h1>
             <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.9)', maxWidth: 480, marginBottom: '2.2rem', lineHeight: 1.6 }}>
