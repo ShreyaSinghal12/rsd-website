@@ -83,10 +83,10 @@ const contactInfo = [
   { label: 'Location', value: 'Time Square, 3rd Floor, Opp Ravi Auto, Sevoke Road, Siliguri', href: null },
 ]
 
-function FadeIn({ children, delay = 0 }) {
+function FadeIn({ children, delay = 0, style }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
   return (
-    <div ref={ref} style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(28px)', transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms` }}>
+    <div ref={ref} style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(28px)', transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`, ...style }}>
       {children}
     </div>
   )
@@ -486,18 +486,15 @@ export default function Home() {
                   </div>
                 </FadeIn>
               ))}
-              <div style={{ flex: 1, marginTop: '1.5rem' }}>
-                <FadeIn delay={200}>
-                  <div style={{ position: 'relative', height: '100%', minHeight: 220, overflow: 'hidden', borderRadius: 12, border: `1px solid ${S.line}` }}>
-                    <iframe src="https://maps.google.com/maps?q=Time+Square+Sevoke+Road+Siliguri&t=m&z=15&output=embed&iwloc=near" title="Location" width="100%" height="100%" style={{ border: 'none', display: 'block' }} loading="lazy" />
-                    <a href="https://maps.google.com/?q=Time+Square+Sevoke+Road+Siliguri" target="_blank" rel="noreferrer" style={{ position: 'absolute', top: '0.8rem', left: '0.8rem', background: '#fff', padding: '0.5rem 1rem', borderRadius: 999, fontSize: '0.85rem', color: S.ink, textDecoration: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>Open in Map ↗</a>
-                  </div>
-                </FadeIn>
-              </div>
+              <FadeIn delay={200} style={{ flex: 1, marginTop: '1.5rem' }}>
+                <div style={{ position: 'relative', height: '100%', minHeight: 220, overflow: 'hidden', borderRadius: 12, border: `1px solid ${S.line}` }}>
+                  <iframe src="https://maps.google.com/maps?q=Time+Square+Sevoke+Road+Siliguri&t=m&z=15&output=embed&iwloc=near" title="Location" width="100%" height="100%" style={{ border: 'none', display: 'block' }} loading="lazy" />
+                  <a href="https://maps.google.com/?q=Time+Square+Sevoke+Road+Siliguri" target="_blank" rel="noreferrer" style={{ position: 'absolute', top: '0.8rem', left: '0.8rem', background: '#fff', padding: '0.5rem 1rem', borderRadius: 999, fontSize: '0.85rem', color: S.ink, textDecoration: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>Open in Map ↗</a>
+                </div>
+              </FadeIn>
             </div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <FadeIn delay={150}>
-                <div style={{ background: S.paper, borderRadius: 12, padding: '2rem', border: `1px solid ${S.line}`, boxShadow: '0 4px 20px rgba(0,0,0,0.03)', height: '100%', boxSizing: 'border-box' }}>
+            <FadeIn delay={150} style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ background: S.paper, borderRadius: 12, padding: '2rem', border: `1px solid ${S.line}`, boxShadow: '0 4px 20px rgba(0,0,0,0.03)', height: '100%', boxSizing: 'border-box' }}>
                 {status === 'sent' ? (
                   <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
                     <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', color: S.gold, marginBottom: '0.8rem' }}>Thank you</p>
@@ -535,7 +532,6 @@ export default function Home() {
                 )}
               </div>
             </FadeIn>
-            </div>
           </div>
         </div>
       </section>
