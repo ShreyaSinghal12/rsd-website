@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 // import ChatWidget from './components/ChatWidget'
 import Home from './pages/Home'
 import CategoryPage from './pages/CategoryPage'
+import ServicePage from './pages/ServicePage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -24,6 +25,10 @@ export default function App() {
           <Route path="/projects/residential" element={<CategoryPage category="residential" />} />
           <Route path="/projects/hospitality" element={<CategoryPage category="hospitality" />} />
           <Route path="/projects/builders" element={<CategoryPage category="commercial" />} />
+          <Route path="/services/architecture" element={<ServicePage service="architecture" />} />
+          <Route path="/services/interior-design" element={<ServicePage service="interior-design" />} />
+          <Route path="/services/turnkey-projects" element={<ServicePage service="turnkey-projects" />} />
+          <Route path="/services/pmc" element={<ServicePage service="pmc" />} />
         </Routes>
       </main>
       <Footer />

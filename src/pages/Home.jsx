@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useInView } from 'react-intersection-observer'
 import testimonials from '../data/testimonials'
 
@@ -54,10 +54,10 @@ function metallicStyle(fontSize) {
 }
 
 const services4 = [
-  { title: 'Architecture', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/04/Stunning-Structures-1.jpg' },
-  { title: 'Interior Design', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/04/The-Unruffled.jpg' },
-  { title: 'Trunkey Projects', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/04/Innovative-Spaces-1.jpg' },
-  { title: 'PMC', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-3.jpg' },
+  { title: 'Architecture', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/04/Stunning-Structures-1.jpg', route: '/services/architecture' },
+  { title: 'Interior Design', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/04/The-Unruffled.jpg', route: '/services/interior-design' },
+  { title: 'Turnkey Projects', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/04/Innovative-Spaces-1.jpg', route: '/services/turnkey-projects' },
+  { title: 'PMC', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-3.jpg', route: '/services/pmc' },
 ]
 
 const typesOfServices = [
@@ -148,6 +148,7 @@ function SlantCard({ img, title, onClick, big }) {
 }
 
 export default function Home() {
+  const navigate = useNavigate()
   const [tIndex, setTIndex] = useState(0)
   const [heroIndex, setHeroIndex] = useState(0)
   const [form, setForm] = useState({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' })
@@ -312,7 +313,7 @@ export default function Home() {
             {services4.map((s, i) => (
               <FadeIn key={i} delay={i * 90}>
                 <div style={{ marginTop: i % 2 === 1 ? '2.5rem' : 0 }}>
-                  <SlantCard img={s.img} title={s.title} onClick={() => scrollToId('services')} />
+                  <SlantCard img={s.img} title={s.title} onClick={() => navigate(s.route)} />
                 </div>
               </FadeIn>
             ))}

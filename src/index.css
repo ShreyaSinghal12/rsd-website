@@ -80,6 +80,9 @@ div[style*="overflowX: auto"]::-webkit-scrollbar {
 .moodboard-scroll::-webkit-scrollbar { display: none; }
 .moodboard-scroll { scrollbar-width: none; }
 
+.team-scroll::-webkit-scrollbar { display: none; }
+.team-scroll { scrollbar-width: none; }
+
 .testimonial-scroll { scrollbar-width: thin; scrollbar-color: #C9A96E #F0EBE0; }
 .testimonial-scroll::-webkit-scrollbar { height: 4px; }
 .testimonial-scroll::-webkit-scrollbar-track { background: #F0EBE0; border-radius: 999px; }
