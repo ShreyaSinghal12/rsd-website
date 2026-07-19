@@ -68,12 +68,12 @@ const typesOfServices = [
 ]
 
 const whyUsPoints = [
-  { num: '01', title: 'When cient returns ', desc: "When the architecture, the interiors, and the build all sit with us, there's no gap to lose your project in, and no third party to blame if something slips." },
-  { num: '02', title: 'We build what we draw', desc: 'A beautiful drawing is easy to promise. We hold ourselves to turning it into the actual room exactly as shown, not approximately.' },
-  { num: '03', title: 'On time is part of the work', desc: 'Our systems, procurement control, and stage-by-stage checks exist so we can be held to a date — not so we can explain why we missed one.' },
-  { num: '04', title: "If it doesn't last, we hear about it", desc: "Thirty years of clients means three decades of living with our own decisions. That's why we design for the decade, not the season." },
-  { num: '05', title: 'Understand', desc: "We begin with how you'll live, host, or operate — not with a mood board. The brief is built around outcomes, not finishes." },
-  { num: '06', title: 'Deliver', desc: 'We control procurement, manage the site, and check quality at every stage. One schedule, one accountable team.' },
+  { num: '01', title: '🏆 30+ Years of Proven Experience', desc: "With over three decades of industry expertise, we have successfully delivered complex residential, hospitality, commercial, and public infrastructure projects with confidence and precision." },
+  { num: '02', title: '👥 Complete Team Under One Roof', desc: 'A multidisciplinary team of Architects, Civil Engineers, Electrical Engineers, MEP Consultants, 3D Visualisers, Interior Designers, and Experienced Site Engineers ensures seamless coordination and faster project delivery.' },
+  { num: '03', title: '📊 500+ Successful Projects Delivered', desc: 'Our extensive portfolio of over 500 completed projects reflects our commitment to quality, timely execution, and client satisfaction across diverse sectors.' },
+  { num: '04', title: '⚙️ System-Driven Project Management', desc: "We follow a technology-enabled execution process with user-friendly project management systems, pre-planned work schedules, drawing schedules, milestone tracking, and transparent progress monitoring." },
+  { num: '05', title: '🌿 Expertise in Technically Challenging Projects', desc: "From artificial lakes and public gardens to large-scale landscaped developments, we possess the technical expertise to execute complex engineering and landscape projects with precision." },
+  { num: '06', title: '🏨 Extensive Hospitality Experience', desc: 'Successfully delivered 700+ hotel keys, including multiple 100+ room hotel properties, giving us deep expertise in hospitality planning, design coordination, and execution.' },
 ]
 
 const awardsAndCerts = [
@@ -344,7 +344,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="portfolio" style={{ background: S.paper, padding: '5rem 2rem' }}>
+      <section id="portfolio" style={{ background: S.paper, padding: '3rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <FadeIn>
             <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '3rem' }}>Our Projects</h2>
@@ -369,7 +369,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="awards-news" style={{ background: S.cream, padding: '5rem 2rem' }}>
+      <section id="awards-news" style={{ background: S.cream, padding: '3rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.85fr 1fr', gap: '3rem', alignItems: 'start', marginBottom: '4rem' }}>
             <FadeIn>
@@ -516,7 +516,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" style={{ background: S.cream, padding: '5rem 2rem' }}>
+      <section id="contact" style={{ background: S.cream, padding: '3rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
             <FadeIn><h2 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 400, fontSize: 'clamp(3.6rem,8vw,5.6rem)', color: S.black, letterSpacing: '0.06em' }}>CONTACT</h2></FadeIn>
