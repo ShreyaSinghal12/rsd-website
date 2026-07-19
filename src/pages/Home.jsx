@@ -256,7 +256,7 @@ export default function Home() {
         <FadeIn>
           <div style={{ maxWidth: 850, margin: '0 auto', position: 'relative', aspectRatio: '16/9', background: '#000', overflow: 'hidden' }}>
             <video muted autoPlay loop playsInline preload="auto" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}>
-              <source src="/videos/hero.mp4" type="video/mp4" />
+              <source src="/videos/OfficeVideos.mp4" type="video/mp4" />
             </video>
             <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.25)' }} />
             <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 76, height: 76, borderRadius: '50%', border: '2px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
