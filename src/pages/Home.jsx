@@ -266,7 +266,7 @@ export default function Home() {
         </FadeIn>
       </section>
 
-      <section style={{ background: S.paper, padding: '5rem 2rem' }}>
+      <section style={{ background: S.paper, padding: '3rem 2rem' }}>
         <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
           <FadeIn>
             <h2 style={{ ...roundedHeading, fontSize: 'clamp(2.2rem,4.5vw,3.2rem)', color: S.ink, marginBottom: '1.4rem', lineHeight: 1.3 }}>
