@@ -26,7 +26,7 @@ const servicesContent = {
   },
   pmc: {
     title: 'PMC',
-    intro: "Procurement, scheduling, and on-site quality control, run by the same team that designed the space. One point of contact, one standard, held from groundbreaking to move-in.",
+    intro: "Our Project Management Consultancy (PMC) services ensure your project is completed on time, within budget, and to the highest quality standards. We manage planning, scheduling, consultant coordination, tendering, BOQ verification, contractor selection, procurement support, site supervision, quality inspections, progress monitoring, cost control, billing verification, and risk management. Our experienced team coordinates with architects, engineers, contractors, and suppliers to maintain seamless communication and efficient execution. Through systematic reporting, milestone tracking, and proactive problem-solving, we help clients minimize delays, control costs, reduce risks, and achieve successful project delivery with complete transparency and accountability.",
     banner: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-3.jpg',
     projectCategories: ['residential', 'hospitality', 'architecture'],
   },

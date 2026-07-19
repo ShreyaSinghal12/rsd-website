@@ -300,76 +300,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      <section id="services" style={{ background: S.cream, padding: '5rem 2rem' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <FadeIn>
-            <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '1rem' }}>Our Expertise</h2>
-            <p style={{ fontSize: '0.92rem', color: S.mid, textAlign: 'center', maxWidth: 700, margin: '0 auto 3rem', lineHeight: 1.7 }}>
-              Architecture, interior design and full turnkey execution, held under one accountable team. The vision and the delivery never separate, so nothing falls through the gaps between firms.
-            </p>
-          </FadeIn>
-          <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1.8rem', alignItems: 'start' }}>
-            {services4.map((s, i) => (
-              <FadeIn key={i} delay={i * 90}>
-                <div style={{ marginTop: i % 2 === 1 ? '2.5rem' : 0 }}>
-                  <SlantCard img={s.img} title={s.title} onClick={() => navigate(s.route)} />
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.6fr', gap: '3rem', marginTop: '4rem' }}>
-          <FadeIn>
-            <h3 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize: 'clamp(3rem,6vw,4.2rem)', color: S.black, marginBottom: '1.4rem', lineHeight: 1 }}>WHY US?</h3>
-            <p style={{ fontSize: '1rem', color: S.mid, lineHeight: 1.75, maxWidth: 300 }}>
-              When Client Return and Refer Others, the Work has Passed its Real Test.
-            </p>
-          </FadeIn>
-          <div style={{ position: 'relative', paddingRight: '4.5rem' }}>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              {whyUsPoints.map((p, i) => (
-                <FadeIn key={i} delay={i * 60}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '170px 1fr', columnGap: '3rem', alignItems: 'start', padding: '1.6rem 0' }}>
-                    <div>
-                      <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '2.2rem', color: S.gold, lineHeight: 1, marginBottom: '0.1rem' }}>{p.num}</p>
-                      <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '1.4rem', color: S.black, lineHeight: 1.2 }}>{p.title}</p>
-                    </div>
-                    <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.65, marginTop: '0.5rem' }}>{p.desc}</p>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
-            <div style={{ position: 'absolute', top: 0, right: '-1.5rem', width: 3, height: '55%', background: 'rgba(0,0,0,0.08)', borderRadius: 999 }} />
-          </div>
-        </div>
-      </section>
-
-      <section id="portfolio" style={{ background: S.paper, padding: '3rem 2rem' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <FadeIn>
-            <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '3rem' }}>Our Projects</h2>
-          </FadeIn>
-          <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '4.5rem' }}>
-            {typesOfServices.map((s, i) => (
-              <FadeIn key={i} delay={i * 100}>
-                <Link to={s.route} style={{ display: 'block', textDecoration: 'none' }}>
-                  <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '16/9', border: `1px solid ${S.line}` }}
-                    onMouseEnter={e => e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'}
-                    onMouseLeave={e => e.currentTarget.querySelector('img').style.transform = 'scale(1)'}>
-                    <img src={s.img} alt={s.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,20,18,0.7) 0%, transparent 45%)' }} />
-                    <p style={{ position: 'absolute', bottom: '1.2rem', left: '1.4rem', fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontSize: '1.4rem', color: '#fff' }}>{s.title}</p>
-                  </div>
-                </Link>
-              </FadeIn>
-            ))}
-          </div>
-
-
-        </div>
-      </section>
-
       <section id="awards-news" style={{ background: S.cream, padding: '3rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.85fr 1fr', gap: '3rem', alignItems: 'start', marginBottom: '4rem' }}>
@@ -516,6 +446,77 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section id="services" style={{ background: S.cream, padding: '5rem 2rem' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <FadeIn>
+            <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '1rem' }}>Our Expertise</h2>
+            <p style={{ fontSize: '0.92rem', color: S.mid, textAlign: 'center', maxWidth: 700, margin: '0 auto 3rem', lineHeight: 1.7 }}>
+              Architecture, interior design and full turnkey execution, held under one accountable team. The vision and the delivery never separate, so nothing falls through the gaps between firms.
+            </p>
+          </FadeIn>
+          <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1.8rem', alignItems: 'start' }}>
+            {services4.map((s, i) => (
+              <FadeIn key={i} delay={i * 90}>
+                <div style={{ marginTop: i % 2 === 1 ? '2.5rem' : 0 }}>
+                  <SlantCard img={s.img} title={s.title} onClick={() => navigate(s.route)} />
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.6fr', gap: '3rem', marginTop: '4rem' }}>
+          <FadeIn>
+            <h3 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize: 'clamp(3rem,6vw,4.2rem)', color: S.black, marginBottom: '1.4rem', lineHeight: 1 }}>WHY US?</h3>
+            <p style={{ fontSize: '1rem', color: S.mid, lineHeight: 1.75, maxWidth: 300 }}>
+              When Client Return and Refer Others, the Work has Passed its Real Test.
+            </p>
+          </FadeIn>
+          <div style={{ position: 'relative', paddingRight: '4.5rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              {whyUsPoints.map((p, i) => (
+                <FadeIn key={i} delay={i * 60}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '170px 1fr', columnGap: '3rem', alignItems: 'start', padding: '1.6rem 0' }}>
+                    <div>
+                      <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '2.2rem', color: S.gold, lineHeight: 1, marginBottom: '0.1rem' }}>{p.num}</p>
+                      <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '1.4rem', color: S.black, lineHeight: 1.2 }}>{p.title}</p>
+                    </div>
+                    <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.65, marginTop: '0.5rem' }}>{p.desc}</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+            <div style={{ position: 'absolute', top: 0, right: '-1.5rem', width: 3, height: '55%', background: 'rgba(0,0,0,0.08)', borderRadius: 999 }} />
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" style={{ background: S.paper, padding: '3rem 2rem' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <FadeIn>
+            <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '3rem' }}>Our Projects</h2>
+          </FadeIn>
+          <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '4.5rem' }}>
+            {typesOfServices.map((s, i) => (
+              <FadeIn key={i} delay={i * 100}>
+                <Link to={s.route} style={{ display: 'block', textDecoration: 'none' }}>
+                  <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '16/9', border: `1px solid ${S.line}` }}
+                    onMouseEnter={e => e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'}
+                    onMouseLeave={e => e.currentTarget.querySelector('img').style.transform = 'scale(1)'}>
+                    <img src={s.img} alt={s.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,20,18,0.7) 0%, transparent 45%)' }} />
+                    <p style={{ position: 'absolute', bottom: '1.2rem', left: '1.4rem', fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontSize: '1.4rem', color: '#fff' }}>{s.title}</p>
+                  </div>
+                </Link>
+              </FadeIn>
+            ))}
+          </div>
+
+
+        </div>
+      </section>
+
+      
 
       <section id="contact" style={{ background: S.cream, padding: '3rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
