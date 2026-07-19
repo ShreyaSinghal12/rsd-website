@@ -48,17 +48,15 @@ function AnimatedRoutes() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen flex flex-col grain-overlay">
-        <ScrollToTop />
-        <Navbar />
-        <main className="flex-grow">
-          <AnimatedRoutes />
-        </main>
-        <Footer />
-        <WhatsAppFloat />
-      </div>
-    </BrowserRouter>
+    <div className="min-h-screen flex flex-col grain-overlay">
+      <ScrollToTop />
+      <Navbar />
+      <main className="flex-grow">
+        <AnimatedRoutes />
+      </main>
+      <Footer />
+      <WhatsAppFloat />
+    </div>
   );
 }
 
