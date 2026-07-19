@@ -2,7 +2,8 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-
+// import WhatsAppFloat from './components/WhatsAppFloat'
+// import ChatWidget from './components/ChatWidget'
 import Home from './pages/Home'
 import CategoryPage from './pages/CategoryPage'
 
@@ -26,8 +27,8 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
-      <WhatsAppFloat />
-      <ChatWidget />
+      {/* <WhatsAppFloat />
+      <ChatWidget /> */}
     </>
   )
 }
