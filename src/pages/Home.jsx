@@ -134,7 +134,7 @@ export default function Home() {
   const focusField = (k) => setFocused(f => ({ ...f, [k]: true }))
   const blurField = (k) => setFocused(f => ({ ...f, [k]: false }))
 
-  const inputStyle = (isFocused) => ({ width: '100%', padding: '0.8rem 1rem', border: 'none', background: '#F2F0EB', fontFamily: "'DM Sans',sans-serif", fontSize: '0.9rem', color: S.ink, outline: isFocused ? `2px solid ${S.gold}` : 'none', borderRadius: 6 })
+  const inputStyle = (isFocused) => ({ width: '100%', padding: '0.85rem 1rem', border: 'none', background: '#F2F0EB', fontFamily: "'DM Sans',sans-serif", fontSize: '1rem', color: S.ink, outline: isFocused ? `2px solid ${S.gold}` : 'none', borderRadius: 6 })
 
   useEffect(() => {
     const t = setInterval(() => setTIndex(i => (i + 1) % testimonials.length), 6000)
@@ -471,30 +471,32 @@ export default function Home() {
       <section id="contact" style={{ background: S.cream, padding: '5rem 2rem' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
-            <FadeIn><h2 style={{ ...roundedHeading, fontSize: 'clamp(3rem,6.5vw,4.6rem)', color: S.black, letterSpacing: '0.02em' }}>CONTACT</h2></FadeIn>
-            <FadeIn delay={100}><p style={{ fontSize: '0.95rem', color: S.mid, textAlign: 'right' }}>Lets discuss your next<br />Project together</p></FadeIn>
+            <FadeIn><h2 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 400, fontSize: 'clamp(3.6rem,8vw,5.6rem)', color: S.black, letterSpacing: '0.06em' }}>CONTACT</h2></FadeIn>
+            <FadeIn delay={100}><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '1.1rem', color: S.mid, textAlign: 'right' }}>Lets discuss your next<br />Project together</p></FadeIn>
           </div>
           <div style={{ width: '100%', height: 1, background: S.line, marginBottom: '2.5rem' }} />
 
           <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
-            <div>
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
               {contactInfo.map((item, i) => (
                 <FadeIn key={i} delay={i * 80}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1.5rem', padding: '1.1rem 0' }}>
-                    <p style={{ fontWeight: 600, fontSize: '0.9rem', color: S.black, minWidth: 90 }}>{item.label}</p>
-                    {item.href ? <a href={item.href} style={{ fontSize: '0.9rem', color: S.gold, textDecoration: 'none', textAlign: 'right' }}>{item.value}</a> : <p style={{ fontSize: '0.9rem', color: S.mid, textAlign: 'right' }}>{item.value}</p>}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1.5rem', padding: '1.2rem 0' }}>
+                    <p style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 600, fontSize: '1.05rem', color: S.black, minWidth: 100 }}>{item.label}</p>
+                    {item.href ? <a href={item.href} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '1.05rem', color: S.gold, textDecoration: 'none', textAlign: 'right' }}>{item.value}</a> : <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '1.05rem', color: S.mid, textAlign: 'right' }}>{item.value}</p>}
                   </div>
                 </FadeIn>
               ))}
-              <FadeIn delay={200}>
-                <div style={{ marginTop: '1.5rem', position: 'relative', height: 220, overflow: 'hidden', borderRadius: 12, border: `1px solid ${S.line}` }}>
-                  <iframe src="https://maps.google.com/maps?q=Time+Square+Sevoke+Road+Siliguri&t=m&z=15&output=embed&iwloc=near" title="Location" width="100%" height="100%" style={{ border: 'none', display: 'block' }} loading="lazy" />
-                  <a href="https://maps.google.com/?q=Time+Square+Sevoke+Road+Siliguri" target="_blank" rel="noreferrer" style={{ position: 'absolute', top: '0.8rem', left: '0.8rem', background: '#fff', padding: '0.5rem 1rem', borderRadius: 999, fontSize: '0.78rem', color: S.ink, textDecoration: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>Open in Map ↗</a>
-                </div>
-              </FadeIn>
+              <div style={{ flex: 1, marginTop: '1.5rem' }}>
+                <FadeIn delay={200}>
+                  <div style={{ position: 'relative', height: '100%', minHeight: 220, overflow: 'hidden', borderRadius: 12, border: `1px solid ${S.line}` }}>
+                    <iframe src="https://maps.google.com/maps?q=Time+Square+Sevoke+Road+Siliguri&t=m&z=15&output=embed&iwloc=near" title="Location" width="100%" height="100%" style={{ border: 'none', display: 'block' }} loading="lazy" />
+                    <a href="https://maps.google.com/?q=Time+Square+Sevoke+Road+Siliguri" target="_blank" rel="noreferrer" style={{ position: 'absolute', top: '0.8rem', left: '0.8rem', background: '#fff', padding: '0.5rem 1rem', borderRadius: 999, fontSize: '0.85rem', color: S.ink, textDecoration: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>Open in Map ↗</a>
+                  </div>
+                </FadeIn>
+              </div>
             </div>
             <FadeIn delay={150}>
-              <div style={{ background: S.paper, borderRadius: 12, padding: '2rem', border: `1px solid ${S.line}`, boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
+              <div style={{ background: S.paper, borderRadius: 12, padding: '2rem', border: `1px solid ${S.line}`, boxShadow: '0 4px 20px rgba(0,0,0,0.03)', height: '100%', boxSizing: 'border-box' }}>
                 {status === 'sent' ? (
                   <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
                     <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', color: S.gold, marginBottom: '0.8rem' }}>Thank you</p>
@@ -503,29 +505,29 @@ export default function Home() {
                 ) : (
                   <form onSubmit={handleSubmit} noValidate>
                     <div style={{ marginBottom: '1rem' }}>
-                      <label style={{ display: 'block', fontSize: '0.8rem', color: S.mid, marginBottom: '0.4rem' }}>Name</label>
+                      <label style={{ display: 'block', fontSize: '0.9rem', color: S.mid, marginBottom: '0.4rem' }}>Name</label>
                       <input value={form.firstName} onChange={set('firstName')} onFocus={() => focusField('firstName')} onBlur={() => blurField('firstName')} style={inputStyle(focused.firstName)} />
                     </div>
                     <div style={{ marginBottom: '1rem' }}>
-                      <label style={{ display: 'block', fontSize: '0.8rem', color: S.mid, marginBottom: '0.4rem' }}>Email</label>
+                      <label style={{ display: 'block', fontSize: '0.9rem', color: S.mid, marginBottom: '0.4rem' }}>Email</label>
                       <input type="email" value={form.email} onChange={set('email')} onFocus={() => focusField('email')} onBlur={() => blurField('email')} style={inputStyle(focused.email)} />
                     </div>
                     <div style={{ marginBottom: '1rem' }}>
-                      <label style={{ display: 'block', fontSize: '0.8rem', color: S.mid, marginBottom: '0.4rem' }}>Phone</label>
+                      <label style={{ display: 'block', fontSize: '0.9rem', color: S.mid, marginBottom: '0.4rem' }}>Phone</label>
                       <input type="tel" value={form.phone} onChange={set('phone')} onFocus={() => focusField('phone')} onBlur={() => blurField('phone')} style={inputStyle(focused.phone)} />
                     </div>
                     <div style={{ marginBottom: '1rem' }}>
-                      <label style={{ display: 'block', fontSize: '0.8rem', color: S.mid, marginBottom: '0.4rem' }}>Service Required</label>
+                      <label style={{ display: 'block', fontSize: '0.9rem', color: S.mid, marginBottom: '0.4rem' }}>Service Required</label>
                       <select value={form.service} onChange={set('service')} onFocus={() => focusField('service')} onBlur={() => blurField('service')} style={{ ...inputStyle(focused.service), appearance: 'none', cursor: 'pointer' }}>
                         <option value="">Select a service...</option>
                         {['Residential Interior Design', 'Architecture', 'Hospitality Design', 'Commercial / Retail', 'Vedic Vastu Consultation', 'Other'].map(o => <option key={o}>{o}</option>)}
                       </select>
                     </div>
                     <div style={{ marginBottom: '1.4rem' }}>
-                      <label style={{ display: 'block', fontSize: '0.8rem', color: S.mid, marginBottom: '0.4rem' }}>Message</label>
+                      <label style={{ display: 'block', fontSize: '0.9rem', color: S.mid, marginBottom: '0.4rem' }}>Message</label>
                       <textarea rows={4} value={form.message} onChange={set('message')} onFocus={() => focusField('message')} onBlur={() => blurField('message')} style={{ ...inputStyle(focused.message), resize: 'vertical' }} />
                     </div>
-                    <button type="submit" disabled={status === 'sending'} style={{ padding: '0.85rem 2.2rem', background: S.gold, color: '#fff', border: 'none', borderRadius: 6, cursor: status === 'sending' ? 'not-allowed' : 'pointer', fontWeight: 600, fontSize: '0.9rem' }}>
+                    <button type="submit" disabled={status === 'sending'} style={{ padding: '0.85rem 2.2rem', background: S.gold, color: '#fff', border: 'none', borderRadius: 6, cursor: status === 'sending' ? 'not-allowed' : 'pointer', fontWeight: 600, fontSize: '1rem' }}>
                       {status === 'sending' ? 'Sending...' : 'Submit'}
                     </button>
                   </form>
