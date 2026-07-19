@@ -18,6 +18,37 @@ const S = {
 const roundedHeading = { fontFamily: "'Poppins',sans-serif", fontWeight: 700 }
 const serifHeading = { fontFamily: "'Playfair Display',serif" }
 
+const heroSlides = [
+  {
+    img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg',
+    heading: ['Where Imagination', 'Meets Interior Design'],
+    sub: "A single studio, holding the vision from first sketch to final handover, so your legacy is left to no one's chance but ours.",
+    cta: 'View Projects →',
+    action: 'scroll',
+  },
+  {
+    img: '/images/slides/1stSlide.jpg',
+    heading: ['You can afford anything.', 'So why does the result so rarely feel like it?'],
+    sub: "The difference was never the budget. It's who holds every decision.",
+    cta: 'Explore Residences →',
+    route: '/projects/residential',
+  },
+  {
+    img: '/images/slides/2ndSlide.jpeg',
+    heading: ['Why does the identical project next door', 'keep selling faster than yours?'],
+    sub: "The difference buyers can't name is the difference we design.",
+    cta: 'For Builders & Developers →',
+    route: '/projects/builders',
+  },
+  {
+    img: '/images/slides/3rdSLide.jpeg',
+    heading: ['How many vendors are you managing', 'just to open a single hotel?'],
+    sub: 'With us, the answer is one.',
+    cta: 'Explore The One →',
+    route: '/projects/hospitality',
+  },
+]
+
 function metallicStyle(fontSize) {
   return {
     fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize,
@@ -63,9 +94,9 @@ const awardsAndCerts = [
 ]
 
 const trophyStage = [
-  { key: 'pillar', img: '/images/awardsAndCertificates/Award1-trophy.png', left: 16.3, width: 13.4, top: 12.4, height: 40, plateLeft: 7.25, plateWidth: 32, plateTop: 52, plateHeight: 3, stemLeft: 11, stemWidth: 24.5, stemTop: 52, stemHeight: 34 },
-  { key: 'horizon', img: '/images/awardsAndCertificates/Award2-trophy.png', left: 40, width: 20.1, top: 42.4, height: 27, plateLeft: 27, plateWidth: 46, plateTop: 69, plateHeight: 3.2, stemLeft: 40, stemWidth: 20, stemTop: 69, stemHeight: 31 },
-  { key: 'keystone', img: '/images/awardsAndCertificates/Award3-trophy.png', left: 68.3, width: 25.9, top: 7.9, height: 30, plateLeft: 68.5, plateWidth: 27, plateTop: 37.5, plateHeight: 2.8, stemLeft: 72, stemWidth: 20, stemTop: 37.5, stemHeight: 63 },
+  { key: 'pillar', img: '/images/awardsAndCertificates/Award1-trophy.png', left: 16.3, width: 13.4, top: 17.2, height: 40, plateLeft: 7.25, plateWidth: 32, plateTop: 56, plateHeight: 3, stemLeft: 11, stemWidth: 24.5, stemTop: 56, stemHeight: 30 },
+  { key: 'horizon', img: '/images/awardsAndCertificates/Award2-trophy.png', left: 40, width: 20.1, top: 43.2, height: 27, plateLeft: 27, plateWidth: 46, plateTop: 69, plateHeight: 3.2, stemLeft: 40, stemWidth: 20, stemTop: 69, stemHeight: 31 },
+  { key: 'keystone', img: '/images/awardsAndCertificates/Award3-trophy.png', left: 68.3, width: 25.9, top: 17.2, height: 30, plateLeft: 68.5, plateWidth: 27, plateTop: 46, plateHeight: 2.8, stemLeft: 72, stemWidth: 20, stemTop: 46, stemHeight: 54 },
 ]
 
 const woodGrainSVG = `data:image/svg+xml,${encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='140' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.9' numOctaves='3' seed='11' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.32  0 0 0 0 0.23  0 0 0 0 0.12  0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>")}`
@@ -124,6 +155,7 @@ function SlantCard({ img, title, onClick, big }) {
 
 export default function Home() {
   const [tIndex, setTIndex] = useState(0)
+  const [heroIndex, setHeroIndex] = useState(0)
   const [form, setForm] = useState({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' })
   const [status, setStatus] = useState('idle')
   const [focused, setFocused] = useState({})
@@ -139,6 +171,11 @@ export default function Home() {
   useEffect(() => {
     const t = setInterval(() => setTIndex(i => (i + 1) % testimonials.length), 6000)
     return () => clearInterval(t)
+  }, [])
+
+  useEffect(() => {
+    const h = setInterval(() => setHeroIndex(i => (i + 1) % heroSlides.length), 7000)
+    return () => clearInterval(h)
   }, [])
 
   const { ref: statsRef, inView: statsInView } = useInView({ triggerOnce: true, threshold: 0.3 })
@@ -160,22 +197,37 @@ export default function Home() {
   return (
     <>
       <section id="hero" style={{ height: '100vh', minHeight: 640, position: 'relative', overflow: 'hidden' }}>
-        <img src="https://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg" alt="Raamesh Singhal Design" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+        {heroSlides.map((slide, i) => (
+          <img key={i} src={slide.img} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: i === heroIndex ? 1 : 0, transition: 'opacity 1.2s ease' }} />
+        ))}
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(100deg, rgba(20,40,60,0.55) 0%, rgba(20,40,60,0.15) 55%, rgba(20,40,60,0.35) 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', maxWidth: 1300, margin: '0 auto', padding: '0 2.5rem' }}>
-          <FadeIn>
-            <h1 style={{ ...roundedHeading, fontSize: 'clamp(2.8rem,6vw,4.4rem)', color: '#fff', lineHeight: 1.15, marginBottom: '1.4rem', maxWidth: 680 }}>
-              Where Imagination<br />Meets Interior Design
+          <FadeIn key={heroIndex}>
+            <h1 style={{ ...roundedHeading, fontSize: 'clamp(2.8rem,6vw,4.4rem)', color: '#fff', lineHeight: 1.15, marginBottom: '1.4rem', maxWidth: 720 }}>
+              {heroSlides[heroIndex].heading.map((line, i) => <span key={i}>{line}{i < heroSlides[heroIndex].heading.length - 1 && <br />}</span>)}
             </h1>
             <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.9)', maxWidth: 480, marginBottom: '2.2rem', lineHeight: 1.6 }}>
-              A single studio, holding the vision from first sketch to final handover, so your legacy is left to no one's chance but ours.
+              {heroSlides[heroIndex].sub}
             </p>
-            <button onClick={() => scrollToId('portfolio')} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '0.95rem', padding: '0.9rem 1.8rem', background: 'transparent', color: '#fff', border: '1.5px solid #fff', borderRadius: 999, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', transition: 'all 0.3s' }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = S.ink }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#fff' }}>
-              View Projects →
-            </button>
+            {heroSlides[heroIndex].action === 'scroll' ? (
+              <button onClick={() => scrollToId('portfolio')} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '0.95rem', padding: '0.9rem 1.8rem', background: 'transparent', color: '#fff', border: '1.5px solid #fff', borderRadius: 999, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', transition: 'all 0.3s' }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = S.ink }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#fff' }}>
+                {heroSlides[heroIndex].cta}
+              </button>
+            ) : (
+              <Link to={heroSlides[heroIndex].route} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '0.95rem', padding: '0.9rem 1.8rem', background: 'transparent', color: '#fff', border: '1.5px solid #fff', borderRadius: 999, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', transition: 'all 0.3s', textDecoration: 'none', width: 'fit-content' }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = S.ink }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#fff' }}>
+                {heroSlides[heroIndex].cta}
+              </Link>
+            )}
           </FadeIn>
+        </div>
+        <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', zIndex: 3, display: 'flex', gap: '0.6rem' }}>
+          {heroSlides.map((_, i) => (
+            <button key={i} onClick={() => setHeroIndex(i)} aria-label={`Go to slide ${i + 1}`} style={{ width: i === heroIndex ? 26 : 8, height: 8, borderRadius: 999, border: 'none', background: i === heroIndex ? S.gold : 'rgba(255,255,255,0.55)', cursor: 'pointer', transition: 'all 0.3s' }} />
+          ))}
         </div>
       </section>
 
@@ -233,8 +285,8 @@ export default function Home() {
         </div>
         <div className="about-grid" style={{ maxWidth: 900, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem' }}>
           {[
-            { name: 'Ramesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality', img: '/images/Founders/Ramesh_Singhal.jpeg' },
-            { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: '/images/Founders/Sonika_Singhal.jpeg' },
+            { name: 'Ramesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-19-1024x768.jpg' },
+            { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-11-1024x767.jpg' },
           ].map((f, i) => (
             <FadeIn key={i} delay={i * 150}>
               <div>
