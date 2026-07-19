@@ -233,8 +233,8 @@ export default function Home() {
         </div>
         <div className="about-grid" style={{ maxWidth: 900, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem' }}>
           {[
-            { name: 'Ramesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-19-1024x768.jpg' },
-            { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-11-1024x767.jpg' },
+            { name: 'Ramesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality', img: '/images/Founders/Ramesh_Singhal.jpeg' },
+            { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: '/images/Founders/Sonika_Singhal.jpeg' },
           ].map((f, i) => (
             <FadeIn key={i} delay={i * 150}>
               <div>
