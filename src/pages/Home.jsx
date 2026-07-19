@@ -318,7 +318,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.6fr', gap: '3rem' }}>
+        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.6fr', gap: '5rem' }}>
           <FadeIn>
             <h3 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize: 'clamp(3rem,6vw,4.2rem)', color: S.black, marginBottom: '1.4rem', lineHeight: 1 }}>WHY US?</h3>
             <p style={{ fontSize: '1rem', color: S.mid, lineHeight: 1.75, maxWidth: 300 }}>
