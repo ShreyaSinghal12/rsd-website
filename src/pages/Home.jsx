@@ -476,8 +476,8 @@ export default function Home() {
           </div>
           <div style={{ width: '100%', height: 1, background: S.line, marginBottom: '2.5rem' }} />
 
-          <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <div className="contact-grid" style={{ display: 'flex', gap: '3rem' }}>
+            <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
               {contactInfo.map((item, i) => (
                 <FadeIn key={i} delay={i * 80}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1.5rem', padding: '1.2rem 0' }}>
@@ -495,8 +495,9 @@ export default function Home() {
                 </FadeIn>
               </div>
             </div>
-            <FadeIn delay={150}>
-              <div style={{ background: S.paper, borderRadius: 12, padding: '2rem', border: `1px solid ${S.line}`, boxShadow: '0 4px 20px rgba(0,0,0,0.03)', height: '100%', boxSizing: 'border-box' }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <FadeIn delay={150}>
+                <div style={{ background: S.paper, borderRadius: 12, padding: '2rem', border: `1px solid ${S.line}`, boxShadow: '0 4px 20px rgba(0,0,0,0.03)', height: '100%', boxSizing: 'border-box' }}>
                 {status === 'sent' ? (
                   <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
                     <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', color: S.gold, marginBottom: '0.8rem' }}>Thank you</p>
@@ -534,6 +535,7 @@ export default function Home() {
                 )}
               </div>
             </FadeIn>
+            </div>
           </div>
         </div>
       </section>

@@ -19,7 +19,7 @@ body { background-color: #F7F4EF; color: #1A1A18; font-family: 'DM Sans', sans-s
 /* Tablet (768px - 1024px) */
 @media (max-width: 1024px) {
   .about-grid    { grid-template-columns: 1fr !important; gap: 3rem !important; }
-  .contact-grid  { grid-template-columns: 1fr !important; gap: 3rem !important; }
+  .contact-grid  { flex-direction: column !important; gap: 3rem !important; }
   .services-grid { grid-template-columns: repeat(2,1fr) !important; }
   .process-grid  { grid-template-columns: repeat(2,1fr) !important; }
   .why-grid      { grid-template-columns: 1fr 1fr !important; }
@@ -36,7 +36,7 @@ body { background-color: #F7F4EF; color: #1A1A18; font-family: 'DM Sans', sans-s
   .services-grid { grid-template-columns: 1fr !important; }
   .areas-grid    { grid-template-columns: 1fr !important; }
   .portfolio-grid { grid-template-columns: repeat(2,1fr) !important; }
-  .contact-grid  { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .contact-grid  { flex-direction: column !important; gap: 2rem !important; }
   .form-row      { grid-template-columns: 1fr !important; }
   .footer-grid   { grid-template-columns: 1fr !important; gap: 2rem !important; }
 
