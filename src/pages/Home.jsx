@@ -68,7 +68,7 @@ const typesOfServices = [
 ]
 
 const whyUsPoints = [
-  { num: '01', title: 'One name, accountable for everything', desc: "When the architecture, the interiors, and the build all sit with us, there's no gap to lose your project in, and no third party to blame if something slips." },
+  { num: '01', title: 'When cient returns ', desc: "When the architecture, the interiors, and the build all sit with us, there's no gap to lose your project in, and no third party to blame if something slips." },
   { num: '02', title: 'We build what we draw', desc: 'A beautiful drawing is easy to promise. We hold ourselves to turning it into the actual room exactly as shown, not approximately.' },
   { num: '03', title: 'On time is part of the work', desc: 'Our systems, procurement control, and stage-by-stage checks exist so we can be held to a date — not so we can explain why we missed one.' },
   { num: '04', title: "If it doesn't last, we hear about it", desc: "Thirty years of clients means three decades of living with our own decisions. That's why we design for the decade, not the season." },
@@ -318,11 +318,11 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1.8fr 1.6fr', gap: '0rem' }}>
+        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.6fr', gap: '3rem', marginTop: '4rem' }}>
           <FadeIn>
             <h3 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize: 'clamp(3rem,6vw,4.2rem)', color: S.black, marginBottom: '1.4rem', lineHeight: 1 }}>WHY US?</h3>
             <p style={{ fontSize: '1rem', color: S.mid, lineHeight: 1.75, maxWidth: 300 }}>
-              Thirty years of holding one standard: a single studio accountable for everything a project needs, from first sketch to final handover.
+              When Client Return and Refer Others, the Work has Passed its Real Test.
             </p>
           </FadeIn>
           <div style={{ position: 'relative', paddingRight: '4.5rem' }}>
