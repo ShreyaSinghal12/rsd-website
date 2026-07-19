@@ -19,13 +19,7 @@ const roundedHeading = { fontFamily: "'Poppins',sans-serif", fontWeight: 700 }
 const serifHeading = { fontFamily: "'Playfair Display',serif" }
 
 const heroSlides = [
-  {
-    img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/01/v7_11zon.jpg',
-    heading: ['Where Imagination', 'Meets Interior Design'],
-    sub: "A single studio, holding the vision from first sketch to final handover, so your legacy is left to no one's chance but ours.",
-    cta: 'View Projects →',
-    action: 'scroll',
-  },
+  
   {
     img: '/images/slides/1stSlide.jpg',
     heading: ['You can afford anything.', 'So why does the result so rarely feel like it?'],
@@ -285,19 +279,23 @@ export default function Home() {
         </div>
         <div className="about-grid" style={{ maxWidth: 900, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem' }}>
           {[
-            { name: 'Ramesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-19-1024x768.jpg' },
-            { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-11-1024x767.jpg' },
+            { name: 'Ramesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality', img: '/images/Founders/Ramesh_Singhal.jpeg' },
+            { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: '/images/Founders/Sonika_Singhal.jpeg' },
           ].map((f, i) => (
             <FadeIn key={i} delay={i * 150}>
               <div>
-                <div style={{ aspectRatio: '1/1', overflow: 'hidden', background: '#DDE3E7' }}>
+                <div style={{ aspectRatio: '1/1', overflow: 'hidden', background: '#DDE3E7', border: '2px solid #111', position: 'relative', zIndex: 2 }}>
                   <img src={f.img} alt={f.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
                 </div>
-                <div style={{ background: S.peach, padding: '1.6rem 1.6rem 1.8rem', position: 'relative' }}>
-                  <span style={{ position: 'absolute', top: '1.2rem', right: '1.4rem', fontFamily: "'Playfair Display',serif", fontSize: '3rem', color: 'rgba(0,0,0,0.12)', lineHeight: 0.6 }}>&rdquo;</span>
-                  <p style={{ fontSize: '0.7rem', color: S.mid, marginBottom: '0.15rem' }}>{f.role}</p>
-                  <p style={{ fontWeight: 700, fontSize: '1rem', color: S.black, marginBottom: '0.9rem' }}>{f.name}</p>
-                  <p style={{ fontSize: '0.85rem', color: S.mid, lineHeight: 1.6, fontStyle: 'italic' }}>"{f.quote}"</p>
+                <div style={{ background: S.peach, padding: '1.6rem 1.6rem 1.8rem', marginTop: '-24%', paddingTop: 'calc(24% + 1.6rem)', position: 'relative', zIndex: 1 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.9rem' }}>
+                    <div>
+                      <p style={{ fontSize: '0.85rem', color: S.mid, marginBottom: '0.15rem' }}>{f.role}</p>
+                      <p style={{ fontWeight: 700, fontSize: '1.15rem', color: S.black }}>{f.name}</p>
+                    </div>
+                    <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '3.2rem', color: 'rgba(0,0,0,0.15)', lineHeight: 0.4 }}>&ldquo;</span>
+                  </div>
+                  <p style={{ fontSize: '0.85rem', color: S.mid, lineHeight: 1.6 }}>"{f.quote}"</p>
                 </div>
               </div>
             </FadeIn>
