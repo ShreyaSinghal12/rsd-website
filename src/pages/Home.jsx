@@ -480,21 +480,21 @@ export default function Home() {
             <div>
               {contactInfo.map((item, i) => (
                 <FadeIn key={i} delay={i * 80}>
-                  <div style={{ display: 'flex', gap: '1.5rem', padding: '1rem 0', borderBottom: `1px solid ${S.line}` }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1.5rem', padding: '1.1rem 0' }}>
                     <p style={{ fontWeight: 600, fontSize: '0.9rem', color: S.black, minWidth: 90 }}>{item.label}</p>
-                    {item.href ? <a href={item.href} style={{ fontSize: '0.9rem', color: S.gold, textDecoration: 'none' }}>{item.value}</a> : <p style={{ fontSize: '0.9rem', color: S.mid }}>{item.value}</p>}
+                    {item.href ? <a href={item.href} style={{ fontSize: '0.9rem', color: S.gold, textDecoration: 'none', textAlign: 'right' }}>{item.value}</a> : <p style={{ fontSize: '0.9rem', color: S.mid, textAlign: 'right' }}>{item.value}</p>}
                   </div>
                 </FadeIn>
               ))}
               <FadeIn delay={200}>
-                <div style={{ marginTop: '1.5rem', position: 'relative', height: 220, overflow: 'hidden', borderRadius: 8 }}>
+                <div style={{ marginTop: '1.5rem', position: 'relative', height: 220, overflow: 'hidden', borderRadius: 12, border: `1px solid ${S.line}` }}>
                   <iframe src="https://maps.google.com/maps?q=Time+Square+Sevoke+Road+Siliguri&t=m&z=15&output=embed&iwloc=near" title="Location" width="100%" height="100%" style={{ border: 'none', display: 'block' }} loading="lazy" />
                   <a href="https://maps.google.com/?q=Time+Square+Sevoke+Road+Siliguri" target="_blank" rel="noreferrer" style={{ position: 'absolute', top: '0.8rem', left: '0.8rem', background: '#fff', padding: '0.5rem 1rem', borderRadius: 999, fontSize: '0.78rem', color: S.ink, textDecoration: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>Open in Map ↗</a>
                 </div>
               </FadeIn>
             </div>
             <FadeIn delay={150}>
-              <div style={{ background: S.paper, borderRadius: 12, padding: '2rem', boxShadow: '0 4px 30px rgba(0,0,0,0.06)' }}>
+              <div style={{ background: S.paper, borderRadius: 12, padding: '2rem', border: `1px solid ${S.line}`, boxShadow: '0 4px 20px rgba(0,0,0,0.03)' }}>
                 {status === 'sent' ? (
                   <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
                     <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', color: S.gold, marginBottom: '0.8rem' }}>Thank you</p>
@@ -525,7 +525,7 @@ export default function Home() {
                       <label style={{ display: 'block', fontSize: '0.8rem', color: S.mid, marginBottom: '0.4rem' }}>Message</label>
                       <textarea rows={4} value={form.message} onChange={set('message')} onFocus={() => focusField('message')} onBlur={() => blurField('message')} style={{ ...inputStyle(focused.message), resize: 'vertical' }} />
                     </div>
-                    <button type="submit" disabled={status === 'sending'} style={{ width: '100%', padding: '0.9rem', background: S.gold, color: '#fff', border: 'none', borderRadius: 999, cursor: status === 'sending' ? 'not-allowed' : 'pointer', fontWeight: 600, fontSize: '0.9rem' }}>
+                    <button type="submit" disabled={status === 'sending'} style={{ padding: '0.85rem 2.2rem', background: S.gold, color: '#fff', border: 'none', borderRadius: 6, cursor: status === 'sending' ? 'not-allowed' : 'pointer', fontWeight: 600, fontSize: '0.9rem' }}>
                       {status === 'sending' ? 'Sending...' : 'Submit'}
                     </button>
                   </form>
