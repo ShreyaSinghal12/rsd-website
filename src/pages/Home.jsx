@@ -318,18 +318,18 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.6fr', gap: '5rem' }}>
+        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '1.8fr 1.6fr', gap: '0rem' }}>
           <FadeIn>
             <h3 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize: 'clamp(3rem,6vw,4.2rem)', color: S.black, marginBottom: '1.4rem', lineHeight: 1 }}>WHY US?</h3>
             <p style={{ fontSize: '1rem', color: S.mid, lineHeight: 1.75, maxWidth: 300 }}>
               Thirty years of holding one standard: a single studio accountable for everything a project needs, from first sketch to final handover.
             </p>
           </FadeIn>
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative', paddingRight: '4.5rem' }}>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {whyUsPoints.map((p, i) => (
                 <FadeIn key={i} delay={i * 60}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '170px 1fr', columnGap: '2rem', alignItems: 'start', padding: '1.6rem 0' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '170px 1fr', columnGap: '3rem', alignItems: 'start', padding: '1.6rem 0' }}>
                     <div>
                       <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '2.2rem', color: S.gold, lineHeight: 1, marginBottom: '0.1rem' }}>{p.num}</p>
                       <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '1.4rem', color: S.black, lineHeight: 1.2 }}>{p.title}</p>
