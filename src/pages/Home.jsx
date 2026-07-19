@@ -1,794 +1,607 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence, useInView, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import projects from '../data/projects';
-import testimonials from '../data/testimonials';
+import { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useInView } from 'react-intersection-observer'
+import testimonials from '../data/testimonials'
+
+/* DESIGN TOKENS matching PDF */
+const S = {
+  cream: '#FAF8F2',
+  paper: '#FFFFFF',
+  ink: '#1B2A38',
+  black: '#111111',
+  gold: '#B98D4F',
+  peach: '#F4E3C8',
+  mid: '#6B6860',
+  line: 'rgba(0,0,0,0.08)',
+}
+
+const roundedHeading = { fontFamily: "'Poppins',sans-serif", fontWeight: 700 }
+const serifHeading = { fontFamily: "'Playfair Display',serif" }
 
 const heroSlides = [
-  { image: '/images/slides/1stSlide.jpg', title: 'Timeless Interiors', subtitle: 'Crafting Spaces That Inspire Living' },
-  { image: '/images/slides/2ndSlide.jpeg', title: 'Innovative Architecture', subtitle: 'Blending Form, Function & Beauty' },
-  { image: '/images/slides/3rdSLide.jpeg', title: 'Elegant Designs', subtitle: 'Where Vision Meets Reality' },
-];
 
-const categories = [
-  { id: 'architecture', label: 'Architecture', image: '/images/Architecture_Projects/House_of_Three_Courts.jpg', count: 0 },
-  { id: 'interior-design', label: 'Interior Design', image: '/images/interior_Projects/Contemporary_Vastu_House.jpg', count: 0 },
-  { id: 'hotel-design', label: 'Hotel Design', image: '/images/projects/Hotel1.jpeg', count: 0 },
-];
-
-categories.forEach(cat => {
-  cat.count = projects.filter(p => p.category === cat.id).length;
-});
-
-const stats = [
-  { label: 'Projects Completed', value: 150, suffix: '+' },
-  { label: 'Happy Clients', value: 120, suffix: '+' },
-  { label: 'Years Experience', value: 24, suffix: '+' },
-  { label: 'Awards Won', value: 15, suffix: '' },
-];
-
-const awards = [
   {
-    title: "Architect of the Year Award (RESIDENTIAL)",
-    organization: "Indian Institute of Architects (IIA) Delhi Chapter",
-    year: "2021",
-    image: "/images/awardsAndCertificates/Award1-trophy.png",
-    certificateImage: "/images/awardsAndCertificates/Award1.png"
+    img: '/images/slides/1stSlide.jpg',
+    heading: ['You can afford anything.', 'So why does the result so rarely feel like it?'],
+    sub: "The difference was never the budget. It's who holds every decision.",
+    cta: 'Explore Residences →',
+    route: '/projects/residential',
   },
   {
-    title: "AWARD OF MERIT 2023, BEST INTERIOR DESIGN",
-    organization: "Indian Institute of Architects (IIA) Delhi Chapter",
-    year: "2023",
-    image: "/images/awardsAndCertificates/Award2-trophy.png",
-    certificateImage: "/images/awardsAndCertificates/Award2.png"
+    img: '/images/slides/2ndSlide.jpeg',
+    heading: ['Why does the identical project next door', 'keep selling faster than yours?'],
+    sub: "The difference buyers can't name is the difference we design.",
+    cta: 'For Builders & Developers →',
+    route: '/projects/builders',
   },
   {
-    title: "AWARD OF MERIT 2024, BEST ARCHITECTURE DESIGN",
-    organization: "Indian Institute of Architects (IIA) Delhi Chapter",
-    year: "2024",
-    image: "/images/awardsAndCertificates/Award3-trophy.png",
-    certificateImage: "/images/awardsAndCertificates/Award3.png"
+    img: '/images/slides/3rdSLide.jpeg',
+    heading: ['How many vendors are you managing', 'just to open a single hotel?'],
+    sub: 'With us, the answer is one.',
+    cta: 'Explore The One →',
+    route: '/projects/hospitality',
+  },
+]
+
+function metallicStyle(fontSize) {
+  return {
+    fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize,
+    textTransform: 'uppercase', letterSpacing: '0.01em',
+    background: 'linear-gradient(180deg, #8a8a8a 0%, #4a4a4a 35%, #6e6e6e 50%, #2e2e2e 65%, #7a7a7a 100%)',
+    WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+    filter: 'drop-shadow(0 1px 0 rgba(255,255,255,0.4))',
   }
-];
+}
 
-const pressItems = [
-  { image: '/images/press/mag1.jpg', title: 'Architecture Digest' },
-  { image: '/images/press/mag2.jpg', title: 'Interior Today' },
-  { image: '/images/press/mag3.jpg', title: 'Design World' },
-  { image: '/images/press/mag4.jpg', title: 'Home & Living' },
-  { image: '/images/press/mag5.jpg', title: 'Modern Spaces' },
-  { image: '/images/press/mag6.jpg', title: 'Design Weekly' },
-  { image: '/images/press/mag7.jpg', title: 'Architecture Monthly' },
-  { image: '/images/press/mag8.jpg', title: 'Interior Design Magazine' },
-  { image: '/images/press/mag9.jpg', title: 'Luxury Living' },
-];
+const services4 = [
+  { title: 'Architecture', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/04/Stunning-Structures-1.jpg', route: '/services/architecture' },
+  { title: 'Interior Design', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/04/The-Unruffled.jpg', route: '/services/interior-design' },
+  { title: 'Turnkey Projects', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/04/Innovative-Spaces-1.jpg', route: '/services/turnkey-projects' },
+  { title: 'PMC', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/01/RSD-3.jpg', route: '/services/pmc' },
+]
 
-const serviceItems = [
-  {
-    title: 'Architecture',
-    desc: 'Creating iconic structures that define skylines and enrich communities through thoughtful design.',
-    link: '/services/architecture',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 21h18M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7H3l2-4h14l2 4M5 21V10.7M19 21V10.7M9 21v-4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v4" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Interior Design',
-    desc: 'Crafting immersive interiors that reflect personality, purpose, and the art of living beautifully.',
-    link: '/services/interior-design',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 3l1.912 5.813a2 2 0 0 0 1.275 1.275L21 12l-5.813 1.912a2 2 0 0 0-1.275 1.275L12 21l-1.912-5.813a2 2 0 0 0-1.275-1.275L3 12l5.813-1.912a2 2 0 0 0 1.275-1.275L12 3z" />
-      </svg>
-    ),
-  },
-  {
-    title: 'Hotel Design',
-    desc: 'Designing hospitality spaces that deliver unforgettable guest experiences and lasting impressions.',
-    link: '/services/hotel-design',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z" />
-        <path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M8 10h.01M16 10h.01M12 14h.01M8 14h.01M16 14h.01" />
-      </svg>
-    ),
-  },
-];
+const typesOfServices = [
+  { title: 'Residential', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/04/The-Unruffled.jpg', route: '/projects/residential' },
+  { title: 'Hotels & Hospitality', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/04/Swanky-Suite-1.jpg', route: '/projects/hospitality' },
+  { title: 'Builders & Developers', img: '/images/slides/2ndSlide.jpeg', route: '/projects/builders' },
+  { title: 'Retails & Shop', img: 'https://raameshsinghaldesign.com/wp-content/uploads/2023/04/Innovative-Spaces-1.jpg', route: '/projects/builders' },
+]
 
-/* ── Floating Particles ─────────────────────────── */
-function FloatingParticles() {
-  const particles = useMemo(() =>
-    Array.from({ length: 20 }, (_, i) => ({
-      id: i,
-      left: `${Math.random() * 100}%`,
-      size: Math.random() * 3 + 1,
-      duration: Math.random() * 15 + 10,
-      delay: Math.random() * 10,
-      opacity: Math.random() * 0.4 + 0.1,
-    })), []);
+const whyUsPoints = [
+  { num: '01', title: '🏆 30+ Years of Proven Experience', desc: "With over three decades of industry expertise, we have successfully delivered complex residential, hospitality, commercial, and public infrastructure projects with confidence and precision." },
+  { num: '02', title: '👥 Complete Team Under One Roof', desc: 'A multidisciplinary team of Architects, Civil Engineers, Electrical Engineers, MEP Consultants, 3D Visualisers, Interior Designers, and Experienced Site Engineers ensures seamless coordination and faster project delivery.' },
+  { num: '03', title: '📊 500+ Successful Projects Delivered', desc: 'Our extensive portfolio of over 500 completed projects reflects our commitment to quality, timely execution, and client satisfaction across diverse sectors.' },
+  { num: '04', title: '⚙️ System-Driven Project Management', desc: "We follow a technology-enabled execution process with user-friendly project management systems, pre-planned work schedules, drawing schedules, milestone tracking, and transparent progress monitoring." },
+  { num: '05', title: '🌿 Expertise in Technically Challenging Projects', desc: "From artificial lakes and public gardens to large-scale landscaped developments, we possess the technical expertise to execute complex engineering and landscape projects with precision." },
+  { num: '06', title: '🏨 Extensive Hospitality Experience', desc: 'Successfully delivered 700+ hotel keys, including multiple 100+ room hotel properties, giving us deep expertise in hospitality planning, design coordination, and execution.' },
+]
 
+const awardsAndCerts = [
+  { type: 'Award', title: 'The Keystone Architecture & Design Award', org: 'World Architecture & Design Forum — 2017', desc: "An international honor recognizing sustained excellence in architecture and design. Awarded to RSD nearly two decades into practice, it stands as outside confirmation of what the firm's clients had long experienced.", img: '/images/awardsAndCertificates/Award1.jpeg' },
+  { type: 'Award', title: 'The Horizon Luxury Living Award', org: 'International Council for Lifestyle Development — 2019', desc: 'Recognition for spaces designed around how people actually live in them. The Horizon honors work where luxury is measured not in finishes alone, but in the ease and comfort of the life a home makes possible.', img: '/images/awardsAndCertificates/Award2.jpeg' },
+  { type: 'Award', title: 'The Pillar, Project Execution Excellence', org: 'Global Project Delivery Institute — 2021', desc: 'An honor for execution discipline at scale. Timelines held, quality controlled, handovers met. Recognition of the project management systems RSD brings to every build, from private residences to large developments.', img: '/images/awardsAndCertificates/Award3.jpeg' },
+  { type: 'Certificate', title: 'Invited Speaker, India Interior Retailing Conclave', org: 'East & North-East India, Kolkata — 2026', desc: 'Invited to speak at the India Interior Retailing Conclave, sharing insights on design practice and execution with industry peers across East and North-East India.', img: '/images/awardsAndCertificates/certificate1.jpeg' },
+  { type: 'Certificate', title: 'Contribution to NatzuraWoods Veneer Collection', org: 'Century Plyboards, AID Conclave 2.0 — 2025', desc: 'Recognized by Century Plyboards for contribution to the NatzuraWoods veneer collection at AID Conclave 2.0.', img: '/images/awardsAndCertificates/certificate2.jpeg' },
+  { type: 'Certificate', title: 'Long Standing Partnership Award', org: 'Sonear Veneers — 2018', desc: 'Recognized by Sonear Veneers with the Long Standing Partnership Award for sustained collaboration.', img: '/images/awardsAndCertificates/certificate3.jpeg' },
+  { type: 'Certificate', title: 'MahaVastu Certification', org: 'MahaVastu — 2021', desc: 'Certified in MahaVastu, integrating Vastu principles directly into spatial planning and design.', img: '/images/awardsAndCertificates/certificate4.jpeg' },
+  { type: 'Certificate', title: 'MahaVastu Expert Certification', org: 'MahaVastu — 2020–21', desc: 'Certified MahaVastu Expert, with completed advanced coursework in Astro-MahaVastu remedies.', img: '/images/awardsAndCertificates/certificate5.jpeg' },
+]
+
+const trophyStage = [
+  { key: 'pillar', img: '/images/awardsAndCertificates/Award1-trophy.png', left: 16.3, width: 13.4, top: 17.2, height: 40, plateLeft: 7.25, plateWidth: 32, plateTop: 56, plateHeight: 3, stemLeft: 11, stemWidth: 24.5, stemTop: 56, stemHeight: 30 },
+  { key: 'horizon', img: '/images/awardsAndCertificates/Award2-trophy.png', left: 40, width: 20.1, top: 43.2, height: 27, plateLeft: 27, plateWidth: 46, plateTop: 69, plateHeight: 3.2, stemLeft: 40, stemWidth: 20, stemTop: 69, stemHeight: 31 },
+  { key: 'keystone', img: '/images/awardsAndCertificates/Award3-trophy.png', left: 68.3, width: 25.9, top: 17.2, height: 30, plateLeft: 68.5, plateWidth: 27, plateTop: 46, plateHeight: 2.8, stemLeft: 72, stemWidth: 20, stemTop: 46, stemHeight: 54 },
+]
+
+const woodGrainSVG = `data:image/svg+xml,${encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='140' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.012 0.9' numOctaves='3' seed='11' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.32  0 0 0 0 0.23  0 0 0 0 0.12  0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(#n)'/></svg>")}`
+
+const videoTestimonials = [
+  { name: 'Client Name', role: 'Residential Client', video: '/videos/Testimonials/Testimonial1.mp4' },
+  { name: 'Client Name', role: 'Hospitality Client', video: '/videos/Testimonials/Testimonial2.mp4' },
+  { name: 'Client Name', role: 'Residential Client', video: '/videos/Testimonials/Testimonial3.mp4', placeholder: true },
+  { name: 'Client Name', role: 'Builder & Developer Client', video: '/videos/Testimonials/Testimonial4.mp4', placeholder: true },
+]
+
+const contactInfo = [
+  { label: 'Phone', value: '+91 82508 41773 / +91 98008 48155', href: 'tel:+918250841773' },
+  { label: 'Email', value: 'rameshsinghaldesign@gmail.com', href: 'mailto:rameshsinghaldesign@gmail.com' },
+  { label: 'Location', value: 'Time Square, 3rd Floor, Opp Ravi Auto, Sevoke Road, Siliguri', href: null },
+]
+
+function FadeIn({ children, delay = 0, style }) {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
   return (
-    <div className="particles-container">
-      {particles.map(p => (
-        <div
-          key={p.id}
-          className="particle"
-          style={{
-            left: p.left,
-            width: p.size,
-            height: p.size,
-            animationDuration: `${p.duration}s`,
-            animationDelay: `${p.delay}s`,
-            opacity: p.opacity,
-          }}
-        />
-      ))}
+    <div ref={ref} style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(28px)', transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`, ...style }}>
+      {children}
     </div>
-  );
+  )
 }
 
-/* ── Animated Counter ────────────────────────────── */
-function AnimatedCounter({ target, duration = 2000, suffix = '' }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
-
+function useCounter(target, inView) {
+  const [count, setCount] = useState(0)
   useEffect(() => {
-    if (!isInView) return;
-    let start = 0;
-    const step = Math.ceil(target / (duration / 16));
-    const id = setInterval(() => {
-      start += step;
-      if (start >= target) { setCount(target); clearInterval(id); }
-      else setCount(start);
-    }, 16);
-    return () => clearInterval(id);
-  }, [isInView, target, duration]);
-
-  return <span ref={ref}>{count}{suffix}</span>;
+    if (!inView) return
+    let start = 0
+    const step = Math.ceil(target / (1800 / 16))
+    const timer = setInterval(() => {
+      start += step
+      if (start >= target) { setCount(target); clearInterval(timer) }
+      else setCount(start)
+    }, 16)
+    return () => clearInterval(timer)
+  }, [inView, target])
+  return count
 }
 
-/* ── Star Rating ─────────────────────────────────── */
-function StarRating({ rating }) {
+function SlantCard({ img, title, onClick, big }) {
   return (
-    <div className="flex gap-1">
-      {[...Array(5)].map((_, i) => (
-        <svg key={i} width="16" height="16" viewBox="0 0 24 24"
-          fill={i < rating ? '#c9a84c' : 'none'}
-          stroke="#c9a84c" strokeWidth="2">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-        </svg>
-      ))}
+    <div
+      onClick={onClick}
+      style={{ position: 'relative', overflow: 'hidden', cursor: onClick ? 'pointer' : 'default', aspectRatio: big ? '3/4.4' : '3/5.2', clipPath: 'polygon(0 14%, 20% 0, 100% 0, 100% 100%, 0 100%)', boxShadow: '0 8px 24px rgba(0,0,0,0.12)' }}
+      onMouseEnter={e => { const i = e.currentTarget.querySelector('img'); if (i) i.style.transform = 'scale(1.07)' }}
+      onMouseLeave={e => { const i = e.currentTarget.querySelector('img'); if (i) i.style.transform = 'scale(1)' }}>
+      <img src={img} alt={title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,20,18,0.75) 0%, transparent 50%)' }} />
+      <p style={{ position: 'absolute', bottom: '1rem', left: '1.2rem', fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontSize: big ? '1.3rem' : '1.15rem', color: '#fff' }}>{title}</p>
     </div>
-  );
+  )
 }
 
-/* ── Horizontal Scroll ───────────────────────────── */
-function HorizontalScroll({ children }) {
-  const containerRef = useRef(null);
-  const scrollRef = useRef(null);
-  const [scrollRange, setScrollRange] = useState(0);
-  const [viewportW, setViewportW] = useState(0);
-
-  useEffect(() => {
-    if (scrollRef.current) setScrollRange(scrollRef.current.scrollWidth);
-    setViewportW(window.innerWidth);
-    const handleResize = () => setViewportW(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const progress = useMotionValue(0);
-  const x = useTransform(progress, [0, 1], [0, -scrollRange + viewportW]);
-  const xSpring = useSpring(x, { stiffness: 100, damping: 30 });
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    const handleScroll = () => {
-      const { top } = container.getBoundingClientRect();
-      const h = container.offsetHeight - window.innerHeight;
-      const pct = Math.max(0, Math.min(1, -top / h));
-      progress.set(pct);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [progress]);
-
-  const heightFactor = scrollRange / viewportW;
-
-  return (
-    <div ref={containerRef} style={{ height: `${heightFactor * 100}vh` }} className="relative">
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center">
-        <motion.div ref={scrollRef} style={{ x: xSpring }} className="flex gap-8 px-8">
-          {children}
-        </motion.div>
-      </div>
-    </div>
-  );
-}
-
-/* ── Section Header ──────────────────────────────── */
-function SectionHeader({ label, title, align = 'center' }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className={`mb-16 ${align === 'center' ? 'text-center' : ''}`}
-    >
-      <p className="gold-gradient-text tracking-[0.3em] uppercase text-sm mb-3 font-medium">{label}</p>
-      <h2 className="text-4xl md:text-5xl font-bold">{title}</h2>
-      {align === 'center' && (
-        <div className="mt-4 mx-auto w-16 h-[2px]" style={{ background: 'linear-gradient(90deg, transparent, #c9a84c, transparent)' }} />
-      )}
-    </motion.div>
-  );
-}
-
-/* ══════════════════════════════════════════════════ */
-/* ══  MAIN HOME PAGE  ═════════════════════════════ */
-/* ══════════════════════════════════════════════════ */
 export default function Home() {
-  const [heroIdx, setHeroIdx] = useState(0);
-  const navigate = useNavigate();
-  const [selectedAward, setSelectedAward] = useState(null);
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const navigate = useNavigate()
+  const [tIndex, setTIndex] = useState(0)
+  const [heroIndex, setHeroIndex] = useState(0)
+  const [form, setForm] = useState({ firstName: '', lastName: '', phone: '', email: '', service: '', message: '' })
+  const [status, setStatus] = useState('idle')
+  const [focused, setFocused] = useState({})
+  const [selectedPress, setSelectedPress] = useState(null)
+  const [playingVideo, setPlayingVideo] = useState(null)
 
-  /* auto-advance hero */
+  const set = (key) => (e) => setForm(f => ({ ...f, [key]: e.target.value }))
+  const focusField = (k) => setFocused(f => ({ ...f, [k]: true }))
+  const blurField = (k) => setFocused(f => ({ ...f, [k]: false }))
+
+  const inputStyle = (isFocused) => ({ width: '100%', padding: '0.85rem 1rem', border: 'none', background: '#F2F0EB', fontFamily: "'DM Sans',sans-serif", fontSize: '1rem', color: S.ink, outline: isFocused ? `2px solid ${S.gold}` : 'none', borderRadius: 6 })
+
   useEffect(() => {
-    const id = setInterval(() => setHeroIdx(i => (i + 1) % heroSlides.length), 5000);
-    return () => clearInterval(id);
-  }, []);
+    const t = setInterval(() => setTIndex(i => (i + 1) % testimonials.length), 6000)
+    return () => clearInterval(t)
+  }, [])
 
-  /* auto-advance testimonials */
   useEffect(() => {
-    const id = setInterval(() => setActiveTestimonial(i => (i + 1) % testimonials.length), 6000);
-    return () => clearInterval(id);
-  }, []);
+    const h = setInterval(() => setHeroIndex(i => (i + 1) % heroSlides.length), 7000)
+    return () => clearInterval(h)
+  }, [])
 
-  const servicesRef = useRef(null);
-  const servicesInView = useInView(servicesRef, { once: true, margin: '-100px' });
+  const { ref: statsRef, inView: statsInView } = useInView({ triggerOnce: true, threshold: 0.3 })
+  const years = useCounter(30, statsInView)
+  const projs = useCounter(500, statsInView)
+  const repeat = useCounter(90, statsInView)
+  const types = useCounter(6, statsInView)
+
+  const scrollToId = (id) => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }) }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    if (!form.firstName || !form.phone || !form.email || !form.message) { alert('Please fill in all required fields.'); return }
+    setStatus('sending')
+    await new Promise(r => setTimeout(r, 1200))
+    setStatus('sent')
+  }
 
   return (
-    <main className="bg-[#0a0a0a] text-white overflow-x-hidden">
-
-      {/* ═══════════════ HERO ═══════════════ */}
-      <section className="relative h-screen">
-        {/* Background with Ken Burns */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={heroIdx}
-            initial={{ opacity: 0, scale: 1.15 }}
-            animate={{ opacity: 1, scale: 1, transition: { opacity: { duration: 1 }, scale: { duration: 8, ease: 'linear' } } }}
-            exit={{ opacity: 0, transition: { duration: 0.8 } }}
-            className="absolute inset-0"
-          >
-            <img src={heroSlides[heroIdx].image} alt="" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/50 to-[#0a0a0a]/20" />
-          </motion.div>
-        </AnimatePresence>
-
-        {/* Floating Particles */}
-        <FloatingParticles />
-
-        {/* Hero Content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10">
-          <motion.p
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="gold-gradient-text tracking-[0.4em] uppercase text-sm mb-6 font-medium"
-          >
-            RSD Group of Design
-          </motion.p>
-          <AnimatePresence mode="wait">
-            <motion.h1
-              key={heroIdx}
-              initial={{ y: 50, opacity: 0, filter: 'blur(10px)' }}
-              animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-              exit={{ y: -30, opacity: 0, filter: 'blur(5px)' }}
-              transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95]"
-            >
-              {heroSlides[heroIdx].title}
-            </motion.h1>
-          </AnimatePresence>
-          <AnimatePresence mode="wait">
-            <motion.p
-              key={`sub-${heroIdx}`}
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mt-6 text-lg md:text-xl text-gray-300/90 max-w-xl font-light"
-            >
-              {heroSlides[heroIdx].subtitle}
-            </motion.p>
-          </AnimatePresence>
-
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="mt-10 flex gap-4"
-          >
-            <Link
-              to="/projects"
-              className="shimmer-btn px-8 py-3.5 text-sm font-medium tracking-widest uppercase rounded-lg transition-all duration-300"
-              style={{ background: 'linear-gradient(135deg, #c9a84c, #d4a843)', color: '#0a0a0a' }}
-            >
-              View Our Work
-            </Link>
-            <Link
-              to="/contact"
-              className="px-8 py-3.5 border border-white/20 text-white/90 hover:border-amber-400/50 hover:text-amber-400 transition-all duration-300 tracking-widest uppercase text-sm rounded-lg backdrop-blur-sm"
-            >
-              Get in Touch
-            </Link>
-          </motion.div>
+    <>
+      <section id="hero" style={{ height: '100vh', minHeight: 640, position: 'relative', overflow: 'hidden' }}>
+        {heroSlides.map((slide, i) => (
+          <img key={i} src={slide.img} alt="" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: i === heroIndex ? 1 : 0, transition: 'opacity 1.2s ease' }} />
+        ))}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(100deg, rgba(20,40,60,0.55) 0%, rgba(20,40,60,0.15) 55%, rgba(20,40,60,0.35) 100%)' }} />
+        <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', maxWidth: 1300, margin: '0 auto', padding: '0 2.5rem' }}>
+          <FadeIn key={heroIndex}>
+            <h1 style={{ ...roundedHeading, fontSize: 'clamp(0.8rem,4vw,2.4rem)', color: '#fff', lineHeight: 1.15, marginBottom: '1.4rem', maxWidth: 720 }}>
+              {heroSlides[heroIndex].heading.map((line, i) => <span key={i}>{line}{i < heroSlides[heroIndex].heading.length - 1 && <br />}</span>)}
+            </h1>
+            <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.9)', maxWidth: 480, marginBottom: '2.2rem', lineHeight: 1.6 }}>
+              {heroSlides[heroIndex].sub}
+            </p>
+            {heroSlides[heroIndex].action === 'scroll' ? (
+              <button onClick={() => scrollToId('portfolio')} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '0.95rem', padding: '0.9rem 1.8rem', background: 'transparent', color: '#fff', border: '1.5px solid #fff', borderRadius: 999, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', transition: 'all 0.3s' }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = S.ink }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#fff' }}>
+                {heroSlides[heroIndex].cta}
+              </button>
+            ) : (
+              <Link to={heroSlides[heroIndex].route} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '0.95rem', padding: '0.9rem 1.8rem', background: 'transparent', color: '#fff', border: '1.5px solid #fff', borderRadius: 999, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', transition: 'all 0.3s', textDecoration: 'none', width: 'fit-content' }}
+                onMouseEnter={e => { e.currentTarget.style.background = '#fff'; e.currentTarget.style.color = S.ink }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#fff' }}>
+                {heroSlides[heroIndex].cta}
+              </Link>
+            )}
+          </FadeIn>
         </div>
-
-        {/* Slide Indicators */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+        <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', zIndex: 3, display: 'flex', gap: '0.6rem' }}>
           {heroSlides.map((_, i) => (
-            <button key={i} onClick={() => setHeroIdx(i)}
-              className="group relative p-1"
-            >
-              <div className={`w-8 h-1 rounded-full transition-all duration-500 ${
-                i === heroIdx ? 'bg-amber-400' : 'bg-white/20 group-hover:bg-white/40'
-              }`} />
-            </button>
+            <button key={i} onClick={() => setHeroIndex(i)} aria-label={`Go to slide ${i + 1}`} style={{ width: i === heroIndex ? 26 : 8, height: 8, borderRadius: 999, border: 'none', background: i === heroIndex ? S.gold : 'rgba(255,255,255,0.55)', cursor: 'pointer', transition: 'all 0.3s' }} />
           ))}
         </div>
-
-        {/* Scroll Down Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-24 left-1/2 z-10"
-          style={{ animation: 'bounce-subtle 2s ease-in-out infinite' }}
-        >
-          <div className="w-5 h-8 rounded-full border-2 border-white/20 flex justify-center pt-1.5">
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="w-1 h-1 bg-amber-400 rounded-full"
-            />
-          </div>
-        </motion.div>
       </section>
 
-      {/* ═══════════════ VIDEO REEL ═══════════════ */}
-      <section className="py-28">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <SectionHeader label="Showreel" title="Experience Our Vision" />
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-gray-400 mb-12 max-w-2xl mx-auto -mt-8"
-          >
-            A glimpse into the world of RSD — where every space tells a story
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative rounded-2xl overflow-hidden shadow-2xl shadow-amber-900/10 group"
-          >
-            <video
-              autoPlay muted loop playsInline
-              className="w-full aspect-video object-cover"
-              src="/videos/OfficeVideos.mp4"
-            />
-            <div className="absolute inset-0 border border-white/5 rounded-2xl pointer-events-none" />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════════ ABOUT SNIPPET ═══════════════ */}
-      <section className="py-28 bg-[#0d0d0d]">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ x: -60, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <p className="gold-gradient-text tracking-[0.3em] uppercase text-sm mb-3 font-medium">About Us</p>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">A Legacy of<br />Design Excellence</h2>
-            <p className="text-gray-400 leading-relaxed mb-6 text-lg">
-              With over two decades of experience, RSD Group of Design has been at the forefront of
-              architectural innovation. Founded by Ar. Ramesh Singhal and Ar. Sonika Singhal, we transform
-              spaces into living works of art — blending modern aesthetics with timeless functionality.
+      <section id="about" style={{ background: S.cream, padding: '3.5rem 2rem 3rem' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', textAlign: 'center' }}>
+          <FadeIn>
+            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.95rem', letterSpacing: '0.2em', color: S.mid, marginBottom: '1.2rem' }}>Est. 1995 — Siliguri, India</p>
+            <h2 style={{ ...serifHeading, fontSize: 'clamp(2.6rem,5vw,3.8rem)', color: S.black, marginBottom: '2rem' }}>30+ years of turning Space into Legacy</h2>
+            <div style={{ width: 90, height: 1, background: S.line, margin: '0 auto 2rem' }} />
+            <p style={{ fontSize: '1.08rem', color: S.mid, lineHeight: 1.9, marginBottom: '1rem' }}>
+              Since 1995, Raamesh Singhal Design has been creating spaces where design, functionality, and human experience come together. Built on the belief that exceptional spaces require a unified vision, we seamlessly integrate architecture, interiors, planning, procurement, and execution under one roof.
             </p>
-            <Link to="/about" className="inline-flex items-center gap-2 text-amber-400 hover:gap-4 transition-all group text-sm font-medium tracking-wider uppercase">
-              Learn more about us
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </Link>
-          </motion.div>
-
-          <motion.div
-            initial={{ x: 60, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="grid grid-cols-2 gap-5"
-          >
-            {stats.map((s, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 + 0.3 }}
-                className="glow-card bg-[#141414] rounded-2xl p-7 text-center border border-white/5"
-              >
-                <p className="text-4xl font-bold gold-gradient-text">
-                  <AnimatedCounter target={s.value} suffix={s.suffix} />
-                </p>
-                <p className="text-sm text-gray-500 mt-2 tracking-wide">{s.label}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+            <p style={{ fontSize: '0.98rem', color: S.mid, lineHeight: 1.85 }}>
+              From our studio in Siliguri, we have delivered luxury residences, hospitality spaces, and large-scale developments across Siliguri, Sikkim, Assam, Nepal, and Bhutan. Every project is guided by a single commitment: one vision, one standard, and complete ownership from concept to completion.
+            </p>
+          </FadeIn>
         </div>
-      </section>
 
-      {/* ═══════════════ SERVICES ═══════════════ */}
-      <section ref={servicesRef} className="py-28">
-        <div className="max-w-6xl mx-auto px-6">
-          <SectionHeader label="What We Do" title="Our Services" />
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {serviceItems.map((svc, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: i * 0.2, duration: 0.6 }}
-              >
-                <Link to={svc.link}
-                  className="group block glow-card bg-[#111] rounded-2xl p-8 border border-white/5 h-full relative overflow-hidden"
-                >
-                  {/* Ambient glow on hover */}
-                  <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-amber-400/0 group-hover:bg-amber-400/5 transition-all duration-700 blur-3xl" />
-
-                  <div className="text-amber-400 mb-6">{svc.icon}</div>
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-amber-400 transition-colors">{svc.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-6">{svc.desc}</p>
-                  <span className="inline-flex items-center gap-2 text-amber-400 text-sm font-medium group-hover:gap-3 transition-all">
-                    Explore
-                    <span className="group-hover:translate-x-1 transition-transform">→</span>
-                  </span>
-                </Link>
-              </motion.div>
+        <div ref={statsRef} style={{ maxWidth: 1300, margin: '4rem auto 4rem' }}>
+          <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)' }}>
+            {[{ num: years, suffix: '+', label: 'Years of Experience' }, { num: projs, suffix: '+', label: 'Projects Delivered' }, { num: repeat, suffix: '%', label: 'Repeat & Referral' }, { num: types, suffix: '', label: 'Project Typologies' }].map((s, i) => (
+              <FadeIn key={i} delay={i * 100}>
+                <div style={{ textAlign: 'center', padding: '0 1.5rem', borderRight: i < 3 ? `1px solid ${S.line}` : 'none' }}>
+                  <div style={{ ...serifHeading, fontSize: 'clamp(2.8rem,5.5vw,4.2rem)', color: S.gold, lineHeight: 1, marginBottom: '0.5rem' }}>{s.num}{s.suffix}</div>
+                  <div style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontSize: '1.05rem', color: S.mid }}>{s.label}</div>
+                </div>
+              </FadeIn>
             ))}
           </div>
         </div>
+
+        <FadeIn>
+          <div style={{ maxWidth: 850, margin: '0 auto', position: 'relative', aspectRatio: '16/9', background: '#000', overflow: 'hidden' }}>
+            <video muted autoPlay loop playsInline preload="auto" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}>
+              <source src="/videos/OfficeVideos.mp4" type="video/mp4" />
+            </video>
+
+          </div>
+        </FadeIn>
       </section>
 
-      {/* ═══════════════ CATEGORIES HORIZONTAL SCROLL ═══════════════ */}
-      <section className="bg-[#0d0d0d] py-16">
-        <div className="max-w-6xl mx-auto px-6 mb-12">
-          <SectionHeader label="Portfolio" title="Browse by Category" />
+      <section style={{ background: S.paper, padding: '3rem 2rem' }}>
+        <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
+          <FadeIn>
+            <h2 style={{ ...roundedHeading, fontSize: 'clamp(2.2rem,4.5vw,3.2rem)', color: S.ink, marginBottom: '1.4rem', lineHeight: 1.3 }}>
+              The thinking behind every<br />space <em style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontWeight: 500 }}>we create</em>
+            </h2>
+            <p style={{ fontSize: '0.95rem', color: S.mid, lineHeight: 1.85, maxWidth: 680, margin: '0 auto 3.5rem' }}>
+              Exceptional spaces are never the result of design alone. They emerge when vision, functionality, human behaviour, and execution work in complete harmony. That belief has guided Raamesh Singhal Design since its inception.
+            </p>
+          </FadeIn>
         </div>
-
-        <HorizontalScroll>
-          {categories.map((cat) => (
-            <motion.div
-              key={cat.id}
-              whileHover={{ scale: 1.02 }}
-              className="min-w-[400px] md:min-w-[500px] h-[60vh] relative rounded-2xl overflow-hidden cursor-pointer group flex-shrink-0"
-              onClick={() => navigate(`/projects/${cat.id}`)}
-            >
-              <img src={cat.image} alt={cat.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-8 left-8">
-                <p className="text-2xl font-bold">{cat.label}</p>
-                <p className="gold-gradient-text text-sm mt-1 font-medium">{cat.count} Projects</p>
+        <div className="about-grid" style={{ maxWidth: 900, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.5rem' }}>
+          {[
+            { name: 'Ramesh Singhal', role: 'Founder', quote: 'Design creates possibilities. Execution determines whether those possibilities become reality', img: '/images/Founders/Ramesh_Singhal.jpeg' },
+            { name: 'Sonika Singhal', role: 'Co-Founder', quote: 'The most meaningful spaces are not the ones people admire. They are the ones people never want to leave.', img: '/images/Founders/Sonika_Singhal.jpeg' },
+          ].map((f, i) => (
+            <FadeIn key={i} delay={i * 150}>
+              <div>
+                <div style={{ aspectRatio: '1/1', overflow: 'hidden', background: '#DDE3E7', border: '2px solid #111', position: 'relative', zIndex: 2 }}>
+                  <img src={f.img} alt={f.name} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
+                </div>
+                <div style={{ background: S.peach, padding: '1.6rem 1.6rem 1.8rem', marginTop: '-24%', paddingTop: 'calc(24% + 1.6rem)', position: 'relative', zIndex: 1 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.9rem' }}>
+                    <div>
+                      <p style={{ fontSize: '0.85rem', color: S.mid, marginBottom: '0.15rem' }}>{f.role}</p>
+                      <p style={{ fontWeight: 700, fontSize: '1.15rem', color: S.black }}>{f.name}</p>
+                    </div>
+                    <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '3.2rem', color: 'rgba(0,0,0,0.15)', lineHeight: 0.4 }}>&ldquo;</span>
+                  </div>
+                  <p style={{ fontSize: '0.85rem', color: S.mid, lineHeight: 1.6 }}>"{f.quote}"</p>
+                </div>
               </div>
-              {/* Corner accent */}
-              <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-amber-400/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </motion.div>
+            </FadeIn>
           ))}
-        </HorizontalScroll>
-      </section>
-
-      {/* ═══════════════ FEATURED PROJECTS ═══════════════ */}
-      <section className="py-28">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <p className="gold-gradient-text tracking-[0.3em] uppercase text-sm mb-3 font-medium">Selected Work</p>
-              <h2 className="text-4xl md:text-5xl font-bold">Featured Projects</h2>
-            </div>
-            <Link to="/projects" className="hidden md:inline-flex items-center gap-2 text-amber-400 hover:gap-4 transition-all text-sm font-medium tracking-wider">
-              View all <span>→</span>
-            </Link>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {projects.slice(0, 4).map((p, i) => (
-              <motion.div
-                key={p.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-              >
-                <Link to={`/projects/${p.category}`} className="group block rounded-2xl overflow-hidden relative">
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img src={p.image} alt={p.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    <p className="gold-gradient-text text-xs uppercase tracking-wider font-medium">{p.category.replace('-', ' ')}</p>
-                    <h3 className="text-xl font-semibold mt-1">{p.title}</h3>
-                    {p.location && <p className="text-gray-300 text-sm mt-1">{p.location}</p>}
-                  </div>
-                  {/* Corner accents */}
-                  <div className="absolute top-4 left-4 w-6 h-6 border-t border-l border-white/0 group-hover:border-white/30 transition-all duration-500" />
-                  <div className="absolute bottom-4 right-4 w-6 h-6 border-b border-r border-white/0 group-hover:border-amber-400/40 transition-all duration-500" />
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="md:hidden text-center mt-8">
-            <Link to="/projects" className="text-amber-400 text-sm font-medium tracking-wider">View all projects →</Link>
-          </div>
         </div>
       </section>
+      <section id="awards-news" style={{ background: S.cream, padding: '3rem 2rem' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.85fr 1fr', gap: '3rem', alignItems: 'start', marginBottom: '4rem' }}>
+            <FadeIn>
+              <h2 style={{ ...serifHeading, fontSize: 'clamp(2.3rem,4.5vw,3.2rem)', color: S.black, marginBottom: '0.3rem' }}>Awards &amp; Certificates</h2>
+              <h3 style={{ ...roundedHeading, fontSize: 'clamp(1.5rem,2.8vw,2rem)', color: S.black, marginBottom: '1.4rem', lineHeight: 1.25 }}>Being trusted twice<br />is the real award.</h3>
+              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.8 }}>
+                Our work has been honoured by some of the most respected names in design and industry. But the recognition we value most isn't on a shelf — it's the client who hands us their next project before the first is even finished.
+              </p>
+            </FadeIn>
+            <FadeIn delay={150}>
+              <div style={{ position: 'relative', width: '100%', maxWidth: 480, aspectRatio: '602/685' }}>
+                {trophyStage.map((t, i) => {
+                  const award = awardsAndCerts.filter(a => a.type === 'Award')[i]
+                  const woodCyl = 'linear-gradient(97deg, #9C784992 0%, #D2B384 9%, #EDDAB0 22%, #FBF4E1 36%, #FFFBF0 46%, #F5E7C7 58%, #E2C797 72%, #C6A374 86%, #96713F 100%)'
+                  const woodDisc = 'linear-gradient(100deg, #A9835470 0%, #DFC496 12%, #F7EAD0 26%, #FEFAEE 40%, #FDF6E4 50%, #F1E0B9 62%, #DCBD8C 76%, #B99668 90%, #8E6B3F 100%)'
+                  const stemCx = t.stemLeft + t.stemWidth / 2
+                  return (
+                    <div key={t.key}>
+                      {/* contact shadow on the ground */}
+                      <div style={{ position: 'absolute', left: `${stemCx - t.stemWidth * 0.62}%`, width: `${t.stemWidth * 1.24}%`, top: `${t.stemTop + t.stemHeight - 1.2}%`, height: '3%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(30,20,8,0.34) 0%, rgba(30,20,8,0) 72%)' }} />
 
-      {/* ═══════════════ AWARDS ═══════════════ */}
-      <section className="py-28 bg-[#0d0d0d]">
-        <div className="max-w-6xl mx-auto px-6">
-          <SectionHeader label="Recognition" title="Awards & Accolades" />
+                      {/* pedestal stem: rounded dome top, cylindrical body */}
+                      <div style={{ position: 'absolute', left: `${t.stemLeft}%`, width: `${t.stemWidth}%`, top: `${t.stemTop}%`, height: `${t.stemHeight}%`, borderRadius: '50% 50% 14% 14% / 46% 46% 7% 7%', overflow: 'hidden', background: woodCyl, boxShadow: 'inset -12px 0 22px rgba(70,48,22,0.32), inset 10px 0 16px rgba(255,255,255,0.4), 0 16px 24px rgba(30,20,10,0.18)' }}>
+                        {/* dome highlight */}
+                        <div style={{ position: 'absolute', left: '10%', right: '10%', top: '-6%', height: '38%', borderRadius: '50%', background: 'radial-gradient(ellipse at 38% 30%, rgba(255,253,246,0.95) 0%, rgba(255,253,246,0) 62%)' }} />
+                        {/* vertical specular streak */}
+                        <div style={{ position: 'absolute', left: '20%', width: '14%', top: '4%', bottom: '4%', background: 'linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0) 100%)', filter: 'blur(3px)' }} />
+                        {/* wood grain texture */}
+                        <div style={{ position: 'absolute', inset: 0, backgroundImage: `url("${woodGrainSVG}")`, backgroundSize: '60% 100%', mixBlendMode: 'multiply', opacity: 0.55 }} />
+                        {/* ambient occlusion where stem meets tray above */}
+                        <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: '10%', background: 'linear-gradient(180deg, rgba(60,42,20,0.28) 0%, rgba(60,42,20,0) 100%)' }} />
+                      </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {awards.map((award, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="glow-card bg-[#141414] rounded-2xl p-8 border border-white/5 text-center cursor-pointer group"
-                onClick={() => setSelectedAward(award)}
-              >
-                <div className="w-28 h-28 mx-auto mb-6 relative">
-                  <div className="absolute inset-0 rounded-full bg-amber-400/5 blur-xl group-hover:bg-amber-400/10 transition-colors" />
-                  <img src={award.image} alt={award.title} className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_20px_rgba(201,168,76,0.2)] group-hover:scale-110 transition-transform duration-500" />
-                </div>
-                <h3 className="text-base font-semibold mb-2 leading-tight">{award.title}</h3>
-                <p className="text-gray-500 text-sm mb-1">{award.organization}</p>
-                <p className="gold-gradient-text text-sm font-semibold">{award.year}</p>
-                <p className="text-gray-600 text-xs mt-3 opacity-0 group-hover:opacity-100 transition-opacity">Click to view certificate →</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+                      {/* tray edge (disc thickness) */}
+                      <div style={{ position: 'absolute', left: `${t.plateLeft}%`, width: `${t.plateWidth}%`, top: `${t.plateTop + t.plateHeight * 0.4}%`, height: `${t.plateHeight * 1.15}%`, borderRadius: '50%', background: 'linear-gradient(180deg, #A17F4F 0%, #6E5230 100%)' }} />
+                      {/* tray top surface */}
+                      <div style={{ position: 'absolute', left: `${t.plateLeft}%`, width: `${t.plateWidth}%`, top: `${t.plateTop}%`, height: `${t.plateHeight}%`, borderRadius: '50%', overflow: 'hidden', background: woodDisc, boxShadow: '0 8px 14px rgba(20,14,6,0.22)' }}>
+                        <div style={{ position: 'absolute', left: '8%', top: '-30%', width: '46%', height: '160%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(255,253,246,0.9) 0%, rgba(255,253,246,0) 65%)' }} />
+                        <div style={{ position: 'absolute', inset: 0, backgroundImage: `url("${woodGrainSVG}")`, backgroundSize: '160% 340%', mixBlendMode: 'multiply', opacity: 0.28 }} />
+                      </div>
 
-      {/* Award Certificate Modal */}
-      <AnimatePresence>
-        {selectedAward && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4"
-            onClick={() => setSelectedAward(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.85, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.85, opacity: 0, y: 20 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="bg-[#141414] rounded-2xl p-6 max-w-2xl w-full max-h-[90vh] overflow-auto border border-white/10"
-              onClick={e => e.stopPropagation()}
-            >
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-semibold pr-4">{selectedAward.title}</h3>
-                <button onClick={() => setSelectedAward(null)}
-                  className="text-gray-400 hover:text-white text-2xl w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/5 transition-colors">
-                  ×
-                </button>
+                      <img
+                        src={t.img}
+                        alt={award?.title}
+                        onClick={() => award && setSelectedPress(award)}
+                        style={{ position: 'absolute', left: `${t.left}%`, width: `${t.width}%`, top: `${t.top}%`, height: `${t.height}%`, objectFit: 'contain', objectPosition: 'center bottom', cursor: 'pointer', filter: 'drop-shadow(0 8px 10px rgba(0,0,0,0.2))' }}
+                      />
+                      {/* contact shadow where the trophy meets the tray */}
+                      <div style={{ position: 'absolute', left: `${t.left + t.width * 0.14}%`, width: `${t.width * 0.72}%`, top: `${t.top + t.height - 0.6}%`, height: '1.6%', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(25,17,7,0.4) 0%, rgba(25,17,7,0) 75%)' }} />
+                    </div>
+                  )
+                })}
               </div>
-              <img src={selectedAward.certificateImage} alt={selectedAward.title} className="w-full rounded-lg" />
-              <div className="mt-4 text-center">
-                <p className="text-gray-400">{selectedAward.organization}</p>
-                <p className="gold-gradient-text font-semibold">{selectedAward.year}</p>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </FadeIn>
+          </div>
 
-      {/* ═══════════════ PRESS / PUBLICATIONS ═══════════════ */}
-      <section className="py-28 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6 mb-12">
-          <SectionHeader label="Media" title="Featured In" />
-        </div>
-
-        <div className="relative">
-          <motion.div
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{ duration: 35, repeat: Infinity, ease: 'linear' }}
-            className="flex gap-8"
-          >
-            {[...pressItems, ...pressItems].map((item, i) => (
-              <div key={i} className="min-w-[250px] md:min-w-[300px] flex-shrink-0 group">
-                <div className="rounded-xl overflow-hidden relative">
-                  <img src={item.image} alt={item.title} className="w-full h-[350px] object-cover group-hover:scale-105 transition-transform duration-700" />
-                  {/* Frosted overlay on hover */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 backdrop-blur-0 group-hover:backdrop-blur-[2px] transition-all duration-500 flex items-end justify-center pb-6">
-                    <p className="text-white font-semibold text-sm opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 tracking-wider">
-                      {item.title}
-                    </p>
+          <div className="moodboard-scroll" style={{ display: 'flex', gap: '1.2rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
+            {awardsAndCerts.filter(a => a.type === 'Certificate').map((c, i) => (
+              <FadeIn key={i} delay={i * 60}>
+                <div onClick={() => setSelectedPress(c)} style={{ flexShrink: 0, width: 220, aspectRatio: '4/5', background: '#5A4632', border: '10px solid #5A4632', cursor: 'pointer', boxShadow: '0 8px 20px rgba(0,0,0,0.15)' }}>
+                  <div style={{ width: '100%', height: '100%', background: '#fff', overflow: 'hidden' }}>
+                    <img src={c.img} alt={c.title} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
                   </div>
                 </div>
-              </div>
+              </FadeIn>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* ═══════════════ TEXT TESTIMONIALS ═══════════════ */}
-      <section className="py-28 bg-[#0d0d0d]">
-        <div className="max-w-4xl mx-auto px-6">
-          <SectionHeader label="Client Love" title="What Our Clients Say" />
+      <section id="book" style={{ background: S.paper, padding: '5rem 2rem' }}>
+        <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+          <div className="book-grid" style={{ display: 'grid', gridTemplateColumns: '280px 1fr', alignItems: 'stretch' }}>
+            <FadeIn>
+              <img src="/images/book/book_image.png" alt="Why Luxury Homes Don't Sell" style={{ width: '100%', display: 'block', transform: 'translateX(-20px)', filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.25))' }} />
+            </FadeIn>
+            <FadeIn delay={100}>
+              <div style={{ background: S.gold, padding: '1.4rem 2rem', marginBottom: '1.8rem' }}>
+                <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.85)' }}>The Book by</p>
+                <p style={{ fontWeight: 700, fontSize: '1.4rem', color: '#fff' }}>Raamesh Singhal</p>
+              </div>
+              <span style={{ fontFamily: "'Playfair Display',serif", fontSize: '2rem', color: S.gold, lineHeight: 0 }}>&ldquo;</span>
+              <h3 style={{ ...serifHeading, fontStyle: 'italic', fontSize: '1.6rem', color: S.gold, marginBottom: '0.4rem' }}>Why Luxury Homes Don't Sell:</h3>
+              <p style={{ fontWeight: 700, fontSize: '1rem', color: S.black, marginBottom: '1.2rem' }}>The Blind Spot Costing Developers Crores</p>
+              <p style={{ fontSize: '0.9rem', color: S.mid, lineHeight: 1.8, marginBottom: '1.6rem', maxWidth: 460 }}>
+                It's not the market. It's the misunderstanding. Drawing on three decades of building luxury spaces, Raamesh Singhal uncovers the blind spots costing developers crores — and lays out what it actually takes to design projects that sell faster, at better value.
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem 2rem', marginBottom: '1.8rem' }}>
+                {['Uncover the blind spots in your projects', "Understand what today's premium buyer truly desires", 'Design, position & communicate for maximum desire', 'Create projects that sell faster, at better value'].map((pt, i) => (
+                  <p key={i} style={{ fontSize: '0.8rem', color: S.mid }}><span style={{ color: S.gold }}>✓</span> {pt}</p>
+                ))}
+              </div>
+              <button onClick={() => scrollToId('contact')} style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 600, fontSize: '0.85rem', padding: '0.8rem 1.8rem', background: S.gold, color: '#fff', border: 'none', borderRadius: 999, cursor: 'pointer' }}>Buy Now →</button>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
 
-          <div className="relative min-h-[250px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTestimonial}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="text-center"
-              >
-                {/* Large quote mark */}
-                <div className="gold-gradient-text text-7xl font-serif leading-none mb-6">"</div>
+      <section id="testimonials" style={{ background: S.paper, padding: '5rem 2rem' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <FadeIn>
+            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.78rem', letterSpacing: '0.2em', color: S.mid, textAlign: 'center', marginBottom: '0.8rem' }}>CLIENT'S TESTIMONIALS</p>
+            <h2 style={{ fontWeight: 800, fontFamily: "'DM Sans',sans-serif", fontSize: 'clamp(1.3rem,2.6vw,1.9rem)', color: S.black, textAlign: 'center', marginBottom: '3rem', textTransform: 'uppercase' }}>
+              Heard From Those Who <em style={{ fontFamily: "'Playfair Display',serif", fontStyle: 'italic', textTransform: 'none' }}>Lived Our Work</em>
+            </h2>
+          </FadeIn>
 
-                <p className="text-xl md:text-2xl text-gray-300 leading-relaxed font-light italic mb-8 max-w-3xl mx-auto">
-                  {testimonials[activeTestimonial].quote}
-                </p>
-
-                <div className="flex flex-col items-center gap-3">
-                  <StarRating rating={testimonials[activeTestimonial].rating} />
+          <div className="testimonial-wrapper" style={{ position: 'relative', marginBottom: '3rem' }}>
+            <div className="testimonial-scroll" style={{ display: 'flex', gap: '1.2rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
+              {testimonials.map((t, i) => (
+                <div key={i} style={{ flexShrink: 0, width: 320, background: S.gold, borderRadius: 8, padding: '1.4rem', display: 'flex', gap: '1rem' }}>
+                  <div style={{ width: 48, height: 48, borderRadius: 8, background: '#000', flexShrink: 0 }} />
                   <div>
-                    <p className="font-semibold text-white">{testimonials[activeTestimonial].name}</p>
-                    <p className="text-sm text-gray-500">{testimonials[activeTestimonial].project}</p>
+                    <p style={{ color: '#FFD98E', fontSize: '0.8rem', marginBottom: '0.4rem' }}>★★★★★</p>
+                    <p style={{ fontSize: '0.78rem', color: '#fff', lineHeight: 1.55, marginBottom: '0.6rem' }}>{t.text.slice(0, 150)}{t.text.length > 150 ? '…' : ''}</p>
+                    <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.85)', textAlign: 'right' }}>-{t.name}</p>
                   </div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Testimonial Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            {testimonials.map((_, i) => (
-              <button key={i} onClick={() => setActiveTestimonial(i)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  i === activeTestimonial ? 'bg-amber-400 w-6' : 'bg-white/20 hover:bg-white/40'
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════ VIDEO TESTIMONIALS ═══════════════ */}
-      <section className="py-28">
-        <div className="max-w-6xl mx-auto px-6">
-          <SectionHeader label="Testimonials" title="Hear From Our Clients" />
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {[
-              { name: "Client Testimonial 1", video: "/videos/Testimonials/Testimonial1.mp4" },
-              { name: "Client Testimonial 2", video: "/videos/Testimonials/Testimonial2.mp4" },
-            ].map((t, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-                className="rounded-2xl overflow-hidden border border-white/5 shadow-xl shadow-black/30"
-              >
-                <video controls className="w-full aspect-video object-cover" src={t.video} />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════ BOOK SECTION ═══════════════ */}
-      <section className="py-28 bg-[#0d0d0d]">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex justify-center"
-          >
-            <div className="relative">
-              <div className="absolute -inset-4 bg-amber-400/5 rounded-3xl blur-2xl" />
-              <img src="/images/book/book_image.png" alt="RSD Architecture Book"
-                className="relative max-h-[500px] object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700" />
+              ))}
             </div>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="gold-gradient-text tracking-[0.3em] uppercase text-sm mb-3 font-medium">Publication</p>
-            <h2 className="text-4xl font-bold mb-6">Our Book</h2>
-            <p className="text-gray-400 leading-relaxed mb-8 text-lg">
-              Explore our comprehensive collection of architectural works, design philosophies, and
-              the stories behind some of India's most innovative residential and commercial spaces.
-            </p>
-            <a
-              href="https://www.amazon.in/dp/example"
-              target="_blank"
-              rel="noreferrer"
-              className="shimmer-btn inline-block px-8 py-3.5 font-semibold rounded-lg transition-colors text-sm tracking-wider uppercase"
-              style={{ background: 'linear-gradient(135deg, #c9a84c, #d4a843)', color: '#0a0a0a' }}
-            >
-              Get Your Copy
-            </a>
-          </motion.div>
+          </div>
+
+          <div style={{ width: '100%', height: 1, background: S.line, marginBottom: '2.5rem' }} />
+
+          <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.4rem', maxWidth: 800, margin: '0 auto' }}>
+            {videoTestimonials.map((v, i) => (
+              <FadeIn key={i} delay={i * 100}>
+                <div style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden', background: '#000', cursor: v.placeholder ? 'default' : (playingVideo === i ? 'default' : 'pointer') }} onClick={() => { if (!v.placeholder && playingVideo !== i) setPlayingVideo(i) }}>
+                  {!v.placeholder && (
+                    <video src={v.video} muted={playingVideo !== i} controls={playingVideo === i} autoPlay={playingVideo === i} playsInline style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  )}
+                  {(v.placeholder || playingVideo !== i) && (
+                    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.6rem' }}>
+                      <div style={{ width: 66, height: 66, borderRadius: '50%', border: '2px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: v.placeholder ? 0.5 : 1 }}>
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M8 5v14l11-7z" /></svg>
+                      </div>
+                      {v.placeholder && <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '0.75rem', color: 'rgba(255,255,255,0.7)', letterSpacing: '0.05em' }}>Video coming soon</p>}
+                    </div>
+                  )}
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ═══════════════ CTA ═══════════════ */}
-      <section className="py-28 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-400/10 via-transparent to-amber-400/5" />
-        <FloatingParticles />
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-bold mb-6"
-          >
-            Ready to Transform<br />Your Space?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-gray-400 mb-10 max-w-2xl mx-auto text-lg"
-          >
-            Let's collaborate to create something extraordinary. Get in touch with our team today.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-          >
-            <Link
-              to="/contact"
-              className="shimmer-btn inline-block px-12 py-4 font-semibold rounded-xl text-lg tracking-wider"
-              style={{ background: 'linear-gradient(135deg, #c9a84c, #d4a843)', color: '#0a0a0a' }}
-            >
-              Start Your Project
-            </Link>
-          </motion.div>
+      <section id="services" style={{ background: S.cream, padding: '5rem 2rem' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <FadeIn>
+            <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '1rem' }}>Our Expertise</h2>
+            <p style={{ fontSize: '0.92rem', color: S.mid, textAlign: 'center', maxWidth: 700, margin: '0 auto 3rem', lineHeight: 1.7 }}>
+              Architecture, interior design and full turnkey execution, held under one accountable team. The vision and the delivery never separate, so nothing falls through the gaps between firms.
+            </p>
+          </FadeIn>
+          <div className="services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '1.8rem', alignItems: 'start' }}>
+            {services4.map((s, i) => (
+              <FadeIn key={i} delay={i * 90}>
+                <div style={{ marginTop: i % 2 === 1 ? '2.5rem' : 0 }}>
+                  <SlantCard img={s.img} title={s.title} onClick={() => navigate(s.route)} />
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.6fr', gap: '3rem', marginTop: '4rem' }}>
+          <FadeIn>
+            <h3 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize: 'clamp(3rem,6vw,4.2rem)', color: S.black, marginBottom: '1.4rem', lineHeight: 1 }}>WHY US?</h3>
+            <p style={{ fontSize: '1rem', color: S.mid, lineHeight: 1.75, maxWidth: 300 }}>
+              When Client Return and Refer Others, the Work has Passed its Real Test.
+            </p>
+          </FadeIn>
+          <div style={{ position: 'relative', paddingRight: '4.5rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              {whyUsPoints.map((p, i) => (
+                <FadeIn key={i} delay={i * 60}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '170px 1fr', columnGap: '3rem', alignItems: 'start', padding: '1.6rem 0' }}>
+                    <div>
+                      <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '2.2rem', color: S.gold, lineHeight: 1, marginBottom: '0.1rem' }}>{p.num}</p>
+                      <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '1.4rem', color: S.black, lineHeight: 1.2 }}>{p.title}</p>
+                    </div>
+                    <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.65, marginTop: '0.5rem' }}>{p.desc}</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+            <div style={{ position: 'absolute', top: 0, right: '-1.5rem', width: 3, height: '55%', background: 'rgba(0,0,0,0.08)', borderRadius: 999 }} />
+          </div>
         </div>
       </section>
-    </main>
-  );
+
+      <section id="portfolio" style={{ background: S.paper, padding: '3rem 2rem' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <FadeIn>
+            <h2 style={{ ...metallicStyle('clamp(2.4rem,5vw,3.4rem)'), textAlign: 'center', marginBottom: '3rem' }}>Our Projects</h2>
+          </FadeIn>
+          <div className="why-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '4.5rem' }}>
+            {typesOfServices.map((s, i) => (
+              <FadeIn key={i} delay={i * 100}>
+                <Link to={s.route} style={{ display: 'block', textDecoration: 'none' }}>
+                  <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '16/9', border: `1px solid ${S.line}` }}
+                    onMouseEnter={e => e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'}
+                    onMouseLeave={e => e.currentTarget.querySelector('img').style.transform = 'scale(1)'}>
+                    <img src={s.img} alt={s.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,20,18,0.7) 0%, transparent 45%)' }} />
+                    <p style={{ position: 'absolute', bottom: '1.2rem', left: '1.4rem', fontFamily: "'Playfair Display',serif", fontStyle: 'italic', fontSize: '1.4rem', color: '#fff' }}>{s.title}</p>
+                  </div>
+                </Link>
+              </FadeIn>
+            ))}
+          </div>
+
+
+        </div>
+      </section>
+
+      
+
+      <section id="contact" style={{ background: S.cream, padding: '3rem 2rem' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+            <FadeIn><h2 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 400, fontSize: 'clamp(3.6rem,8vw,5.6rem)', color: S.black, letterSpacing: '0.06em' }}>CONTACT</h2></FadeIn>
+            <FadeIn delay={100}><p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '1.1rem', color: S.mid, textAlign: 'right' }}>Lets discuss your next<br />Project together</p></FadeIn>
+          </div>
+          <div style={{ width: '100%', height: 1, background: S.line, marginBottom: '2.5rem' }} />
+
+          <div className="contact-grid" style={{ display: 'flex', gap: '3rem' }}>
+            <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+              {contactInfo.map((item, i) => (
+                <FadeIn key={i} delay={i * 80}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1.5rem', padding: '1.2rem 0' }}>
+                    <p style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 600, fontSize: '1.05rem', color: S.black, minWidth: 100 }}>{item.label}</p>
+                    {item.href ? <a href={item.href} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '1.05rem', color: S.gold, textDecoration: 'none', textAlign: 'right' }}>{item.value}</a> : <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '1.05rem', color: S.mid, textAlign: 'right' }}>{item.value}</p>}
+                  </div>
+                </FadeIn>
+              ))}
+              <FadeIn delay={200} style={{ flex: 1, marginTop: '1.5rem' }}>
+                <div style={{ position: 'relative', height: '100%', minHeight: 220, overflow: 'hidden', borderRadius: 12, border: `1px solid ${S.line}` }}>
+                  <iframe src="https://maps.google.com/maps?q=Time+Square+Sevoke+Road+Siliguri&t=m&z=15&output=embed&iwloc=near" title="Location" width="100%" height="100%" style={{ border: 'none', display: 'block' }} loading="lazy" />
+                  <a href="https://maps.google.com/?q=Time+Square+Sevoke+Road+Siliguri" target="_blank" rel="noreferrer" style={{ position: 'absolute', top: '0.8rem', left: '0.8rem', background: '#fff', padding: '0.5rem 1rem', borderRadius: 999, fontSize: '0.85rem', color: S.ink, textDecoration: 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>Open in Map ↗</a>
+                </div>
+              </FadeIn>
+            </div>
+            <FadeIn delay={150} style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ background: S.paper, borderRadius: 12, padding: '2rem', border: `1px solid ${S.line}`, boxShadow: '0 4px 20px rgba(0,0,0,0.03)', height: '100%', boxSizing: 'border-box' }}>
+                {status === 'sent' ? (
+                  <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
+                    <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.6rem', color: S.gold, marginBottom: '0.8rem' }}>Thank you</p>
+                    <p style={{ fontSize: '0.9rem', color: S.mid }}>Your message has been received. We'll get back to you within 24 hours.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} noValidate>
+                    <div style={{ marginBottom: '1rem' }}>
+                      <label style={{ display: 'block', fontSize: '0.9rem', color: S.mid, marginBottom: '0.4rem' }}>Name</label>
+                      <input value={form.firstName} onChange={set('firstName')} onFocus={() => focusField('firstName')} onBlur={() => blurField('firstName')} style={inputStyle(focused.firstName)} />
+                    </div>
+                    <div style={{ marginBottom: '1rem' }}>
+                      <label style={{ display: 'block', fontSize: '0.9rem', color: S.mid, marginBottom: '0.4rem' }}>Email</label>
+                      <input type="email" value={form.email} onChange={set('email')} onFocus={() => focusField('email')} onBlur={() => blurField('email')} style={inputStyle(focused.email)} />
+                    </div>
+                    <div style={{ marginBottom: '1rem' }}>
+                      <label style={{ display: 'block', fontSize: '0.9rem', color: S.mid, marginBottom: '0.4rem' }}>Phone</label>
+                      <input type="tel" value={form.phone} onChange={set('phone')} onFocus={() => focusField('phone')} onBlur={() => blurField('phone')} style={inputStyle(focused.phone)} />
+                    </div>
+                    <div style={{ marginBottom: '1rem' }}>
+                      <label style={{ display: 'block', fontSize: '0.9rem', color: S.mid, marginBottom: '0.4rem' }}>Service Required</label>
+                      <select value={form.service} onChange={set('service')} onFocus={() => focusField('service')} onBlur={() => blurField('service')} style={{ ...inputStyle(focused.service), appearance: 'none', cursor: 'pointer' }}>
+                        <option value="">Select a service...</option>
+                        {['Residential Interior Design', 'Architecture', 'Hospitality Design', 'Commercial / Retail', 'Vedic Vastu Consultation', 'Other'].map(o => <option key={o}>{o}</option>)}
+                      </select>
+                    </div>
+                    <div style={{ marginBottom: '1.4rem' }}>
+                      <label style={{ display: 'block', fontSize: '0.9rem', color: S.mid, marginBottom: '0.4rem' }}>Message</label>
+                      <textarea rows={4} value={form.message} onChange={set('message')} onFocus={() => focusField('message')} onBlur={() => blurField('message')} style={{ ...inputStyle(focused.message), resize: 'vertical' }} />
+                    </div>
+                    <button type="submit" disabled={status === 'sending'} style={{ padding: '0.85rem 2.2rem', background: S.gold, color: '#fff', border: 'none', borderRadius: 6, cursor: status === 'sending' ? 'not-allowed' : 'pointer', fontWeight: 600, fontSize: '1rem' }}>
+                      {status === 'sending' ? 'Sending...' : 'Submit'}
+                    </button>
+                  </form>
+                )}
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {selectedPress && (
+        <div onClick={() => setSelectedPress(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(20,20,18,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem' }}>
+          <div onClick={e => e.stopPropagation()} className="project-modal-grid" style={{ background: '#fff', maxWidth: 900, width: '100%', maxHeight: '90vh', overflow: 'auto', display: 'grid', gridTemplateColumns: '1fr 1fr', position: 'relative', borderRadius: 8 }}>
+            <button onClick={() => setSelectedPress(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', width: 36, height: 36, background: 'rgba(0,0,0,0.6)', border: 'none', borderRadius: '50%', cursor: 'pointer', color: '#fff', fontSize: '1rem' }}>&#10005;</button>
+            <div style={{ background: '#F2F0EB', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+              <img src={selectedPress.img} alt={selectedPress.title} style={{ maxWidth: '100%', maxHeight: 400, objectFit: 'contain' }} />
+            </div>
+            <div style={{ padding: '2.5rem' }}>
+              <p style={{ fontSize: '0.75rem', color: S.gold, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.6rem' }}>{selectedPress.type}</p>
+              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: '1.35rem', color: S.black, marginBottom: '0.6rem' }}>{selectedPress.title}</h2>
+              <p style={{ fontSize: '0.8rem', color: S.mid, marginBottom: '1.4rem' }}>{selectedPress.org}</p>
+              <p style={{ fontSize: '0.9rem', color: S.mid, lineHeight: 1.8 }}>{selectedPress.desc}</p>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  )
 }

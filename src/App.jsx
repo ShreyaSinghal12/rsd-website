@@ -1,63 +1,39 @@
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import WhatsAppFloat from './components/WhatsAppFloat';
-import Home from './pages/Home';
-import About from './pages/About';
-import Projects from './pages/Projects';
-import Contact from './pages/Contact';
-import ServicePage from './pages/ServicePage';
-import CategoryPage from './pages/CategoryPage';
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import Navbar from './components/Navbar'
+import Footer from './components/Footer'
+// import WhatsAppFloat from './components/WhatsAppFloat'
+// import ChatWidget from './components/ChatWidget'
+import Home from './pages/Home'
+import CategoryPage from './pages/CategoryPage'
+import ServicePage from './pages/ServicePage'
 
-/* Scroll to top on route change */
 function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [pathname]);
-  return null;
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
 }
 
-/* Animated routes wrapper */
-function AnimatedRoutes() {
-  const location = useLocation();
-
+export default function App() {
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={location.pathname}
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -12 }}
-        transition={{ duration: 0.35, ease: 'easeInOut' }}
-      >
-        <Routes location={location}>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:categoryId" element={<CategoryPage />} />
-          <Route path="/services/:serviceId" element={<ServicePage />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </motion.div>
-    </AnimatePresence>
-  );
-}
-
-function App() {
-  return (
-    <div className="min-h-screen flex flex-col grain-overlay">
+    <>
       <ScrollToTop />
       <Navbar />
-      <main className="flex-grow">
-        <AnimatedRoutes />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects/residential" element={<CategoryPage category="residential" />} />
+          <Route path="/projects/hospitality" element={<CategoryPage category="hospitality" />} />
+          <Route path="/projects/builders" element={<CategoryPage category="commercial" />} />
+          <Route path="/services/architecture" element={<ServicePage service="architecture" />} />
+          <Route path="/services/interior-design" element={<ServicePage service="interior-design" />} />
+          <Route path="/services/turnkey-projects" element={<ServicePage service="turnkey-projects" />} />
+          <Route path="/services/pmc" element={<ServicePage service="pmc" />} />
+        </Routes>
       </main>
       <Footer />
-      <WhatsAppFloat />
-    </div>
-  );
+      {/* <WhatsAppFloat />
+      <ChatWidget /> */}
+    </>
+  )
 }
-
-export default App;
