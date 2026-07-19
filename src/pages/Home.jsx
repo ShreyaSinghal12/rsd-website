@@ -19,7 +19,7 @@ const roundedHeading = { fontFamily: "'Poppins',sans-serif", fontWeight: 700 }
 const serifHeading = { fontFamily: "'Playfair Display',serif" }
 
 const heroSlides = [
-  
+
   {
     img: '/images/slides/1stSlide.jpg',
     heading: ['You can afford anything.', 'So why does the result so rarely feel like it?'],
@@ -258,7 +258,7 @@ export default function Home() {
             <video muted autoPlay loop playsInline preload="auto" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}>
               <source src="/videos/OfficeVideos.mp4" type="video/mp4" />
             </video>
-            
+
           </div>
         </FadeIn>
       </section>
@@ -318,6 +318,30 @@ export default function Home() {
             ))}
           </div>
         </div>
+        <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.6fr', gap: '3rem' }}>
+          <FadeIn>
+            <h3 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize: 'clamp(3rem,6vw,4.2rem)', color: S.black, marginBottom: '1.4rem', lineHeight: 1 }}>WHY US?</h3>
+            <p style={{ fontSize: '1rem', color: S.mid, lineHeight: 1.75, maxWidth: 300 }}>
+              Thirty years of holding one standard: a single studio accountable for everything a project needs, from first sketch to final handover.
+            </p>
+          </FadeIn>
+          <div style={{ position: 'relative' }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              {whyUsPoints.map((p, i) => (
+                <FadeIn key={i} delay={i * 60}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '170px 1fr', columnGap: '2rem', alignItems: 'start', padding: '1.6rem 0' }}>
+                    <div>
+                      <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '2.2rem', color: S.gold, lineHeight: 1, marginBottom: '0.1rem' }}>{p.num}</p>
+                      <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '1.4rem', color: S.black, lineHeight: 1.2 }}>{p.title}</p>
+                    </div>
+                    <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.65, marginTop: '0.5rem' }}>{p.desc}</p>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+            <div style={{ position: 'absolute', top: 0, right: '-1.5rem', width: 3, height: '55%', background: 'rgba(0,0,0,0.08)', borderRadius: 999 }} />
+          </div>
+        </div>
       </section>
 
       <section id="portfolio" style={{ background: S.paper, padding: '5rem 2rem' }}>
@@ -341,30 +365,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="about-grid" style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.6fr', gap: '3rem' }}>
-            <FadeIn>
-              <h3 style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize: 'clamp(3rem,6vw,4.2rem)', color: S.black, marginBottom: '1.4rem', lineHeight: 1 }}>WHY US?</h3>
-              <p style={{ fontSize: '1rem', color: S.mid, lineHeight: 1.75, maxWidth: 300 }}>
-                Thirty years of holding one standard: a single studio accountable for everything a project needs, from first sketch to final handover.
-              </p>
-            </FadeIn>
-            <div style={{ position: 'relative' }}>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                {whyUsPoints.map((p, i) => (
-                  <FadeIn key={i} delay={i * 60}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '170px 1fr', columnGap: '2rem', alignItems: 'start', padding: '1.6rem 0' }}>
-                      <div>
-                        <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '2.2rem', color: S.gold, lineHeight: 1, marginBottom: '0.1rem' }}>{p.num}</p>
-                        <p style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: '1.4rem', color: S.black, lineHeight: 1.2 }}>{p.title}</p>
-                      </div>
-                      <p style={{ fontSize: '0.88rem', color: S.mid, lineHeight: 1.65, marginTop: '0.5rem' }}>{p.desc}</p>
-                    </div>
-                  </FadeIn>
-                ))}
-              </div>
-              <div style={{ position: 'absolute', top: 0, right: '-1.5rem', width: 3, height: '55%', background: 'rgba(0,0,0,0.08)', borderRadius: 999 }} />
-            </div>
-          </div>
+
         </div>
       </section>
 
