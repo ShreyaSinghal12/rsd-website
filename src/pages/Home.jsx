@@ -1,28 +1,36 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { title } from 'framer-motion/client';
 
 /* ═══════════════════════════════════════════════
    DATA
    ═══════════════════════════════════════════════ */
 
 const heroSlides = [
+
   {
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80',
-    title: 'Where Imagination\nMeets Interior\nDesign',
-    subtitle: 'A single studio, holding the vision from first sketch to\nfinal handover, so your legacy is left to no one\'s chance but ours.',
+    image: '/images/slides/1stSlide.jpg',
+    title: ['You can afford anything.', 'So why does the result so rarely feel like it?'],
+    subtitle: "The difference was never the budget. It's who holds every decision.",
+    cta: 'Explore Residences →',
+    route: '/projects/residential',
   },
   {
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80',
-    title: 'Crafting Spaces\nThat Tell\nYour Story',
-    subtitle: 'From concept to completion, we create environments\nthat inspire and transform everyday living.',
+    image: '/images/slides/2ndSlide.jpeg',
+    title: ['Why does the identical project next door', 'keep selling faster than yours?'],
+    subtitle: "The difference buyers can't name is the difference we design.",
+    cta: 'For Builders & Developers →',
+    route: '/projects/builders',
   },
   {
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&q=80',
-    title: 'Architecture\nBeyond\nBoundaries',
-    subtitle: 'Pushing the limits of design to create structures\nthat stand the test of time.',
+    image: '/images/slides/3rdSLide.jpeg',
+    title: ['How many vendors are you managing', 'just to open a single hotel?'],
+    subtitle: 'With us, the answer is one.',
+    cta: 'Explore The One →',
+    route: '/projects/hospitality',
   },
-];
+]
 
 const stats = [
   { value: '30+', label: 'Years of Experience' },
