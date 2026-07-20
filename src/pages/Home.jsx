@@ -2,10 +2,16 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { title } from 'framer-motion/client';
+import testimonials from '../data/testimonials';
 
 /* ═══════════════════════════════════════════════
    DATA
    ═══════════════════════════════════════════════ */
+
+const videoTestimonials = [
+  '/videos/Testimonials/Testimonial1.mp4',
+  '/videos/Testimonials/Testimonial2.mp4',
+];
 
 const heroSlides = [
 
@@ -48,33 +54,19 @@ const expertise = [
 
 const serviceTypes = [
   { label: 'Residential', image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', route: '/projects/residential' },
-  { label: 'Hotels & Hospitality', image: 'https://images.unsplash.com/photo-1590490360182-c33d955c3792?w=800&q=80', route: '/projects/hospitality' },
+  { label: 'Hotels & Hospitality', image: '/images/projects/2.jpg', route: '/projects/hospitality' },
   { label: 'Builders & Developers', image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80', route: '/projects/builders' },
   { label: 'Retails & Shop', image: 'https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=800&q=80', route: '/projects/retail' },
 ];
 
 const whyUsPoints = [
-  {
-    number: '01',
-    title: 'One Studio, Full Ownership',
-    desc: 'Architecture, interiors, procurement, and execution — all under one roof. No gaps between vision and delivery.',
-  },
-  {
-    number: '02',
-    title: 'Design That Endures',
-    desc: 'We create timeless spaces that transcend trends, focusing on quality materials and thoughtful craftsmanship.',
-  },
-  {
-    number: '03',
-    title: '30+ Years of Trust',
-    desc: 'Three decades of consistent delivery, with 90% of our business from repeat clients and referrals.',
-  },
-  {
-    number: '04',
-    title: 'Regional Expertise',
-    desc: 'Deep understanding of local climate, culture, and lifestyle across Siliguri, Sikkim, Assam, Nepal, and Bhutan.',
-  },
-];
+  { number: '01', title: '🏆 30+ Years of Proven Experience', desc: "With over three decades of industry expertise, we have successfully delivered complex residential, hospitality, commercial, and public infrastructure projects with confidence and precision." },
+  { number: '02', title: '👥 Complete Team Under One Roof', desc: 'A multidisciplinary team of Architects, Civil Engineers, Electrical Engineers, MEP Consultants, 3D Visualisers, Interior Designers, and Experienced Site Engineers ensures seamless coordination and faster project delivery.' },
+  { number: '03', title: '📊 500+ Successful Projects Delivered', desc: 'Our extensive portfolio of over 500 completed projects reflects our commitment to quality, timely execution, and client satisfaction across diverse sectors.' },
+  { number: '04', title: '⚙️ System-Driven Project Management', desc: "We follow a technology-enabled execution process with user-friendly project management systems, pre-planned work schedules, drawing schedules, milestone tracking, and transparent progress monitoring." },
+  { number: '05', title: '🌿 Expertise in Technically Challenging Projects', desc: "From artificial lakes and public gardens to large-scale landscaped developments, we possess the technical expertise to execute complex engineering and landscape projects with precision." },
+  { number: '06', title: '🏨 Extensive Hospitality Experience', desc: 'Successfully delivered 700+ hotel keys, including multiple 100+ room hotel properties, giving us deep expertise in hospitality planning, design coordination, and execution.' },
+]
 
 const founders = [
   {
@@ -92,48 +84,43 @@ const founders = [
 ];
 
 const awards = [
-  { name: 'The Pillar', image: null },
-  { name: 'The Horizon', image: null },
-  { name: 'The Keystone', image: null },
+  { name: 'The Pillar', image: '/images/awardsAndCertificates/Award1-trophy.png' },
+  { name: 'The Horizon', image: '/images/awardsAndCertificates/Award2-trophy.png' },
+  { name: 'The Keystone', image: '/images/awardsAndCertificates/Award3-trophy.png' },
 ];
 
-// Placeholder press features for the "As Featured In" magazine strip.
-// Replace publication/feature/cover/link with real press coverage whenever ready.
-const magazineFeatures = [
-  { publication: 'Publication Name', feature: 'Feature or article title', cover: null, link: null },
-  { publication: 'Publication Name', feature: 'Feature or article title', cover: null, link: null },
-  { publication: 'Publication Name', feature: 'Feature or article title', cover: null, link: null },
-  { publication: 'Publication Name', feature: 'Feature or article title', cover: null, link: null },
+// "As Featured In" press coverage. Each magazine has its own set of page
+// scans — browsable as a spread in the lightbox. I matched these to your
+// uploaded /images/press files by scan size (each magazine's pages share
+// the same crop dimensions) — double check the assignment and publication
+// names are correct, and there are 4 more scans (mag4, mag7, mag8, mag9)
+// not yet placed anywhere; tell me which magazine(s) those belong to.
+const magazines = [
+  {
+    publication: 'Featured Publication 1',
+    feature: 'Feature or article title',
+    pages: ['/images/press/mag1.jpg', '/images/press/mag5.jpg'],
+    link: null,
+  },
+  {
+    publication: 'Featured Publication 2',
+    feature: 'Feature or article title',
+    pages: ['/images/press/mag2.jpg', '/images/press/mag3.jpg', '/images/press/mag6.jpg'],
+    link: null,
+  },
 ];
 
 const certificates = [
-  { title: 'Century Venture Award', image: null },
-  { title: 'MahaVastu Certification', image: null },
-  { title: 'Certificate of Appreciation', image: null },
-  { title: 'Design Excellence', image: null },
-  { title: 'Best Interior Design', image: null },
+  { title: 'Century Venture Award', image: '/images/awardsAndCertificates/certificate1.jpeg' },
+  { title: 'MahaVastu Certification', image: '/images/awardsAndCertificates/certificate2.jpeg' },
+  { title: 'Certificate of Appreciation', image: '/images/awardsAndCertificates/certificate3.jpeg' },
+  { title: 'Design Excellence', image: '/images/awardsAndCertificates/certificate4.jpeg' },
+  { title: 'Best Interior Design', image: '/images/awardsAndCertificates/certificate5.jpeg' },
+  { title: 'Certificate of Recognition', image: '/images/awardsAndCertificates/certificate6.jpeg' },
+  { title: 'Certificate of Excellence', image: '/images/awardsAndCertificates/certificate7.jpeg' },
+  { title: 'Certificate of Merit', image: '/images/awardsAndCertificates/certificate8.jpeg' },
 ];
 
-const testimonials = [
-  {
-    name: 'Mr. Rajesh Agarwal',
-    rating: 5,
-    quote: 'They took the time to understand my preferences before developing a design strategy. The result was a cohesive and stylish look I could never have achieved on my own. I am so glad I gave them a chance.',
-    image: null,
-  },
-  {
-    name: 'Mrs. Priya Sharma',
-    rating: 5,
-    quote: 'They took the time to understand my preferences before developing a design strategy. The result was a cohesive and stylish look I could never have achieved on my own. I am so glad I gave them a chance.',
-    image: null,
-  },
-  {
-    name: 'Mr. Ankit Gupta',
-    rating: 5,
-    quote: 'They took the time to understand my preferences before developing a design strategy. The result was a cohesive and stylish look I could never have achieved on my own. I am so glad I gave them a chance.',
-    image: null,
-  },
-];
 
 const bookFeatures = [
   'Uncover the blind spots in your projects',
@@ -332,20 +319,24 @@ function CertificateCarousel() {
           >
             {/* Inner frame */}
             <div style={{
-              background: '#f8f4ed', borderRadius: 4, padding: 20,
+              background: '#f8f4ed', borderRadius: 4, padding: cert.image ? 8 : 20,
               aspectRatio: '4/5',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              border: '2px solid #d4c5a9',
+              border: '2px solid #d4c5a9', overflow: 'hidden',
             }}>
-              <div style={{ textAlign: 'center', color: 'var(--text-light)' }}>
-                <div style={{ fontSize: '2rem', marginBottom: 8 }}>🏆</div>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-dark)' }}>
-                  {cert.title}
-                </p>
-                <p style={{ fontSize: '0.75rem', marginTop: 4, color: 'var(--text-light)' }}>
-                  Ramesh Singhal Design
-                </p>
-              </div>
+              {cert.image ? (
+                <img src={cert.image} alt={cert.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              ) : (
+                <div style={{ textAlign: 'center', color: 'var(--text-light)' }}>
+                  <div style={{ fontSize: '2rem', marginBottom: 8 }}>🏆</div>
+                  <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '0.9rem', fontWeight: 600, color: 'var(--text-dark)' }}>
+                    {cert.title}
+                  </p>
+                  <p style={{ fontSize: '0.75rem', marginTop: 4, color: 'var(--text-light)' }}>
+                    Ramesh Singhal Design
+                  </p>
+                </div>
+              )}
             </div>
           </motion.div>
         ))}
@@ -363,6 +354,126 @@ function CertificateCarousel() {
         ›
       </button>
     </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════
+   MAGAZINE CARD — fanned page preview + lightbox viewer
+   ═══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   VIDEO TESTIMONIAL CARD — click to play/pause
+   ═══════════════════════════════════════════════ */
+function VideoTestimonialCard({ src, delay = 0 }) {
+  const [playing, setPlaying] = useState(false);
+  const videoRef = useRef(null);
+
+  const toggle = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (playing) { v.pause(); } else { v.play(); }
+    setPlaying(!playing);
+  };
+
+  return (
+    <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay }}
+      onClick={toggle}
+      style={{ position: 'relative', aspectRatio: '16/10', borderRadius: 16, overflow: 'hidden', background: '#000', cursor: 'pointer' }}>
+      <video ref={videoRef} src={src} playsInline preload="metadata"
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        onEnded={() => setPlaying(false)} />
+      {!playing && (
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.25)' }}>
+          <div style={{
+            width: 64, height: 64, borderRadius: '50%',
+            border: '2px solid rgba(255,255,255,0.4)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            transition: 'all 0.3s ease',
+          }}>
+            <div style={{ width: 0, height: 0, borderTop: '10px solid transparent', borderBottom: '10px solid transparent', borderLeft: '16px solid rgba(255,255,255,0.8)', marginLeft: 3 }} />
+          </div>
+        </div>
+      )}
+    </motion.div>
+  );
+}
+
+function MagazineCard({ magazine, delay = 0 }) {
+  const [open, setOpen] = useState(false);
+  const [pageIdx, setPageIdx] = useState(0);
+  const pageCount = magazine.pages.length;
+
+  return (
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay }}
+        onClick={() => { setPageIdx(0); setOpen(true); }}
+        style={{ cursor: 'pointer', textAlign: 'center' }}
+      >
+        {/* Fanned page stack */}
+        <div style={{ position: 'relative', aspectRatio: '3/4', margin: '0 auto 20px', maxWidth: 200 }}>
+          {magazine.pages.map((page, i) => {
+            const offset = i - (pageCount - 1) / 2;
+            return (
+              <div key={i} style={{
+                position: 'absolute', inset: 0,
+                transform: `rotate(${offset * 6}deg) translateX(${offset * 14}px)`,
+                borderRadius: 8, overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
+                border: '4px solid #fff', background: '#fff',
+                zIndex: i,
+              }}>
+                <img src={page} alt={`${magazine.publication} page ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+            );
+          })}
+        </div>
+        <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: '1rem', color: 'var(--text-dark)', marginBottom: 4 }}>{magazine.publication}</p>
+        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.8rem', color: 'var(--text-light)', marginBottom: 4 }}>{magazine.feature}</p>
+        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)' }}>
+          {pageCount} {pageCount === 1 ? 'Page' : 'Pages'} — View Spread
+        </p>
+      </motion.div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            onClick={() => setOpen(false)}
+            style={{ position: 'fixed', inset: 0, zIndex: 300, background: 'rgba(20,20,20,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}
+          >
+            <button onClick={() => setOpen(false)} aria-label="Close"
+              style={{ position: 'absolute', top: 24, right: 24, width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontSize: '1.1rem', cursor: 'pointer' }}>
+              &#10005;
+            </button>
+
+            <div onClick={e => e.stopPropagation()} style={{ position: 'relative', maxWidth: 560, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <motion.img
+                key={pageIdx}
+                initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }}
+                src={magazine.pages[pageIdx]} alt={`${magazine.publication} page ${pageIdx + 1}`}
+                style={{ maxWidth: '100%', maxHeight: '78vh', borderRadius: 6, boxShadow: '0 30px 80px rgba(0,0,0,0.4)' }}
+              />
+
+              {pageCount > 1 && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginTop: 20 }}>
+                  <button onClick={() => setPageIdx(p => (p - 1 + pageCount) % pageCount)} aria-label="Previous page"
+                    style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontSize: '1.1rem', cursor: 'pointer' }}>
+                    ‹
+                  </button>
+                  <p style={{ color: 'rgba(255,255,255,0.75)', fontFamily: 'Inter, sans-serif', fontSize: '0.8rem', letterSpacing: '0.1em' }}>
+                    Page {pageIdx + 1} of {pageCount}
+                  </p>
+                  <button onClick={() => setPageIdx(p => (p + 1) % pageCount)} aria-label="Next page"
+                    style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontSize: '1.1rem', cursor: 'pointer' }}>
+                    ›
+                  </button>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
 
@@ -484,7 +595,7 @@ export default function Home() {
         <div style={{
           position: 'absolute', inset: 0,
           display: 'flex', flexDirection: 'column', justifyContent: 'center',
-          padding: '0 8%', zIndex: 10, maxWidth: 800,
+          padding: '0 8%', zIndex: 10, maxWidth: 800, transform: 'translateY(8vh)',
         }}>
           <AnimatePresence mode="wait">
             <motion.h1
@@ -495,12 +606,12 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: 'clamp(2.5rem, 5.5vw, 4.5rem)',
-                fontWeight: 500, color: '#ffffff', lineHeight: 1.1,
-                whiteSpace: 'pre-line', letterSpacing: '-0.02em',
+                fontSize: 'clamp(2rem, 4vw, 3.4rem)',
+                fontWeight: 500, color: '#ffffff', lineHeight: 1.2,
+                whiteSpace: 'pre-line', letterSpacing: '-0.02em', maxWidth: 780,
               }}
             >
-              {heroSlides[heroIdx].title}
+              {heroSlides[heroIdx].title.join('\n')}
             </motion.h1>
           </AnimatePresence>
 
@@ -526,13 +637,13 @@ export default function Home() {
             transition={{ delay: 0.8 }}
             style={{ marginTop: 40 }}
           >
-            <Link to="/projects" className="hero-btn" style={{
+            <Link to={heroSlides[heroIdx].route || '/'} className="hero-btn" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               padding: '14px 32px', background: 'transparent', color: '#ffffff',
               border: '1.5px solid rgba(255,255,255,0.5)', borderRadius: 50,
               fontSize: '0.9rem', fontWeight: 500, transition: 'all 0.3s ease',
             }}>
-              View Projects →
+              {heroSlides[heroIdx].cta || 'View Projects →'}
             </Link>
           </motion.div>
         </div>
@@ -658,22 +769,11 @@ export default function Home() {
               style={{ display: 'flex', gap: 24, justifyContent: 'center', alignItems: 'flex-end' }}>
               {awards.map((award, i) => (
                 <div key={i} style={{ textAlign: 'center' }}>
-                  <div style={{
-                    width: 120 + (i === 1 ? 20 : 0), height: 160 + (i === 1 ? 30 : 0),
-                    background: 'linear-gradient(135deg, #e8dcc8, #d4c5a9)',
-                    borderRadius: '8px 8px 0 0',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    margin: '0 auto',
-                  }}>
-                    <span style={{ fontSize: '3rem' }}>🏆</span>
+                  <div style={{ width: 110 + (i === 1 ? 24 : 0), height: 170 + (i === 1 ? 30 : 0), display: 'flex', alignItems: 'flex-end', justifyContent: 'center' }}>
+                    <img src={award.image} alt={award.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', filter: 'drop-shadow(0 12px 14px rgba(0,0,0,0.18))' }} />
                   </div>
-                  <div style={{
-                    width: 100 + (i === 1 ? 20 : 0), height: 30,
-                    background: 'linear-gradient(135deg, #d4c5a9, #c8b894)',
-                    borderRadius: '0 0 8px 8px',
-                    margin: '0 auto',
-                  }} />
-                  <p style={{ marginTop: 8, fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-dark)', fontFamily: "'Playfair Display', serif" }}>
+                  <div style={{ width: 60 + (i === 1 ? 14 : 0), height: 8, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(0,0,0,0.22) 0%, transparent 75%)', margin: '4px auto 0' }} />
+                  <p style={{ marginTop: 10, fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-dark)', fontFamily: "'Playfair Display', serif" }}>
                     {award.name}
                   </p>
                 </div>
@@ -690,19 +790,9 @@ export default function Home() {
       <section style={{ background: 'var(--cream-light)', padding: 'var(--section-padding) 0' }}>
         <div className="container">
           <SectionHeader title="AS FEATURED IN" subtitle="Our work and philosophy, covered by design and industry press." />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
-            {magazineFeatures.map((m, i) => (
-              <motion.a key={i} href={m.link || '#'} target={m.link ? '_blank' : undefined} rel={m.link ? 'noreferrer' : undefined}
-                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.08 }}
-                style={{ display: 'block', textDecoration: 'none', borderRadius: 12, overflow: 'hidden', background: '#fff', boxShadow: '0 10px 30px rgba(0,0,0,0.06)' }}>
-                <div style={{ aspectRatio: '3/4', background: 'linear-gradient(135deg, #e8e0d0, #d5cec0)', overflow: 'hidden' }}>
-                  {m.cover && <img src={m.cover} alt={m.publication} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />}
-                </div>
-                <div style={{ padding: '16px 18px 20px' }}>
-                  <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-dark)', marginBottom: 4 }}>{m.publication}</p>
-                  <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.78rem', color: 'var(--text-light)' }}>{m.feature}</p>
-                </div>
-              </motion.a>
+          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${magazines.length}, minmax(260px, 1fr))`, gap: 40, maxWidth: 720, margin: '0 auto' }}>
+            {magazines.map((mag, i) => (
+              <MagazineCard key={i} magazine={mag} delay={i * 0.1} />
             ))}
           </div>
         </div>
@@ -712,27 +802,11 @@ export default function Home() {
       <section style={{ background: 'var(--cream-light)', padding: 'var(--section-padding) 0', overflow: 'hidden' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: '0.9fr 1.1fr', gap: 60, alignItems: 'center' }}>
-            {/* Left: Book mockup */}
+            {/* Left: Book cover */}
             <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
               style={{ display: 'flex', justifyContent: 'center' }}>
-              <div style={{
-                width: 320, height: 440, borderRadius: '4px 16px 16px 4px',
-                background: 'linear-gradient(135deg, #2b3d52, #1c2a3a)',
-                boxShadow: '20px 20px 60px rgba(0,0,0,0.2), -5px 0 20px rgba(0,0,0,0.1)',
-                display: 'flex', flexDirection: 'column', justifyContent: 'center',
-                padding: '40px 30px', color: '#fff', position: 'relative',
-                overflow: 'hidden', transform: 'perspective(800px) rotateY(-5deg)',
-              }}>
-                <div style={{ position: 'absolute', top: 0, right: 0, width: '60%', height: '50%', background: 'linear-gradient(135deg, rgba(184,149,63,0.15), transparent)', borderRadius: '0 16px 0 0' }} />
-                <p style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 16 }}>It's not the market.<br />It's the misunderstanding.</p>
-                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.6rem', fontWeight: 700, lineHeight: 1.2, marginBottom: 12 }}>
-                  Why Luxury Homes Don't Sell:
-                </h3>
-                <p style={{ fontSize: '0.95rem', fontWeight: 500, color: 'var(--gold)', marginBottom: 24 }}>The Blind Spot Costing Developers Crores</p>
-                <div style={{ borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: 16 }}>
-                  <p style={{ fontSize: '0.8rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)' }}>Ramesh Singhal</p>
-                </div>
-              </div>
+              <img src="/images/book/book_image.png" alt="Why Luxury Homes Don't Sell — book by Ramesh Singhal"
+                style={{ width: 320, maxHeight: 460, objectFit: 'contain', filter: 'drop-shadow(20px 20px 40px rgba(0,0,0,0.22))', transform: 'perspective(800px) rotateY(-5deg)' }} />
             </motion.div>
 
             {/* Right: Book info */}
@@ -802,30 +876,31 @@ export default function Home() {
           />
 
           {/* Text testimonial cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginBottom: 60 }}>
+          <div className="testimonial-moodboard-scroll" style={{ display: 'flex', gap: 18, overflowX: 'auto', paddingBottom: 8, marginBottom: 60 }}>
             {testimonials.map((t, i) => (
               <motion.div
-                key={i}
+                key={t.id || i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
                 style={{
                   background: 'linear-gradient(135deg, #c9a84c, #b8953f)',
-                  borderRadius: 16, padding: '28px 24px',
+                  borderRadius: 14, padding: '20px 18px',
                   color: '#fff', position: 'relative',
+                  flex: '0 0 240px',
                 }}
               >
                 {/* Client photo + stars row */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
                   <div style={{
-                    width: 50, height: 50, borderRadius: 8,
+                    width: 38, height: 38, borderRadius: 7,
                     background: 'rgba(0,0,0,0.2)', flexShrink: 0,
                   }} />
-                  <StarRating rating={t.rating} />
+                  <StarRating />
                 </div>
-                <p style={{ fontSize: '0.88rem', lineHeight: 1.7, marginBottom: 16, opacity: 0.95 }}>{t.quote}</p>
-                <p style={{ fontSize: '0.85rem', fontWeight: 600, textAlign: 'right' }}>-{t.name}</p>
+                <p style={{ fontSize: '0.78rem', lineHeight: 1.6, marginBottom: 12, opacity: 0.95 }}>{t.text}</p>
+                <p style={{ fontSize: '0.78rem', fontWeight: 600, textAlign: 'right' }}>-{t.name}</p>
               </motion.div>
             ))}
           </div>
@@ -835,18 +910,8 @@ export default function Home() {
 
           {/* Video testimonials */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
-            {[1, 2].map(i => (
-              <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }}
-                style={{ aspectRatio: '16/10', borderRadius: 16, overflow: 'hidden', background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-                <div style={{
-                  width: 64, height: 64, borderRadius: '50%',
-                  border: '2px solid rgba(255,255,255,0.4)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  transition: 'all 0.3s ease',
-                }}>
-                  <div style={{ width: 0, height: 0, borderTop: '10px solid transparent', borderBottom: '10px solid transparent', borderLeft: '16px solid rgba(255,255,255,0.8)', marginLeft: 3 }} />
-                </div>
-              </motion.div>
+            {videoTestimonials.map((v, i) => (
+              <VideoTestimonialCard key={i} src={v} delay={i * 0.15} />
             ))}
           </div>
         </div>
@@ -867,7 +932,7 @@ export default function Home() {
       {/* ═══════════════ TYPES OF SERVICES ═══════════════ */}
       <section id="projects" style={{ background: 'var(--cream)', padding: 'var(--section-padding) 0' }}>
         <div className="container">
-          <SectionHeader title="TYPES OF SERVICES" />
+          <SectionHeader title="OUR PROJECTS" />
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
             {serviceTypes.map((item, i) => (
               <ImageCard key={i} image={item.image} label={item.label} aspectRatio="16/10" onClick={() => navigate(item.route)} />

@@ -279,3 +279,6 @@ button {
 
 .team-scroll::-webkit-scrollbar { display: none; }
 .team-scroll { scrollbar-width: none; }
+
+.testimonial-moodboard-scroll::-webkit-scrollbar { display: none; }
+.testimonial-moodboard-scroll { scrollbar-width: none; }

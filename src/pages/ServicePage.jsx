@@ -16,9 +16,9 @@ export default function ServicePage({ service }) {
         <section style={{ background: 'var(--cream)', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '110px 0 40px' }}>
           <div className="container" style={{ textAlign: 'center' }}>
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <Link to="/" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', textDecoration: 'none' }}>
-                ← Back to Home
-              </Link>
+              <button onClick={() => navigate('/', { state: { scrollTo: 'services' } })} style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+                ← Back to Our Expertise
+              </button>
             </motion.div>
 
             <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }}
@@ -32,8 +32,8 @@ export default function ServicePage({ service }) {
             </motion.p>
 
             <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}
-              style={{ borderRadius: 14, overflow: 'hidden', height: 'min(38vh, 380px)', maxWidth: 900, margin: '28px auto 0', boxShadow: '0 20px 50px rgba(0,0,0,0.12)' }}>
-              <img src={info.banner} alt={info.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              style={{ display: 'flex', justifyContent: 'center', margin: '28px auto 0' }}>
+  <img src={info.banner} alt={info.title} style={{ height: 'min(46vh, 480px)', width: 'auto', maxWidth: '100%', objectFit: 'contain', display: 'block', borderRadius: 14, boxShadow: '0 20px 50px rgba(0,0,0,0.12)' }} />
             </motion.div>
 
             <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}
@@ -48,9 +48,9 @@ export default function ServicePage({ service }) {
           <section style={{ background: 'var(--cream)', padding: '160px 0 60px' }}>
             <div className="container" style={{ textAlign: 'center' }}>
               <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-                <Link to="/" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', textDecoration: 'none' }}>
-                  ← Back to Home
-                </Link>
+                <button onClick={() => navigate('/', { state: { scrollTo: 'services' } })} style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+                  ← Back to Our Expertise
+                </button>
               </motion.div>
 
               <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }}

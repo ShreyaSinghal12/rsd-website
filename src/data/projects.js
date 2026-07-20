@@ -127,8 +127,8 @@ const projects = [
   { id: 123, title: "Visionary Spaces",               category: "interior", img: "/images/interior_Projects/Hotel10.jpeg",    desc: "Architecture born from vision — spaces that challenge convention and point toward new possibilities." },
   { id: 124, title: "Visionary Spaces",               category: "interior", img: "/images/interior_Projects/Hotel11.jpeg",    desc: "Architecture born from vision — spaces that challenge convention and point toward new possibilities." },
   { id: 125, title: "Visionary Spaces",               category: "interior", img: "/images/interior_Projects/Hotel12.jpeg",    desc: "Architecture born from vision — spaces that challenge convention and point toward new possibilities." },
-  { id: 126, title: "Visionary Spaces",               category: "turnkey", img: "/images/turnkey.jpeg",    desc: "Architecture born from vision — spaces that challenge convention and point toward new possibilities." },
-  { id: 127, title: "Visionary Spaces",               category: "pmc", img: "/images/pmc.jpeg",    desc: "Architecture born from vision — spaces that challenge convention and point toward new possibilities." },
+  { id: 126, title: "Visionary Spaces",               category: "turnkey", img: "/images/turnkey/turnkey.jpeg",    desc: "Architecture born from vision — spaces that challenge convention and point toward new possibilities." },
+  { id: 127, title: "Visionary Spaces",               category: "pmc", img: "/images/pmc/pmc.jpeg",    desc: "Architecture born from vision — spaces that challenge convention and point toward new possibilities." },
 ]
 
 

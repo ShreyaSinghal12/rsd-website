@@ -14,9 +14,9 @@ export default function CategoryPage({ category }) {
       <section style={{ background: 'var(--cream)', padding: '160px 0 80px' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <Link to="/" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', textDecoration: 'none' }}>
-              ← Back to Home
-            </Link>
+            <button onClick={() => navigate('/', { state: { scrollTo: 'projects' } })} style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+              ← Back to Types of Services
+            </button>
           </motion.div>
           <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }}
             style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2.6rem, 6vw, 4.5rem)', fontWeight: 800, color: 'var(--navy)', lineHeight: 1.1, margin: '24px auto 0', maxWidth: 700 }}>
