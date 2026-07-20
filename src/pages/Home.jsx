@@ -97,15 +97,15 @@ const awards = [
 // not yet placed anywhere; tell me which magazine(s) those belong to.
 const magazines = [
   {
-    publication: 'Featured Publication 1',
-    feature: 'Feature or article title',
-    pages: ['/images/press/mag1.jpg', '/images/press/mag5.jpg'],
+    publication: 'The Telegraph',
+    feature: 'Home Sweet Home',
+    pages: ['/images/press/maga1.jpeg', '/images/press/maga12.jpeg'],
     link: null,
   },
   {
-    publication: 'Featured Publication 2',
-    feature: 'Feature or article title',
-    pages: ['/images/press/mag2.jpg', '/images/press/mag3.jpg', '/images/press/mag6.jpg'],
+    publication: 'Design Business Edition',
+    feature: 'Design & Technology',
+    pages: ['/images/press/maga21.jpeg', '/images/press/maga22.jpeg', '/images/press/maga23.jpeg'],
     link: null,
   },
 ];
