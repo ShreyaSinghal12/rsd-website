@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import projects from '../data/projects';
-import categoryContent from '../data/categoryContent';
+import categoryContent from '../data/CategoryContent';
 
 export default function CategoryPage({ category }) {
   const navigate = useNavigate();
