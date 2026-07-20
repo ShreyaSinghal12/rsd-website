@@ -1,124 +1,133 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useInView } from 'react-intersection-observer'
-import projects from '../data/projects'
-import servicesContent from '../data/servicesContent'
-import team from '../data/team'
-
-const S = {
-  gold: '#C9A96E', ink: '#1A1A18', offwhite: '#F7F4EF',
-  stone: '#E8E0D0', sage: '#8A9B8E', mid: '#6B6860',
-}
-
-function FadeIn({ children, delay = 0 }) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
-  return (
-    <div ref={ref} style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(28px)', transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms` }}>
-      {children}
-    </div>
-  )
-}
+import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import projects from '../data/projects';
+import servicesContent from '../data/servicesContent';
+import team from '../data/team';
 
 export default function ServicePage({ service }) {
-  const [selectedProject, setSelectedProject] = useState(null)
-  const info = servicesContent[service]
-  const items = projects.filter(p => info.projectCategories.includes(p.category))
+  const navigate = useNavigate();
+  const info = servicesContent[service];
+  const items = projects.filter(p => info.projectCategories.includes(p.category));
 
   return (
-    <>
-      {/* Banner: heading + intro lines */}
-      <section style={{ position: 'relative', overflow: 'hidden', paddingTop: 68 }}>
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: `url(${info.banner})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(26,26,24,0.75) 0%, rgba(26,26,24,0.55) 100%)' }} />
-        </div>
-        <div style={{ position: 'relative', zIndex: 2, maxWidth: 900, margin: '0 auto', padding: '5rem 2rem 4rem' }}>
-          <Link to="/" style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', color: S.gold, textDecoration: 'none', display: 'inline-block', marginBottom: '1.5rem' }}>
-            ← Back to Home
-          </Link>
-          <FadeIn>
-            <h1 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(2.4rem,6vw,4rem)', fontWeight: 400, color: S.offwhite, lineHeight: 1.1, marginBottom: '1.5rem' }}>
+    <div>
+      {info.singlePhoto ? (
+        /* ═══════════════ COMPACT ONE-SCREEN LAYOUT (single photo, no project gallery) ═══════════════ */
+        <section style={{ background: 'var(--cream)', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '110px 0 40px' }}>
+          <div className="container" style={{ textAlign: 'center' }}>
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+              <Link to="/" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', textDecoration: 'none' }}>
+                ← Back to Home
+              </Link>
+            </motion.div>
+
+            <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }}
+              style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 4.5vw, 3.2rem)', fontWeight: 800, color: 'var(--navy)', lineHeight: 1.1, margin: '18px auto 0', maxWidth: 700 }}>
               {info.title}
-            </h1>
-            <p style={{ fontSize: '1.05rem', color: 'rgba(247,244,239,0.9)', lineHeight: 1.8, maxWidth: 640 }}>
+            </motion.h1>
+
+            <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18, duration: 0.6 }}
+              style={{ maxWidth: 560, margin: '14px auto 0', color: 'var(--text-medium)', fontSize: '0.92rem', lineHeight: 1.65 }}>
+              {info.subtitle}
+            </motion.p>
+
+            <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}
+              style={{ borderRadius: 14, overflow: 'hidden', height: 'min(38vh, 380px)', maxWidth: 900, margin: '28px auto 0', boxShadow: '0 20px 50px rgba(0,0,0,0.12)' }}>
+              <img src={info.banner} alt={info.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </motion.div>
+
+            <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}
+              style={{ maxWidth: 680, margin: '24px auto 0', fontSize: '0.88rem', color: 'var(--text-medium)', lineHeight: 1.7 }}>
               {info.intro}
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Project Grid */}
-      <section style={{ padding: '5rem 0', background: S.offwhite }}>
-        <div style={{ maxWidth: 1300, margin: '0 auto', padding: '0 2rem' }}>
-          <FadeIn>
-            <p style={{ fontFamily: "'DM Mono',monospace", fontSize: '0.7rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: S.mid, marginBottom: '2.5rem' }}>
-              {items.length} Projects
-            </p>
-          </FadeIn>
-          <div className="portfolio-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1.5px' }}>
-            {items.map((p, i) => (
-              <FadeIn key={p.id} delay={(i % 9) * 60}>
-                <div
-                  onClick={() => setSelectedProject(p)}
-                  style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#d0c8b8', cursor: 'pointer' }}
-                  onMouseEnter={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1.06)'; e.currentTarget.querySelector('.ov').style.opacity = '1' }}
-                  onMouseLeave={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1)'; e.currentTarget.querySelector('.ov').style.opacity = '0' }}>
-                  <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease', display: 'block' }} />
-                  <div className="ov" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top,rgba(26,26,24,0.8) 0%,transparent 55%)', opacity: 0, transition: 'opacity 0.3s', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '1.5rem' }}>
-                    <p style={{ fontFamily: "'Playfair Display',serif", fontSize: '1rem', color: S.offwhite }}>{p.title}</p>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
+            </motion.p>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <>
+          {/* ═══════════════ HEADING + SUBTITLE ═══════════════ */}
+          <section style={{ background: 'var(--cream)', padding: '160px 0 60px' }}>
+            <div className="container" style={{ textAlign: 'center' }}>
+              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+                <Link to="/" style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', textDecoration: 'none' }}>
+                  ← Back to Home
+                </Link>
+              </motion.div>
 
-      {/* Our Team */}
-      <section style={{ padding: '5rem 0 6rem', background: S.stone }}>
-        <div style={{ maxWidth: 1300, margin: '0 auto', padding: '0 2rem' }}>
-          <FadeIn>
-            <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.8rem,3.5vw,2.6rem)', fontWeight: 400, color: S.ink, marginBottom: '2.5rem' }}>
-              Our Team
-            </h2>
-          </FadeIn>
-          <div className="team-scroll" style={{ display: 'flex', gap: '1.2rem', overflowX: 'auto', paddingBottom: '0.5rem' }}>
-            {team.map((t, i) => (
-              <FadeIn key={i} delay={i * 60}>
-                <div style={{ flexShrink: 0, width: 200 }}>
-                  <div style={{ aspectRatio: '1/1', background: '#DDE3E7', overflow: 'hidden', marginBottom: '0.9rem' }}>
-                    {t.img ? (
-                      <img src={t.img} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                    ) : (
-                      <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke={S.sage} strokeWidth="1.2"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" /></svg>
-                      </div>
-                    )}
-                  </div>
-                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 600, fontSize: '0.92rem', color: S.ink, marginBottom: '0.15rem' }}>{t.name}</p>
-                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '0.8rem', color: S.mid }}>{t.role}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
+              <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }}
+                style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2.6rem, 6vw, 4.5rem)', fontWeight: 800, color: 'var(--navy)', lineHeight: 1.1, margin: '24px auto 0', maxWidth: 700 }}>
+                {info.title}
+              </motion.h1>
 
-      {/* Project Modal */}
-      {selectedProject && (
-        <div onClick={() => setSelectedProject(null)} style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(26,26,24,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(6px)' }}>
-          <div onClick={e => e.stopPropagation()} className="project-modal-grid" style={{ background: '#fff', maxWidth: 900, width: '100%', maxHeight: '90vh', overflow: 'auto', display: 'grid', gridTemplateColumns: '1.2fr 1fr', position: 'relative' }}>
-            <button onClick={() => setSelectedProject(null)} style={{ position: 'absolute', top: '1rem', right: '1rem', width: 36, height: 36, background: 'rgba(26,26,24,0.7)', border: 'none', cursor: 'pointer', color: '#fff', fontSize: '1.1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>&#10005;</button>
-            <div style={{ position: 'relative', minHeight: 320 }}>
-              <img src={selectedProject.img} alt={selectedProject.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}
+                style={{ maxWidth: 620, margin: '28px auto 0', color: 'var(--text-medium)', fontSize: '1.05rem', lineHeight: 1.8 }}>
+                {info.subtitle}
+              </motion.p>
             </div>
-            <div style={{ padding: '3rem 2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <h2 style={{ fontFamily: "'Playfair Display',serif", fontSize: 'clamp(1.4rem,3vw,2rem)', fontWeight: 400, color: S.ink, lineHeight: 1.2, marginBottom: '1.5rem' }}>{selectedProject.title}</h2>
-              <div style={{ width: 40, height: 1, background: S.gold, marginBottom: '1.5rem' }} />
-              <p style={{ fontSize: '0.92rem', color: S.mid, lineHeight: 1.85 }}>{selectedProject.desc}</p>
+          </section>
+
+          {/* ═══════════════ ABOUT THIS SERVICE ═══════════════ */}
+          <section style={{ background: 'var(--cream)', padding: '0 0 var(--section-padding)' }}>
+            <div className="container">
+              <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                style={{ maxWidth: 780, margin: '0 auto', textAlign: 'center', fontSize: '0.98rem', color: 'var(--text-medium)', lineHeight: 1.9 }}>
+                {info.intro}
+              </motion.p>
             </div>
-          </div>
-        </div>
+          </section>
+
+          {/* ═══════════════ PROJECTS ═══════════════ */}
+          <section style={{ background: 'var(--cream-light)', padding: 'var(--section-padding) 0' }}>
+            <div className="container">
+              <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', fontWeight: 500, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--gold)', textAlign: 'center', marginBottom: 48 }}>
+                {items.length} Projects
+              </motion.p>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+                {items.map((p, i) => (
+                  <motion.div key={p.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: (i % 9) * 0.06 }}
+                    onClick={() => navigate(`/project/${p.id}`)}
+                    style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', aspectRatio: '4/3', cursor: 'pointer' }}>
+                    <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.6s ease' }}
+                      onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.06)' }}
+                      onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.75) 0%, transparent 55%)', display: 'flex', alignItems: 'flex-end', padding: 20 }}>
+                      <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', fontSize: '1.05rem', color: '#fff' }}>{p.title}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
       )}
-    </>
-  )
+
+      {/* ═══════════════ OUR TEAM — MOODBOARD SCROLL ═══════════════ */}
+      <section style={{ background: 'var(--cream)', padding: 'var(--section-padding) 0' }}>
+        <div className="container">
+          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', fontWeight: 700, color: 'var(--navy)', marginBottom: 40 }}>
+            Our Team
+          </motion.h2>
+          <div className="team-scroll" style={{ display: 'flex', gap: 20, overflowX: 'auto', paddingBottom: 12 }}>
+            {team.map((t, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+                style={{ flexShrink: 0, width: 210 }}>
+                <div style={{ aspectRatio: '1/1', borderRadius: 12, background: 'linear-gradient(135deg, #d5cec0, #c8bfad)', overflow: 'hidden', marginBottom: 14, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {t.img ? (
+                    <img src={t.img} alt={t.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  ) : (
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="0.9">
+                      <circle cx="12" cy="8" r="4" /><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+                    </svg>
+                  )}
+                </div>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: '1rem', color: 'var(--text-dark)', marginBottom: 2 }}>{t.name}</p>
+                <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.82rem', color: 'var(--text-light)' }}>{t.role}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }

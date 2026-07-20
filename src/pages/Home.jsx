@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { title } from 'framer-motion/client';
 
@@ -40,17 +40,17 @@ const stats = [
 ];
 
 const expertise = [
-  { label: 'Architecture', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80' },
-  { label: 'Interior Design', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80' },
-  { label: 'Turnkey Projects', image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80' },
-  { label: 'PMC', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80' },
+  { label: 'Architecture', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80', route: '/services/architecture' },
+  { label: 'Interior Design', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80', route: '/services/interior-design' },
+  { label: 'Turnkey Projects', image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80', route: '/services/turnkey-projects' },
+  { label: 'PMC', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80', route: '/services/pmc' },
 ];
 
 const serviceTypes = [
-  { label: 'Residential', image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80' },
-  { label: 'Hotels & Hospitality', image: 'https://images.unsplash.com/photo-1590490360182-c33d955c3792?w=800&q=80' },
-  { label: 'Builders & Developers', image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80' },
-  { label: 'Retails & Shop', image: 'https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=800&q=80' },
+  { label: 'Residential', image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', route: '/projects/residential' },
+  { label: 'Hotels & Hospitality', image: 'https://images.unsplash.com/photo-1590490360182-c33d955c3792?w=800&q=80', route: '/projects/hospitality' },
+  { label: 'Builders & Developers', image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80', route: '/projects/builders' },
+  { label: 'Retails & Shop', image: 'https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=800&q=80', route: '/projects/retail' },
 ];
 
 const whyUsPoints = [
@@ -81,13 +81,13 @@ const founders = [
     role: 'Founder',
     name: 'Ramesh Singhal',
     quote: '"Design creates possibilities. Execution determines whether those possibilities become reality"',
-    image: null,
+    image: '/images/Founders/Ramesh_Singhal.jpeg',
   },
   {
     role: 'Co-Founder',
     name: 'Sonika Singhal',
     quote: '"The most meaningful spaces are not the ones people admire. They are the ones people never want to leave."',
-    image: null,
+    image: '/images/Founders/Sonika_Singhal.jpeg',
   },
 ];
 
@@ -95,6 +95,15 @@ const awards = [
   { name: 'The Pillar', image: null },
   { name: 'The Horizon', image: null },
   { name: 'The Keystone', image: null },
+];
+
+// Placeholder press features for the "As Featured In" magazine strip.
+// Replace publication/feature/cover/link with real press coverage whenever ready.
+const magazineFeatures = [
+  { publication: 'Publication Name', feature: 'Feature or article title', cover: null, link: null },
+  { publication: 'Publication Name', feature: 'Feature or article title', cover: null, link: null },
+  { publication: 'Publication Name', feature: 'Feature or article title', cover: null, link: null },
+  { publication: 'Publication Name', feature: 'Feature or article title', cover: null, link: null },
 ];
 
 const certificates = [
@@ -429,7 +438,20 @@ function ContactForm() {
    HOME PAGE
    ═══════════════════════════════════════════════ */
 export default function Home() {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [heroIdx, setHeroIdx] = useState(0);
+  const [showreelMuted, setShowreelMuted] = useState(true);
+  const showreelRef = useRef(null);
+
+  useEffect(() => {
+    const target = location.state?.scrollTo;
+    if (target) {
+      const el = document.getElementById(target);
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 50);
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     const id = setInterval(() => setHeroIdx(i => (i + 1) % heroSlides.length), 6000);
@@ -439,7 +461,7 @@ export default function Home() {
   return (
     <div>
       {/* ═══════════════ HERO ═══════════════ */}
-      <section style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
+      <section id="hero" style={{ position: 'relative', height: '100vh', overflow: 'hidden' }}>
         <AnimatePresence mode="wait">
           <motion.div
             key={heroIdx}
@@ -527,7 +549,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════ ABOUT SNIPPET ═══════════════ */}
-      <section style={{ background: 'var(--cream)', padding: 'var(--section-padding) 0' }}>
+      <section id="about" style={{ background: 'var(--cream)', padding: 'var(--section-padding) 0' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.8rem', letterSpacing: '0.35em', textTransform: 'uppercase', color: 'var(--text-light)', marginBottom: 20 }}>
@@ -557,14 +579,21 @@ export default function Home() {
 
       {/* ═══════════════ SHOWREEL VIDEO ═══════════════ */}
       <section style={{ background: 'var(--cream-dark)', padding: '80px 0 var(--section-padding)' }}>
-        <div className="container">
+        <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
           <motion.div initial={{ opacity: 0, y: 40, scale: 0.96 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
-            style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', boxShadow: '0 30px 80px rgba(0,0,0,0.15)', aspectRatio: '16/9', background: '#000' }}>
-            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, #1c2a3a, #2b3d52)' }}>
-              <div style={{ width: 80, height: 80, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: '2px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-                <div style={{ width: 0, height: 0, borderTop: '12px solid transparent', borderBottom: '12px solid transparent', borderLeft: '20px solid rgba(255,255,255,0.8)', marginLeft: 4 }} />
-              </div>
-            </div>
+            style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', boxShadow: '0 30px 80px rgba(0,0,0,0.15)', aspectRatio: '16/9', height: 'min(68vh, 620px)', maxWidth: '100%', background: '#000' }}>
+            <video ref={showreelRef} src="/videos/OfficeVideo.mp4" autoPlay muted={showreelMuted} loop playsInline preload="auto"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            <button
+              onClick={() => setShowreelMuted(m => !m)}
+              aria-label={showreelMuted ? 'Unmute video' : 'Mute video'}
+              style={{ position: 'absolute', bottom: 20, right: 20, width: 44, height: 44, borderRadius: '50%', background: 'rgba(0,0,0,0.45)', border: '1.5px solid rgba(255,255,255,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', backdropFilter: 'blur(4px)' }}>
+              {showreelMuted ? (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M11 5 6 9H2v6h4l5 4V5z" /><line x1="23" y1="9" x2="17" y2="15" /><line x1="17" y1="9" x2="23" y2="15" /></svg>
+              ) : (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M11 5 6 9H2v6h4l5 4V5z" /><path d="M15.5 8.5a5 5 0 0 1 0 7" /><path d="M18.5 5.5a9 9 0 0 1 0 13" /></svg>
+              )}
+            </button>
           </motion.div>
         </div>
       </section>
@@ -586,10 +615,14 @@ export default function Home() {
             {founders.map((f, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15 }}
                 style={{ background: '#f0e8d8', borderRadius: 16, overflow: 'hidden', textAlign: 'left' }}>
-                <div style={{ aspectRatio: '1/1', background: 'linear-gradient(135deg, #d5cec0, #c8bfad)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5">
-                    <circle cx="12" cy="8" r="4" /><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
-                  </svg>
+                <div style={{ aspectRatio: '1/1', background: 'linear-gradient(135deg, #d5cec0, #c8bfad)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                  {f.image ? (
+                    <img src={f.image} alt={f.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
+                  ) : (
+                    <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.5">
+                      <circle cx="12" cy="8" r="4" /><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+                    </svg>
+                  )}
                 </div>
                 <div style={{ padding: '28px 28px 32px' }}>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-light)', marginBottom: 4 }}>{f.role}</p>
@@ -603,58 +636,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════ OUR EXPERTISE ═══════════════ */}
-      <section style={{ background: 'var(--cream-light)', padding: 'var(--section-padding) 0' }}>
-        <div className="container">
-          <SectionHeader title="OUR EXPERTISE" subtitle="Architecture, interior design and full turnkey execution, held under one accountable team. The vision and the delivery never separate, so nothing falls through the gaps between firms." />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
-            {expertise.map((item, i) => (
-              <ImageCard key={i} image={item.image} label={item.label} aspectRatio="3/4" />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════ TYPES OF SERVICES ═══════════════ */}
-      <section style={{ background: 'var(--cream)', padding: 'var(--section-padding) 0' }}>
-        <div className="container">
-          <SectionHeader title="TYPES OF SERVICES" />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
-            {serviceTypes.map((item, i) => (
-              <ImageCard key={i} image={item.image} label={item.label} aspectRatio="16/10" />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════ WHY US ═══════════════ */}
-      <section style={{ background: 'var(--cream-light)', padding: 'var(--section-padding) 0' }}>
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 80, alignItems: 'flex-start' }}>
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: 'var(--navy)', lineHeight: 1.1, marginBottom: 20 }}>WHY US?</h2>
-              <p style={{ color: 'var(--text-medium)', fontSize: '0.95rem', lineHeight: 1.8, maxWidth: 380 }}>
-                We bring together design thinking, construction expertise, and a deep understanding of how people actually live in spaces — all under one accountable team.
-              </p>
-            </motion.div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
-              {whyUsPoints.map((p, i) => (
-                <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                  style={{ display: 'grid', gridTemplateColumns: '60px 1fr', gap: 20, alignItems: 'flex-start', paddingBottom: i < whyUsPoints.length - 1 ? 40 : 0, borderBottom: i < whyUsPoints.length - 1 ? '1px solid rgba(0,0,0,0.06)' : 'none' }}>
-                  <div className="why-us-number">{p.number}</div>
-                  <div>
-                    <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-dark)', marginBottom: 8 }}>{p.title}</h3>
-                    <p style={{ color: 'var(--text-medium)', fontSize: '0.9rem', lineHeight: 1.7 }}>{p.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ═══════════════ AWARDS & CERTIFICATES ═══════════════ */}
-      <section style={{ background: 'var(--cream)', padding: 'var(--section-padding) 0' }}>
+      <section id="awards-news" style={{ background: 'var(--cream)', padding: 'var(--section-padding) 0' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
             {/* Left: Text */}
@@ -700,6 +683,28 @@ export default function Home() {
 
           {/* Certificate Carousel */}
           <CertificateCarousel />
+        </div>
+      </section>
+
+      {/* ═══════════════ MAGAZINE ═══════════════ */}
+      <section style={{ background: 'var(--cream-light)', padding: 'var(--section-padding) 0' }}>
+        <div className="container">
+          <SectionHeader title="AS FEATURED IN" subtitle="Our work and philosophy, covered by design and industry press." />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
+            {magazineFeatures.map((m, i) => (
+              <motion.a key={i} href={m.link || '#'} target={m.link ? '_blank' : undefined} rel={m.link ? 'noreferrer' : undefined}
+                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.08 }}
+                style={{ display: 'block', textDecoration: 'none', borderRadius: 12, overflow: 'hidden', background: '#fff', boxShadow: '0 10px 30px rgba(0,0,0,0.06)' }}>
+                <div style={{ aspectRatio: '3/4', background: 'linear-gradient(135deg, #e8e0d0, #d5cec0)', overflow: 'hidden' }}>
+                  {m.cover && <img src={m.cover} alt={m.publication} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />}
+                </div>
+                <div style={{ padding: '16px 18px 20px' }}>
+                  <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-dark)', marginBottom: 4 }}>{m.publication}</p>
+                  <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.78rem', color: 'var(--text-light)' }}>{m.feature}</p>
+                </div>
+              </motion.a>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -789,7 +794,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════ TESTIMONIALS ═══════════════ */}
-      <section style={{ background: 'var(--cream)', padding: 'var(--section-padding) 0' }}>
+      <section id="testimonials" style={{ background: 'var(--cream)', padding: 'var(--section-padding) 0' }}>
         <div className="container">
           <SectionHeader
             label="CLIENT'S TESTIMONIALS"
@@ -847,8 +852,58 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════ CONTACT ═══════════════ */}
+      {/* ═══════════════ OUR EXPERTISE ═══════════════ */}
+      <section id="services" style={{ background: 'var(--cream-light)', padding: 'var(--section-padding) 0' }}>
+        <div className="container">
+          <SectionHeader title="OUR EXPERTISE" subtitle="Architecture, interior design and full turnkey execution, held under one accountable team. The vision and the delivery never separate, so nothing falls through the gaps between firms." />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+            {expertise.map((item, i) => (
+              <ImageCard key={i} image={item.image} label={item.label} aspectRatio="3/4" onClick={() => navigate(item.route)} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════ TYPES OF SERVICES ═══════════════ */}
+      <section id="projects" style={{ background: 'var(--cream)', padding: 'var(--section-padding) 0' }}>
+        <div className="container">
+          <SectionHeader title="TYPES OF SERVICES" />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
+            {serviceTypes.map((item, i) => (
+              <ImageCard key={i} image={item.image} label={item.label} aspectRatio="16/10" onClick={() => navigate(item.route)} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════ WHY US ═══════════════ */}
       <section style={{ background: 'var(--cream-light)', padding: 'var(--section-padding) 0' }}>
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 80, alignItems: 'flex-start' }}>
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: 'var(--navy)', lineHeight: 1.1, marginBottom: 20 }}>WHY US?</h2>
+              <p style={{ color: 'var(--text-medium)', fontSize: '0.95rem', lineHeight: 1.8, maxWidth: 380 }}>
+                We bring together design thinking, construction expertise, and a deep understanding of how people actually live in spaces — all under one accountable team.
+              </p>
+            </motion.div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
+              {whyUsPoints.map((p, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                  style={{ display: 'grid', gridTemplateColumns: '60px 1fr', gap: 20, alignItems: 'flex-start', paddingBottom: i < whyUsPoints.length - 1 ? 40 : 0, borderBottom: i < whyUsPoints.length - 1 ? '1px solid rgba(0,0,0,0.06)' : 'none' }}>
+                  <div className="why-us-number">{p.number}</div>
+                  <div>
+                    <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-dark)', marginBottom: 8 }}>{p.title}</h3>
+                    <p style={{ color: 'var(--text-medium)', fontSize: '0.9rem', lineHeight: 1.7 }}>{p.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════ CONTACT ═══════════════ */}
+      <section id="contact" style={{ background: 'var(--cream-light)', padding: 'var(--section-padding) 0' }}>
         <div className="container">
           {/* Header row */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 48 }}>

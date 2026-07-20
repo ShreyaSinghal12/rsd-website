@@ -4,6 +4,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import ServicePage from './pages/ServicePage';
+import ProjectPage from './pages/ProjectPage';
+import CategoryPage from './pages/CategoryPage';
 
 /* Scroll to top on route change */
 function ScrollToTop() {
@@ -28,6 +31,15 @@ function AnimatedRoutes() {
       >
         <Routes location={location}>
           <Route path="/" element={<Home />} />
+          <Route path="/services/architecture" element={<ServicePage service="architecture" />} />
+          <Route path="/services/interior-design" element={<ServicePage service="interior-design" />} />
+          <Route path="/services/turnkey-projects" element={<ServicePage service="turnkey-projects" />} />
+          <Route path="/services/pmc" element={<ServicePage service="pmc" />} />
+          <Route path="/project/:id" element={<ProjectPage />} />
+          <Route path="/projects/residential" element={<CategoryPage category="residential" />} />
+          <Route path="/projects/hospitality" element={<CategoryPage category="hospitality" />} />
+          <Route path="/projects/builders" element={<CategoryPage category="builders" />} />
+          <Route path="/projects/retail" element={<CategoryPage category="retail" />} />
           {/* More routes will be added as pages are built */}
         </Routes>
       </motion.div>

@@ -1,21 +1,22 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
-  { label: 'Home', path: '/' },
-  { label: 'About us', path: '/about' },
-  { label: 'Awards', path: '/awards' },
-  { label: 'Services', path: '/services' },
-  { label: 'Projects', path: '/projects' },
-  { label: 'Testimonials', path: '/testimonials' },
-  { label: 'Contact us', path: '/contact' },
+  { label: 'Home', anchor: 'hero' },
+  { label: 'About us', anchor: 'about' },
+  { label: 'Awards', anchor: 'awards-news' },
+  { label: 'Services', anchor: 'services' },
+  { label: 'Projects', anchor: 'projects' },
+  { label: 'Testimonials', anchor: 'testimonials' },
+  { label: 'Contact us', anchor: 'contact' },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -31,6 +32,18 @@ export default function Navbar() {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [mobileOpen]);
+
+  // If already on the homepage, scroll straight to the section.
+  // Otherwise navigate home first and pass the target anchor along,
+  // so Home can scroll to it once it has mounted.
+  const goToAnchor = (anchor) => {
+    if (location.pathname === '/') {
+      const el = document.getElementById(anchor);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/', { state: { scrollTo: anchor } });
+    }
+  };
 
   const isHero = location.pathname === '/' && !scrolled;
 
@@ -61,16 +74,20 @@ export default function Navbar() {
           justifyContent: 'space-between',
         }}>
           {/* Logo */}
-          <Link to="/" style={{
+          <button onClick={() => goToAnchor('hero')} style={{
             fontFamily: "'DM Serif Display', serif",
             fontSize: '1.8rem',
             fontWeight: 400,
             color: isHero ? '#ffffff' : '#1c2a3a',
             transition: 'color 0.4s ease',
             letterSpacing: '-0.02em',
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            padding: 0,
           }}>
             Logo
-          </Link>
+          </button>
 
           {/* Desktop Pill Nav */}
           <div className="desktop-nav" style={{
@@ -83,34 +100,32 @@ export default function Navbar() {
             padding: '6px 8px',
             border: scrolled ? '1px solid rgba(0,0,0,0.05)' : '1px solid rgba(255,255,255,0.2)',
           }}>
-            {navLinks.map(link => {
-              const isActive = location.pathname === link.path;
-              return (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  style={{
-                    padding: '8px 16px',
-                    fontSize: '0.85rem',
-                    fontWeight: isActive ? 600 : 400,
-                    color: isHero ? '#ffffff' : '#1c2a3a',
-                    borderRadius: '50px',
-                    background: isActive
-                      ? (isHero ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.08)')
-                      : 'transparent',
-                    transition: 'all 0.3s ease',
-                    whiteSpace: 'nowrap',
-                  }}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+            {navLinks.map(link => (
+              <button
+                key={link.label}
+                onClick={() => goToAnchor(link.anchor)}
+                style={{
+                  padding: '8px 16px',
+                  fontSize: '0.85rem',
+                  fontWeight: 400,
+                  color: isHero ? '#ffffff' : '#1c2a3a',
+                  borderRadius: '50px',
+                  background: 'transparent',
+                  transition: 'all 0.3s ease',
+                  whiteSpace: 'nowrap',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontFamily: 'inherit',
+                }}
+              >
+                {link.label}
+              </button>
+            ))}
           </div>
 
           {/* Get Quote Button */}
-          <Link
-            to="/contact"
+          <button
+            onClick={() => goToAnchor('contact')}
             className="desktop-nav"
             style={{
               padding: '10px 28px',
@@ -121,10 +136,12 @@ export default function Navbar() {
               color: isHero ? '#1c2a3a' : '#ffffff',
               transition: 'all 0.3s ease',
               border: 'none',
+              cursor: 'pointer',
+              fontFamily: 'inherit',
             }}
           >
             Get Quote
-          </Link>
+          </button>
 
           {/* Mobile Toggle */}
           <button
@@ -177,25 +194,27 @@ export default function Navbar() {
           >
             {navLinks.map((link, i) => (
               <motion.div
-                key={link.path}
+                key={link.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.06 }}
               >
-                <Link
-                  to={link.path}
-                  onClick={() => setMobileOpen(false)}
+                <button
+                  onClick={() => { setMobileOpen(false); goToAnchor(link.anchor); }}
                   style={{
                     display: 'block',
                     padding: '12px 24px',
                     fontSize: '1.5rem',
                     fontFamily: "'Playfair Display', serif",
-                    color: location.pathname === link.path ? 'var(--gold)' : 'var(--navy)',
+                    color: 'var(--navy)',
                     textAlign: 'center',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
                   }}
                 >
                   {link.label}
-                </Link>
+                </button>
               </motion.div>
             ))}
             <motion.div
@@ -204,13 +223,12 @@ export default function Navbar() {
               transition={{ delay: navLinks.length * 0.06 }}
               style={{ marginTop: 16 }}
             >
-              <Link
-                to="/contact"
-                onClick={() => setMobileOpen(false)}
+              <button
+                onClick={() => { setMobileOpen(false); goToAnchor('contact'); }}
                 className="btn-primary"
               >
                 Get Quote
-              </Link>
+              </button>
             </motion.div>
           </motion.div>
         )}
