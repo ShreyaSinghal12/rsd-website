@@ -1,115 +1,227 @@
-import { useState, useEffect } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const links = [
-  { label: 'Home', anchor: 'hero' },
-  { label: 'About us', anchor: 'about' },
-  { label: 'Awards', anchor: 'awards-news' },
-  { label: 'Services', anchor: 'services' },
-  { label: 'Projects', anchor: 'portfolio' },
-  { label: 'Testimonials', anchor: 'testimonials' },
-  { label: 'Contact us', anchor: 'contact' },
-]
-
-const S = { gold: '#B98D4F', ink: '#1B2A38' }
+const navLinks = [
+  { label: 'Home', path: '/' },
+  { label: 'About us', path: '/about' },
+  { label: 'Awards', path: '/awards' },
+  { label: 'Services', path: '/services' },
+  { label: 'Projects', path: '/projects' },
+  { label: 'Testimonials', path: '/testimonials' },
+  { label: 'Contact us', path: '/contact' },
+];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [activeLink, setActiveLink] = useState('hero')
-  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 1024 : false)
-  const { pathname } = useLocation()
-  const navigate = useNavigate()
-  const isProjectsActive = pathname.startsWith('/projects')
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth <= 1024)
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [])
-
-  const scrollTo = (anchor) => {
-    setMenuOpen(false)
-    if (pathname !== '/') {
-      navigate('/')
-      setTimeout(() => { const el = document.getElementById(anchor); if (el) el.scrollIntoView({ behavior: 'smooth' }) }, 300)
-    } else {
-      const el = document.getElementById(anchor)
-      if (el) el.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 60)
-      if (pathname !== '/') { setActiveLink('projects-route'); return }
-      const sections = links.map(link => {
-        const el = document.getElementById(link.anchor)
-        if (!el) return null
-        const rect = el.getBoundingClientRect()
-        return { anchor: link.anchor, top: rect.top }
-      }).filter(Boolean).sort((a, b) => a.top - b.top)
-      const triggerLine = 100
-      let current = sections[0]?.anchor
-      for (const s of sections) { if (s.top <= triggerLine) current = s.anchor }
-      setActiveLink(current)
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [pathname])
+    setMobileOpen(false);
+  }, [location]);
 
-  const heroActive = pathname === '/' && !scrolled
-  const textColor = heroActive ? '#fff' : S.ink
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
+  const isHero = location.pathname === '/' && !scrolled;
 
   return (
     <>
-      <header style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, padding: '1.4rem 2rem', background: heroActive ? 'transparent' : 'rgba(250,248,242,0.96)', backdropFilter: heroActive ? 'none' : 'blur(10px)', boxShadow: heroActive ? 'none' : '0 2px 12px rgba(0,0,0,0.06)', transition: 'background 0.3s' }}>
-        <div style={{ maxWidth: 1400, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
-          <button onClick={() => scrollTo('hero')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: "'Poppins',sans-serif", fontWeight: 600, fontSize: '1.4rem', color: textColor }}>
-            RSD
-          </button>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 100,
+          padding: '16px 40px',
+          transition: 'all 0.4s ease',
+          background: scrolled ? 'rgba(248, 244, 237, 0.95)' : 'transparent',
+          backdropFilter: scrolled ? 'blur(20px)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(0,0,0,0.05)' : 'none',
+        }}
+      >
+        <div style={{
+          maxWidth: '1400px',
+          margin: '0 auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}>
+          {/* Logo */}
+          <Link to="/" style={{
+            fontFamily: "'DM Serif Display', serif",
+            fontSize: '1.8rem',
+            fontWeight: 400,
+            color: isHero ? '#ffffff' : '#1c2a3a',
+            transition: 'color 0.4s ease',
+            letterSpacing: '-0.02em',
+          }}>
+            Logo
+          </Link>
 
-          {!isMobile && (
-            <nav style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', background: heroActive ? 'rgba(255,255,255,0.12)' : '#fff', borderRadius: 999, padding: '0.5rem 0.6rem', boxShadow: heroActive ? 'none' : '0 2px 10px rgba(0,0,0,0.06)' }}>
-              {links.map(link => {
-                const active = link.anchor === 'portfolio' ? (pathname === '/' ? activeLink === 'portfolio' : isProjectsActive) : (pathname === '/' && activeLink === link.anchor)
-                return (
-                  <button key={link.anchor} onClick={() => scrollTo(link.anchor)} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '0.88rem', fontWeight: active ? 600 : 400, color: active ? S.gold : textColor, background: 'none', border: 'none', cursor: 'pointer', padding: '0.5rem 0.9rem', borderRadius: 999, transition: 'color 0.2s' }}>
-                    {link.label}
-                  </button>
-                )
-              })}
-            </nav>
-          )}
-
-          {!isMobile && (
-            <button onClick={() => scrollTo('contact')} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: '0.85rem', fontWeight: 500, padding: '0.75rem 1.6rem', background: heroActive ? '#fff' : S.ink, color: heroActive ? S.ink : '#fff', border: 'none', borderRadius: 999, cursor: 'pointer' }}>
-              Get Quote
-            </button>
-          )}
-
-          {isMobile && (
-            <button onClick={() => setMenuOpen(v => !v)} aria-label="Menu" style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0.4rem', display: 'flex', flexDirection: 'column', gap: 5 }}>
-              <span style={{ width: 24, height: 2, background: textColor, display: 'block' }} />
-              <span style={{ width: 24, height: 2, background: textColor, display: 'block' }} />
-              <span style={{ width: 24, height: 2, background: textColor, display: 'block' }} />
-            </button>
-          )}
-        </div>
-      </header>
-
-      {isMobile && (
-        <>
-          <div onClick={() => setMenuOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 98, background: 'rgba(0,0,0,0.5)', opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? 'auto' : 'none', transition: 'opacity 0.3s' }} />
-          <div style={{ position: 'fixed', top: 0, right: 0, bottom: 0, zIndex: 99, width: '72vw', maxWidth: 280, background: '#fff', transform: menuOpen ? 'translateX(0)' : 'translateX(100%)', transition: 'transform 0.35s ease', display: 'flex', flexDirection: 'column', padding: '5.5rem 2rem 2rem', gap: '0.4rem' }}>
-            {links.map(link => (
-              <button key={link.anchor} onClick={() => scrollTo(link.anchor)} style={{ textAlign: 'left', fontFamily: "'DM Sans',sans-serif", fontSize: '1rem', color: S.ink, background: 'none', border: 'none', cursor: 'pointer', padding: '0.75rem 0', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>{link.label}</button>
-            ))}
-            <button onClick={() => scrollTo('contact')} style={{ marginTop: '1.5rem', fontFamily: "'DM Sans',sans-serif", fontSize: '0.85rem', padding: '0.85rem 1.4rem', background: S.gold, color: '#fff', border: 'none', borderRadius: 999, cursor: 'pointer' }}>Get Quote</button>
+          {/* Desktop Pill Nav */}
+          <div className="desktop-nav" style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            background: scrolled ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.15)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '50px',
+            padding: '6px 8px',
+            border: scrolled ? '1px solid rgba(0,0,0,0.05)' : '1px solid rgba(255,255,255,0.2)',
+          }}>
+            {navLinks.map(link => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  style={{
+                    padding: '8px 16px',
+                    fontSize: '0.85rem',
+                    fontWeight: isActive ? 600 : 400,
+                    color: isHero ? '#ffffff' : '#1c2a3a',
+                    borderRadius: '50px',
+                    background: isActive
+                      ? (isHero ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.08)')
+                      : 'transparent',
+                    transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
-        </>
-      )}
+
+          {/* Get Quote Button */}
+          <Link
+            to="/contact"
+            className="desktop-nav"
+            style={{
+              padding: '10px 28px',
+              borderRadius: '50px',
+              fontSize: '0.9rem',
+              fontWeight: 600,
+              background: isHero ? '#ffffff' : 'var(--navy)',
+              color: isHero ? '#1c2a3a' : '#ffffff',
+              transition: 'all 0.3s ease',
+              border: 'none',
+            }}
+          >
+            Get Quote
+          </Link>
+
+          {/* Mobile Toggle */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="mobile-toggle"
+            style={{
+              display: 'none',
+              flexDirection: 'column',
+              gap: '5px',
+              padding: '8px',
+              zIndex: 200,
+            }}
+            aria-label="Toggle menu"
+          >
+            <motion.div
+              animate={{ rotate: mobileOpen ? 45 : 0, y: mobileOpen ? 8 : 0 }}
+              style={{ width: 24, height: 2, background: isHero && !mobileOpen ? '#fff' : '#1c2a3a', borderRadius: 2, transformOrigin: 'center' }}
+            />
+            <motion.div
+              animate={{ opacity: mobileOpen ? 0 : 1 }}
+              style={{ width: 24, height: 2, background: isHero && !mobileOpen ? '#fff' : '#1c2a3a', borderRadius: 2 }}
+            />
+            <motion.div
+              animate={{ rotate: mobileOpen ? -45 : 0, y: mobileOpen ? -8 : 0 }}
+              style={{ width: 24, height: 2, background: isHero && !mobileOpen ? '#fff' : '#1c2a3a', borderRadius: 2, transformOrigin: 'center' }}
+            />
+          </button>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              zIndex: 99,
+              background: 'var(--cream)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+            }}
+          >
+            {navLinks.map((link, i) => (
+              <motion.div
+                key={link.path}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.06 }}
+              >
+                <Link
+                  to={link.path}
+                  onClick={() => setMobileOpen(false)}
+                  style={{
+                    display: 'block',
+                    padding: '12px 24px',
+                    fontSize: '1.5rem',
+                    fontFamily: "'Playfair Display', serif",
+                    color: location.pathname === link.path ? 'var(--gold)' : 'var(--navy)',
+                    textAlign: 'center',
+                  }}
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
+            ))}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: navLinks.length * 0.06 }}
+              style={{ marginTop: 16 }}
+            >
+              <Link
+                to="/contact"
+                onClick={() => setMobileOpen(false)}
+                className="btn-primary"
+              >
+                Get Quote
+              </Link>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <style>{`
+        @media (max-width: 1024px) {
+          .desktop-nav { display: none !important; }
+          .mobile-toggle { display: flex !important; }
+        }
+      `}</style>
     </>
-  )
+  );
 }
