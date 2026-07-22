@@ -34,7 +34,7 @@ export default function ServicePage({ service }) {
 
             <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}
               style={{ display: 'flex', justifyContent: 'center', margin: '28px auto 0' }}>
-  <img src={info.banner} alt={info.title} style={{ height: 'min(46vh, 480px)', width: 'auto', maxWidth: '100%', objectFit: 'contain', display: 'block', borderRadius: 14, boxShadow: '0 20px 50px rgba(0,0,0,0.12)' }} />
+  <img src={info.banner} alt={info.title} style={{ width: '100%', maxWidth: 640, height: 'auto', maxHeight: '82vh', objectFit: 'contain', display: 'block', borderRadius: 14, boxShadow: '0 20px 50px rgba(0,0,0,0.12)' }} />
             </motion.div>
 
             <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}

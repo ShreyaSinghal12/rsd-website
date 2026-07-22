@@ -105,7 +105,7 @@ const magazines = [
   {
     publication: 'Design Business Edition',
     feature: 'Design & Technology',
-    pages: ['/images/press/maga21.jpeg', '/images/press/maga22.jpeg', '/images/press/maga23.jpeg'],
+    pages: ['/images/press/maga21.jpeg', '/images/press/maga23.jpeg', '/images/press/maga22.jpeg'],
     link: null,
   },
 ];
@@ -410,7 +410,7 @@ function MagazineCard({ magazine, delay = 0 }) {
         style={{ cursor: 'pointer', textAlign: 'center' }}
       >
         {/* Fanned page stack */}
-        <div style={{ position: 'relative', aspectRatio: '3/4', margin: '0 auto 20px', maxWidth: 200 }}>
+        <div style={{ position: 'relative', aspectRatio: '3/4', margin: '0 auto 28px', maxWidth: 340 }}>
           {magazine.pages.map((page, i) => {
             const offset = i - (pageCount - 1) / 2;
             return (
@@ -790,7 +790,7 @@ export default function Home() {
       <section style={{ background: 'var(--cream-light)', padding: 'var(--section-padding) 0' }}>
         <div className="container">
           <SectionHeader title="AS FEATURED IN" subtitle="Our work and philosophy, covered by design and industry press." />
-          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${magazines.length}, minmax(260px, 1fr))`, gap: 40, maxWidth: 720, margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${magazines.length}, minmax(320px, 1fr))`, gap: 60, maxWidth: 1100, margin: '0 auto' }}>
             {magazines.map((mag, i) => (
               <MagazineCard key={i} magazine={mag} delay={i * 0.1} />
             ))}

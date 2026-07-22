@@ -6,23 +6,42 @@ const navLinks = [
   { label: 'Home', anchor: 'hero' },
   { label: 'About us', anchor: 'about' },
   { label: 'Awards', anchor: 'awards-news' },
+  { label: 'Testimonials', anchor: 'testimonials' },
   { label: 'Services', anchor: 'services' },
   { label: 'Projects', anchor: 'projects' },
-  { label: 'Testimonials', anchor: 'testimonials' },
+  
   { label: 'Contact us', anchor: 'contact' },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
+  const [logoError, setLogoError] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+      if (location.pathname !== '/') return;
+      let best = null;
+      let bestTop = -Infinity;
+      for (const link of navLinks) {
+        const el = document.getElementById(link.anchor);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top;
+        if (top <= 150 && top > bestTop) {
+          bestTop = top;
+          best = link.anchor;
+        }
+      }
+      if (best) setActiveSection(best);
+    };
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -75,18 +94,28 @@ export default function Navbar() {
         }}>
           {/* Logo */}
           <button onClick={() => goToAnchor('hero')} style={{
-            fontFamily: "'DM Serif Display', serif",
-            fontSize: '1.8rem',
-            fontWeight: 400,
-            color: isHero ? '#ffffff' : '#1c2a3a',
-            transition: 'color 0.4s ease',
-            letterSpacing: '-0.02em',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: 0,
+            display: 'flex', alignItems: 'center',
+            background: 'none', border: 'none', cursor: 'pointer', padding: 0,
           }}>
-            Logo
+            {!logoError ? (
+              <img
+                src="/images/logo/rsd_logo.png"
+                alt="Raamesh Singhal Design"
+                onError={() => setLogoError(true)}
+                style={{ height: 42, width: 'auto', display: 'block', filter: isHero ? 'brightness(0) invert(1)' : 'none', transition: 'filter 0.4s ease' }}
+              />
+            ) : (
+              <span style={{
+                fontFamily: "'DM Serif Display', serif",
+                fontSize: '1.8rem',
+                fontWeight: 400,
+                color: isHero ? '#ffffff' : '#1c2a3a',
+                transition: 'color 0.4s ease',
+                letterSpacing: '-0.02em',
+              }}>
+                Logo
+              </span>
+            )}
           </button>
 
           {/* Desktop Pill Nav */}
@@ -100,27 +129,30 @@ export default function Navbar() {
             padding: '6px 8px',
             border: scrolled ? '1px solid rgba(0,0,0,0.05)' : '1px solid rgba(255,255,255,0.2)',
           }}>
-            {navLinks.map(link => (
-              <button
-                key={link.label}
-                onClick={() => goToAnchor(link.anchor)}
-                style={{
-                  padding: '8px 16px',
-                  fontSize: '0.85rem',
-                  fontWeight: 400,
-                  color: isHero ? '#ffffff' : '#1c2a3a',
-                  borderRadius: '50px',
-                  background: 'transparent',
-                  transition: 'all 0.3s ease',
-                  whiteSpace: 'nowrap',
-                  border: 'none',
-                  cursor: 'pointer',
-                  fontFamily: 'inherit',
-                }}
-              >
-                {link.label}
-              </button>
-            ))}
+            {navLinks.map(link => {
+              const isActive = location.pathname === '/' && activeSection === link.anchor;
+              return (
+                <button
+                  key={link.label}
+                  onClick={() => goToAnchor(link.anchor)}
+                  style={{
+                    padding: '8px 16px',
+                    fontSize: '0.85rem',
+                    fontWeight: isActive ? 700 : 400,
+                    color: isActive ? 'var(--gold)' : (isHero ? '#ffffff' : '#1c2a3a'),
+                    borderRadius: '50px',
+                    background: isActive ? (isHero ? 'rgba(255,255,255,0.22)' : 'rgba(0,0,0,0.07)') : 'transparent',
+                    transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontFamily: 'inherit',
+                  }}
+                >
+                  {link.label}
+                </button>
+              );
+            })}
           </div>
 
           {/* Get Quote Button */}
@@ -192,31 +224,35 @@ export default function Navbar() {
               gap: '8px',
             }}
           >
-            {navLinks.map((link, i) => (
-              <motion.div
-                key={link.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.06 }}
-              >
-                <button
-                  onClick={() => { setMobileOpen(false); goToAnchor(link.anchor); }}
-                  style={{
-                    display: 'block',
-                    padding: '12px 24px',
-                    fontSize: '1.5rem',
-                    fontFamily: "'Playfair Display', serif",
-                    color: 'var(--navy)',
-                    textAlign: 'center',
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                  }}
+            {navLinks.map((link, i) => {
+              const isActive = location.pathname === '/' && activeSection === link.anchor;
+              return (
+                <motion.div
+                  key={link.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.06 }}
                 >
-                  {link.label}
-                </button>
-              </motion.div>
-            ))}
+                  <button
+                    onClick={() => { setMobileOpen(false); goToAnchor(link.anchor); }}
+                    style={{
+                      display: 'block',
+                      padding: '12px 24px',
+                      fontSize: '1.5rem',
+                      fontFamily: "'Playfair Display', serif",
+                      fontWeight: isActive ? 700 : 400,
+                      color: isActive ? 'var(--gold)' : 'var(--navy)',
+                      textAlign: 'center',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {link.label}
+                  </button>
+                </motion.div>
+              );
+            })}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
