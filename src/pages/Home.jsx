@@ -105,7 +105,7 @@ const magazines = [
   {
     publication: 'Design Business Edition',
     feature: 'Design & Technology',
-    pages: ['/images/press/maga21.jpeg', '/images/press/maga23.jpeg', '/images/press/maga22.jpeg'],
+    pages: ['/images/press/maga21.jpeg', '/images/press/maga22.jpeg', '/images/press/maga23.jpeg'],
     link: null,
   },
 ];
@@ -410,7 +410,7 @@ function MagazineCard({ magazine, delay = 0 }) {
         style={{ cursor: 'pointer', textAlign: 'center' }}
       >
         {/* Fanned page stack */}
-        <div style={{ position: 'relative', aspectRatio: '3/4', margin: '0 auto 28px', maxWidth: 340 }}>
+        <div style={{ position: 'relative', aspectRatio: '3/4', margin: '0 auto 20px', maxWidth: 200 }}>
           {magazine.pages.map((page, i) => {
             const offset = i - (pageCount - 1) / 2;
             return (
@@ -790,7 +790,7 @@ export default function Home() {
       <section style={{ background: 'var(--cream-light)', padding: 'var(--section-padding) 0' }}>
         <div className="container">
           <SectionHeader title="AS FEATURED IN" subtitle="Our work and philosophy, covered by design and industry press." />
-          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${magazines.length}, minmax(320px, 1fr))`, gap: 60, maxWidth: 1100, margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${magazines.length}, minmax(260px, 1fr))`, gap: 40, maxWidth: 720, margin: '0 auto' }}>
             {magazines.map((mag, i) => (
               <MagazineCard key={i} magazine={mag} delay={i * 0.1} />
             ))}
@@ -822,10 +822,8 @@ export default function Home() {
                   <p style={{ fontSize: '0.85rem', fontWeight: 400, opacity: 0.9 }}>The Book by</p>
                   <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem', fontWeight: 700 }}>Ramesh Singhal</p>
                 </div>
-                <div style={{ width: 50, height: 50, borderRadius: 8, background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="0.5">
-                    <circle cx="12" cy="8" r="4" /><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
-                  </svg>
+                <div style={{ width: 50, height: 50, borderRadius: 8, overflow: 'hidden', flexShrink: 0 }}>
+                  <img src="/images/Founders/Ramesh_Singhal.jpeg" alt="Ramesh Singhal" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', display: 'block' }} />
                 </div>
               </div>
 
