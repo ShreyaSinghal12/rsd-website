@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import projects from '../data/projects';
 import categoryContent from '../data/CategoryContent';
+import ProjectCard from '../components/ProjectCard';
 
 export default function CategoryPage({ category }) {
   const navigate = useNavigate();
@@ -34,16 +35,7 @@ export default function CategoryPage({ category }) {
           </motion.p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
             {items.map((p, i) => (
-              <motion.div key={p.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: (i % 9) * 0.06 }}
-                onClick={() => navigate(`/project/${p.id}`)}
-                style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', aspectRatio: '4/3', cursor: 'pointer' }}>
-                <img src={p.img} alt={p.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.6s ease' }}
-                  onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.06)' }}
-                  onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)' }} />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(26,26,24,0.75) 0%, transparent 55%)', display: 'flex', alignItems: 'flex-end', padding: 20 }}>
-                  <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', fontSize: '1.05rem', color: '#fff' }}>{p.title}</p>
-                </div>
-              </motion.div>
+              <ProjectCard key={p.id} project={p} delay={(i % 9) * 0.06} />
             ))}
           </div>
         </div>
