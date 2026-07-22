@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ProjectCard({ project, delay = 0 }) {
   const [open, setOpen] = useState(false);
-  const [pageIdx, setPageIdx] = useState(0);
   const gallery = project.gallery && project.gallery.length ? project.gallery : [project.img];
   const count = gallery.length;
 
@@ -11,7 +10,7 @@ export default function ProjectCard({ project, delay = 0 }) {
     <>
       <motion.div
         initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay }}
-        onClick={() => { setPageIdx(0); setOpen(true); }}
+        onClick={() => setOpen(true)}
         style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', aspectRatio: '4/3', cursor: 'pointer' }}
       >
         <img src={project.img} alt={project.title} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.6s ease' }}
@@ -27,43 +26,31 @@ export default function ProjectCard({ project, delay = 0 }) {
         )}
       </motion.div>
 
-      {/* Lightbox */}
+      {/* Gallery popup — every image at once, no arrows needed */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             onClick={() => setOpen(false)}
-            style={{ position: 'fixed', inset: 0, zIndex: 300, background: 'rgba(20,20,20,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}
+            style={{ position: 'fixed', inset: 0, zIndex: 300, background: 'rgba(20,20,20,0.94)', overflowY: 'auto', padding: '32px 24px' }}
           >
             <button onClick={() => setOpen(false)} aria-label="Close"
-              style={{ position: 'absolute', top: 24, right: 24, width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontSize: '1.1rem', cursor: 'pointer' }}>
+              style={{ position: 'fixed', top: 24, right: 24, width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontSize: '1.1rem', cursor: 'pointer', zIndex: 301 }}>
               &#10005;
             </button>
 
-            <div onClick={e => e.stopPropagation()} style={{ position: 'relative', maxWidth: 900, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <p style={{ color: '#fff', fontFamily: "'Playfair Display', serif", fontSize: '1.2rem', marginBottom: 16, textAlign: 'center' }}>{project.title}</p>
-              <motion.img
-                key={pageIdx}
-                initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.3 }}
-                src={gallery[pageIdx]} alt={`${project.title} photo ${pageIdx + 1}`}
-                style={{ maxWidth: '100%', maxHeight: '72vh', borderRadius: 6, boxShadow: '0 30px 80px rgba(0,0,0,0.4)', objectFit: 'contain' }}
-              />
-
-              {count > 1 && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: 20, marginTop: 20 }}>
-                  <button onClick={() => setPageIdx(p => (p - 1 + count) % count)} aria-label="Previous photo"
-                    style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontSize: '1.1rem', cursor: 'pointer' }}>
-                    ‹
-                  </button>
-                  <p style={{ color: 'rgba(255,255,255,0.75)', fontFamily: 'Inter, sans-serif', fontSize: '0.8rem', letterSpacing: '0.1em' }}>
-                    {pageIdx + 1} of {count}
-                  </p>
-                  <button onClick={() => setPageIdx(p => (p + 1) % count)} aria-label="Next photo"
-                    style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontSize: '1.1rem', cursor: 'pointer' }}>
-                    ›
-                  </button>
-                </div>
-              )}
+            <div onClick={e => e.stopPropagation()} style={{ maxWidth: 1200, margin: '0 auto' }}>
+              <p style={{ color: '#fff', fontFamily: "'Playfair Display', serif", fontSize: '1.4rem', marginBottom: 24, textAlign: 'center' }}>{project.title}</p>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 12 }}>
+                {gallery.map((src, i) => (
+                  <motion.img
+                    key={i}
+                    initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: i * 0.02 }}
+                    src={src} alt={`${project.title} photo ${i + 1}`}
+                    style={{ width: '100%', borderRadius: 8, display: 'block', boxShadow: '0 10px 30px rgba(0,0,0,0.3)' }}
+                  />
+                ))}
+              </div>
             </div>
           </motion.div>
         )}
