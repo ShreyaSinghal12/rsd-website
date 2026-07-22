@@ -15,7 +15,7 @@ export default function CategoryPage({ category }) {
       <section style={{ background: 'var(--cream)', padding: '160px 0 80px' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <button onClick={() => navigate('/', { state: { scrollTo: 'projects' } })} style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+            <button onClick={() => { if (window.history.state?.idx > 0) navigate(-1); else navigate('/', { state: { scrollTo: 'projects' } }); }} style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--gold)', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
               ← Back to Types of Services
             </button>
           </motion.div>

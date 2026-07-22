@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, useNavigationType } from 'react-router-dom';
 import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar';
@@ -8,12 +8,17 @@ import ServicePage from './pages/ServicePage';
 import ProjectPage from './pages/ProjectPage';
 import CategoryPage from './pages/CategoryPage';
 
-/* Scroll to top on route change */
+/* Scroll to top on forward navigation only — let the browser's own
+   back/forward buttons restore the scroll position they remember,
+   instead of always forcing the page back to the top. */
 function ScrollToTop() {
   const { pathname } = useLocation();
+  const navigationType = useNavigationType();
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [pathname]);
+    if (navigationType !== 'POP') {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [pathname, navigationType]);
   return null;
 }
 

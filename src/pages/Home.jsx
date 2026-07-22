@@ -9,8 +9,8 @@ import testimonials from '../data/testimonials';
    ═══════════════════════════════════════════════ */
 
 const videoTestimonials = [
-  '/videos/Testimonials/Testimonial1.mp4',
-  '/videos/Testimonials/Testimonial2.mp4',
+  { src: '/videos/Testimonials/Testimonial1.mp4', poster: '/images/video-posters/testimonial1-poster.jpg' },
+  { src: '/videos/Testimonials/Testimonial2.mp4', poster: '/images/video-posters/testimonial2-poster.jpg' },
 ];
 
 const heroSlides = [
@@ -105,7 +105,7 @@ const magazines = [
   {
     publication: 'Design Business Edition',
     feature: 'Design & Technology',
-    pages: ['/images/press/maga21.jpeg', '/images/press/maga22.jpeg', '/images/press/maga23.jpeg'],
+    pages: ['/images/press/maga21.jpeg', '/images/press/maga23.jpeg', '/images/press/maga22.jpeg'],
     link: null,
   },
 ];
@@ -363,7 +363,7 @@ function CertificateCarousel() {
 /* ═══════════════════════════════════════════════
    VIDEO TESTIMONIAL CARD — click to play/pause
    ═══════════════════════════════════════════════ */
-function VideoTestimonialCard({ src, delay = 0 }) {
+function VideoTestimonialCard({ src, poster, delay = 0 }) {
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef(null);
 
@@ -378,7 +378,7 @@ function VideoTestimonialCard({ src, delay = 0 }) {
     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay }}
       onClick={toggle}
       style={{ position: 'relative', aspectRatio: '16/10', borderRadius: 16, overflow: 'hidden', background: '#000', cursor: 'pointer' }}>
-      <video ref={videoRef} src={src} playsInline preload="metadata"
+      <video ref={videoRef} src={src} poster={poster} playsInline preload="metadata"
         style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
         onEnded={() => setPlaying(false)} />
       {!playing && (
@@ -410,7 +410,7 @@ function MagazineCard({ magazine, delay = 0 }) {
         style={{ cursor: 'pointer', textAlign: 'center' }}
       >
         {/* Fanned page stack */}
-        <div style={{ position: 'relative', aspectRatio: '3/4', margin: '0 auto 20px', maxWidth: 200 }}>
+        <div style={{ position: 'relative', aspectRatio: '3/4', margin: '0 auto 20px', maxWidth: 290 }}>
           {magazine.pages.map((page, i) => {
             const offset = i - (pageCount - 1) / 2;
             return (
@@ -556,11 +556,24 @@ export default function Home() {
   const showreelRef = useRef(null);
 
   useEffect(() => {
+    // 1. Explicit anchor passed via router state — used when navigating
+    //    here from the Navbar or an in-page "Back to..." link.
     const target = location.state?.scrollTo;
     if (target) {
       const el = document.getElementById(target);
       if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 50);
       window.history.replaceState({}, document.title);
+      return;
+    }
+    // 2. Browser back/forward button (POP navigation) carries no state,
+    //    so fall back to whichever section was recorded right before
+    //    the user left the page (e.g. clicking an Our Expertise or
+    //    Our Projects card).
+    const remembered = sessionStorage.getItem('homeScrollAnchor');
+    if (remembered) {
+      const el = document.getElementById(remembered);
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 50);
+      sessionStorage.removeItem('homeScrollAnchor');
     }
   }, [location.state]);
 
@@ -693,7 +706,7 @@ export default function Home() {
         <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
           <motion.div initial={{ opacity: 0, y: 40, scale: 0.96 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}
             style={{ position: 'relative', borderRadius: 20, overflow: 'hidden', boxShadow: '0 30px 80px rgba(0,0,0,0.15)', aspectRatio: '16/9', height: 'min(68vh, 620px)', maxWidth: '100%', background: '#000' }}>
-            <video ref={showreelRef} src="/videos/OfficeVideo.mp4" autoPlay muted={showreelMuted} loop playsInline preload="auto"
+            <video ref={showreelRef} src="/videos/OfficeVideo.mp4" poster="/images/video-posters/office-poster.jpg" autoPlay muted={showreelMuted} loop playsInline preload="auto"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             <button
               onClick={() => setShowreelMuted(m => !m)}
@@ -790,7 +803,7 @@ export default function Home() {
       <section style={{ background: 'var(--cream-light)', padding: 'var(--section-padding) 0' }}>
         <div className="container">
           <SectionHeader title="AS FEATURED IN" subtitle="Our work and philosophy, covered by design and industry press." />
-          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${magazines.length}, minmax(260px, 1fr))`, gap: 40, maxWidth: 720, margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${magazines.length}, minmax(260px, 1fr))`, gap: 40, maxWidth: 1100, margin: '0 auto' }}>
             {magazines.map((mag, i) => (
               <MagazineCard key={i} magazine={mag} delay={i * 0.1} />
             ))}
@@ -873,23 +886,20 @@ export default function Home() {
             title='HEARD FROM THOSE WHO <em style="font-weight:400">LIVED OUR WORK</em>'
           />
 
-          {/* Text testimonial cards */}
-          <div className="testimonial-moodboard-scroll" style={{ display: 'flex', gap: 18, overflowX: 'auto', paddingBottom: 8, marginBottom: 60 }}>
-            {testimonials.map((t, i) => (
-              <motion.div
-                key={t.id || i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                style={{
-                  background: 'linear-gradient(135deg, #c9a84c, #b8953f)',
-                  borderRadius: 14, padding: '20px 18px',
-                  color: '#fff', position: 'relative',
-                  flex: '0 0 240px',
-                }}
-              >
-                {/* Client photo + stars row */}
+          {/* Text testimonial cards — auto-scrolling marquee, pauses on hover */}
+          <div className="testimonial-marquee" style={{ overflow: 'hidden', marginBottom: 60 }}>
+            <div className="testimonial-marquee-track" style={{ display: 'flex', gap: 18, width: 'max-content' }}>
+              {[...testimonials, ...testimonials].map((t, i) => (
+                <div
+                  key={i}
+                  style={{
+                    background: 'linear-gradient(135deg, #c9a84c, #b8953f)',
+                    borderRadius: 14, padding: '20px 18px',
+                    color: '#fff', position: 'relative',
+                    flex: '0 0 240px',
+                  }}
+                >
+                  {/* Client photo + stars row */}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
                   <div style={{
                     width: 38, height: 38, borderRadius: 7,
@@ -899,9 +909,23 @@ export default function Home() {
                 </div>
                 <p style={{ fontSize: '0.78rem', lineHeight: 1.6, marginBottom: 12, opacity: 0.95 }}>{t.text}</p>
                 <p style={{ fontSize: '0.78rem', fontWeight: 600, textAlign: 'right' }}>-{t.name}</p>
-              </motion.div>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
+
+          <style>{`
+            .testimonial-marquee-track {
+              animation: testimonialScroll 45s linear infinite;
+            }
+            .testimonial-marquee:hover .testimonial-marquee-track {
+              animation-play-state: paused;
+            }
+            @keyframes testimonialScroll {
+              from { transform: translateX(0); }
+              to { transform: translateX(-50%); }
+            }
+          `}</style>
 
           {/* Divider */}
           <div style={{ width: '50%', height: 1, background: 'rgba(0,0,0,0.08)', margin: '0 auto 60px' }} />
@@ -909,7 +933,7 @@ export default function Home() {
           {/* Video testimonials */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
             {videoTestimonials.map((v, i) => (
-              <VideoTestimonialCard key={i} src={v} delay={i * 0.15} />
+              <VideoTestimonialCard key={i} src={v.src} poster={v.poster} delay={i * 0.15} />
             ))}
           </div>
         </div>
@@ -921,7 +945,7 @@ export default function Home() {
           <SectionHeader title="OUR EXPERTISE" subtitle="Architecture, interior design and full turnkey execution, held under one accountable team. The vision and the delivery never separate, so nothing falls through the gaps between firms." />
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
             {expertise.map((item, i) => (
-              <ImageCard key={i} image={item.image} label={item.label} aspectRatio="3/4" onClick={() => navigate(item.route)} />
+              <ImageCard key={i} image={item.image} label={item.label} aspectRatio="3/4" onClick={() => { sessionStorage.setItem('homeScrollAnchor', 'services'); navigate(item.route); }} />
             ))}
           </div>
         </div>
@@ -933,7 +957,7 @@ export default function Home() {
           <SectionHeader title="OUR PROJECTS" />
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
             {serviceTypes.map((item, i) => (
-              <ImageCard key={i} image={item.image} label={item.label} aspectRatio="16/10" onClick={() => navigate(item.route)} />
+              <ImageCard key={i} image={item.image} label={item.label} aspectRatio="16/10" onClick={() => { sessionStorage.setItem('homeScrollAnchor', 'projects'); navigate(item.route); }} />
             ))}
           </div>
         </div>
@@ -1007,11 +1031,11 @@ export default function Home() {
               <div style={{ marginTop: 32, borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(0,0,0,0.06)' }}>
                 <iframe
                   title="Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3564.8!2d88.43!3d26.72!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDQzJzEyLjAiTiA4OMKwMjUnNDguMCJF!5e0!3m2!1sen!2sin!4v1"
+                  src="https://maps.google.com/maps?q=Time+Square+Sevoke+Road+Siliguri&t=m&z=16&output=embed&iwloc=near"
                   style={{ width: '100%', height: 220, border: 0, filter: 'grayscale(0.3)' }}
                   loading="lazy"
                 />
-                <a href="https://maps.google.com" target="_blank" rel="noreferrer"
+                <a href="https://maps.google.com/?q=Time+Square+Sevoke+Road+Siliguri" target="_blank" rel="noreferrer"
                   style={{ display: 'block', padding: '10px 16px', fontSize: '0.8rem', color: 'var(--gold)', fontWeight: 500 }}>
                   Open in Map ↗
                 </a>
