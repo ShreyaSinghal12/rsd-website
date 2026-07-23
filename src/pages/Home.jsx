@@ -11,8 +11,8 @@ import testimonials from '../data/testimonials';
 const videoTestimonials = [
   { src: '/videos/Testimonials/Testimonial1.mp4', poster: '/images/video-posters/testimonial1-poster.jpg' },
   { src: '/videos/Testimonials/Testimonial2.mp4', poster: '/images/video-posters/testimonial2-poster.jpg' },
-  { src: '/videos/Testimonials/Testimonial3.mp4', poster: '/images/video-posters/testimonial3-poster.jpg', placeholder: true },
-  { src: '/videos/Testimonials/Testimonial4.mp4', poster: '/images/video-posters/testimonial4-poster.jpg', placeholder: true },
+  { src: '/videos/Testimonials/Testimonial3.mp4', poster: '/images/video-posters/testimonial3-poster.jpg' },
+  { src: '/videos/Testimonials/Testimonial4.mp4', poster: '/images/video-posters/testimonial4-poster.jpg' },
 ];
 
 const heroSlides = [

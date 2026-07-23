@@ -279,10 +279,10 @@ button {
 
 .team-scroll::-webkit-scrollbar { display: none; }
 
-.video-testimonial-scroll::-webkit-scrollbar { height: 4px; }
-.video-testimonial-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.06); border-radius: 999px; }
-.video-testimonial-scroll::-webkit-scrollbar-thumb { background: var(--gold, #c9a84c); border-radius: 999px; }
-.video-testimonial-scroll { scrollbar-width: thin; scrollbar-color: var(--gold, #c9a84c) rgba(0,0,0,0.06); }
+.video-testimonial-scroll::-webkit-scrollbar { height: 3px; }
+.video-testimonial-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.04); border-radius: 999px; }
+.video-testimonial-scroll::-webkit-scrollbar-thumb { background: #c4c4c4; border-radius: 999px; }
+.video-testimonial-scroll { scrollbar-width: thin; scrollbar-color: #c4c4c4 rgba(0,0,0,0.04); }
 .team-scroll { scrollbar-width: none; }
 
 .testimonial-moodboard-scroll::-webkit-scrollbar { display: none; }
