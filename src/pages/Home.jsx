@@ -11,6 +11,8 @@ import testimonials from '../data/testimonials';
 const videoTestimonials = [
   { src: '/videos/Testimonials/Testimonial1.mp4', poster: '/images/video-posters/testimonial1-poster.jpg' },
   { src: '/videos/Testimonials/Testimonial2.mp4', poster: '/images/video-posters/testimonial2-poster.jpg' },
+  { src: '/videos/Testimonials/Testimonial3.mp4', poster: '/images/video-posters/testimonial3-poster.jpg', placeholder: true },
+  { src: '/videos/Testimonials/Testimonial4.mp4', poster: '/images/video-posters/testimonial4-poster.jpg', placeholder: true },
 ];
 
 const heroSlides = [
@@ -363,11 +365,12 @@ function CertificateCarousel() {
 /* ═══════════════════════════════════════════════
    VIDEO TESTIMONIAL CARD — click to play/pause
    ═══════════════════════════════════════════════ */
-function VideoTestimonialCard({ src, poster, delay = 0 }) {
+function VideoTestimonialCard({ src, poster, placeholder, delay = 0 }) {
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef(null);
 
   const toggle = () => {
+    if (placeholder) return;
     const v = videoRef.current;
     if (!v) return;
     if (playing) { v.pause(); } else { v.play(); }
@@ -377,20 +380,25 @@ function VideoTestimonialCard({ src, poster, delay = 0 }) {
   return (
     <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay }}
       onClick={toggle}
-      style={{ position: 'relative', aspectRatio: '16/10', borderRadius: 16, overflow: 'hidden', background: '#000', cursor: 'pointer' }}>
-      <video ref={videoRef} src={src} poster={poster} playsInline preload="metadata"
-        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-        onEnded={() => setPlaying(false)} />
-      {!playing && (
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.25)' }}>
+      style={{ position: 'relative', aspectRatio: '16/10', borderRadius: 16, overflow: 'hidden', background: '#000', cursor: placeholder ? 'default' : 'pointer' }}>
+      {!placeholder && (
+        <video ref={videoRef} src={src} poster={poster} playsInline preload="metadata"
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          onEnded={() => setPlaying(false)} />
+      )}
+      {(!playing || placeholder) && (
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, background: placeholder ? 'rgba(0,0,0,0.35)' : 'rgba(0,0,0,0.25)' }}>
           <div style={{
             width: 64, height: 64, borderRadius: '50%',
             border: '2px solid rgba(255,255,255,0.4)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            transition: 'all 0.3s ease',
+            transition: 'all 0.3s ease', opacity: placeholder ? 0.5 : 1,
           }}>
             <div style={{ width: 0, height: 0, borderTop: '10px solid transparent', borderBottom: '10px solid transparent', borderLeft: '16px solid rgba(255,255,255,0.8)', marginLeft: 3 }} />
           </div>
+          {placeholder && (
+            <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', color: 'rgba(255,255,255,0.7)', letterSpacing: '0.05em' }}>Video coming soon</p>
+          )}
         </div>
       )}
     </motion.div>
@@ -931,9 +939,11 @@ export default function Home() {
           <div style={{ width: '50%', height: 1, background: 'rgba(0,0,0,0.08)', margin: '0 auto 60px' }} />
 
           {/* Video testimonials */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
+          <div className="video-testimonial-scroll" style={{ display: 'flex', gap: 20, overflowX: 'auto', paddingBottom: 8 }}>
             {videoTestimonials.map((v, i) => (
-              <VideoTestimonialCard key={i} src={v.src} poster={v.poster} delay={i * 0.15} />
+              <div key={i} style={{ flex: '0 0 320px' }}>
+                <VideoTestimonialCard src={v.src} poster={v.poster} placeholder={v.placeholder} delay={i * 0.15} />
+              </div>
             ))}
           </div>
         </div>

@@ -1,6 +1,34 @@
+import { useState, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import projects from '../data/projects';
+
+function ProjectVideoCard({ src, poster }) {
+  const [playing, setPlaying] = useState(false);
+  const videoRef = useRef(null);
+
+  const toggle = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (playing) { v.pause(); } else { v.play(); }
+    setPlaying(!playing);
+  };
+
+  return (
+    <div onClick={toggle} style={{ position: 'relative', aspectRatio: '16/9', borderRadius: 12, overflow: 'hidden', background: '#000', cursor: 'pointer' }}>
+      <video ref={videoRef} src={src} poster={poster} playsInline preload="metadata"
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+        onEnded={() => setPlaying(false)} />
+      {!playing && (
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.25)' }}>
+          <div style={{ width: 60, height: 60, borderRadius: '50%', border: '2px solid rgba(255,255,255,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: 0, height: 0, borderTop: '9px solid transparent', borderBottom: '9px solid transparent', borderLeft: '15px solid rgba(255,255,255,0.85)', marginLeft: 3 }} />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function ProjectPage() {
   const { id } = useParams();
@@ -52,6 +80,23 @@ export default function ProjectPage() {
           </motion.p>
         </div>
       </section>
+
+      {/* ═══════════════ PROJECT VIDEOS ═══════════════ */}
+      {project.videos && project.videos.length > 0 && (
+        <section style={{ background: 'var(--cream)', padding: '0 0 var(--section-padding)' }}>
+          <div className="container">
+            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+              style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', fontWeight: 700, color: 'var(--navy)', marginBottom: 32, textAlign: 'center' }}>
+              Project Videos
+            </motion.h2>
+            <div style={{ display: 'grid', gridTemplateColumns: project.videos.length === 1 ? '1fr' : 'repeat(2, 1fr)', gap: 20, maxWidth: project.videos.length === 1 ? 800 : '100%', margin: '0 auto' }}>
+              {project.videos.map((v, i) => (
+                <ProjectVideoCard key={i} src={v.src || v} poster={v.poster} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ═══════════════ MY PROJECTS ═══════════════ */}
       {moreProjects.length > 0 && (
