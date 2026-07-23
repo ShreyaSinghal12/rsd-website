@@ -23,14 +23,14 @@ const heroSlides = [
     route: '/projects/residential',
   },
   {
-    image: '/images/slides/2ndSlide.jpeg',
+    image: '/images/slides/3rdSLide.jpeg',
     title: ['Why does the identical project next door', 'keep selling faster than yours?'],
     subtitle: "The difference buyers can't name is the difference we design.",
     cta: 'For Builders & Developers →',
     route: '/projects/builders',
   },
   {
-    image: '/images/slides/3rdSLide.jpeg',
+    image: '/images/slides/2ndSlide.jpeg',
     title: ['How many vendors are you managing', 'just to open a single hotel?'],
     subtitle: 'With us, the answer is one.',
     cta: 'Explore The One →',
