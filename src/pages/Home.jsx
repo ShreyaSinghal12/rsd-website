@@ -366,27 +366,14 @@ function CertificateCarousel() {
    VIDEO TESTIMONIAL CARD — click to play/pause
    ═══════════════════════════════════════════════ */
 function VideoTestimonialCard({ src, poster, placeholder, delay = 0 }) {
-  const [playing, setPlaying] = useState(false);
-  const videoRef = useRef(null);
-
-  const toggle = () => {
-    if (placeholder) return;
-    const v = videoRef.current;
-    if (!v) return;
-    if (playing) { v.pause(); } else { v.play(); }
-    setPlaying(!playing);
-  };
+  const [open, setOpen] = useState(false);
 
   return (
-    <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay }}
-      onClick={toggle}
-      style={{ position: 'relative', aspectRatio: '16/10', borderRadius: 16, overflow: 'hidden', background: '#000', cursor: placeholder ? 'default' : 'pointer' }}>
-      {!placeholder && (
-        <video ref={videoRef} src={src} poster={poster} playsInline preload="metadata"
-          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-          onEnded={() => setPlaying(false)} />
-      )}
-      {(!playing || placeholder) && (
+    <>
+      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay }}
+        onClick={() => { if (!placeholder) setOpen(true); }}
+        style={{ position: 'relative', aspectRatio: '16/10', borderRadius: 16, overflow: 'hidden', background: '#000', cursor: placeholder ? 'default' : 'pointer' }}>
+        <img src={poster} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
         <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, background: placeholder ? 'rgba(0,0,0,0.35)' : 'rgba(0,0,0,0.25)' }}>
           <div style={{
             width: 64, height: 64, borderRadius: '50%',
@@ -400,8 +387,26 @@ function VideoTestimonialCard({ src, poster, placeholder, delay = 0 }) {
             <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '0.75rem', color: 'rgba(255,255,255,0.7)', letterSpacing: '0.05em' }}>Video coming soon</p>
           )}
         </div>
+      </motion.div>
+
+      {open && (
+        <motion.div
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          onClick={() => setOpen(false)}
+          style={{ position: 'fixed', inset: 0, zIndex: 300, background: 'rgba(10,10,10,0.94)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}
+        >
+          <button onClick={() => setOpen(false)} aria-label="Close"
+            style={{ position: 'fixed', top: 24, right: 24, width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontSize: '1.1rem', cursor: 'pointer', zIndex: 301 }}>
+            &#10005;
+          </button>
+          <video
+            src={src} poster={poster} autoPlay controls playsInline
+            onClick={e => e.stopPropagation()}
+            style={{ maxWidth: '92vw', maxHeight: '88vh', borderRadius: 8, boxShadow: '0 30px 80px rgba(0,0,0,0.4)', display: 'block' }}
+          />
+        </motion.div>
       )}
-    </motion.div>
+    </>
   );
 }
 
