@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import projects from '../data/projects';
@@ -7,6 +8,7 @@ import ProjectCard from '../components/ProjectCard';
 
 export default function ServicePage({ service }) {
   const navigate = useNavigate();
+  const [photoOpen, setPhotoOpen] = useState(false);
   const info = servicesContent[service];
   const items = projects.filter(p => info.projectCategories.includes(p.category));
 
@@ -34,7 +36,7 @@ export default function ServicePage({ service }) {
 
             <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }}
               style={{ display: 'flex', justifyContent: 'center', margin: '28px auto 0' }}>
-  <img src={info.banner} alt={info.title} style={{ width: '100%', maxWidth: 640, height: 'auto', maxHeight: '82vh', objectFit: 'contain', display: 'block', borderRadius: 14, boxShadow: '0 20px 50px rgba(0,0,0,0.12)' }} />
+  <img src={info.banner} alt={info.title} onClick={() => setPhotoOpen(true)} style={{ width: '100%', maxWidth: 640, height: 'auto', maxHeight: '82vh', objectFit: 'contain', display: 'block', borderRadius: 14, boxShadow: '0 20px 50px rgba(0,0,0,0.12)', cursor: 'pointer' }} />
             </motion.div>
 
             <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}
@@ -120,6 +122,25 @@ export default function ServicePage({ service }) {
           </div>
         </div>
       </section>
+
+      {/* Single-photo popup — click the infographic to view it centered and larger */}
+      {photoOpen && (
+        <motion.div
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+          onClick={() => setPhotoOpen(false)}
+          style={{ position: 'fixed', inset: 0, zIndex: 300, background: 'rgba(20,20,20,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24 }}
+        >
+          <button onClick={() => setPhotoOpen(false)} aria-label="Close"
+            style={{ position: 'fixed', top: 24, right: 24, width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.3)', color: '#fff', fontSize: '1.1rem', cursor: 'pointer', zIndex: 301 }}>
+            &#10005;
+          </button>
+          <img
+            src={info.banner} alt={info.title}
+            onClick={e => e.stopPropagation()}
+            style={{ maxWidth: '92vw', maxHeight: '90vh', objectFit: 'contain', borderRadius: 8, boxShadow: '0 30px 80px rgba(0,0,0,0.4)' }}
+          />
+        </motion.div>
+      )}
     </div>
   );
 }
